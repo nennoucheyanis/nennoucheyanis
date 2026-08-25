@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Yanis Nennouche — Architectural Portfolio">
-  <title>YANIS NENNOUCHE / ARCHITECT — Yanis Nennouche</title>
+  <title>YANIS NENNOUCHE / ARCHITECT — Portfolio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +18,8 @@
       --text: #f1f3f5;
       --muted: #8c93a3;
       --line: rgba(255,255,255,.10);
-      --accent: #00e699;
-      --accent-soft: rgba(0,230,153,.12);
+      --accent: #A8BFA3;
+      --accent-soft: rgba(168,191,163,.12);
       --max: 1440px;
     }
 
@@ -152,21 +152,20 @@
       border-bottom: 1px solid var(--line);
     }
 
-.logo {
-  font:
-    600 .95rem
-    "Space Grotesk",
-    sans-serif;
+    .logo {
+      font:
+        600 .92rem
+        "Space Grotesk",
+        sans-serif;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
 
-  letter-spacing: .08em;
-  white-space: nowrap;
-}
-
-.logo span {
-  color: var(--muted);
-  font-weight: 400;
-  letter-spacing: .04em;
-}
+    .logo span {
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: .04em;
+    }
 
     .nav-links {
       display: flex;
@@ -381,6 +380,69 @@
       }
     }
 
+    .hero-layout {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+      gap: clamp(45px, 7vw, 110px);
+      align-items: center;
+      width: 100%;
+    }
+
+    .profile-card {
+      justify-self: end;
+      width: min(100%, 360px);
+    }
+
+    .profile-image {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--line);
+      filter: grayscale(100%);
+      background: var(--surface);
+      transition: filter .5s ease, transform .5s ease, border-color .5s ease;
+    }
+
+    .profile-card:hover .profile-image {
+      filter: grayscale(0%);
+      transform: translateY(-5px);
+      border-color: rgba(168,191,163,.45);
+    }
+
+    .profile-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: .68rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: .68rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .availability::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(168,191,163,.5);
+    }
+
     .hero-content {
       position: relative;
       z-index: 2;
@@ -510,6 +572,63 @@
       height: 1px;
 
       background: var(--muted);
+    }
+
+    /* =========================
+       PROFILE / EXPERIENCE
+    ========================= */
+
+    #profile {
+      min-height: auto;
+      background: var(--surface);
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: clamp(50px, 8vw, 130px);
+      align-items: start;
+    }
+
+    .profile-statement {
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 650px;
+    }
+
+    .profile-statement strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .timeline {
+      border-top: 1px solid var(--line);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 30px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .timeline-date {
+      color: var(--muted);
+      font-size: .72rem;
+      letter-spacing: .08em;
+    }
+
+    .timeline-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .timeline-meta {
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.6;
     }
 
     /* =========================
@@ -988,6 +1107,23 @@
         display: block;
       }
 
+      .hero-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        justify-self: start;
+        width: min(230px, 65vw);
+      }
+
+      .hero-content {
+        order: 1;
+      }
+
+      .profile-card {
+        order: 2;
+      }
+
       .projects-intro {
         display: block;
       }
@@ -1044,6 +1180,15 @@
         left: 20px;
       }
 
+      .profile-card {
+        width: 190px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
       .stack {
         grid-template-columns: 1fr;
       }
@@ -1083,10 +1228,9 @@
 
   <nav id="navbar">
 
-   <a href="#hero" class="logo">
-  YANIS NENNOUCHE
-  <span>/ ARCHITECT</span>
-</a>
+    <a href="#hero" class="logo">
+      YANIS NENNOUCHE <span>/ ARCHITECT</span>
+    </a>
 
     <button
       class="menu-btn"
@@ -1105,13 +1249,13 @@
 
       <li>
         <a href="#projects">
-          Projets
+          Work
         </a>
       </li>
 
       <li>
-        <a href="#about">
-          À propos
+        <a href="#profile">
+          About
         </a>
       </li>
 
@@ -1145,62 +1289,57 @@
       </div>
 
 
-      <div class="hero-content reveal">
+      <div class="hero-layout">
 
-        <div class="eyebrow">
-          Architecture · Computation · Environment
+        <div class="hero-content reveal">
+
+          <div class="eyebrow">
+            Architecture · Computation · Environment
+          </div>
+
+          <h1 class="hero-title">
+            Yanis<br>
+            <span class="outline">Nennouche</span>
+          </h1>
+
+          <p class="hero-sub">
+            Architect exploring the intersection of architecture,
+            environmental performance and computational design.
+            I use geometry, data and simulation as tools for
+            developing more responsive architectural systems.
+          </p>
+
+          <div class="availability">
+            Open to architectural collaborations & opportunities
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">
+              Explore selected work ↗
+            </a>
+
+            <a class="btn" href="./CV.pdf" target="_blank">
+              View CV
+            </a>
+          </div>
+
         </div>
 
+        <div class="profile-card reveal">
+          <!-- Add your portrait at: ./assets/profile.jpg -->
+          <img
+            class="profile-image"
+            src="./assets/profile.jpg"
+            alt="Portrait of Yanis Nennouche"
+          >
 
-        <h1 class="hero-title">
-
-          Yanis<br>
-
-          <span class="outline">
-            Nennouche
-          </span>
-
-        </h1>
-
-
-        <p class="hero-sub">
-
-          Architecte spécialisé dans l’architecture
-          environnementale et technologique,
-          le design paramétrique et les workflows
-          computationnels.
-
-          Je cherche à transformer la donnée,
-          la géométrie et la performance
-          environnementale en architecture.
-
-        </p>
-
-
-        <div class="hero-actions">
-
-          <a
-            class="btn primary"
-            href="#projects">
-
-            Explorer les projets ↗
-
-          </a>
-
-
-          <a
-            class="btn"
-            href="./CV.pdf"
-            target="_blank">
-
-            Voir le CV
-
-          </a>
-
+          <div class="profile-caption">
+            <span>Yanis Nennouche</span>
+            <span>Architect</span>
+          </div>
         </div>
 
       </div>
-
 
       <div class="scroll-note">
 
@@ -1227,7 +1366,7 @@
           </div>
 
           <h2 class="section-title">
-            Projets sélectionnés
+            Selected Work
           </h2>
 
         </div>
@@ -1235,11 +1374,9 @@
 
         <p>
 
-          Une sélection de travaux autour de
-          l’architecture computationnelle,
-          de la simulation environnementale,
-          de la modélisation paramétrique
-          et de la visualisation architecturale.
+          A curated selection of architectural studies,
+          computational explorations and environmental design
+          work. Projects will be added as the portfolio develops.
 
         </p>
 
@@ -1254,7 +1391,7 @@
         <article
           class="project-card reveal"
 
-          data-title="Dôme Bioclimatique"
+          data-title="Project 01 — Coming Soon"
 
           data-number="01 / PFE"
 
@@ -1267,7 +1404,7 @@
           </span>
 
           <h3 class="project-name">
-            Dôme Bioclimatique
+            Project 01 — Coming Soon
           </h3>
 
           <p class="project-meta">
@@ -1288,7 +1425,7 @@
         <article
           class="project-card reveal"
 
-          data-title="Optimisation Paramétrique"
+          data-title="Project 02 — Coming Soon"
 
           data-number="02 / COMPUTATION"
 
@@ -1301,7 +1438,7 @@
           </span>
 
           <h3 class="project-name">
-            Optimisation Paramétrique
+            Project 02 — Coming Soon
           </h3>
 
           <p class="project-meta">
@@ -1322,7 +1459,7 @@
         <article
           class="project-card reveal"
 
-          data-title="Architectural Visualization"
+          data-title="Project 03 — Coming Soon"
 
           data-number="03 / VISUAL"
 
@@ -1335,7 +1472,7 @@
           </span>
 
           <h3 class="project-name">
-            Architectural Visualization
+            Project 03 — Coming Soon
           </h3>
 
           <p class="project-meta">
@@ -1355,108 +1492,91 @@
 
 
 
-    <!-- ABOUT -->
+    <!-- PROFILE -->
 
-    <section id="about">
+    <section id="profile">
 
       <div class="eyebrow reveal">
         Profile
       </div>
 
-
-      <div class="about-grid">
-
+      <div class="profile-grid">
 
         <div class="reveal">
 
           <h2 class="section-title">
-
             Architecture<br>
-
             through computation.
-
           </h2>
 
-
-          <p class="about-copy">
-
-            Je développe une approche située
-            à l’intersection de
-
-            <strong>
-              l’architecture,
-              de la performance environnementale
-              et du design computationnel
-            </strong>.
-
-            Mon travail s’intéresse aux outils
-            qui permettent de générer, analyser
-            et optimiser des formes architecturales
-            plutôt que de simplement les représenter.
-
+          <p class="profile-statement">
+            I am an architect developing an approach at the intersection
+            of <strong>architecture, environmental performance and computational design</strong>.
+            My work explores how digital tools can help generate, analyse
+            and optimise architectural systems rather than simply represent them.
             <br><br>
-
-            De la modélisation paramétrique
-            aux simulations environnementales,
-            j’utilise les outils numériques
-            comme une extension du processus
-            de conception.
-
+            From parametric modelling to environmental simulation, I use
+            computation as an extension of the design process — with a focus
+            on climate, geometry and performance.
           </p>
 
+          <div class="hero-actions" style="margin-top:30px;">
+            <a class="btn" href="./CV.pdf" target="_blank">
+              View full CV ↗
+            </a>
+          </div>
+
         </div>
-
-
 
         <div class="reveal">
 
           <div class="eyebrow">
-            Toolbox
+            Experience / Education
           </div>
 
+          <div class="timeline">
+
+            <div class="timeline-item">
+              <div class="timeline-date">01</div>
+              <div>
+                <div class="timeline-title">Add your current position</div>
+                <div class="timeline-meta">Organisation · Location · Dates</div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">02</div>
+              <div>
+                <div class="timeline-title">Add your architecture degree</div>
+                <div class="timeline-meta">University · Degree · Dates</div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">03</div>
+              <div>
+                <div class="timeline-title">Add relevant experience</div>
+                <div class="timeline-meta">Practice / research / competition · Dates</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="eyebrow" style="margin-top:55px;">
+            Tools & Methods
+          </div>
 
           <div class="stack">
-
-            <div class="stack-item">
-              Rhinoceros 3D
-            </div>
-
-            <div class="stack-item">
-              Grasshopper
-            </div>
-
-            <div class="stack-item">
-              AutoCAD
-            </div>
-
-            <div class="stack-item">
-              Revit
-            </div>
-
-            <div class="stack-item">
-              SketchUp
-            </div>
-
-            <div class="stack-item">
-              Ladybug Tools
-            </div>
-
-            <div class="stack-item">
-              D5 Render
-            </div>
-
-            <div class="stack-item">
-              Lumion
-            </div>
-
-            <div class="stack-item">
-              Python
-            </div>
-
-            <div class="stack-item">
-              LaTeX
-            </div>
-
+            <div class="stack-item">Rhinoceros 3D</div>
+            <div class="stack-item">Grasshopper</div>
+            <div class="stack-item">Environmental Simulation</div>
+            <div class="stack-item">Parametric Design</div>
+            <div class="stack-item">Python</div>
+            <div class="stack-item">Revit</div>
+            <div class="stack-item">D5 Render</div>
+            <div class="stack-item">Ladybug Tools</div>
+            <div class="stack-item">AutoCAD</div>
+            <div class="stack-item">LaTeX</div>
           </div>
 
         </div>
@@ -1464,7 +1584,6 @@
       </div>
 
     </section>
-
 
 
     <!-- CONTACT -->
@@ -1498,6 +1617,10 @@
 
 
       <div class="contact-links reveal">
+        <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+          LinkedIn ↗
+        </a>
+
 
         <a
           class="btn primary"
@@ -1513,7 +1636,7 @@
           href="./CV.pdf"
           target="_blank">
 
-          Télécharger / consulter le CV
+          View / download CV
 
         </a>
 
@@ -1529,9 +1652,9 @@
 
   <footer>
 
-<span>
-  YANIS NENNOUCHE / ARCHITECT
-</span>
+    <span>
+      YANIS NENNOUCHE / ARCHITECT
+    </span>
 
     <span>
       Architecture · Computation · Environment
