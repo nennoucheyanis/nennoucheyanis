@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,7 +74,7 @@
     .cursor-ring {
       width: 34px;
       height: 34px;
-      border: 1px solid rgba(0,230,153,.55);
+      border: 1px solid var(--accent);
       transition:
         width .25s ease,
         height .25s ease,
@@ -359,7 +359,7 @@
       background:
         radial-gradient(
           circle at 35% 35%,
-          rgba(0,230,153,.22),
+          rgba(168,191,163,.22),
           transparent 50%
         );
 
@@ -543,7 +543,7 @@
     }
 
     .btn.primary:hover {
-      background: #5dffc5;
+      background: #c3d6bf;
     }
 
     .scroll-note {
@@ -770,51 +770,8 @@
     }
 
     /* =========================
-       ABOUT
+       TOOLS & METHODS
     ========================= */
-
-    #about {
-      background:
-        radial-gradient(
-          circle at 80% 20%,
-          rgba(0,230,153,.06),
-          transparent 28%
-        ),
-        radial-gradient(
-          circle at 10% 80%,
-          rgba(255,255,255,.035),
-          transparent 25%
-        );
-    }
-
-    .about-grid {
-      display: grid;
-
-      grid-template-columns:
-        1.05fr
-        .95fr;
-
-      gap:
-        clamp(50px, 8vw, 130px);
-
-      align-items: start;
-    }
-
-    .about-copy {
-      color: var(--muted);
-
-      font-size: 1rem;
-
-      line-height: 1.9;
-
-      max-width: 650px;
-    }
-
-    .about-copy strong {
-      color: var(--text);
-
-      font-weight: 500;
-    }
 
     .stack {
       display: grid;
@@ -1149,10 +1106,6 @@
         display: none;
       }
 
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-
       .stack {
         margin-top: 20px;
       }
@@ -1235,7 +1188,7 @@
     <button
       class="menu-btn"
       id="menuBtn"
-      aria-label="Ouvrir le menu">
+      aria-label="Open menu">
       ☰
     </button>
 
@@ -1243,7 +1196,7 @@
 
       <li>
         <a href="#hero">
-          Accueil
+          Home
         </a>
       </li>
 
@@ -1326,7 +1279,7 @@
         </div>
 
         <div class="profile-card reveal">
-          <!-- Add your portrait at: ./assets/profile.jpg -->
+          <!-- Add your portrait at: ./assets/profile.jpg.jpeg -->
           <img
             class="profile-image"
             src="./assets/profile.jpg.jpeg"
@@ -1395,9 +1348,9 @@
 
           data-number="01 / PFE"
 
-          data-description="Conception d’un dôme biomimétique inspiré d’une coquille d’escargot pour le Jardin d’Essai du Hamma à Alger. Le projet croise architecture écosystémique, modélisation paramétrique et analyse environnementale."
+          data-description="Design of a biomimetic dome inspired by a snail shell for the Jardin d'Essai du Hamma in Algiers. The project combines ecosystemic architecture, parametric modelling and environmental analysis."
 
-          data-tags="Grasshopper,WUFI,Ladybug,Architecture biomimétique">
+          data-tags="Grasshopper,WUFI,Ladybug,Biomimetic Architecture">
 
           <span class="project-index">
             01
@@ -1409,7 +1362,7 @@
 
           <p class="project-meta">
             Eco Dome du Hamma<br>
-            Biomimétisme · Environnement
+            Biomimicry · Environment
           </p>
 
           <span class="project-arrow">
@@ -1429,7 +1382,7 @@
 
           data-number="02 / COMPUTATION"
 
-          data-description="Développement de définitions Grasshopper pour explorer des géométries complexes, des structures légères et des stratégies de contrôle solaire. L’approche combine paramétrisation, automatisation et optimisation."
+          data-description="Development of Grasshopper definitions to explore complex geometries, lightweight structures and solar control strategies. The approach combines parametrisation, automation and optimisation."
 
           data-tags="Rhino 3D,Grasshopper,Wallacei,Python">
 
@@ -1463,7 +1416,7 @@
 
           data-number="03 / VISUAL"
 
-          data-description="Exploration de workflows de visualisation architecturale combinant rendu temps réel et outils génératifs. L’objectif est de tester rapidement différentes atmosphères et lectures spatiales."
+          data-description="Exploration of architectural visualisation workflows combining real-time rendering and generative tools. The goal is to quickly test different atmospheres and spatial narratives."
 
           data-tags="D5 Render,Lumion,ComfyUI,AI workflows">
 
@@ -1597,7 +1550,7 @@
 
       <h2 class="contact-title reveal">
 
-        Let’s build<br>
+        Let's build<br>
 
         <span class="outline">
           something.
@@ -1608,16 +1561,16 @@
 
       <p class="contact-copy reveal">
 
-        Ouvert aux collaborations,
-        projets d’architecture computationnelle,
-        recherche, modélisation paramétrique
-        et design environnemental.
+        Open to collaborations,
+        computational architecture projects,
+        research, parametric modelling
+        and environmental design.
 
       </p>
 
 
       <div class="contact-links reveal">
-        <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+        <a class="btn" href="https://www.linkedin.com/in/yanis-nennouche-b27040334/" target="_blank" rel="noopener">
           LinkedIn ↗
         </a>
 
@@ -1678,7 +1631,7 @@
       <button
         class="close-btn"
         id="closeModal"
-        aria-label="Fermer">
+        aria-label="Close">
 
         ×
 
