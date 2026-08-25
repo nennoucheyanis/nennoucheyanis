@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yanis Nennouche — Architectural Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --card-bg: #14161d;
+      --accent: #00e699;
+      --text: #e0e6ed;
+      --muted: #8892b0;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-y: mandatory;
+      overflow-x: hidden;
+    }
+
+    /* Container avec Scroll Snap immersif */
+    .snap-container {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    section {
+      height: 100vh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 10%;
+    }
+
+    /* Header & Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 2rem 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(11, 12, 16, 0.9), transparent);
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Section Hero */
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .tag {
+      color: var(--accent);
+      font-family: 'Space Grotesk', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+
+    p.subtitle {
+      font-size: 1.2rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 650px;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+      box-shadow: 0 0 20px rgba(0, 230, 153, 0.4);
+    }
+
+    /* Grille de Projets */
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      width: 100%;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 4px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .project-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .project-tags {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 2px;
+      color: var(--muted);
+    }
+
+    /* Stack & Contact */
+    .stack-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .stack-item {
+      padding: 0.6rem 1.2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    /* Fenêtre Modale */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      max-width: 650px;
+      width: 90%;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">YN.ARCH</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Accueil</a></li>
+      <li><a href="#projects">Projets</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="snap-container">
+    
+    <!-- Hero Section -->
+    <section id="hero">
+      <div class="hero-content">
+        <span class="tag">Architecture & Design Computationnel</span>
+        <h1>Yanis Nennouche</h1>
+        <p class="subtitle">
+          Diplômé en Architecture Environnementale & Technologique. Spécialisé dans le design paramétrique, l'optimisation microclimatique et les workflows algorithmiques.
+        </p>
+        <a href="#projects" class="btn">Découvrir les travaux</a>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2 class="section-title">Projets Sélectionnés</h2>
+      <div class="projects-grid">
+        
+        <div class="project-card" onclick="openModal('Dome Bioclimatique', 'Conception d\'un dôme biomimétique inspiré d\'une coquille d\'escargot pour le Jardin d\'Essai du Hamma à Alger. Simulation hygrothermique avancée sous WUFI et modélisation paramétrique Grasshopper.')">
+          <h3>Dôme Bioclimatique</h3>
+          <p>Optimisation microclimatique et enveloppe dynamique biomimétique.</p>
+          <div class="project-tags">
+            <span class="chip">Grasshopper</span>
+            <span class="chip">WUFI</span>
+            <span class="chip">Ladybug</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openModal('Génération Paramétrique', 'Développement de définitions Grasshopper personnalisées pour l\'optimisation de structures spatiales complexes et le contrôle solaire adaptatif.')">
+          <h3>Optimisation Paramétrique</h3>
+          <p>Algorithmes génétiques et structures légères adaptatives.</p>
+          <div class="project-tags">
+            <span class="chip">Rhino 3D</span>
+            <span class="chip">Wallacei</span>
+            <span class="chip">Python</span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openModal('Visualisation & AI Render', 'Rendus d\'architecture hybrides intégrant D5 Render, Lumion et des workflows de génération d\'images assistés par IA.')">
+          <h3>Architectural Visualization</h3>
+          <p>Rendus en temps réel et exploration de workflows génératifs AI.</p>
+          <div class="project-tags">
+            <span class="chip">D5 Render</span>
+            <span class="chip">Lumion</span>
+            <span class="chip">ComfyUI</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About & Stack Section -->
+    <section id="about">
+      <h2 class="section-title">Environnement Technique</h2>
+      <p class="subtitle" style="margin-bottom: 1.5rem;">
+        Conception de solutions spatiales et structurelles à fort rendement énergétique en croisant modélisation 3D, outils d'analyse et automatisation.
+      </p>
+      <div class="stack-container">
+        <div class="stack-item">Rhinoceros 3D</div>
+        <div class="stack-item">Grasshopper</div>
+        <div class="stack-item">AutoCAD</div>
+        <div class="stack-item">Revit</div>
+        <div class="stack-item">SketchUp</div>
+        <div class="stack-item">Lumion</div>
+        <div class="stack-item">D5 Render</div>
+        <div class="stack-item">LaTeX</div>
+        <div class="stack-item">Python</div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="section-title">Travaillons Ensemble</h2>
+      <p class="subtitle">
+        Basé à Alger. Accessible pour des projets en architecture computationnelle, modélisation paramétrique et ingénierie environnementale.
+      </p>
+      <div style="display: flex; gap: 1.5rem;">
+        <a href="mailto:nennoucheyaya@gmail.com" class="btn">Envoyer un E-mail</a>
+        <a href="./CV.pdf" target="_blank" class="btn" style="border-color: var(--text); color: var(--text);">Consulter le CV (PDF)</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Modal pour le détail des projets -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle" style="color: #fff; margin-bottom: 1rem; font-family: 'Space Grotesk', sans-serif;"></h2>
+      <p id="modalDesc" style="color: var(--muted); line-height: 1.6;"></p>
+    </div>
+  </div>
+
+  <script>
+    function openModal(title, desc) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDesc').innerText = desc;
+      document.getElementById('projectModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('projectModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('projectModal');
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
+</body>
+</html>
