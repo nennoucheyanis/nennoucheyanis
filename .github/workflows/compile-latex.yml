@@ -1,0 +1,26 @@
+name: Compile LaTeX Resume to PDF
+
+on:
+  push:
+    paths:
+      - '**.tex'
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: CV.tex
+
+      - name: Upload PDF to repository
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Auto-compile updated LaTeX CV to PDF"
+          file_pattern: "*.pdf"
