@@ -1175,6 +1175,20 @@
       cursor: default;
     }
 
+    .media-caption {
+      padding: 10px 12px;
+
+      color: var(--muted);
+
+      font-size: .72rem;
+
+      letter-spacing: .04em;
+
+      border-top: 1px solid var(--line);
+
+      background: var(--surface-2);
+    }
+
     .panel-nav {
       display: flex;
 
@@ -1239,6 +1253,8 @@
 
       display: flex;
 
+      flex-direction: column;
+
       align-items: center;
       justify-content: center;
 
@@ -1264,11 +1280,25 @@
     .lightbox img {
       max-width: 100%;
 
-      max-height: 88vh;
+      max-height: 82vh;
 
       object-fit: contain;
 
       border: 1px solid var(--line);
+    }
+
+    .lightbox-caption {
+      margin-top: 18px;
+
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: .8rem;
+
+      letter-spacing: .05em;
+
+      display: none;
     }
 
     .lightbox .close-btn {
@@ -1973,6 +2003,8 @@
 
     <img id="lightboxImage" src="" alt="">
 
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+
   </div>
 
 
@@ -2180,6 +2212,11 @@
        ./assets/projects/01/sections/...
        ./assets/projects/01/facades/...
        ./assets/projects/01/renders/...
+
+       Each entry in plans / sections / facades / renders
+       can be either:
+       - a plain string path:            "assets/plan1.png"
+       - an object with a caption: { src: "assets/plan1.png", caption: "Plan masse" }
     ========================= */
 
     const sectionLabels = {
@@ -2201,7 +2238,10 @@
       "01": {
         cover: "assets/Rendus_2 - Photo.jpg",
         plans: [],
-        sections: ["assets/Coupe1.png","assets/Coupe2.png"],
+        sections: [
+          { src: "assets/Coupe1.png", caption: "Coupe longitudinale" },
+          { src: "assets/Coupe2.png", caption: "Coupe transversale" }
+        ],
         facades: [],
         renders: []
       },
@@ -2262,6 +2302,9 @@
     const lightboxImage =
       document.getElementById("lightboxImage");
 
+    const lightboxCaption =
+      document.getElementById("lightboxCaption");
+
     const closeLightbox =
       document.getElementById("closeLightbox");
 
@@ -2269,10 +2312,22 @@
       Array.from(document.querySelectorAll(".project-card"));
 
 
-    function openLightbox(src, alt) {
+    function openLightbox(src, alt, caption) {
 
       lightboxImage.src = src;
       lightboxImage.alt = alt;
+
+      if (caption) {
+
+        lightboxCaption.textContent = caption;
+        lightboxCaption.style.display = "block";
+
+      } else {
+
+        lightboxCaption.textContent = "";
+        lightboxCaption.style.display = "none";
+
+      }
 
       lightbox.classList.add("open");
       lightbox.setAttribute("aria-hidden", "false");
@@ -2286,6 +2341,8 @@
       lightbox.setAttribute("aria-hidden", "true");
 
       lightboxImage.src = "";
+      lightboxCaption.textContent = "";
+      lightboxCaption.style.display = "none";
 
     }
 
@@ -2299,7 +2356,18 @@
     });
 
 
-    function buildMediaItem(src, alt) {
+    function buildMediaItem(entry, fallbackAlt) {
+
+      // entry can be a plain string (path) or an object { src, caption }
+      const src =
+        typeof entry === "string"
+          ? entry
+          : (entry && entry.src) || "";
+
+      const caption =
+        (entry && typeof entry === "object" && entry.caption) || "";
+
+      const alt = caption || fallbackAlt;
 
       const item =
         document.createElement("div");
@@ -2316,10 +2384,23 @@
         img.alt = alt;
 
         img.addEventListener("click", () =>
-          openLightbox(src, alt)
+          openLightbox(src, alt, caption)
         );
 
         item.appendChild(img);
+
+        if (caption) {
+
+          const cap =
+            document.createElement("div");
+
+          cap.className = "media-caption";
+
+          cap.textContent = caption;
+
+          item.appendChild(cap);
+
+        }
 
       } else {
 
@@ -2329,7 +2410,7 @@
         placeholder.className = "media-placeholder";
 
         placeholder.textContent =
-          `Add ${alt.toLowerCase()} here`;
+          `Add ${fallbackAlt.toLowerCase()} here`;
 
         item.appendChild(placeholder);
 
@@ -2389,9 +2470,9 @@
             : (layout === "grid" ? [null, null] : [null]);
 
 
-        slots.forEach(src =>
+        slots.forEach(entry =>
           container.appendChild(
-            buildMediaItem(src, `${label} — project ${id}`)
+            buildMediaItem(entry, `${label} — project ${id}`)
           )
         );
 
