@@ -4,12 +4,13 @@
 - 🏛️ Architect | M.Arch in Environmental & Technological Architecture
 - 📐 Passionate about Computational Design, Parametric Modeling & Algorithmic Workflows
 - 🌿 Developing climate-responsive, structural, and performance-driven architectural solutions
+
 **Bio**
 - 📍 Architect based in Algiers
 - ⚙️ I use daily: `.gh`, `.3dm`, `.dwg`, `.rvt`, `.skp`, `.tex`
 - 🌱 Learning all about: Python for general programming, automation, and scripting
 - 💬 Ping me about: Parametric Design, Environmental Simulation & Architectural Visualization 
-- 📫 Reach me: [LinkedIn](https://www.linkedin.com/in/yanis-nennouche-b27040334/) | Portfolio *(Coming Soon)*
+- 📫 Reach me: [LinkedIn](https://www.linkedin.com/in/yanis-nennouche-b27040334/) | [Portfolio](https://nennoucheyanis.github.io/nennoucheyanis/)
 - 📧 Send me an email: nennoucheyaya@gmail.com
 - 📝 Check out my [Resume / CV (PDF)](./CV.pdf) | [LaTeX Source](./CV.tex)
 
@@ -17,7 +18,7 @@
 
 <p>
   <img src="https://img.shields.io/badge/Rhinoceros_3D-850000?style=for-the-badge&logo=rhinoceros&logoColor=white" alt="Rhino"/>
-  <img src="https://img.shields.io/badge/Grasshopper-005020?style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFRSURBVDhPY2AYBeQDGRkZXbX13/0Y8AG4M15Ghv84I0N7A4O/S7b+PwyB/wwM/39mZPxfmZ7u35YV+wYwMDAIADl4KkC0v7b+M0Y4AKb9tPWfGf8D6p/mD/rPYYwQYMBmCHrKCPwHFmOghK9p/oD7C+wX54Bgh5OswD5o+R8M/X94pYvBv+8P9jNAgAGbIRgj/IMf/OAF/YQ/w79DGRn+75S3f8mAgYFBAMjBQ4ESYwT84As/+MYPuvwHw3/R/h4v//8DAwM+wMDI+L8qK9Nf3376EAbmAg4GBn+wGEwF/5M8XvxPYGR4XFmR52YwMDBgD4OQk9vA7i8u2fv/Z/A3AEM69H/8D8Z/0f96/wL8DfT/vP8YIcAAdgjCGBkZ/v9H/7D5v8Bq6f5pD2DgA1wZGe3B7v9v+7/T/v+g/xshwIADDKOAgQEATmH5B5yVdwwAAAAASUVORK5CYII=&logoColor=white" alt="Grasshopper"/>
+  <img src="https://img.shields.io/badge/Grasshopper-005020?style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFRSURBVDhPY2AYBeQDGRkZXbX13/0Y8AG4M15Ghv84I0N7A4O/S7b+PwyB/wwM/39mZPxfmZ7u35YV+wYwMDAIADl4KkC0v7b+M0Y4AKb9tPWfGf8D6p/mD/rPYYwQYMBmCHrKCPwHFmOghK9p/oD7C+wX54Bgh5OswD5o+R8M/X94pYvBv+8P9jNAgAGbIRgj/IMf/OAF/YQ/w79DGRn+75S3f8mAgYFBAMjBQ4ESYwT84As/+MYPuvwHw3/R/h4v//8DAwM+wMDI+L8qK9Nf3376EAbmAg4GBn+wGEwF/5M8XvxPYGR4XFmR52YwMDBgD4OQk9vA7i8u2fv/Z/A3AEM69H/8D8Z/0f96/wL8DfT/vP8YIcAAdgjCGBkZ/v9H/7D5v8Bq6f5pD2DgA1wZGe3B7v9v+7/T/v+g/xshwIADDKOAgQEATmH5B5yVdwwAAAAASUVUR5CYII=&logoColor=white" alt="Grasshopper"/>
   <img src="https://img.shields.io/badge/AutoCAD-E52C37?style=for-the-badge&logo=autodesk&logoColor=white" alt="AutoCAD"/>
   <img src="https://img.shields.io/badge/Revit-0696D7?style=for-the-badge&logo=autodesk&logoColor=white" alt="Revit"/>
   <img src="https://img.shields.io/badge/SketchUp-005F9E?style=for-the-badge&logo=sketchup&logoColor=white" alt="SketchUp"/>
