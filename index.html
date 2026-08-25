@@ -1028,6 +1028,186 @@
     }
 
     /* =========================
+       PROJECT GALLERY
+    ========================= */
+
+    .modal-gallery {
+      margin-top: 40px;
+
+      border-top: 1px solid var(--line);
+
+      padding-top: 30px;
+    }
+
+    .gallery-tabs {
+      display: flex;
+
+      gap: 8px;
+
+      flex-wrap: wrap;
+
+      margin-bottom: 22px;
+    }
+
+    .gallery-tab {
+      padding: 9px 16px;
+
+      border: 1px solid var(--line);
+
+      background: transparent;
+
+      color: var(--muted);
+
+      font: 500 .72rem "Space Grotesk", sans-serif;
+
+      letter-spacing: .05em;
+
+      text-transform: uppercase;
+
+      cursor: pointer;
+
+      transition:
+        color .2s ease,
+        border-color .2s ease,
+        background .2s ease;
+    }
+
+    .gallery-tab:hover {
+      color: var(--text);
+
+      border-color: var(--accent);
+    }
+
+    .gallery-tab.active {
+      color: #07100c;
+
+      background: var(--accent);
+
+      border-color: var(--accent);
+    }
+
+    .gallery-grid {
+      display: grid;
+
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+
+      gap: 14px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 4 / 3;
+
+      border: 1px solid var(--line);
+
+      overflow: hidden;
+
+      cursor: pointer;
+
+      position: relative;
+
+      background: var(--surface-2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+
+      transition: transform .4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-placeholder {
+      width: 100%;
+
+      height: 100%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 14px;
+
+      color: var(--muted);
+
+      font-size: .68rem;
+
+      letter-spacing: .04em;
+
+      line-height: 1.6;
+
+      border: 1px dashed var(--line);
+
+      cursor: default;
+    }
+
+    .lightbox {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 2100;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 40px;
+
+      background: rgba(3,4,6,.94);
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transition:
+        opacity .3s ease,
+        visibility .3s ease;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+
+      visibility: visible;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+
+      max-height: 88vh;
+
+      object-fit: contain;
+
+      border: 1px solid var(--line);
+    }
+
+    .lightbox .close-btn {
+      top: 25px;
+      right: 25px;
+
+      background: rgba(8,9,12,.7);
+    }
+
+    @media (max-width: 800px) {
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+
+    /* =========================
        MOBILE
     ========================= */
 
@@ -1344,6 +1524,8 @@
         <article
           class="project-card reveal"
 
+          data-project="01"
+
           data-title="Project 01 — Coming Soon"
 
           data-number="01 / PFE"
@@ -1378,6 +1560,8 @@
         <article
           class="project-card reveal"
 
+          data-project="02"
+
           data-title="Project 02 — Coming Soon"
 
           data-number="02 / COMPUTATION"
@@ -1411,6 +1595,8 @@
 
         <article
           class="project-card reveal"
+
+          data-project="03"
 
           data-title="Project 03 — Coming Soon"
 
@@ -1655,7 +1841,31 @@
         id="modalTags">
       </div>
 
+
+      <div class="modal-gallery" id="modalGallery">
+
+        <div class="gallery-tabs" id="galleryTabs"></div>
+
+        <div class="gallery-grid" id="galleryGrid"></div>
+
+      </div>
+
     </div>
+
+  </div>
+
+
+  <!-- =========================
+       LIGHTBOX (fullscreen image)
+  ========================= -->
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+
+    <button class="close-btn" id="closeLightbox" aria-label="Close image">
+      ×
+    </button>
+
+    <img id="lightboxImage" src="" alt="">
 
   </div>
 
@@ -1856,6 +2066,49 @@
 
 
     /* =========================
+       PROJECT GALLERIES
+       Add your image paths below.
+       Recommended folder structure:
+       ./assets/projects/01/plans/...
+       ./assets/projects/01/facades/...
+       ./assets/projects/01/sections/...
+       ./assets/projects/01/renders/...
+    ========================= */
+
+    const categoryLabels = {
+      plans: "Plans",
+      facades: "Elevations",
+      sections: "Sections",
+      renders: "Renders"
+    };
+
+    const projectGalleries = {
+
+      "01": {
+        plans: [],
+        facades: [],
+        sections: [],
+        renders: []
+      },
+
+      "02": {
+        plans: [],
+        facades: [],
+        sections: [],
+        renders: []
+      },
+
+      "03": {
+        plans: [],
+        facades: [],
+        sections: [],
+        renders: []
+      }
+
+    };
+
+
+    /* =========================
        PROJECT MODAL
     ========================= */
 
@@ -1888,6 +2141,156 @@
       document.getElementById(
         "closeModal"
       );
+
+
+    const galleryTabs =
+      document.getElementById("galleryTabs");
+
+    const galleryGrid =
+      document.getElementById("galleryGrid");
+
+    const lightbox =
+      document.getElementById("lightbox");
+
+    const lightboxImage =
+      document.getElementById("lightboxImage");
+
+    const closeLightbox =
+      document.getElementById("closeLightbox");
+
+
+    function openLightbox(src, alt) {
+
+      lightboxImage.src = src;
+      lightboxImage.alt = alt;
+
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+
+    }
+
+
+    function closeLightboxFn() {
+
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+
+      lightboxImage.src = "";
+
+    }
+
+
+    closeLightbox.addEventListener("click", closeLightboxFn);
+
+    lightbox.addEventListener("click", e => {
+
+      if (e.target === lightbox) closeLightboxFn();
+
+    });
+
+
+    function renderGalleryCategory(projectId, category) {
+
+      galleryGrid.innerHTML = "";
+
+      const images =
+        (projectGalleries[projectId]
+          && projectGalleries[projectId][category])
+          || [];
+
+      const slotsToShow =
+        images.length > 0
+          ? images
+          : [null, null, null];
+
+
+      slotsToShow.forEach(src => {
+
+        const item =
+          document.createElement("div");
+
+        item.className = "gallery-item";
+
+
+        if (src) {
+
+          const img =
+            document.createElement("img");
+
+          img.src = src;
+          img.alt =
+            `${categoryLabels[category]} — project ${projectId}`;
+
+          item.appendChild(img);
+
+          item.addEventListener("click", () =>
+            openLightbox(src, img.alt)
+          );
+
+        } else {
+
+          const placeholder =
+            document.createElement("div");
+
+          placeholder.className =
+            "gallery-placeholder";
+
+          placeholder.textContent =
+            `Add a ${categoryLabels[category].toLowerCase()} image here`;
+
+          item.appendChild(placeholder);
+
+        }
+
+
+        galleryGrid.appendChild(item);
+
+      });
+
+    }
+
+
+    function buildGallery(projectId) {
+
+      galleryTabs.innerHTML = "";
+
+      const categories =
+        Object.keys(categoryLabels);
+
+
+      categories.forEach((category, index) => {
+
+        const tab =
+          document.createElement("button");
+
+        tab.type = "button";
+
+        tab.className =
+          "gallery-tab" + (index === 0 ? " active" : "");
+
+        tab.textContent =
+          categoryLabels[category];
+
+        tab.addEventListener("click", () => {
+
+          galleryTabs
+            .querySelectorAll(".gallery-tab")
+            .forEach(t => t.classList.remove("active"));
+
+          tab.classList.add("active");
+
+          renderGalleryCategory(projectId, category);
+
+        });
+
+        galleryTabs.appendChild(tab);
+
+      });
+
+
+      renderGalleryCategory(projectId, categories[0]);
+
+    }
 
 
     document
@@ -1930,6 +2333,9 @@
                 );
 
               });
+
+
+            buildGallery(card.dataset.project);
 
 
             modal.classList.add(
@@ -1997,7 +2403,15 @@
           e.key === "Escape"
         ) {
 
-          closeProjectModal();
+          if (lightbox.classList.contains("open")) {
+
+            closeLightboxFn();
+
+          } else {
+
+            closeProjectModal();
+
+          }
 
         }
 
