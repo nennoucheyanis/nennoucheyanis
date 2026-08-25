@@ -1,10 +1,9 @@
 # Hi 👋, I'm Yanis Nennouche
 
 **Now**
-- 🏛️ Architect specializing in Computational Design & Parametric Architecture
-- 📐 Designing efficient spatial and structural solutions using algorithmic workflows
-- 🌿 Developing climate-responsive and performance-driven architectural designs
-
+- 🏛️ Architect | M.Arch in Environmental & Technological Architecture
+- 📐 Passionate about Computational Design, Parametric Modeling & Algorithmic Workflows
+- 🌿 Developing climate-responsive, structural, and performance-driven architectural solutions
 **Bio**
 - 📍 Architect based in Algiers
 - ⚙️ I use daily: `.gh`, `.3dm`, `.dwg`, `.rvt`, `.skp`, `.tex`
