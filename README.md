@@ -11,7 +11,7 @@
 - 🌱 Learning all about: Python for general programming, automation, and scripting
 - 💬 Ping me about: Parametric Design, Environmental Simulation, Architectural Visualization & LaTeX 
 - 📫 Reach me: [LinkedIn]([[https://www.linkedin.com/in/yanis-nennouche](https://www.linkedin.com/in/yanis-nennouche-b27040334/)] | Portfolio *(Coming Soon)*
-- 📧 Send me an email: nennouche.yanis@email.com
+- 📧 Send me an email: nennoucheyaya@gmail.com
 
 **Softwares & Tools**
 
