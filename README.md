@@ -7,12 +7,12 @@
 
 **Bio**
 - 📍 Architect based in Algiers
-- 📝 Resume / CV: [Live Resume (PDF)](./CV.pdf) | [LaTeX Source](./CV.tex)
 - ⚙️ I use daily: `.gh`, `.3dm`, `.dwg`, `.rvt`, `.skp`, `.tex`
 - 🌱 Learning all about: Python for general programming, automation, and scripting
 - 💬 Ping me about: Parametric Design, Environmental Simulation, Architectural Visualization & LaTeX 
 - 📫 Reach me: [LinkedIn](https://www.linkedin.com/in/yanis-nennouche-b27040334/) | Portfolio *(Coming Soon)*
 - 📧 Send me an email: nennoucheyaya@gmail.com
+- 📝 Check out my [Resume / CV (PDF)](./CV.pdf) | [LaTeX Source](./CV.tex)
 
 **Softwares & Tools**
 
