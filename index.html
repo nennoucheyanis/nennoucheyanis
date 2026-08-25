@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yanis Nennouche — Architectural Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Yanis Nennouche — Architectural Portfolio">
+  <title>YN.ARCH — Yanis Nennouche</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #0b0c10;
-      --card-bg: #14161d;
+      --bg: #08090c;
+      --surface: #101218;
+      --surface-2: #151821;
+      --text: #f1f3f5;
+      --muted: #8c93a3;
+      --line: rgba(255,255,255,.10);
       --accent: #00e699;
-      --text: #e0e6ed;
-      --muted: #8892b0;
-      --border: rgba(255, 255, 255, 0.08);
+      --accent-soft: rgba(0,230,153,.12);
+      --max: 1440px;
     }
 
     * {
@@ -29,351 +34,2046 @@
     }
 
     body {
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
-      overflow-y: mandatory;
+      font-family: Inter, sans-serif;
       overflow-x: hidden;
+      cursor: default;
     }
 
-    /* Container avec Scroll Snap immersif */
-    .snap-container {
-      height: 100vh;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    section {
-      height: 100vh;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 10%;
+    button {
+      font: inherit;
     }
 
-    /* Header & Navigation */
+    /* =========================
+       CURSEUR
+    ========================= */
+
+    .cursor,
+    .cursor-ring {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+
+    .cursor {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+    }
+
+    .cursor-ring {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(0,230,153,.55);
+      transition:
+        width .25s ease,
+        height .25s ease,
+        opacity .2s ease;
+    }
+
+    @media (pointer:fine) {
+      body.has-cursor .cursor,
+      body.has-cursor .cursor-ring {
+        opacity: 1;
+      }
+    }
+
+    /* =========================
+       GRAIN
+    ========================= */
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: .035;
+
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+    }
+
+    /* =========================
+       PROGRESSION SCROLL
+    ========================= */
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: var(--accent);
+      z-index: 1000;
+      box-shadow: 0 0 15px var(--accent);
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
     nav {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      padding: 2rem 10%;
+      z-index: 900;
+
+      padding: 24px clamp(22px, 5vw, 72px);
+
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      z-index: 100;
-      background: linear-gradient(to bottom, rgba(11, 12, 16, 0.9), transparent);
+      justify-content: space-between;
+
+      transition:
+        background .35s ease,
+        padding .35s ease,
+        backdrop-filter .35s ease;
+    }
+
+    nav.scrolled {
+      padding-top: 15px;
+      padding-bottom: 15px;
+
+      background: rgba(8,9,12,.72);
+      backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid var(--line);
     }
 
     .logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
-      color: #fff;
+      font:
+        700 1.05rem
+        "Space Grotesk",
+        sans-serif;
+
+      letter-spacing: .12em;
+    }
+
+    .logo span {
+      color: var(--accent);
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: clamp(18px, 3vw, 42px);
       list-style: none;
     }
 
     .nav-links a {
+      position: relative;
+
       color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s;
+
+      font-size: .82rem;
+      letter-spacing: .03em;
+
+      transition: color .25s ease;
     }
 
-    .nav-links a:hover {
+    .nav-links a::after {
+      content: "";
+
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+
+      width: 0;
+      height: 1px;
+
+      background: var(--accent);
+
+      transition: width .25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .menu-btn {
+      display: none;
+
+      background: transparent;
+      color: var(--text);
+
+      border: 0;
+
+      font-size: 1.4rem;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    main {
+      position: relative;
+    }
+
+    section {
+      min-height: 100vh;
+
+      padding:
+        130px
+        clamp(22px, 7vw, 110px);
+
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      max-width: 1700px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 10px;
+
       color: var(--accent);
-    }
 
-    /* Section Hero */
-    .hero-content {
-      max-width: 850px;
-    }
+      font:
+        500 .72rem
+        "Space Grotesk",
+        sans-serif;
 
-    .tag {
-      color: var(--accent);
-      font-family: 'Space Grotesk', sans-serif;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 0.85rem;
-      margin-bottom: 1.5rem;
-      display: inline-block;
+      letter-spacing: .2em;
+
+      margin-bottom: 25px;
     }
 
-    h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      line-height: 1.1;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 1.5rem;
+    .eyebrow::before {
+      content: "";
+
+      width: 28px;
+      height: 1px;
+
+      background: var(--accent);
     }
 
-    p.subtitle {
-      font-size: 1.2rem;
-      color: var(--muted);
-      line-height: 1.6;
+    .section-title {
+      font:
+        600 clamp(2rem, 4vw, 4rem)
+        "Space Grotesk",
+        sans-serif;
+
+      letter-spacing: -.045em;
+
+      margin-bottom: 55px;
+    }
+
+    /* =========================
+       REVEAL ANIMATION
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+
+      transform: translateY(35px);
+
+      transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    #hero {
+      min-height: 100svh;
+
+      overflow: hidden;
+
+      justify-content: center;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+
+      opacity: .25;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.035) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.035) 1px,
+          transparent 1px
+        );
+
+      background-size: 70px 70px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          black,
+          transparent 75%
+        );
+    }
+
+    .orb {
+      position: absolute;
+
+      width: 52vw;
+      height: 52vw;
+
+      max-width: 700px;
+      max-height: 700px;
+
+      right: -12vw;
+      top: 10%;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 35% 35%,
+          rgba(0,230,153,.22),
+          transparent 50%
+        );
+
+      filter: blur(12px);
+
+      animation:
+        float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translate3d(0,0,0);
+      }
+
+      50% {
+        transform: translate3d(-25px,20px,0);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+
+      max-width: 1100px;
+    }
+
+    .hero-title {
+      font:
+        700 clamp(4rem, 10vw, 9.5rem)
+        "Space Grotesk",
+        sans-serif;
+
+      letter-spacing: -.075em;
+
+      line-height: .88;
+
+      max-width: 1100px;
+    }
+
+    .outline {
+      color: transparent;
+
+      -webkit-text-stroke:
+        1px rgba(241,243,245,.45);
+    }
+
+    .hero-sub {
+      margin-top: 34px;
+
       max-width: 650px;
-      margin-bottom: 2.5rem;
+
+      color: var(--muted);
+
+      line-height: 1.8;
+
+      font-size:
+        clamp(.95rem, 1.4vw, 1.12rem);
+    }
+
+    .hero-actions {
+      display: flex;
+
+      gap: 12px;
+
+      margin-top: 38px;
+
+      flex-wrap: wrap;
     }
 
     .btn {
-      display: inline-block;
-      padding: 0.9rem 2rem;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      text-decoration: none;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      background: transparent;
-      cursor: pointer;
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 12px;
+
+      min-height: 50px;
+
+      padding: 0 21px;
+
+      border:
+        1px solid var(--line);
+
+      background:
+        rgba(255,255,255,.025);
+
+      color: var(--text);
+
+      font:
+        500 .78rem
+        "Space Grotesk",
+        sans-serif;
+
+      letter-spacing: .04em;
+
+      transition:
+        transform .3s ease,
+        background .3s ease,
+        border-color .3s ease;
     }
 
     .btn:hover {
+      transform: translateY(-3px);
+
+      border-color: var(--accent);
+
+      background: var(--accent-soft);
+    }
+
+    .btn.primary {
       background: var(--accent);
-      color: var(--bg);
-      box-shadow: 0 0 20px rgba(0, 230, 153, 0.4);
-    }
 
-    /* Grille de Projets */
-    .section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2rem;
-      color: #fff;
-      margin-bottom: 2rem;
-    }
+      color: #07100c;
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      width: 100%;
-    }
-
-    .project-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      border-radius: 4px;
-      transition: transform 0.3s ease, border-color 0.3s ease;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
       border-color: var(--accent);
     }
 
-    .project-card h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      color: #fff;
-      margin-bottom: 0.8rem;
+    .btn.primary:hover {
+      background: #5dffc5;
     }
 
-    .project-card p {
+    .scroll-note {
+      position: absolute;
+
+      bottom: 35px;
+      left: clamp(22px, 7vw, 110px);
+
       color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
 
-    .project-tags {
-      margin-top: 1.5rem;
+      font-size: .7rem;
+
+      letter-spacing: .14em;
+
+      text-transform: uppercase;
+
       display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
+
+      align-items: center;
+
+      gap: 12px;
     }
 
-    .chip {
-      font-size: 0.75rem;
-      padding: 0.3rem 0.6rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 2px;
+    .scroll-note span {
+      width: 42px;
+      height: 1px;
+
+      background: var(--muted);
+    }
+
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    #projects {
+      min-height: auto;
+
+      padding-top: 160px;
+      padding-bottom: 160px;
+    }
+
+    .projects-intro {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 30px;
+
+      align-items: end;
+
+      margin-bottom: 55px;
+    }
+
+    .projects-intro p {
+      max-width: 520px;
+
       color: var(--muted);
+
+      line-height: 1.7;
     }
 
-    /* Stack & Contact */
-    .stack-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1.5rem;
+    .project-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .project-card {
+      position: relative;
+
+      display: grid;
+
+      grid-template-columns:
+        70px
+        minmax(220px, 1fr)
+        minmax(240px, .8fr)
+        50px;
+
+      gap: 25px;
+
+      align-items: center;
+
+      min-height: 145px;
+
+      border-bottom:
+        1px solid var(--line);
+
+      cursor: pointer;
+
+      overflow: hidden;
+
+      transition:
+        padding .4s ease;
+    }
+
+    .project-card::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      transform: translateX(-101%);
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--accent-soft),
+          transparent 70%
+        );
+
+      transition:
+        transform .5s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .project-card:hover {
+      padding-left: 18px;
+    }
+
+    .project-card:hover::before {
+      transform: translateX(0);
+    }
+
+    .project-index,
+    .project-meta,
+    .project-arrow,
+    .project-name {
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-index {
+      color: var(--muted);
+
+      font:
+        .72rem
+        "Space Grotesk",
+        sans-serif;
+    }
+
+    .project-name {
+      font:
+        500 clamp(1.3rem, 2.5vw, 2.1rem)
+        "Space Grotesk",
+        sans-serif;
+
+      letter-spacing: -.035em;
+    }
+
+    .project-meta {
+      color: var(--muted);
+
+      font-size: .8rem;
+
+      line-height: 1.6;
+    }
+
+    .project-arrow {
+      font-size: 1.35rem;
+
+      transition:
+        transform .3s ease,
+        color .3s ease;
+    }
+
+    .project-card:hover .project-arrow {
+      transform: translateX(6px);
+
+      color: var(--accent);
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    #about {
+      background:
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(0,230,153,.06),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(255,255,255,.035),
+          transparent 25%
+        );
+    }
+
+    .about-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.05fr
+        .95fr;
+
+      gap:
+        clamp(50px, 8vw, 130px);
+
+      align-items: start;
+    }
+
+    .about-copy {
+      color: var(--muted);
+
+      font-size: 1rem;
+
+      line-height: 1.9;
+
+      max-width: 650px;
+    }
+
+    .about-copy strong {
+      color: var(--text);
+
+      font-weight: 500;
+    }
+
+    .stack {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      border-top:
+        1px solid var(--line);
     }
 
     .stack-item {
-      padding: 0.6rem 1.2rem;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      font-size: 0.9rem;
+      padding: 19px 0;
+
+      border-bottom:
+        1px solid var(--line);
+
+      color: var(--muted);
+
+      font-size: .82rem;
+
+      transition:
+        color .25s ease,
+        padding-left .25s ease;
     }
 
-    /* Fenêtre Modale */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      z-index: 200;
-      justify-content: center;
+    .stack-item:hover {
+      color: var(--accent);
+
+      padding-left: 8px;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    #contact {
+      min-height: 75vh;
+
+      text-align: center;
+
       align-items: center;
+
+      overflow: hidden;
+    }
+
+    .contact-title {
+      font:
+        600 clamp(3rem, 8vw, 8rem)
+        "Space Grotesk",
+        sans-serif;
+
+      letter-spacing: -.07em;
+
+      line-height: .9;
+
+      max-width: 1000px;
+    }
+
+    .contact-copy {
+      color: var(--muted);
+
+      max-width: 550px;
+
+      line-height: 1.7;
+
+      margin:
+        28px auto 35px;
+    }
+
+    .contact-links {
+      display: flex;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
+
+      justify-content: center;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding:
+        25px
+        clamp(22px, 7vw, 110px);
+
+      border-top:
+        1px solid var(--line);
+
+      display: flex;
+
+      justify-content: space-between;
+
+      color: var(--muted);
+
+      font-size: .7rem;
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 2000;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
+
+      background:
+        rgba(3,4,6,.82);
+
+      backdrop-filter: blur(18px);
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transition:
+        opacity .35s ease,
+        visibility .35s ease;
+    }
+
+    .modal.open {
+      opacity: 1;
+
+      visibility: visible;
     }
 
     .modal-content {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 3rem;
-      max-width: 650px;
-      width: 90%;
+      width: min(900px, 100%);
+
+      max-height: 88vh;
+
+      overflow: auto;
+
+      background: var(--surface);
+
+      border:
+        1px solid var(--line);
+
+      padding:
+        clamp(30px, 5vw, 60px);
+
+      transform:
+        translateY(30px)
+        scale(.98);
+
+      transition:
+        transform .4s
+        cubic-bezier(.2,.8,.2,1);
+
       position: relative;
+    }
+
+    .modal.open .modal-content {
+      transform:
+        translateY(0)
+        scale(1);
     }
 
     .close-btn {
       position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      color: var(--muted);
-      font-size: 1.5rem;
+
+      right: 25px;
+      top: 20px;
+
+      width: 40px;
+      height: 40px;
+
+      border:
+        1px solid var(--line);
+
+      background: transparent;
+
+      color: var(--text);
+
       cursor: pointer;
+
+      transition:
+        border-color .2s ease,
+        color .2s ease;
+    }
+
+    .close-btn:hover {
+      border-color: var(--accent);
+
+      color: var(--accent);
+    }
+
+    .modal-number {
+      color: var(--accent);
+
+      font:
+        .7rem
+        "Space Grotesk",
+        sans-serif;
+
+      letter-spacing: .15em;
+
+      text-transform: uppercase;
+
+      margin-bottom: 15px;
+    }
+
+    .modal h2 {
+      font:
+        600 clamp(2rem, 5vw, 4rem)
+        "Space Grotesk",
+        sans-serif;
+
+      letter-spacing: -.05em;
+
+      margin-bottom: 20px;
+    }
+
+    .modal p {
+      color: var(--muted);
+
+      line-height: 1.85;
+
+      max-width: 720px;
+    }
+
+    .modal-tags {
+      display: flex;
+
+      gap: 8px;
+
+      flex-wrap: wrap;
+
+      margin-top: 28px;
+    }
+
+    .chip {
+      padding: 7px 10px;
+
+      border:
+        1px solid var(--line);
+
+      color: var(--muted);
+
+      font-size: .68rem;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      .nav-links {
+        position: absolute;
+
+        top: 70px;
+
+        right: 22px;
+        left: 22px;
+
+        display: none;
+
+        flex-direction: column;
+
+        padding: 22px;
+
+        background:
+          rgba(16,18,24,.95);
+
+        border:
+          1px solid var(--line);
+
+        backdrop-filter: blur(18px);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .projects-intro {
+        display: block;
+      }
+
+      .projects-intro p {
+        margin-top: -25px;
+
+        margin-bottom: 35px;
+      }
+
+      .project-card {
+        grid-template-columns:
+          38px
+          1fr
+          30px;
+
+        gap: 12px;
+
+        min-height: 125px;
+      }
+
+      .project-meta {
+        display: none;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stack {
+        margin-top: 20px;
+      }
+
+      footer {
+        flex-direction: column;
+
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      section {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .hero-title {
+        font-size:
+          clamp(3.4rem, 17vw, 5rem);
+      }
+
+      .scroll-note {
+        left: 20px;
+      }
+
+      .stack {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <nav>
-    <div class="logo">YN.ARCH</div>
-    <ul class="nav-links">
-      <li><a href="#hero">Accueil</a></li>
-      <li><a href="#projects">Projets</a></li>
-      <li><a href="#about">À propos</a></li>
-      <li><a href="#contact">Contact</a></li>
+  <!-- =========================
+       UI
+  ========================= -->
+
+  <div class="progress" id="progress"></div>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
+
+  <nav id="navbar">
+
+    <a href="#hero" class="logo">
+      YN<span>.</span>ARCH
+    </a>
+
+    <button
+      class="menu-btn"
+      id="menuBtn"
+      aria-label="Ouvrir le menu">
+      ☰
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+
+      <li>
+        <a href="#hero">
+          Accueil
+        </a>
+      </li>
+
+      <li>
+        <a href="#projects">
+          Projets
+        </a>
+      </li>
+
+      <li>
+        <a href="#about">
+          À propos
+        </a>
+      </li>
+
+      <li>
+        <a href="#contact">
+          Contact
+        </a>
+      </li>
+
     </ul>
+
   </nav>
 
-  <div class="snap-container">
-    
-    <!-- Hero Section -->
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main>
+
+
+    <!-- HERO -->
+
     <section id="hero">
-      <div class="hero-content">
-        <span class="tag">Architecture & Design Computationnel</span>
-        <h1>Yanis Nennouche</h1>
-        <p class="subtitle">
-          Diplômé en Architecture Environnementale & Technologique. Spécialisé dans le design paramétrique, l'optimisation microclimatique et les workflows algorithmiques.
+
+      <div class="hero-grid"></div>
+
+      <div
+        class="orb"
+        id="orb">
+      </div>
+
+
+      <div class="hero-content reveal">
+
+        <div class="eyebrow">
+          Architecture · Computation · Environment
+        </div>
+
+
+        <h1 class="hero-title">
+
+          Yanis<br>
+
+          <span class="outline">
+            Nennouche
+          </span>
+
+        </h1>
+
+
+        <p class="hero-sub">
+
+          Architecte spécialisé dans l’architecture
+          environnementale et technologique,
+          le design paramétrique et les workflows
+          computationnels.
+
+          Je cherche à transformer la donnée,
+          la géométrie et la performance
+          environnementale en architecture.
+
         </p>
-        <a href="#projects" class="btn">Découvrir les travaux</a>
+
+
+        <div class="hero-actions">
+
+          <a
+            class="btn primary"
+            href="#projects">
+
+            Explorer les projets ↗
+
+          </a>
+
+
+          <a
+            class="btn"
+            href="./CV.pdf"
+            target="_blank">
+
+            Voir le CV
+
+          </a>
+
+        </div>
+
       </div>
+
+
+      <div class="scroll-note">
+
+        <span></span>
+
+        Scroll to explore
+
+      </div>
+
     </section>
 
-    <!-- Projects Section -->
+
+
+    <!-- PROJECTS -->
+
     <section id="projects">
-      <h2 class="section-title">Projets Sélectionnés</h2>
-      <div class="projects-grid">
-        
-        <div class="project-card" onclick="openModal('Dome Bioclimatique', 'Conception d\'un dôme biomimétique inspiré d\'une coquille d\'escargot pour le Jardin d\'Essai du Hamma à Alger. Simulation hygrothermique avancée sous WUFI et modélisation paramétrique Grasshopper.')">
-          <h3>Dôme Bioclimatique</h3>
-          <p>Optimisation microclimatique et enveloppe dynamique biomimétique.</p>
-          <div class="project-tags">
-            <span class="chip">Grasshopper</span>
-            <span class="chip">WUFI</span>
-            <span class="chip">Ladybug</span>
+
+      <div class="projects-intro reveal">
+
+        <div>
+
+          <div class="eyebrow">
+            Selected work
           </div>
+
+          <h2 class="section-title">
+            Projets sélectionnés
+          </h2>
+
         </div>
 
-        <div class="project-card" onclick="openModal('Génération Paramétrique', 'Développement de définitions Grasshopper personnalisées pour l\'optimisation de structures spatiales complexes et le contrôle solaire adaptatif.')">
-          <h3>Optimisation Paramétrique</h3>
-          <p>Algorithmes génétiques et structures légères adaptatives.</p>
-          <div class="project-tags">
-            <span class="chip">Rhino 3D</span>
-            <span class="chip">Wallacei</span>
-            <span class="chip">Python</span>
-          </div>
-        </div>
 
-        <div class="project-card" onclick="openModal('Visualisation & AI Render', 'Rendus d\'architecture hybrides intégrant D5 Render, Lumion et des workflows de génération d\'images assistés par IA.')">
-          <h3>Architectural Visualization</h3>
-          <p>Rendus en temps réel et exploration de workflows génératifs AI.</p>
-          <div class="project-tags">
-            <span class="chip">D5 Render</span>
-            <span class="chip">Lumion</span>
-            <span class="chip">ComfyUI</span>
-          </div>
-        </div>
+        <p>
+
+          Une sélection de travaux autour de
+          l’architecture computationnelle,
+          de la simulation environnementale,
+          de la modélisation paramétrique
+          et de la visualisation architecturale.
+
+        </p>
 
       </div>
+
+
+      <div class="project-list">
+
+
+        <!-- PROJECT 01 -->
+
+        <article
+          class="project-card reveal"
+
+          data-title="Dôme Bioclimatique"
+
+          data-number="01 / PFE"
+
+          data-description="Conception d’un dôme biomimétique inspiré d’une coquille d’escargot pour le Jardin d’Essai du Hamma à Alger. Le projet croise architecture écosystémique, modélisation paramétrique et analyse environnementale."
+
+          data-tags="Grasshopper,WUFI,Ladybug,Architecture biomimétique">
+
+          <span class="project-index">
+            01
+          </span>
+
+          <h3 class="project-name">
+            Dôme Bioclimatique
+          </h3>
+
+          <p class="project-meta">
+            Eco Dome du Hamma<br>
+            Biomimétisme · Environnement
+          </p>
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </article>
+
+
+
+        <!-- PROJECT 02 -->
+
+        <article
+          class="project-card reveal"
+
+          data-title="Optimisation Paramétrique"
+
+          data-number="02 / COMPUTATION"
+
+          data-description="Développement de définitions Grasshopper pour explorer des géométries complexes, des structures légères et des stratégies de contrôle solaire. L’approche combine paramétrisation, automatisation et optimisation."
+
+          data-tags="Rhino 3D,Grasshopper,Wallacei,Python">
+
+          <span class="project-index">
+            02
+          </span>
+
+          <h3 class="project-name">
+            Optimisation Paramétrique
+          </h3>
+
+          <p class="project-meta">
+            Generative design<br>
+            Structures · Algorithms
+          </p>
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </article>
+
+
+
+        <!-- PROJECT 03 -->
+
+        <article
+          class="project-card reveal"
+
+          data-title="Architectural Visualization"
+
+          data-number="03 / VISUAL"
+
+          data-description="Exploration de workflows de visualisation architecturale combinant rendu temps réel et outils génératifs. L’objectif est de tester rapidement différentes atmosphères et lectures spatiales."
+
+          data-tags="D5 Render,Lumion,ComfyUI,AI workflows">
+
+          <span class="project-index">
+            03
+          </span>
+
+          <h3 class="project-name">
+            Architectural Visualization
+          </h3>
+
+          <p class="project-meta">
+            Realtime rendering<br>
+            Visual exploration
+          </p>
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </article>
+
+      </div>
+
     </section>
 
-    <!-- About & Stack Section -->
+
+
+    <!-- ABOUT -->
+
     <section id="about">
-      <h2 class="section-title">Environnement Technique</h2>
-      <p class="subtitle" style="margin-bottom: 1.5rem;">
-        Conception de solutions spatiales et structurelles à fort rendement énergétique en croisant modélisation 3D, outils d'analyse et automatisation.
-      </p>
-      <div class="stack-container">
-        <div class="stack-item">Rhinoceros 3D</div>
-        <div class="stack-item">Grasshopper</div>
-        <div class="stack-item">AutoCAD</div>
-        <div class="stack-item">Revit</div>
-        <div class="stack-item">SketchUp</div>
-        <div class="stack-item">Lumion</div>
-        <div class="stack-item">D5 Render</div>
-        <div class="stack-item">LaTeX</div>
-        <div class="stack-item">Python</div>
+
+      <div class="eyebrow reveal">
+        Profile
       </div>
+
+
+      <div class="about-grid">
+
+
+        <div class="reveal">
+
+          <h2 class="section-title">
+
+            Architecture<br>
+
+            through computation.
+
+          </h2>
+
+
+          <p class="about-copy">
+
+            Je développe une approche située
+            à l’intersection de
+
+            <strong>
+              l’architecture,
+              de la performance environnementale
+              et du design computationnel
+            </strong>.
+
+            Mon travail s’intéresse aux outils
+            qui permettent de générer, analyser
+            et optimiser des formes architecturales
+            plutôt que de simplement les représenter.
+
+            <br><br>
+
+            De la modélisation paramétrique
+            aux simulations environnementales,
+            j’utilise les outils numériques
+            comme une extension du processus
+            de conception.
+
+          </p>
+
+        </div>
+
+
+
+        <div class="reveal">
+
+          <div class="eyebrow">
+            Toolbox
+          </div>
+
+
+          <div class="stack">
+
+            <div class="stack-item">
+              Rhinoceros 3D
+            </div>
+
+            <div class="stack-item">
+              Grasshopper
+            </div>
+
+            <div class="stack-item">
+              AutoCAD
+            </div>
+
+            <div class="stack-item">
+              Revit
+            </div>
+
+            <div class="stack-item">
+              SketchUp
+            </div>
+
+            <div class="stack-item">
+              Ladybug Tools
+            </div>
+
+            <div class="stack-item">
+              D5 Render
+            </div>
+
+            <div class="stack-item">
+              Lumion
+            </div>
+
+            <div class="stack-item">
+              Python
+            </div>
+
+            <div class="stack-item">
+              LaTeX
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </section>
 
-    <!-- Contact Section -->
+
+
+    <!-- CONTACT -->
+
     <section id="contact">
-      <h2 class="section-title">Travaillons Ensemble</h2>
-      <p class="subtitle">
-        Basé à Alger. Accessible pour des projets en architecture computationnelle, modélisation paramétrique et ingénierie environnementale.
-      </p>
-      <div style="display: flex; gap: 1.5rem;">
-        <a href="mailto:nennoucheyaya@gmail.com" class="btn">Envoyer un E-mail</a>
-        <a href="./CV.pdf" target="_blank" class="btn" style="border-color: var(--text); color: var(--text);">Consulter le CV (PDF)</a>
+
+      <div class="eyebrow reveal">
+        Get in touch
       </div>
+
+
+      <h2 class="contact-title reveal">
+
+        Let’s build<br>
+
+        <span class="outline">
+          something.
+        </span>
+
+      </h2>
+
+
+      <p class="contact-copy reveal">
+
+        Ouvert aux collaborations,
+        projets d’architecture computationnelle,
+        recherche, modélisation paramétrique
+        et design environnemental.
+
+      </p>
+
+
+      <div class="contact-links reveal">
+
+        <a
+          class="btn primary"
+          href="mailto:nennoucheyaya@gmail.com">
+
+          nennoucheyaya@gmail.com ↗
+
+        </a>
+
+
+        <a
+          class="btn"
+          href="./CV.pdf"
+          target="_blank">
+
+          Télécharger / consulter le CV
+
+        </a>
+
+      </div>
+
     </section>
 
+  </main>
+
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <span>
+      YN.ARCH — Yanis Nennouche
+    </span>
+
+    <span>
+      Architecture · Computation · Environment
+    </span>
+
+  </footer>
+
+
+
+  <!-- =========================
+       MODAL PROJECT
+  ========================= -->
+
+  <div
+    class="modal"
+    id="projectModal"
+    aria-hidden="true">
+
+    <div class="modal-content">
+
+      <button
+        class="close-btn"
+        id="closeModal"
+        aria-label="Fermer">
+
+        ×
+
+      </button>
+
+
+      <div
+        class="modal-number"
+        id="modalNumber">
+      </div>
+
+
+      <h2 id="modalTitle"></h2>
+
+
+      <p id="modalDescription"></p>
+
+
+      <div
+        class="modal-tags"
+        id="modalTags">
+      </div>
+
+    </div>
+
   </div>
 
-  <!-- Modal pour le détail des projets -->
-  <div id="projectModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
-      <h2 id="modalTitle" style="color: #fff; margin-bottom: 1rem; font-family: 'Space Grotesk', sans-serif;"></h2>
-      <p id="modalDesc" style="color: var(--muted); line-height: 1.6;"></p>
-    </div>
-  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
 
   <script>
-    function openModal(title, desc) {
-      document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalDesc').innerText = desc;
-      document.getElementById('projectModal').style.display = 'flex';
-    }
 
-    function closeModal() {
-      document.getElementById('projectModal').style.display = 'none';
-    }
+    const body =
+      document.body;
 
-    window.onclick = function(event) {
-      const modal = document.getElementById('projectModal');
-      if (event.target == modal) {
-        closeModal();
+    const navbar =
+      document.getElementById("navbar");
+
+    const progress =
+      document.getElementById("progress");
+
+    const navLinks =
+      document.getElementById("navLinks");
+
+    const menuBtn =
+      document.getElementById("menuBtn");
+
+    const orb =
+      document.getElementById("orb");
+
+
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    menuBtn.addEventListener(
+      "click",
+      () => {
+
+        navLinks.classList.toggle("open");
+
+        menuBtn.textContent =
+          navLinks.classList.contains("open")
+            ? "×"
+            : "☰";
+
       }
+    );
+
+
+    document
+      .querySelectorAll(".nav-links a")
+      .forEach(link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            navLinks.classList.remove("open");
+
+            menuBtn.textContent = "☰";
+
+          }
+        );
+
+      });
+
+
+
+    /* =========================
+       SCROLL UI
+    ========================= */
+
+    function updateScrollUI() {
+
+      const scrollTop =
+        window.scrollY;
+
+      const docHeight =
+        document.documentElement.scrollHeight
+        - window.innerHeight;
+
+      progress.style.width =
+        `${
+          docHeight > 0
+            ? (scrollTop / docHeight) * 100
+            : 0
+        }%`;
+
+      navbar.classList.toggle(
+        "scrolled",
+        scrollTop > 30
+      );
+
     }
+
+
+    window.addEventListener(
+      "scroll",
+      updateScrollUI,
+      { passive: true }
+    );
+
+
+    updateScrollUI();
+
+
+
+    /* =========================
+       REVEAL
+    ========================= */
+
+    const observer =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (
+              entry.isIntersecting
+            ) {
+
+              entry.target
+                .classList
+                .add("visible");
+
+            }
+
+          });
+
+        },
+        {
+          threshold: .12
+        }
+      );
+
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(el =>
+        observer.observe(el)
+      );
+
+
+
+    /* =========================
+       ACTIVE NAV
+    ========================= */
+
+    const sections =
+      document.querySelectorAll(
+        "main section"
+      );
+
+    const links =
+      document.querySelectorAll(
+        ".nav-links a"
+      );
+
+
+    const sectionObserver =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (
+              !entry.isIntersecting
+            ) return;
+
+            links.forEach(link => {
+
+              link.classList.toggle(
+
+                "active",
+
+                link.getAttribute("href")
+                  === `#${entry.target.id}`
+
+              );
+
+            });
+
+          });
+
+        },
+        {
+          rootMargin:
+            "-35% 0px -55% 0px"
+        }
+      );
+
+
+    sections.forEach(section =>
+      sectionObserver.observe(section)
+    );
+
+
+
+    /* =========================
+       PROJECT MODAL
+    ========================= */
+
+    const modal =
+      document.getElementById(
+        "projectModal"
+      );
+
+    const modalTitle =
+      document.getElementById(
+        "modalTitle"
+      );
+
+    const modalNumber =
+      document.getElementById(
+        "modalNumber"
+      );
+
+    const modalDescription =
+      document.getElementById(
+        "modalDescription"
+      );
+
+    const modalTags =
+      document.getElementById(
+        "modalTags"
+      );
+
+    const closeModal =
+      document.getElementById(
+        "closeModal"
+      );
+
+
+    document
+      .querySelectorAll(".project-card")
+      .forEach(card => {
+
+        card.addEventListener(
+          "click",
+          () => {
+
+            modalTitle.textContent =
+              card.dataset.title;
+
+            modalNumber.textContent =
+              card.dataset.number;
+
+            modalDescription.textContent =
+              card.dataset.description;
+
+            modalTags.innerHTML = "";
+
+
+            card.dataset.tags
+              .split(",")
+              .forEach(tag => {
+
+                const chip =
+                  document.createElement(
+                    "span"
+                  );
+
+                chip.className =
+                  "chip";
+
+                chip.textContent =
+                  tag.trim();
+
+                modalTags.appendChild(
+                  chip
+                );
+
+              });
+
+
+            modal.classList.add(
+              "open"
+            );
+
+            modal.setAttribute(
+              "aria-hidden",
+              "false"
+            );
+
+            document.body.style.overflow =
+              "hidden";
+
+          }
+        );
+
+      });
+
+
+    function closeProjectModal() {
+
+      modal.classList.remove(
+        "open"
+      );
+
+      modal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    closeModal.addEventListener(
+      "click",
+      closeProjectModal
+    );
+
+
+    modal.addEventListener(
+      "click",
+      e => {
+
+        if (
+          e.target === modal
+        ) {
+
+          closeProjectModal();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      e => {
+
+        if (
+          e.key === "Escape"
+        ) {
+
+          closeProjectModal();
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       CUSTOM CURSOR
+    ========================= */
+
+    const cursor =
+      document.getElementById(
+        "cursor"
+      );
+
+    const cursorRing =
+      document.getElementById(
+        "cursorRing"
+      );
+
+
+    if (
+      window.matchMedia(
+        "(pointer:fine)"
+      ).matches
+    ) {
+
+      body.classList.add(
+        "has-cursor"
+      );
+
+
+      let mx = 0;
+      let my = 0;
+
+      let rx = 0;
+      let ry = 0;
+
+
+      window.addEventListener(
+        "mousemove",
+        e => {
+
+          mx = e.clientX;
+          my = e.clientY;
+
+          cursor.style.left =
+            `${mx}px`;
+
+          cursor.style.top =
+            `${my}px`;
+
+        }
+      );
+
+
+      function animateCursor() {
+
+        rx +=
+          (mx - rx) * .16;
+
+        ry +=
+          (my - ry) * .16;
+
+
+        cursorRing.style.left =
+          `${rx}px`;
+
+        cursorRing.style.top =
+          `${ry}px`;
+
+
+        requestAnimationFrame(
+          animateCursor
+        );
+
+      }
+
+
+      animateCursor();
+
+
+      document
+        .querySelectorAll(
+          "a, button, .project-card"
+        )
+        .forEach(el => {
+
+          el.addEventListener(
+            "mouseenter",
+            () => {
+
+              cursorRing.style.width =
+                "52px";
+
+              cursorRing.style.height =
+                "52px";
+
+            }
+          );
+
+
+          el.addEventListener(
+            "mouseleave",
+            () => {
+
+              cursorRing.style.width =
+                "34px";
+
+              cursorRing.style.height =
+                "34px";
+
+            }
+          );
+
+        });
+
+
+
+      /* =========================
+         HERO PARALLAX
+      ========================= */
+
+      window.addEventListener(
+        "mousemove",
+        e => {
+
+          const x =
+            (
+              e.clientX /
+              window.innerWidth
+              - .5
+            ) * 2;
+
+          const y =
+            (
+              e.clientY /
+              window.innerHeight
+              - .5
+            ) * 2;
+
+
+          orb.style.transform =
+            `translate(
+              ${x * -18}px,
+              ${y * -12}px
+            )`;
+
+        }
+      );
+
+    }
+
   </script>
+
 </body>
 </html>
