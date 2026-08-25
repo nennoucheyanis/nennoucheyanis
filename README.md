@@ -10,7 +10,7 @@
 - ⚙️ I use daily: `.gh`, `.3dm`, `.dwg`, `.rvt`, `.skp`, `.tex`
 - 🌱 Learning all about: Python for general programming, automation, and scripting
 - 💬 Ping me about: Parametric Design, Environmental Simulation, Architectural Visualization & LaTeX 
-- 📫 Reach me: [LinkedIn]([https://www.linkedin.com/in/yanis-nennouche](https://www.linkedin.com/in/yanis-nennouche-b27040334/)) | Portfolio *(Coming Soon)*
+- 📫 Reach me: [LinkedIn]([[https://www.linkedin.com/in/yanis-nennouche](https://www.linkedin.com/in/yanis-nennouche-b27040334/)](https://www.linkedin.com/in/yanis-nennouche-b27040334/) | Portfolio *(Coming Soon)*
 - 📧 Send me an email: nennouche.yanis@email.com
 
 **Softwares & Tools**
