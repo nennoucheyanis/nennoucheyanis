@@ -1,3496 +1,4501 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="description"
-    content="Yanis Nennouche — Architect / Architectural Portfolio"
-  >
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>YANIS NENNOUCHE / ARCHITECT</title>
+<meta
+name="description"
+content="Yanis Nennouche — Architect / Computational Design / Environmental Architecture"
+>
 
-  <!-- =========================================================
-       FONTS
-  ========================================================== -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>YANIS NENNOUCHE / ARCHITECT</title>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- PDF.js
-       Used only to render the CV page itself.
-       This avoids the browser's black PDF viewer/interface.
-  -->
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs"
-    type="module"
-  ></script>
+<link
+href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+rel="stylesheet">
 
-  <style>
 
-    /* =========================================================
-       ROOT
-    ========================================================== */
+<style>
 
-    :root {
-      --bg: #08090c;
-      --surface: #101218;
-      --surface-2: #151821;
+/* =========================================================
+   DESIGN SYSTEM
+========================================================= */
 
-      --text: #f1f3f5;
-      --muted: #8c93a3;
+:root{
 
-      --line: rgba(255,255,255,.10);
+--bg:#F3F2EE;
+--bg-soft:#E8E7E2;
 
-      --accent: #96C08C;
-      --accent-soft: rgba(150,192,140,.12);
+--dark:#10100F;
+--dark-soft:#181816;
 
-      --max: 1500px;
-    }
+--text:#111111;
+--muted:#74746E;
 
+--line:rgba(17,17,17,.14);
+--line-dark:rgba(255,255,255,.14);
 
-    /* =========================================================
-       RESET
-    ========================================================== */
+--red:#C92828;
+--red-dark:#961E1E;
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+--white:#F8F7F3;
 
-    html {
-      scroll-behavior: smooth;
-    }
+--sans:"Inter",sans-serif;
+--display:"Space Grotesk",sans-serif;
+--mono:"DM Mono",monospace;
 
-    html,
-    body {
-      min-height: 100%;
-      overflow-x: hidden;
-    }
+--max-width:1500px;
 
-    body {
-      background: var(--bg);
-      color: var(--text);
+}
 
-      font-family: "Inter", sans-serif;
 
-      cursor: default;
-    }
+/* =========================================================
+   RESET
+========================================================= */
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
 
-    button {
-      font: inherit;
-    }
+html{
+scroll-behavior:smooth;
+background:var(--bg);
+}
 
+body{
+background:var(--bg);
+color:var(--text);
+font-family:var(--sans);
+overflow-x:hidden;
+}
 
-    /* =========================================================
-       CUSTOM CURSOR
-    ========================================================== */
+img{
+max-width:100%;
+display:block;
+}
 
-    .cursor,
-    .cursor-ring {
-      position: fixed;
+a{
+color:inherit;
+text-decoration:none;
+}
 
-      pointer-events: none;
+button{
+font-family:inherit;
+}
 
-      z-index: 9999;
 
-      border-radius: 50%;
+/* =========================================================
+   GRAIN
+========================================================= */
 
-      transform: translate(-50%, -50%);
+body::before{
 
-      opacity: 0;
+content:"";
 
-      transition: opacity .2s ease;
-    }
+position:fixed;
 
-    .cursor {
-      width: 7px;
-      height: 7px;
+inset:0;
 
-      background: var(--accent);
-    }
+pointer-events:none;
 
-    .cursor-ring {
-      width: 34px;
-      height: 34px;
+z-index:9999;
 
-      border: 1px solid var(--accent);
+opacity:.025;
 
-      transition:
-        width .25s ease,
-        height .25s ease,
-        opacity .2s ease;
-    }
+background-image:url(
+"data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"
+);
 
-    @media (pointer:fine) {
+}
 
-      body.has-cursor .cursor,
-      body.has-cursor .cursor-ring {
-        opacity: 1;
-      }
 
-    }
+/* =========================================================
+   SCROLLBAR
+========================================================= */
 
+::-webkit-scrollbar{
+width:7px;
+}
 
-    /* =========================================================
-       GRAIN
-    ========================================================== */
+::-webkit-scrollbar-track{
+background:var(--bg);
+}
 
-    body::before {
-      content: "";
+::-webkit-scrollbar-thumb{
+background:#B8B7B2;
+}
 
-      position: fixed;
-      inset: 0;
+::-webkit-scrollbar-thumb:hover{
+background:var(--red);
+}
 
-      pointer-events: none;
 
-      z-index: 9998;
+/* =========================================================
+   CURSOR
+========================================================= */
 
-      opacity: .035;
+.cursor,
+.cursor-ring{
 
-      background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
-    }
+position:fixed;
 
+pointer-events:none;
 
-    /* =========================================================
-       NAVIGATION
-    ========================================================== */
+z-index:10000;
 
-    nav {
-      position: fixed;
+transform:translate(-50%,-50%);
 
-      top: 0;
-      left: 0;
+opacity:0;
 
-      width: 100%;
+}
 
-      z-index: 900;
+.cursor{
 
-      padding:
-        24px
-        clamp(22px, 5vw, 72px);
+width:6px;
+height:6px;
 
-      display: flex;
+background:var(--red);
 
-      align-items: center;
-      justify-content: space-between;
+border-radius:50%;
 
-      transition:
-        background .35s ease,
-        padding .35s ease,
-        backdrop-filter .35s ease;
-    }
+}
 
-    nav.scrolled {
-      padding-top: 15px;
-      padding-bottom: 15px;
+.cursor-ring{
 
-      background: rgba(8,9,12,.78);
+width:30px;
+height:30px;
 
-      backdrop-filter: blur(18px);
+border:1px solid var(--red);
 
-      border-bottom: 1px solid var(--line);
-    }
+border-radius:50%;
 
-    .logo {
-      font:
-        600 .92rem
-        "Space Grotesk",
-        sans-serif;
+transition:
+width .25s ease,
+height .25s ease,
+background .25s ease;
 
-      letter-spacing: .08em;
+}
 
-      white-space: nowrap;
-    }
+@media(pointer:fine){
 
-    .logo span {
-      color: var(--muted);
+body.has-cursor .cursor,
+body.has-cursor .cursor-ring{
+opacity:1;
+}
 
-      font-weight: 400;
+}
 
-      letter-spacing: .04em;
-    }
 
-    .nav-links {
-      display: flex;
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-      gap:
-        clamp(18px, 3vw, 42px);
+nav{
 
-      list-style: none;
-    }
+position:fixed;
 
-    .nav-links a {
-      position: relative;
+top:0;
+left:0;
 
-      color: var(--muted);
+width:100%;
 
-      font-size: .82rem;
+z-index:900;
 
-      letter-spacing: .03em;
+padding:
+25px
+clamp(22px,5vw,70px);
 
-      transition: color .25s ease;
-    }
+display:flex;
 
-    .nav-links a::after {
-      content: "";
+justify-content:space-between;
+align-items:center;
 
-      position: absolute;
+background:rgba(243,242,238,.86);
 
-      left: 0;
-      bottom: -7px;
+backdrop-filter:blur(18px);
 
-      width: 0;
-      height: 1px;
+border-bottom:1px solid transparent;
 
-      background: var(--accent);
+transition:
+padding .35s ease,
+border-color .35s ease;
 
-      transition: width .25s ease;
-    }
+}
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--text);
-    }
+nav.scrolled{
 
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
+padding-top:15px;
+padding-bottom:15px;
 
-    .menu-btn {
-      display: none;
+border-color:var(--line);
 
-      background: transparent;
+}
 
-      color: var(--text);
 
-      border: 0;
+.logo{
 
-      font-size: 1.4rem;
+font-family:var(--display);
 
-      cursor: pointer;
-    }
+font-weight:600;
 
+font-size:.84rem;
 
-    /* =========================================================
-       GENERAL SECTIONS
-    ========================================================== */
+letter-spacing:.07em;
 
-    main {
-      width: 100%;
-    }
+white-space:nowrap;
 
-    main section {
-      position: relative;
+}
 
-      width: 100%;
+.logo span{
 
-      min-height: 100vh;
+color:var(--red);
 
-      padding:
-        130px
-        clamp(22px, 7vw, 110px);
+font-weight:500;
 
-      display: block;
+}
 
-      scroll-margin-top: 80px;
-    }
 
-    .page-inner {
-      width: 100%;
+.nav-right{
 
-      max-width: var(--max);
+display:flex;
 
-      min-height: calc(100vh - 190px);
+align-items:center;
 
-      margin: 0 auto;
+gap:35px;
 
-      display: flex;
+}
 
-      flex-direction: column;
 
-      justify-content: center;
-    }
+.nav-links{
 
+display:flex;
 
-    /* =========================================================
-       SMALL LABELS
-    ========================================================== */
+gap:clamp(20px,3vw,42px);
 
-    .eyebrow {
-      color: var(--muted);
+list-style:none;
 
-      font:
-        500 .68rem
-        "Space Grotesk",
-        sans-serif;
+}
 
-      letter-spacing: .14em;
+.nav-links a{
 
-      text-transform: uppercase;
-    }
+position:relative;
 
-    .section-title {
-      margin-top: 14px;
+font-size:.72rem;
 
-      font:
-        600 clamp(3rem, 6vw, 6rem)
-        "Space Grotesk",
-        sans-serif;
+letter-spacing:.08em;
 
-      letter-spacing: -.065em;
+text-transform:uppercase;
 
-      line-height: .92;
-    }
+color:var(--muted);
 
+transition:color .25s ease;
 
-    /* =========================================================
-       HERO
-    ========================================================== */
+}
 
-    #hero {
-      min-height: 100vh;
+.nav-links a::after{
 
-      overflow: hidden;
-    }
+content:"";
 
-    .hero-grid {
-      position: absolute;
+position:absolute;
 
-      inset: 0;
+left:0;
+bottom:-7px;
 
-      opacity: .25;
+width:0;
+height:1px;
 
-      background-image:
-        linear-gradient(
-          rgba(255,255,255,.035) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255,255,255,.035) 1px,
-          transparent 1px
-        );
+background:var(--red);
 
-      background-size: 70px 70px;
+transition:width .25s ease;
 
-      mask-image:
-        linear-gradient(
-          to bottom,
-          black,
-          transparent 75%
-        );
-    }
+}
 
-    .orb {
-      position: absolute;
+.nav-links a:hover,
+.nav-links a.active{
 
-      width: 52vw;
-      height: 52vw;
+color:var(--text);
 
-      max-width: 700px;
-      max-height: 700px;
+}
 
-      right: -12vw;
-      top: 10%;
+.nav-links a:hover::after,
+.nav-links a.active::after{
 
-      border-radius: 50%;
+width:100%;
 
-      background:
-        radial-gradient(
-          circle at 35% 35%,
-          rgba(150,192,140,.22),
-          transparent 50%
-        );
+}
 
-      filter: blur(12px);
 
-      animation:
-        float 8s ease-in-out infinite;
-    }
+/* =========================================================
+   SOCIAL ICONS
+========================================================= */
 
-    @keyframes float {
+.socials{
 
-      0%,
-      100% {
-        transform: translate3d(0,0,0);
-      }
+display:flex;
 
-      50% {
-        transform: translate3d(-25px,20px,0);
-      }
+align-items:center;
 
-    }
+gap:8px;
 
-    .hero-layout {
-      position: relative;
+}
 
-      z-index: 2;
+.social-link{
 
-      display: grid;
+width:30px;
+height:30px;
 
-      grid-template-columns:
-        minmax(0, 1.45fr)
-        minmax(280px, .55fr);
+display:flex;
 
-      gap:
-        clamp(45px, 7vw, 120px);
+align-items:center;
+justify-content:center;
 
-      align-items: end;
+border:1px solid var(--line);
 
-      width: 100%;
-    }
+color:var(--muted);
 
-    .hero-content {
-      max-width: 1100px;
-    }
+transition:
+color .25s ease,
+border-color .25s ease,
+transform .25s ease;
 
-    .hero-title {
-      margin-top: 18px;
+}
 
-      font:
-        600 clamp(4rem, 10vw, 9.5rem)
-        "Space Grotesk",
-        sans-serif;
+.social-link svg{
 
-      letter-spacing: -.085em;
+width:14px;
+height:14px;
 
-      line-height: .84;
-    }
+fill:currentColor;
 
-    .outline {
-      color: transparent;
+}
 
-      -webkit-text-stroke:
-        1px rgba(241,243,245,.45);
-    }
+.social-link:hover{
 
-    .hero-sub {
-      margin-top: 34px;
+color:var(--red);
 
-      max-width: 650px;
+border-color:var(--red);
 
-      color: var(--muted);
+transform:translateY(-3px);
 
-      line-height: 1.8;
+}
 
-      font-size:
-        clamp(.95rem, 1.4vw, 1.12rem);
-    }
 
-    .availability {
-      display: inline-flex;
+/* =========================================================
+   MENU
+========================================================= */
 
-      align-items: center;
+.menu-btn{
 
-      gap: 8px;
+display:none;
 
-      margin-top: 18px;
+border:0;
 
-      color: var(--muted);
+background:none;
 
-      font-size: .68rem;
+font-size:1.5rem;
 
-      letter-spacing: .08em;
+cursor:pointer;
 
-      text-transform: uppercase;
-    }
+}
 
-    .availability::before {
-      content: "";
 
-      width: 6px;
-      height: 6px;
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-      border-radius: 50%;
+section{
 
-      background: var(--accent);
+position:relative;
 
-      box-shadow:
-        0 0 12px
-        rgba(150,192,140,.5);
-    }
+width:100%;
 
+padding:
+150px
+clamp(22px,7vw,110px);
 
-    /* =========================================================
-       PROFILE
-    ========================================================== */
+}
 
-    .profile-card {
-      justify-self: end;
+.container{
 
-      width: min(100%, 360px);
-    }
+width:100%;
 
-    .profile-image {
-      width: 100%;
+max-width:var(--max-width);
 
-      aspect-ratio: 4 / 5;
+margin:auto;
 
-      object-fit: cover;
+}
 
-      display: block;
 
-      border: 1px solid var(--line);
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
 
-      filter: grayscale(100%);
+.eyebrow{
 
-      background: var(--surface);
+display:flex;
 
-      transition:
-        filter .5s ease,
-        transform .5s ease,
-        border-color .5s ease;
-    }
+align-items:center;
 
-    .profile-card:hover .profile-image {
-      filter: grayscale(0%);
+gap:10px;
 
-      transform: translateY(-5px);
+font-family:var(--mono);
 
-      border-color:
-        rgba(150,192,140,.45);
-    }
+font-size:.62rem;
 
-    .profile-caption {
-      display: flex;
+text-transform:uppercase;
 
-      justify-content: space-between;
+letter-spacing:.13em;
 
-      gap: 20px;
+color:var(--muted);
 
-      margin-top: 12px;
+}
 
-      color: var(--muted);
+.eyebrow::before{
 
-      font-size: .68rem;
+content:"";
 
-      letter-spacing: .08em;
+width:25px;
+height:1px;
 
-      text-transform: uppercase;
-    }
+background:var(--red);
 
-    .scroll-note {
-      position: absolute;
+}
 
-      bottom: 35px;
 
-      left: clamp(22px, 7vw, 110px);
+.section-title{
 
-      color: var(--muted);
+margin-top:20px;
 
-      font-size: .7rem;
+font-family:var(--display);
 
-      letter-spacing: .14em;
+font-weight:500;
 
-      text-transform: uppercase;
+font-size:clamp(3.2rem,7vw,7rem);
 
-      display: flex;
+letter-spacing:-.075em;
 
-      align-items: center;
+line-height:.88;
 
-      gap: 12px;
-    }
+}
 
-    .scroll-note span {
-      width: 42px;
+.red{
+color:var(--red);
+}
 
-      height: 1px;
+.outline{
 
-      background: var(--muted);
-    }
+color:transparent;
 
+-webkit-text-stroke:
+1px rgba(17,17,17,.45);
 
-    /* =========================================================
-       BUTTONS
-    ========================================================== */
+}
 
-    .hero-actions {
-      display: flex;
 
-      gap: 12px;
+/* =========================================================
+   HERO
+========================================================= */
 
-      margin-top: 38px;
+#hero{
 
-      flex-wrap: wrap;
-    }
+min-height:100vh;
 
-    .btn {
-      display: inline-flex;
+padding-top:130px;
 
-      align-items: center;
-      justify-content: center;
+display:flex;
 
-      gap: 12px;
+align-items:center;
 
-      min-height: 50px;
+overflow:hidden;
 
-      padding: 0 21px;
+}
 
-      border:
-        1px solid var(--line);
+.hero-container{
 
-      background:
-        rgba(255,255,255,.025);
+width:100%;
 
-      color: var(--text);
+max-width:var(--max-width);
 
-      font:
-        500 .78rem
-        "Space Grotesk",
-        sans-serif;
+margin:auto;
 
-      letter-spacing: .04em;
+}
 
-      cursor: pointer;
+.hero-top{
 
-      transition:
-        transform .3s ease,
-        background .3s ease,
-        border-color .3s ease;
-    }
+display:flex;
 
-    .btn:hover {
-      transform: translateY(-3px);
+justify-content:space-between;
 
-      border-color: var(--accent);
+align-items:flex-start;
 
-      background: var(--accent-soft);
-    }
+margin-bottom:60px;
 
-    .btn.primary {
-      background: var(--accent);
+}
 
-      color: #07100c;
+.hero-index,
+.hero-location{
 
-      border-color: var(--accent);
-    }
+font-family:var(--mono);
 
-    .btn.primary:hover {
-      background: #b8dcae;
-    }
+font-size:.63rem;
 
+color:var(--muted);
 
-    /* =========================================================
-       ABOUT
-    ========================================================== */
+}
 
-    #about {
-      background: var(--surface);
-    }
+.hero-location{
+text-align:right;
+}
 
-    .about-layout {
-      display: grid;
 
-      grid-template-columns:
-        .9fr
-        1.1fr;
+.hero-title{
 
-      gap:
-        clamp(60px, 8vw, 140px);
+font-family:var(--display);
 
-      align-items: start;
+font-weight:600;
 
-      margin-top: 55px;
-    }
+font-size:
+clamp(5rem,14vw,14rem);
 
-    .about-statement {
-      color: var(--muted);
+line-height:.76;
 
-      line-height: 1.9;
+letter-spacing:-.1em;
 
-      max-width: 650px;
-    }
+position:relative;
 
-    .about-statement strong {
-      color: var(--text);
+z-index:2;
 
-      font-weight: 500;
-    }
+}
 
-    .about-block {
-      margin-top: 46px;
-    }
+.hero-title .last{
 
-    .about-block:first-of-type {
-      margin-top: 0;
-    }
+margin-left:13vw;
 
+color:transparent;
 
-    /* =========================================================
-       CV PREVIEW
-    ========================================================== */
+-webkit-text-stroke:1px var(--text);
 
-    .cv-section {
-      margin-top: 70px;
-    }
+}
 
-    .cv-header {
-      display: flex;
 
-      align-items: end;
+.hero-subtitle{
 
-      justify-content: space-between;
+display:grid;
 
-      gap: 30px;
+grid-template-columns:
+1fr 1fr;
 
-      margin-bottom: 28px;
-    }
+gap:50px;
 
-    .cv-description {
-      color: var(--muted);
+margin-top:80px;
 
-      max-width: 470px;
+}
 
-      font-size: .82rem;
+.hero-subtitle p{
 
-      line-height: 1.7;
-    }
+max-width:500px;
 
-    /*
-      IMPORTANT:
-      This is NOT an iframe.
-      Therefore the browser's PDF viewer never appears.
-    */
+color:var(--muted);
 
-    .cv-paper-wrapper {
-      width: 100%;
+font-size:.9rem;
 
-      max-width: 920px;
+line-height:1.85;
 
-      margin: 0 auto;
+}
 
-      display: flex;
+.hero-subtitle strong{
 
-      justify-content: center;
+color:var(--text);
 
-      background: transparent;
-    }
+font-weight:500;
 
-    .cv-paper {
-      position: relative;
+}
 
-      width: min(100%, 820px);
 
-      background: white;
+.hero-image{
 
-      box-shadow:
-        0 25px 70px rgba(0,0,0,.35);
+position:absolute;
 
-      overflow: hidden;
-    }
+right:0;
 
-    #cvCanvas {
-      display: block;
+top:19%;
 
-      width: 100%;
+width:min(38vw,540px);
 
-      height: auto;
+aspect-ratio:4/5;
 
-      background: white;
-    }
+overflow:hidden;
 
-    .cv-loading {
-      position: absolute;
+z-index:1;
 
-      inset: 0;
+}
 
-      display: flex;
+.hero-image img{
 
-      align-items: center;
+width:100%;
+height:100%;
 
-      justify-content: center;
+object-fit:cover;
 
-      background: white;
+filter:grayscale(100%);
 
-      color: #333;
+transition:
+filter .7s ease,
+transform 1s ease;
 
-      font-size: .75rem;
+}
 
-      letter-spacing: .08em;
+.hero-image:hover img{
 
-      text-transform: uppercase;
-    }
+filter:grayscale(0%);
 
-    .cv-actions {
-      display: flex;
+transform:scale(1.03);
 
-      justify-content: center;
+}
 
-      margin-top: 24px;
-    }
+.hero-image::after{
 
-    .cv-actions .btn {
-      background: #cf2c2c;
+content:"";
 
-      border-color: #cf2c2c;
+position:absolute;
 
-      color: white;
+inset:13px;
 
-      min-width: 130px;
-    }
+border:1px solid rgba(255,255,255,.35);
 
-    .cv-actions .btn:hover {
-      background: #e43b3b;
+}
 
-      border-color: #e43b3b;
-    }
 
+.hero-red-line{
 
-    /* =========================================================
-       INTERESTS
-    ========================================================== */
+position:absolute;
 
-    .chip-row {
-      display: flex;
+left:0;
 
-      flex-wrap: wrap;
+bottom:60px;
 
-      gap: 9px;
+width:120px;
 
-      margin-top: 15px;
-    }
+height:1px;
 
-    .tag-chip {
-      padding: 8px 13px;
+background:var(--red);
 
-      border:
-        1px solid var(--line);
+}
 
-      color: var(--muted);
 
-      font-size: .74rem;
+.scroll-indicator{
 
-      transition:
-        color .2s ease,
-        border-color .2s ease;
-    }
+position:absolute;
 
-    .tag-chip:hover {
-      color: var(--accent);
+right:0;
 
-      border-color: var(--accent);
-    }
+bottom:35px;
 
+display:flex;
 
-    /* =========================================================
-       TIMELINE
-    ========================================================== */
+align-items:center;
 
-    .timeline {
-      border-top: 1px solid var(--line);
-    }
+gap:12px;
 
-    .timeline-item {
-      display: grid;
+font-family:var(--mono);
 
-      grid-template-columns: 100px 1fr;
+font-size:.6rem;
 
-      gap: 30px;
+text-transform:uppercase;
 
-      padding: 18px 0;
+letter-spacing:.1em;
 
-      border-bottom:
-        1px solid var(--line);
-    }
+color:var(--muted);
 
-    .timeline-date {
-      color: var(--muted);
+}
 
-      font-size: .72rem;
+.scroll-indicator span{
 
-      letter-spacing: .08em;
-    }
+width:45px;
+height:1px;
 
-    .timeline-title {
-      font-family: "Space Grotesk", sans-serif;
+background:var(--red);
 
-      font-size: .98rem;
+}
 
-      margin-bottom: 5px;
-    }
 
-    .timeline-meta {
-      color: var(--muted);
+/* =========================================================
+   ABOUT
+========================================================= */
 
-      font-size: .76rem;
+#about{
 
-      line-height: 1.6;
-    }
+background:var(--bg-soft);
 
+}
 
-    /* =========================================================
-       LANGUAGES
-    ========================================================== */
+.about-top{
 
-    .lang-list {
-      border-top: 1px solid var(--line);
-    }
+display:flex;
 
-    .lang-item {
-      display: flex;
+justify-content:space-between;
 
-      justify-content: space-between;
+align-items:flex-end;
 
-      align-items: center;
+margin-bottom:90px;
 
-      gap: 16px;
+}
 
-      padding: 14px 0;
+.about-top-copy{
 
-      border-bottom:
-        1px solid var(--line);
-    }
+max-width:430px;
 
-    .lang-name {
-      font-family: "Space Grotesk", sans-serif;
+font-size:.8rem;
 
-      font-size: .9rem;
-    }
+line-height:1.8;
 
-    .lang-level {
-      color: var(--muted);
+color:var(--muted);
 
-      font-size: .7rem;
+}
 
-      letter-spacing: .08em;
 
-      text-transform: uppercase;
-    }
+.about-grid{
 
+display:grid;
 
-    /* =========================================================
-       SOFTWARE
-    ========================================================== */
+grid-template-columns:
+.75fr 1.25fr;
 
-    .stack {
-      display: grid;
+gap:100px;
 
-      grid-template-columns:
-        repeat(2, 1fr);
+align-items:start;
 
-      border-top: 1px solid var(--line);
-    }
+}
 
-    .stack-item {
-      padding: 16px 0;
 
-      border-bottom:
-        1px solid var(--line);
+/* PHOTO */
 
-      color: var(--muted);
+.about-photo{
 
-      font-size: .82rem;
+position:sticky;
 
-      transition:
-        color .25s ease,
-        padding-left .25s ease;
-    }
+top:120px;
 
-    .stack-item:hover {
-      color: var(--accent);
+}
 
-      padding-left: 8px;
-    }
+.about-photo-frame{
 
+position:relative;
 
-    /* =========================================================
-       WORK
-    ========================================================== */
+overflow:hidden;
 
-    #work {
-      padding-top: 150px;
+background:#D8D7D2;
 
-      padding-bottom: 150px;
-    }
+}
 
-    .work-intro {
-      display: flex;
+.about-photo img{
 
-      justify-content: space-between;
+width:100%;
 
-      gap: 30px;
+aspect-ratio:4/5;
 
-      align-items: end;
+object-fit:cover;
 
-      margin-bottom: 55px;
-    }
+filter:grayscale(100%);
 
-    .work-intro p {
-      max-width: 520px;
+transition:
+filter .6s ease,
+transform .8s ease;
 
-      color: var(--muted);
+}
 
-      line-height: 1.7;
-    }
+.about-photo:hover img{
 
-    .featured-project {
-      position: relative;
+filter:grayscale(0%);
 
-      display: grid;
+transform:scale(1.02);
 
-      grid-template-columns:
-        1.35fr
-        .65fr;
+}
 
-      min-height: 620px;
+.about-photo-frame::before{
 
-      border:
-        1px solid var(--line);
+content:"";
 
-      overflow: hidden;
+position:absolute;
 
-      cursor: pointer;
+top:18px;
+left:18px;
 
-      background: var(--surface);
-    }
+width:35px;
+height:35px;
 
-    .featured-image {
-      position: relative;
+border-top:1px solid var(--red);
+border-left:1px solid var(--red);
 
-      overflow: hidden;
+z-index:2;
 
-      min-height: 620px;
-    }
+}
 
-    .featured-image img {
-      width: 100%;
+.about-photo-frame::after{
 
-      height: 100%;
+content:"";
 
-      object-fit: cover;
+position:absolute;
 
-      display: block;
+right:18px;
+bottom:18px;
 
-      filter: grayscale(25%);
+width:35px;
+height:35px;
 
-      transition:
-        transform .8s cubic-bezier(.2,.7,.2,1),
-        filter .5s ease;
-    }
+border-right:1px solid var(--red);
+border-bottom:1px solid var(--red);
 
-    .featured-project:hover
-    .featured-image img {
-      transform: scale(1.035);
+z-index:2;
 
-      filter: grayscale(0%);
-    }
+}
 
-    .featured-overlay {
-      position: absolute;
+.about-photo-caption{
 
-      inset: 0;
+display:flex;
 
-      background:
-        linear-gradient(
-          90deg,
-          transparent 55%,
-          rgba(8,9,12,.25)
-        );
-    }
+justify-content:space-between;
 
-    .featured-info {
-      padding: clamp(35px, 5vw, 70px);
+padding-top:12px;
 
-      display: flex;
+font-family:var(--mono);
 
-      flex-direction: column;
+font-size:.58rem;
 
-      justify-content: space-between;
+text-transform:uppercase;
 
-      background: var(--surface);
-    }
+color:var(--muted);
 
-    .featured-number {
-      font:
-        600 clamp(4rem, 7vw, 7rem)
-        "Space Grotesk",
-        sans-serif;
+}
 
-      color: transparent;
 
-      -webkit-text-stroke:
-        1px rgba(241,243,245,.25);
+/* ABOUT TEXT */
 
-      line-height: .9;
-    }
+.about-main{
 
-    .featured-name {
-      margin-top: 35px;
+max-width:750px;
 
-      font:
-        600 clamp(2rem, 4vw, 4rem)
-        "Space Grotesk",
-        sans-serif;
+}
 
-      letter-spacing: -.055em;
+.about-statement{
 
-      line-height: .95;
-    }
+font-family:var(--display);
 
-    .featured-meta {
-      margin-top: 22px;
+font-size:
+clamp(2.5rem,5vw,5.5rem);
 
-      color: var(--muted);
+line-height:.94;
 
-      font-size: .78rem;
+letter-spacing:-.07em;
 
-      line-height: 1.7;
-    }
+}
 
-    .featured-description {
-      margin-top: 28px;
+.about-statement span{
 
-      color: var(--muted);
+color:var(--red);
 
-      line-height: 1.8;
+}
 
-      font-size: .9rem;
-    }
+.about-copy{
 
-    .featured-link {
-      display: inline-flex;
+margin-top:45px;
 
-      align-items: center;
+max-width:600px;
 
-      gap: 10px;
+color:var(--muted);
 
-      margin-top: 40px;
+font-size:.9rem;
 
-      color: var(--accent);
+line-height:1.9;
 
-      font:
-        500 .76rem
-        "Space Grotesk",
-        sans-serif;
+}
 
-      letter-spacing: .08em;
 
-      text-transform: uppercase;
-    }
+/* PROFILE INFO */
 
+.profile-info{
 
-    /* =========================================================
-       OTHER PROJECTS
-    ========================================================== */
+margin-top:65px;
 
-    .other-projects {
-      display: grid;
+border-top:1px solid var(--line);
 
-      grid-template-columns:
-        repeat(2, 1fr);
+border-bottom:1px solid var(--line);
 
-      gap: 2px;
+}
 
-      margin-top: 2px;
+.profile-row{
 
-      background: var(--line);
+display:grid;
 
-      border:
-        1px solid var(--line);
-    }
+grid-template-columns:
+150px 1fr;
 
-    .project-card {
-      background: var(--bg);
+padding:20px 0;
 
-      padding: 28px;
+border-bottom:1px solid var(--line);
 
-      min-height: 260px;
+}
 
-      display: flex;
+.profile-row:last-child{
+border-bottom:0;
+}
 
-      flex-direction: column;
+.profile-label{
 
-      justify-content: space-between;
+font-family:var(--mono);
 
-      transition:
-        background .3s ease,
-        transform .3s ease;
-    }
+font-size:.58rem;
 
-    .project-card:hover {
-      background: var(--surface);
+letter-spacing:.1em;
 
-      transform: translateY(-4px);
-    }
+text-transform:uppercase;
 
-    .project-card-top {
-      display: flex;
+color:var(--red);
 
-      justify-content: space-between;
-    }
+}
 
-    .project-card-number {
-      color: var(--muted);
+.profile-value{
 
-      font:
-        .7rem
-        "Space Grotesk",
-        sans-serif;
+font-size:.78rem;
 
-      letter-spacing: .1em;
-    }
+line-height:1.7;
 
-    .project-card-arrow {
-      color: var(--muted);
+}
 
-      transition:
-        color .2s ease,
-        transform .2s ease;
-    }
 
-    .project-card:hover
-    .project-card-arrow {
-      color: var(--accent);
+/* =========================================================
+   SKILLS
+========================================================= */
 
-      transform: translateX(5px);
-    }
+.skills-section{
 
-    .project-card-name {
-      font:
-        500 1.45rem
-        "Space Grotesk",
-        sans-serif;
+margin-top:70px;
 
-      letter-spacing: -.03em;
-    }
+}
 
-    .project-card-type {
-      margin-top: 8px;
+.skills-title{
 
-      color: var(--muted);
+font-family:var(--display);
 
-      font-size: .76rem;
-    }
+font-size:1.2rem;
 
+margin-bottom:20px;
 
-    /* =========================================================
-       PROJECT DETAIL
-    ========================================================== */
+}
 
-    .project-detail {
-      background: var(--surface);
-    }
+.skills{
 
-    .project-detail-inner {
-      max-width: var(--max);
+display:grid;
 
-      margin: 0 auto;
-    }
+grid-template-columns:
+repeat(2,1fr);
 
-    .project-header {
-      display: grid;
+border-top:1px solid var(--line);
 
-      grid-template-columns:
-        .75fr
-        1.25fr;
+}
 
-      gap: 70px;
+.skill{
 
-      align-items: center;
-    }
+padding:15px 0;
 
-    .project-detail-image {
-      width: 100%;
+border-bottom:1px solid var(--line);
 
-      aspect-ratio: 4 / 3;
+font-size:.76rem;
 
-      overflow: hidden;
+color:var(--muted);
 
-      background: var(--surface-2);
+transition:
+color .25s ease,
+padding-left .25s ease;
 
-      border:
-        1px solid var(--line);
-    }
+}
 
-    .project-detail-image img {
-      width: 100%;
+.skill:hover{
 
-      height: 100%;
+color:var(--red);
 
-      object-fit: cover;
+padding-left:8px;
 
-      display: block;
-    }
+}
 
-    .project-detail-number {
-      font:
-        600 clamp(4rem, 8vw, 8rem)
-        "Space Grotesk",
-        sans-serif;
 
-      color: transparent;
+/* =========================================================
+   CV
+========================================================= */
 
-      -webkit-text-stroke:
-        1px rgba(241,243,245,.3);
+.cv-section{
 
-      line-height: .9;
-    }
+margin-top:75px;
 
-    .project-detail-title {
-      margin-top: 20px;
+padding-top:30px;
 
-      font:
-        600 clamp(2.2rem, 5vw, 5rem)
-        "Space Grotesk",
-        sans-serif;
+border-top:1px solid var(--line);
 
-      letter-spacing: -.06em;
+}
 
-      line-height: .95;
-    }
+.cv-header{
 
-    .project-detail-text {
-      margin-top: 25px;
+display:flex;
 
-      max-width: 650px;
+justify-content:space-between;
 
-      color: var(--muted);
+align-items:center;
 
-      line-height: 1.85;
-    }
+margin-bottom:20px;
 
-    .project-meta-grid {
-      display: grid;
+}
 
-      grid-template-columns:
-        repeat(2, 1fr);
+.cv-label{
 
-      gap: 20px;
+font-family:var(--mono);
 
-      margin-top: 30px;
-    }
+font-size:.62rem;
 
-    .meta-box {
-      padding-top: 15px;
+letter-spacing:.1em;
 
-      border-top:
-        1px solid var(--line);
-    }
+text-transform:uppercase;
 
-    .meta-label {
-      color: var(--accent);
+color:var(--red);
 
-      font:
-        500 .62rem
-        "Space Grotesk",
-        sans-serif;
+}
 
-      letter-spacing: .13em;
+.cv-preview{
 
-      text-transform: uppercase;
+width:100%;
 
-      margin-bottom: 7px;
-    }
+height:620px;
 
-    .meta-value {
-      color: var(--muted);
+border:1px solid var(--line);
 
-      font-size: .78rem;
+background:#fff;
 
-      line-height: 1.6;
-    }
+overflow:hidden;
 
+}
 
-    /* =========================================================
-       MEDIA
-    ========================================================== */
+.cv-preview iframe{
 
-    .media-section {
-      margin-top: 90px;
-    }
+width:100%;
+height:100%;
 
-    .media-section-title {
-      display: flex;
+border:0;
 
-      align-items: center;
+}
 
-      justify-content: space-between;
+.cv-actions{
 
-      border-bottom:
-        1px solid var(--line);
+display:flex;
 
-      padding-bottom: 15px;
+justify-content:flex-end;
 
-      margin-bottom: 25px;
-    }
+margin-top:15px;
 
-    .media-section-title h3 {
-      font:
-        500 1rem
-        "Space Grotesk",
-        sans-serif;
-    }
+}
 
-    .media-section-title span {
-      color: var(--muted);
 
-      font-size: .7rem;
-    }
+/* =========================================================
+   BUTTON
+========================================================= */
 
-    .drawings-grid {
-      display: grid;
+.button{
 
-      grid-template-columns:
-        repeat(2, 1fr);
+display:inline-flex;
 
-      gap: 20px;
-    }
+align-items:center;
 
-    .drawing {
-      background: white;
+justify-content:center;
 
-      border:
-        1px solid var(--line);
+min-height:45px;
 
-      overflow: hidden;
+padding:0 20px;
 
-      cursor: zoom-in;
-    }
+border:1px solid var(--line);
 
-    .drawing img {
-      display: block;
+font-size:.68rem;
 
-      width: 100%;
+text-transform:uppercase;
 
-      height: auto;
+letter-spacing:.08em;
 
-      object-fit: contain;
+transition:
+background .25s ease,
+color .25s ease,
+border-color .25s ease,
+transform .25s ease;
 
-      transition:
-        transform .4s ease;
-    }
+}
 
-    .drawing:hover img {
-      transform: scale(1.015);
-    }
+.button:hover{
 
-    .render-grid {
-      display: grid;
+transform:translateY(-3px);
 
-      grid-template-columns:
-        repeat(2, 1fr);
+border-color:var(--red);
 
-      gap: 20px;
-    }
+color:var(--red);
 
-    .render {
-      aspect-ratio: 4 / 3;
+}
 
-      overflow: hidden;
+.button.red{
 
-      background: var(--surface-2);
+background:var(--red);
 
-      cursor: zoom-in;
-    }
+border-color:var(--red);
 
-    .render img {
-      width: 100%;
+color:white;
 
-      height: 100%;
+}
 
-      display: block;
+.button.red:hover{
 
-      object-fit: cover;
+background:var(--red-dark);
 
-      transition:
-        transform .5s ease;
-    }
+color:white;
 
-    .render:hover img {
-      transform: scale(1.04);
-    }
+}
 
 
-    /* =========================================================
-       LIGHTBOX
-    ========================================================== */
+/* =========================================================
+   SELECTED WORK
+========================================================= */
 
-    .lightbox {
-      position: fixed;
+#work{
 
-      inset: 0;
+background:var(--dark);
 
-      z-index: 2100;
+color:var(--white);
 
-      display: flex;
+}
 
-      flex-direction: column;
+#work .eyebrow{
+color:#999994;
+}
 
-      align-items: center;
+#work .section-title{
+color:var(--white);
+}
 
-      justify-content: center;
+.work-heading{
 
-      padding: 40px;
+display:grid;
 
-      background:
-        rgba(3,4,6,.94);
+grid-template-columns:1fr 1fr;
 
-      opacity: 0;
+gap:80px;
 
-      visibility: hidden;
+align-items:end;
 
-      transition:
-        opacity .3s ease,
-        visibility .3s ease;
-    }
+margin-bottom:100px;
 
-    .lightbox.open {
-      opacity: 1;
+}
 
-      visibility: visible;
-    }
+.work-intro{
 
-    .lightbox img {
-      max-width: 100%;
+max-width:500px;
 
-      max-height: 82vh;
+color:#8E8E89;
 
-      object-fit: contain;
+font-size:.88rem;
 
-      border:
-        1px solid var(--line);
-    }
+line-height:1.85;
 
-    .lightbox-caption {
-      margin-top: 18px;
+}
 
-      text-align: center;
 
-      color: var(--muted);
+/* =========================================================
+   FEATURED PROJECT
+========================================================= */
 
-      font-size: .8rem;
+.featured-project{
 
-      letter-spacing: .05em;
-    }
+position:relative;
 
-    .close-btn {
-      position: fixed;
+margin-bottom:140px;
 
-      right: 25px;
-      top: 25px;
+}
 
-      width: 40px;
-      height: 40px;
+.featured-image{
 
-      border:
-        1px solid var(--line);
+position:relative;
 
-      background:
-        rgba(8,9,12,.7);
+width:100%;
 
-      color: var(--text);
+aspect-ratio:16/8;
 
-      cursor: pointer;
-    }
+overflow:hidden;
 
-    .close-btn:hover {
-      border-color: var(--accent);
+background:#1C1C1A;
 
-      color: var(--accent);
-    }
+cursor:pointer;
 
+}
 
-    /* =========================================================
-       CONTACT
-    ========================================================== */
+.featured-image img{
 
-    #contact {
-      text-align: center;
+width:100%;
+height:100%;
 
-      overflow: hidden;
-    }
+object-fit:cover;
 
-    #contact .page-inner {
-      align-items: center;
-    }
+filter:grayscale(40%);
 
-    .contact-title {
-      margin-top: 18px;
+transition:
+transform 1s cubic-bezier(.2,.7,.2,1),
+filter .7s ease;
 
-      font:
-        600 clamp(3rem, 8vw, 8rem)
-        "Space Grotesk",
-        sans-serif;
+}
 
-      letter-spacing: -.07em;
+.featured-project:hover .featured-image img{
 
-      line-height: .9;
+transform:scale(1.035);
 
-      max-width: 1000px;
-    }
+filter:grayscale(0%);
 
-    .contact-copy {
-      color: var(--muted);
+}
 
-      max-width: 550px;
+.featured-image::after{
 
-      line-height: 1.7;
+content:"";
 
-      margin:
-        28px auto 35px;
-    }
+position:absolute;
 
-    .contact-links {
-      display: flex;
+inset:18px;
 
-      gap: 12px;
+border:1px solid rgba(255,255,255,.18);
 
-      flex-wrap: wrap;
+transition:border-color .4s ease;
 
-      justify-content: center;
-    }
+}
 
-    .contact-footer {
-      width: 100%;
+.featured-project:hover .featured-image::after{
 
-      margin-top: 60px;
+border-color:var(--red);
 
-      padding-top: 18px;
+}
 
-      border-top:
-        1px solid var(--line);
+.featured-project-label{
 
-      display: flex;
+position:absolute;
 
-      justify-content: space-between;
+top:30px;
+left:30px;
 
-      color: var(--muted);
+z-index:2;
 
-      font-size: .68rem;
+font-family:var(--mono);
 
-      letter-spacing: .03em;
-    }
+font-size:.62rem;
 
+letter-spacing:.1em;
 
-    /* =========================================================
-       REVEAL ANIMATION
-    ========================================================== */
+color:white;
 
-    .reveal {
-      opacity: 0;
+background:rgba(10,10,10,.55);
 
-      transform:
-        translateY(25px);
+padding:9px 12px;
 
-      transition:
-        opacity .8s ease,
-        transform .8s ease;
-    }
+}
 
-    .reveal.visible {
-      opacity: 1;
+.featured-project-arrow{
 
-      transform:
-        translateY(0);
-    }
+position:absolute;
 
+right:35px;
+bottom:35px;
 
-    /* =========================================================
-       MOBILE
-    ========================================================== */
+width:50px;
+height:50px;
 
-    @media (max-width: 900px) {
+display:flex;
 
-      .nav-links {
-        position: absolute;
+align-items:center;
+justify-content:center;
 
-        top: 70px;
+border:1px solid rgba(255,255,255,.4);
 
-        right: 22px;
-        left: 22px;
+color:white;
 
-        display: none;
+font-size:1.1rem;
 
-        flex-direction: column;
+opacity:0;
 
-        padding: 22px;
+transform:translateY(10px);
 
-        background:
-          rgba(16,18,24,.96);
+transition:
+opacity .3s ease,
+transform .3s ease,
+background .3s ease;
 
-        border:
-          1px solid var(--line);
+}
 
-        backdrop-filter:
-          blur(18px);
-      }
+.featured-project:hover .featured-project-arrow{
 
-      .nav-links.open {
-        display: flex;
-      }
+opacity:1;
 
-      .menu-btn {
-        display: block;
-      }
+transform:translateY(0);
 
-      .hero-layout {
-        grid-template-columns: 1fr;
-      }
+}
 
-      .profile-card {
-        justify-self: start;
+.featured-info{
 
-        width: min(230px,65vw);
+display:grid;
 
-        order: 2;
-      }
+grid-template-columns:70px 1fr auto;
 
-      .hero-content {
-        order: 1;
-      }
+gap:20px;
 
-      .about-layout {
-        grid-template-columns: 1fr;
-      }
+padding-top:22px;
 
-      .work-intro {
-        display: block;
-      }
+border-top:1px solid rgba(255,255,255,.15);
 
-      .work-intro p {
-        margin-top: 20px;
-      }
+margin-top:15px;
 
-      .featured-project {
-        grid-template-columns: 1fr;
-      }
+}
 
-      .featured-image {
-        min-height: 480px;
-      }
+.project-number{
 
-      .other-projects {
-        grid-template-columns: 1fr;
-      }
+font-family:var(--mono);
 
-      .project-header {
-        grid-template-columns: 1fr;
-      }
+font-size:.65rem;
 
-      .drawings-grid {
-        grid-template-columns: 1fr;
-      }
+color:var(--red);
 
-      .render-grid {
-        grid-template-columns: 1fr;
-      }
+}
 
-      .cv-header {
-        display: block;
-      }
+.featured-name{
 
-      .cv-description {
-        margin-top: 15px;
-      }
+font-family:var(--display);
 
-      .stack {
-        grid-template-columns: 1fr;
-      }
+font-size:clamp(1.5rem,3vw,3rem);
 
-      .contact-footer {
-        flex-direction: column;
+letter-spacing:-.05em;
 
-        gap: 7px;
-      }
+}
 
-    }
+.featured-type{
 
+font-size:.65rem;
 
-    @media (max-width: 500px) {
+color:#81817C;
 
-      main section {
-        padding:
-          110px 20px 60px;
-      }
+text-align:right;
 
-      .hero-title {
-        font-size:
-          clamp(3.4rem,17vw,5rem);
-      }
+}
 
-      .scroll-note {
-        left: 20px;
-      }
 
-      .profile-card {
-        width: 190px;
-      }
+/* =========================================================
+   OTHER PROJECTS
+========================================================= */
 
-      .timeline-item {
-        grid-template-columns: 1fr;
+.other-projects{
 
-        gap: 7px;
-      }
+display:grid;
 
-      .project-meta-grid {
-        grid-template-columns: 1fr;
-      }
+grid-template-columns:
+1fr 1fr;
 
-      .featured-image {
-        min-height: 350px;
-      }
+gap:25px;
 
-      .featured-info {
-        padding: 30px;
-      }
+}
 
-      .cv-paper {
-        width: 100%;
-      }
+.project-card{
 
-    }
+position:relative;
 
+cursor:pointer;
 
-    /* =========================================================
-       REDUCED MOTION
-    ========================================================== */
+}
 
-    @media (prefers-reduced-motion: reduce) {
+.project-card-image{
 
-      html {
-        scroll-behavior: auto;
-      }
+position:relative;
 
-      *,
-      *::before,
-      *::after {
-        animation-duration: .01ms !important;
+aspect-ratio:4/3;
 
-        transition-duration: .01ms !important;
-      }
+overflow:hidden;
 
-    }
+background:#1C1C1A;
 
-  </style>
+}
+
+.project-card-image img{
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+filter:grayscale(70%);
+
+transition:
+transform .8s ease,
+filter .5s ease;
+
+}
+
+.project-card:hover img{
+
+transform:scale(1.04);
+
+filter:grayscale(0%);
+
+}
+
+.project-card-image::after{
+
+content:"";
+
+position:absolute;
+
+inset:13px;
+
+border:1px solid rgba(255,255,255,.15);
+
+transition:border-color .3s ease;
+
+}
+
+.project-card:hover .project-card-image::after{
+
+border-color:var(--red);
+
+}
+
+.project-card-info{
+
+display:grid;
+
+grid-template-columns:45px 1fr auto;
+
+gap:15px;
+
+padding-top:18px;
+
+border-top:1px solid rgba(255,255,255,.15);
+
+margin-top:14px;
+
+}
+
+.project-card-name{
+
+font-family:var(--display);
+
+font-size:1.15rem;
+
+}
+
+.project-card-type{
+
+font-size:.62rem;
+
+color:#777772;
+
+text-align:right;
+
+}
+
+
+/* =========================================================
+   ECO PROJECT
+========================================================= */
+
+.project-detail{
+
+background:var(--bg);
+
+color:var(--text);
+
+}
+
+.project-header{
+
+display:grid;
+
+grid-template-columns:100px 1fr 1fr;
+
+gap:40px;
+
+margin-bottom:100px;
+
+align-items:start;
+
+}
+
+.project-detail-number{
+
+font-family:var(--mono);
+
+font-size:.68rem;
+
+color:var(--red);
+
+}
+
+.project-detail-title{
+
+font-family:var(--display);
+
+font-size:
+clamp(3.5rem,7vw,8rem);
+
+line-height:.83;
+
+letter-spacing:-.08em;
+
+}
+
+.project-detail-intro{
+
+max-width:480px;
+
+font-size:.88rem;
+
+line-height:1.9;
+
+color:var(--muted);
+
+}
+
+
+/* META */
+
+.project-meta{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+border-top:1px solid var(--line);
+
+border-bottom:1px solid var(--line);
+
+margin-bottom:110px;
+
+}
+
+.meta-item{
+
+padding:20px;
+
+border-right:1px solid var(--line);
+
+}
+
+.meta-item:last-child{
+border-right:0;
+}
+
+.meta-label{
+
+font-family:var(--mono);
+
+font-size:.58rem;
+
+text-transform:uppercase;
+
+letter-spacing:.1em;
+
+color:var(--red);
+
+margin-bottom:9px;
+
+}
+
+.meta-value{
+
+font-size:.76rem;
+
+line-height:1.5;
+
+}
+
+
+/* =========================================================
+   STORY
+========================================================= */
+
+.story-block{
+
+margin-bottom:150px;
+
+}
+
+.story-heading{
+
+display:grid;
+
+grid-template-columns:120px 1fr;
+
+gap:40px;
+
+margin-bottom:45px;
+
+}
+
+.story-index{
+
+font-family:var(--mono);
+
+font-size:.63rem;
+
+color:var(--red);
+
+}
+
+.story-title{
+
+font-family:var(--display);
+
+font-size:
+clamp(2.3rem,4.5vw,5rem);
+
+line-height:.9;
+
+letter-spacing:-.06em;
+
+}
+
+.story-text{
+
+max-width:650px;
+
+margin-left:160px;
+
+font-size:.9rem;
+
+line-height:1.9;
+
+color:var(--muted);
+
+}
+
+
+/* =========================================================
+   MEDIA
+========================================================= */
+
+.large-media{
+
+width:100%;
+
+max-height:78vh;
+
+overflow:hidden;
+
+background:var(--bg-soft);
+
+border:1px solid var(--line);
+
+cursor:zoom-in;
+
+}
+
+.large-media img{
+
+width:100%;
+
+max-height:78vh;
+
+object-fit:contain;
+
+transition:transform .6s ease;
+
+}
+
+.large-media:hover img{
+
+transform:scale(1.012);
+
+}
+
+.split-media{
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:20px;
+
+}
+
+.split-media .media{
+
+background:var(--bg-soft);
+
+border:1px solid var(--line);
+
+overflow:hidden;
+
+cursor:zoom-in;
+
+}
+
+.split-media img{
+
+width:100%;
+height:100%;
+
+object-fit:contain;
+
+transition:transform .5s ease;
+
+}
+
+.split-media .media:hover img{
+
+transform:scale(1.015);
+
+}
+
+.caption{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:12px;
+
+font-family:var(--mono);
+
+font-size:.58rem;
+
+text-transform:uppercase;
+
+letter-spacing:.08em;
+
+color:var(--muted);
+
+}
+
+
+/* =========================================================
+   PROCESS
+========================================================= */
+
+.process{
+
+display:grid;
+
+grid-template-columns:
+repeat(5,1fr);
+
+border-top:1px solid var(--line);
+
+border-bottom:1px solid var(--line);
+
+}
+
+.process-step{
+
+padding:25px 20px 30px;
+
+border-right:1px solid var(--line);
+
+}
+
+.process-step:last-child{
+border-right:0;
+}
+
+.process-number{
+
+font-family:var(--mono);
+
+font-size:.6rem;
+
+color:var(--red);
+
+margin-bottom:45px;
+
+}
+
+.process-name{
+
+font-family:var(--display);
+
+font-size:.9rem;
+
+margin-bottom:9px;
+
+}
+
+.process-description{
+
+font-size:.67rem;
+
+line-height:1.6;
+
+color:var(--muted);
+
+}
+
+
+/* =========================================================
+   ENVIRONMENT
+========================================================= */
+
+.environment{
+
+background:var(--dark);
+
+color:var(--white);
+
+padding:
+100px
+clamp(25px,6vw,100px);
+
+}
+
+.environment-grid{
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:70px;
+
+align-items:center;
+
+}
+
+.environment h3{
+
+font-family:var(--display);
+
+font-size:
+clamp(2.7rem,5vw,5.5rem);
+
+line-height:.88;
+
+letter-spacing:-.06em;
+
+margin-top:20px;
+
+}
+
+.environment p{
+
+max-width:500px;
+
+margin-top:30px;
+
+color:#8D8D88;
+
+font-size:.88rem;
+
+line-height:1.8;
+
+}
+
+.environment-list{
+
+border-top:1px solid rgba(255,255,255,.15);
+
+}
+
+.environment-item{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:18px 0;
+
+border-bottom:1px solid rgba(255,255,255,.15);
+
+font-size:.76rem;
+
+}
+
+.environment-item span:last-child{
+
+font-family:var(--mono);
+
+color:var(--red);
+
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+#contact{
+
+background:var(--dark);
+
+color:var(--white);
+
+min-height:85vh;
+
+display:flex;
+
+align-items:center;
+
+}
+
+.contact-container{
+
+width:100%;
+
+max-width:var(--max-width);
+
+margin:auto;
+
+}
+
+.contact-title{
+
+margin-top:30px;
+
+font-family:var(--display);
+
+font-size:
+clamp(4rem,12vw,12rem);
+
+line-height:.78;
+
+letter-spacing:-.09em;
+
+}
+
+.contact-title .outline{
+
+-webkit-text-stroke:
+1px rgba(255,255,255,.45);
+
+}
+
+.contact-copy{
+
+max-width:500px;
+
+margin-top:45px;
+
+color:#8D8D88;
+
+font-size:.9rem;
+
+line-height:1.8;
+
+}
+
+.contact-actions{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+margin-top:40px;
+
+}
+
+#contact .button{
+
+border-color:rgba(255,255,255,.2);
+
+color:white;
+
+}
+
+#contact .button:hover{
+
+border-color:var(--red);
+
+color:var(--red);
+
+}
+
+#contact .button.red{
+
+background:var(--red);
+
+border-color:var(--red);
+
+color:white;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+background:var(--dark);
+
+color:#777772;
+
+padding:
+25px
+clamp(22px,7vw,110px);
+
+border-top:1px solid rgba(255,255,255,.1);
+
+}
+
+.footer-inner{
+
+max-width:var(--max-width);
+
+margin:auto;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:30px;
+
+}
+
+.footer-left{
+
+font-family:var(--mono);
+
+font-size:.57rem;
+
+text-transform:uppercase;
+
+letter-spacing:.08em;
+
+}
+
+.footer-right{
+
+display:flex;
+
+gap:20px;
+
+font-size:.6rem;
+
+}
+
+.footer-right a:hover{
+
+color:var(--red);
+
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox{
+
+position:fixed;
+
+inset:0;
+
+z-index:3000;
+
+background:rgba(8,8,8,.97);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:30px;
+
+opacity:0;
+
+visibility:hidden;
+
+transition:
+opacity .3s ease,
+visibility .3s ease;
+
+}
+
+.lightbox.open{
+
+opacity:1;
+
+visibility:visible;
+
+}
+
+.lightbox img{
+
+max-width:94vw;
+
+max-height:88vh;
+
+object-fit:contain;
+
+border:1px solid rgba(255,255,255,.15);
+
+}
+
+.lightbox-close{
+
+position:fixed;
+
+top:25px;
+right:25px;
+
+width:42px;
+height:42px;
+
+background:transparent;
+
+border:1px solid rgba(255,255,255,.2);
+
+color:white;
+
+font-size:1.3rem;
+
+cursor:pointer;
+
+}
+
+.lightbox-close:hover{
+
+border-color:var(--red);
+
+color:var(--red);
+
+}
+
+.lightbox-caption{
+
+position:fixed;
+
+bottom:25px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+font-family:var(--mono);
+
+font-size:.6rem;
+
+letter-spacing:.1em;
+
+text-transform:uppercase;
+
+color:#999;
+
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal{
+
+opacity:0;
+
+transform:translateY(25px);
+
+transition:
+opacity .8s ease,
+transform .8s cubic-bezier(.2,.7,.2,1);
+
+}
+
+.reveal.visible{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+nav{
+
+padding:20px;
+
+}
+
+.nav-right{
+
+gap:15px;
+
+}
+
+.nav-links{
+
+position:fixed;
+
+top:70px;
+
+left:20px;
+right:20px;
+
+display:none;
+
+flex-direction:column;
+
+padding:25px;
+
+background:var(--bg);
+
+border:1px solid var(--line);
+
+gap:22px;
+
+}
+
+.nav-links.open{
+
+display:flex;
+
+}
+
+.menu-btn{
+
+display:block;
+
+}
+
+.hero-image{
+
+position:relative;
+
+top:auto;
+right:auto;
+
+width:70vw;
+
+max-width:400px;
+
+margin:
+60px
+0
+0
+auto;
+
+}
+
+.hero-title{
+
+font-size:
+clamp(4rem,18vw,8rem);
+
+}
+
+.hero-title .last{
+
+margin-left:5vw;
+
+}
+
+.hero-subtitle{
+
+grid-template-columns:1fr;
+
+margin-top:50px;
+
+}
+
+.about-top{
+
+display:block;
+
+}
+
+.about-top-copy{
+
+margin-top:25px;
+
+}
+
+.about-grid{
+
+grid-template-columns:1fr;
+
+gap:60px;
+
+}
+
+.about-photo{
+
+position:relative;
+
+top:auto;
+
+max-width:450px;
+
+}
+
+.project-header{
+
+grid-template-columns:1fr;
+
+gap:25px;
+
+}
+
+.project-meta{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.meta-item:nth-child(2){
+
+border-right:0;
+
+}
+
+.work-heading{
+
+grid-template-columns:1fr;
+
+gap:30px;
+
+}
+
+.featured-info{
+
+grid-template-columns:
+55px 1fr;
+
+}
+
+.featured-type{
+
+display:none;
+
+}
+
+.other-projects{
+
+grid-template-columns:1fr;
+
+}
+
+.story-heading{
+
+grid-template-columns:60px 1fr;
+
+}
+
+.story-text{
+
+margin-left:100px;
+
+}
+
+.process{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.process-step:nth-child(2){
+
+border-right:0;
+
+}
+
+.environment-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.cv-preview{
+
+height:500px;
+
+}
+
+}
+
+
+@media(max-width:600px){
+
+section{
+
+padding:
+100px 20px;
+
+}
+
+.socials{
+
+display:none;
+
+}
+
+.hero-top{
+
+margin-bottom:40px;
+
+}
+
+.hero-image{
+
+width:82vw;
+
+}
+
+.scroll-indicator{
+
+display:none;
+
+}
+
+.project-meta{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+.split-media{
+
+grid-template-columns:1fr;
+
+}
+
+.story-heading{
+
+grid-template-columns:1fr;
+
+}
+
+.story-text{
+
+margin-left:0;
+
+}
+
+.process{
+
+grid-template-columns:1fr;
+
+}
+
+.process-step{
+
+border-right:0;
+
+border-bottom:1px solid var(--line);
+
+}
+
+.skills{
+
+grid-template-columns:1fr;
+
+}
+
+.profile-row{
+
+grid-template-columns:1fr;
+
+gap:8px;
+
+}
+
+.featured-image{
+
+aspect-ratio:4/3;
+
+}
+
+.featured-project-arrow{
+
+display:none;
+
+}
+
+.footer-inner{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.contact-title{
+
+font-size:
+clamp(4rem,20vw,7rem);
+
+}
+
+.cv-preview{
+
+height:450px;
+
+}
+
+}
+
+
+@media(prefers-reduced-motion:reduce){
+
+*,
+*::before,
+*::after{
+
+animation:none!important;
+
+transition:none!important;
+
+scroll-behavior:auto!important;
+
+}
+
+.reveal{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+</style>
+
 </head>
 
 
 <body>
 
-  <!-- =========================================================
-       CURSOR
-  ========================================================== -->
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+<!-- =========================================================
+     CURSOR
+========================================================= -->
 
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- =========================================================
-       NAV
-  ========================================================== -->
 
-  <nav id="navbar">
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
 
-    <a href="#hero" class="logo">
-      YANIS NENNOUCHE
-      <span>/ ARCHITECT</span>
-    </a>
+<nav id="navbar">
 
-    <button
-      class="menu-btn"
-      id="menuBtn"
-      aria-label="Open menu"
-    >
-      ☰
-    </button>
+<a href="#hero" class="logo">
 
-    <ul class="nav-links" id="navLinks">
+YANIS NENNOUCHE
+<span>/ ARCHITECT</span>
 
-      <li>
-        <a href="#hero" data-nav="hero">
-          Home
-        </a>
-      </li>
+</a>
 
-      <li>
-        <a href="#about" data-nav="about">
-          About
-        </a>
-      </li>
 
-      <li>
-        <a href="#work" data-nav="work">
-          Work
-        </a>
-      </li>
+<div class="nav-right">
 
-      <li>
-        <a href="#contact" data-nav="contact">
-          Contact
-        </a>
-      </li>
+<ul class="nav-links" id="navLinks">
 
-    </ul>
+<li>
+<a href="#hero" data-nav="hero">Home</a>
+</li>
 
-  </nav>
+<li>
+<a href="#about" data-nav="about">About</a>
+</li>
 
+<li>
+<a href="#work" data-nav="work">Work</a>
+</li>
 
-  <main>
+<li>
+<a href="#contact" data-nav="contact">Contact</a>
+</li>
 
+</ul>
 
-    <!-- =======================================================
-         HERO
-    ======================================================== -->
 
-    <section id="hero">
+<!-- =====================================================
+     SOCIALS
+===================================================== -->
 
-      <div class="hero-grid"></div>
+<div class="socials">
 
-      <div class="orb" id="orb"></div>
 
-      <div class="page-inner">
+<!-- LINKEDIN -->
 
-        <div class="hero-layout">
+<a
+class="social-link"
+href="https://www.linkedin.com/in/yanis-nennouche-b27040334/"
+target="_blank"
+rel="noopener"
+aria-label="LinkedIn"
+>
 
-          <div class="hero-content reveal">
+<svg viewBox="0 0 24 24">
+<path d="M5.2 3.5A2.7 2.7 0 1 1 5.2 8.9 2.7 2.7 0 0 1 5.2 3.5ZM2.8 10.7h4.8V21H2.8V10.7ZM10.2 10.7h4.6v1.4h.1c.6-1 1.8-2 4-2 4.3 0 5.1 2.8 5.1 6.4V21h-4.8v-4.1c0-1 0-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2V21h-4.8V10.7Z"/>
+</svg>
 
-            <div class="eyebrow">
-              Architecture · Computation · Environment
-            </div>
+</a>
 
-            <h1 class="hero-title">
-              Yanis<br>
-              <span class="outline">
-                Nennouche
-              </span>
-            </h1>
 
-            <p class="hero-sub">
-              Architect exploring the intersection of
-              architecture, environmental performance and
-              computational design. I use geometry, data and
-              simulation as tools for developing more responsive
-              architectural systems.
-            </p>
+<!-- INSTAGRAM -->
 
-            <div class="availability">
-              Open to architectural collaborations &amp; opportunities
-            </div>
+<a
+class="social-link"
+href="https://www.instagram.com/yanis._nch/"
+target="_blank"
+rel="noopener"
+aria-label="Instagram"
+>
 
-            <div class="hero-actions">
+<svg viewBox="0 0 24 24">
+<path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 12 16.5 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 12 14.5 2.5 2.5 0 0 0 12 9.5Zm5.2-2.7a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/>
+</svg>
 
-              <a
-                href="#about"
-                class="btn primary"
-              >
-                Enter portfolio ↓
-              </a>
+</a>
 
-              <a
-                href="./CV.pdf"
-                target="_blank"
-                class="btn"
-              >
-                Open CV ↗
-              </a>
 
-            </div>
+<!-- GITHUB -->
 
-          </div>
+<a
+class="social-link"
+href="https://github.com/nennoucheyanis"
+target="_blank"
+rel="noopener"
+aria-label="GitHub"
+>
 
+<svg viewBox="0 0 24 24">
+<path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8 1.1 1.8 1.1 3 0 4.3-2.6 5.3-5.1 5.6.4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/>
+</svg>
 
-          <div class="profile-card reveal">
+</a>
 
-            <img
-              class="profile-image"
-              src="./assets/profile.jpg.jpeg"
-              alt="Yanis Nennouche"
-            >
 
-            <div class="profile-caption">
+<!-- EMAIL -->
 
-              <span>
-                Yanis Nennouche
-              </span>
+<a
+class="social-link"
+href="mailto:nennoucheyaya@gmail.com"
+aria-label="Email"
+>
 
-              <span>
-                Architect
-              </span>
+<svg viewBox="0 0 24 24">
+<path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.5-.5a.5.5 0 0 0-.3.1L12 11.2l7.8-6.1a.5.5 0 0 0-.3-.1h-15ZM20 7.1l-7.4 5.8a1 1 0 0 1-1.2 0L4 7.1v11.4c0 .3.2.5.5.5h15a.5.5 0 0 0 .5-.5V7.1Z"/>
+</svg>
 
-            </div>
+</a>
 
-          </div>
+</div>
 
-        </div>
 
+<button
+class="menu-btn"
+id="menuBtn"
+aria-label="Menu"
+>
+☰
+</button>
 
-        <div class="scroll-note">
-          <span></span>
-          Scroll to explore
-        </div>
+</div>
 
-      </div>
+</nav>
 
-    </section>
 
+<main>
 
 
-    <!-- =======================================================
-         ABOUT
-    ======================================================== -->
+<!-- =========================================================
+     HERO
+========================================================= -->
 
-    <section id="about">
+<section id="hero">
 
-      <div class="page-inner">
+<div class="hero-container">
 
-        <div class="eyebrow reveal">
-          About
-        </div>
 
+<div class="hero-top">
 
-        <div class="about-layout">
+<div class="hero-index">
+00 / PORTFOLIO
+</div>
 
+<div class="hero-location">
+ALGIERS, ALGERIA<br>
+2026
+</div>
 
-          <!-- LEFT -->
-          <div class="reveal">
+</div>
 
-            <h2 class="section-title">
-              Architecture<br>
-              through computation.
-            </h2>
 
-            <p class="about-statement" style="margin-top:35px;">
+<h1 class="hero-title reveal">
 
-              I am an architect developing an approach at the
-              intersection of
-              <strong>
-                architecture, environmental performance and
-                computational design
-              </strong>.
+YANIS
 
-              My work explores how digital tools can help
-              generate, analyse and optimise architectural
-              systems rather than simply represent them.
+<br>
 
-              <br><br>
+<span class="last">
+NENNOUCHE
+</span>
 
-              From parametric modelling to environmental
-              simulation, I use computation as an extension of
-              the design process, with a focus on climate,
-              geometry and performance.
+</h1>
 
-            </p>
 
+<div class="hero-subtitle reveal">
 
-            <div class="about-block">
+<p>
 
-              <div class="eyebrow">
-                Interests
-              </div>
+<strong>
+Architect / Computational Design
+</strong>
 
-              <div class="chip-row">
+<br><br>
 
-                <span class="tag-chip">
-                  Computational Design
-                </span>
+Architecture through computation.
 
-                <span class="tag-chip">
-                  Environmental Performance
-                </span>
+Exploring the relationship between
+architecture, environmental performance,
+geometry and digital design.
 
-                <span class="tag-chip">
-                  Biomimicry
-                </span>
+</p>
 
-                <span class="tag-chip">
-                  Parametric Geometry
-                </span>
 
-                <span class="tag-chip">
-                  Climate Simulation
-                </span>
+<p>
 
-                <span class="tag-chip">
-                  Generative Design
-                </span>
+My work focuses on architectural systems,
+parametric design, environmental strategies
+and the use of computational tools as part
+of the design process.
 
-              </div>
+</p>
 
-            </div>
+</div>
 
-          </div>
 
+<div class="hero-image reveal">
 
-          <!-- RIGHT -->
-          <div class="reveal">
+<img
+src="assets/Rendus_2 - Photo.jpg"
+alt="Eco Dôme du Hamma"
+>
 
-            <div class="eyebrow">
-              Education
-            </div>
+</div>
 
-            <div class="timeline">
 
-              <div class="timeline-item">
+<div class="hero-red-line"></div>
 
-                <div class="timeline-date">
-                  2026
-                </div>
 
-                <div>
+<div class="scroll-indicator">
 
-                  <div class="timeline-title">
-                    M.Arch — Environmental &amp;
-                    Technological Architecture
-                  </div>
+<span></span>
 
-                  <div class="timeline-meta">
-                    University of Algiers 1 · Department of Architecture
-                  </div>
+Scroll to explore
 
-                </div>
+</div>
 
-              </div>
+</div>
 
+</section>
 
-              <div class="timeline-item">
 
-                <div class="timeline-date">
-                  2024
-                </div>
 
-                <div>
+<!-- =========================================================
+     ABOUT
+========================================================= -->
 
-                  <div class="timeline-title">
-                    Bachelor of Architecture
-                  </div>
+<section id="about">
 
-                  <div class="timeline-meta">
-                    University of Algiers 1 · Department of Architecture
-                  </div>
+<div class="container">
 
-                </div>
 
-              </div>
+<div class="about-top reveal">
 
-            </div>
+<div>
 
+<div class="eyebrow">
+Profile
+</div>
 
-            <div class="about-block">
+<h2 class="section-title">
+About me
+</h2>
 
-              <div class="eyebrow">
-                Languages
-              </div>
+</div>
 
-              <div class="lang-list">
 
-                <div class="lang-item">
-                  <span class="lang-name">
-                    Arabic
-                  </span>
+<p class="about-top-copy">
 
-                  <span class="lang-level">
-                    Native
-                  </span>
-                </div>
+Architectural design, computational thinking
+and environmental performance are at the
+core of my approach.
 
-                <div class="lang-item">
-                  <span class="lang-name">
-                    French
-                  </span>
+</p>
 
-                  <span class="lang-level">
-                    Fluent
-                  </span>
-                </div>
+</div>
 
-                <div class="lang-item">
-                  <span class="lang-name">
-                    English
-                  </span>
 
-                  <span class="lang-level">
-                    Professional
-                  </span>
-                </div>
+<div class="about-grid">
 
-              </div>
 
-            </div>
+<!-- PHOTO -->
 
+<div class="about-photo reveal">
 
-            <div class="about-block">
+<div class="about-photo-frame">
 
-              <div class="eyebrow">
-                Software &amp; Skills
-              </div>
+<img
+src="assets/profile.jpg.jpeg"
+alt="Yanis Nennouche"
+>
 
-              <div class="stack">
+</div>
 
-                <div class="stack-item">
-                  Rhinoceros 3D
-                </div>
 
-                <div class="stack-item">
-                  Grasshopper
-                </div>
+<div class="about-photo-caption">
 
-                <div class="stack-item">
-                  Environmental Simulation
-                </div>
+<span>
+Yanis Nennouche
+</span>
 
-                <div class="stack-item">
-                  Parametric Design
-                </div>
+<span>
+Architect
+</span>
 
-                <div class="stack-item">
-                  Python
-                </div>
+</div>
 
-                <div class="stack-item">
-                  Revit
-                </div>
+</div>
 
-                <div class="stack-item">
-                  D5 Render
-                </div>
 
-                <div class="stack-item">
-                  Ladybug Tools
-                </div>
 
-                <div class="stack-item">
-                  AutoCAD
-                </div>
+<!-- MAIN -->
 
-                <div class="stack-item">
-                  LaTeX
-                </div>
+<div class="about-main">
 
-              </div>
 
-            </div>
+<div class="about-statement reveal">
 
-          </div>
+Architecture
+<span>through</span>
+computation.
 
-        </div>
+</div>
 
 
+<p class="about-copy reveal">
 
-        <!-- ===================================================
-             CV
-        ==================================================== -->
+I am an architect interested in the intersection
+between architectural design, environmental
+performance and computational methods.
 
-        <div class="cv-section reveal">
+<br><br>
 
-          <div class="cv-header">
+My approach considers digital tools not only
+as representation tools, but as part of the
+design process itself — generating geometry,
+testing performance and developing architectural
+systems.
 
-            <div>
+<br><br>
 
-              <div class="eyebrow">
-                Curriculum Vitae
-              </div>
+I am particularly interested in biomimicry,
+parametric design, environmental simulation,
+computational geometry and generative approaches
+to architecture.
 
-              <h2
-                class="section-title"
-                style="font-size:clamp(2.5rem,5vw,5rem);"
-              >
-                CV
-              </h2>
+</p>
 
-            </div>
 
-            <p class="cv-description">
-              A concise overview of my education, experience,
-              technical skills and architectural background.
-            </p>
 
-          </div>
+<!-- PROFILE -->
 
+<div class="profile-info reveal">
 
-          <div class="cv-paper-wrapper">
 
-            <div class="cv-paper">
+<div class="profile-row">
 
-              <canvas id="cvCanvas"></canvas>
+<div class="profile-label">
+Education
+</div>
 
-              <div
-                class="cv-loading"
-                id="cvLoading"
-              >
-                Loading curriculum vitae…
-              </div>
+<div class="profile-value">
 
-            </div>
+Master of Architecture — Environment &amp;
+Technology
 
-          </div>
+<br>
 
+University of Algiers 1
 
-          <div class="cv-actions">
+</div>
 
-            <a
-              href="./CV.pdf"
-              target="_blank"
-              class="btn"
-            >
-              OPEN CV ↗
-            </a>
+</div>
 
-          </div>
 
-        </div>
+<div class="profile-row">
 
-      </div>
+<div class="profile-label">
+Graduation
+</div>
 
-    </section>
+<div class="profile-value">
 
+2026
 
+</div>
 
-    <!-- =======================================================
-         WORK INTRO
-    ======================================================== -->
+</div>
 
-    <section id="work">
 
-      <div class="page-inner">
+<div class="profile-row">
 
-        <div class="work-intro reveal">
+<div class="profile-label">
+Based
+</div>
 
-          <div>
+<div class="profile-value">
 
-            <div class="eyebrow">
-              Selected Work
-            </div>
+Algiers, Algeria
 
-            <h2 class="section-title">
-              Projects.
-            </h2>
+</div>
 
-          </div>
+</div>
 
-          <p>
-            A selection of architectural projects developed
-            during my studies and professional practice.
-            The graduation project is intentionally presented
-            first as the most developed project in the portfolio.
-          </p>
 
-        </div>
+<div class="profile-row">
 
+<div class="profile-label">
+Focus
+</div>
 
-        <!-- ===================================================
-             FEATURED PROJECT
-        ==================================================== -->
+<div class="profile-value">
 
-        <article
-          class="featured-project reveal"
-          onclick="goToId('eco-dome')"
-        >
+Architecture / Computational Design /
+Environmental Design
 
-          <div class="featured-image">
+</div>
 
-            <img
-              src="./assets/Rendus_2 - Photo.jpg"
-              alt="Eco Dome du Hamma"
-            >
+</div>
 
-            <div class="featured-overlay"></div>
 
-          </div>
+</div>
 
 
-          <div class="featured-info">
 
-            <div>
+<!-- SKILLS -->
 
-              <div class="eyebrow">
-                Graduation Project · 2026
-              </div>
+<div class="skills-section reveal">
 
-              <div class="featured-number">
-                01
-              </div>
+<div class="skills-title">
+Tools &amp; Skills
+</div>
 
-            </div>
 
+<div class="skills">
 
-            <div>
+<div class="skill">
+Rhinoceros 3D
+</div>
 
-              <h3 class="featured-name">
-                Eco Dome<br>
-                du Hamma
-              </h3>
+<div class="skill">
+Grasshopper
+</div>
 
-              <p class="featured-meta">
-                Jardin d'Essai du Hamma · Algiers, Algeria<br>
-                Biomimicry · Environmental Architecture ·
-                Parametric Design
-              </p>
+<div class="skill">
+Parametric Design
+</div>
 
-              <p class="featured-description">
-                A biomimetic architectural project inspired by
-                the geometry of a snail shell, developed as an
-                ecosystemic dome combining architecture,
-                climate and living systems.
-              </p>
+<div class="skill">
+Environmental Simulation
+</div>
 
-              <span class="featured-link">
-                Explore project →
-              </span>
+<div class="skill">
+Python
+</div>
 
-            </div>
+<div class="skill">
+Ladybug Tools
+</div>
 
-          </div>
+<div class="skill">
+Revit
+</div>
 
-        </article>
+<div class="skill">
+AutoCAD
+</div>
 
+<div class="skill">
+D5 Render
+</div>
 
-        <!-- ===================================================
-             OTHER PROJECTS
-        ==================================================== -->
+<div class="skill">
+LaTeX
+</div>
 
-        <div class="other-projects reveal">
+</div>
 
-          <article class="project-card">
+</div>
 
-            <div class="project-card-top">
 
-              <span class="project-card-number">
-                02
-              </span>
 
-              <span class="project-card-arrow">
-                ↗
-              </span>
+<!-- CV -->
 
-            </div>
+<div class="cv-section reveal">
 
-            <div>
 
-              <div class="project-card-name">
-                Architectural Study
-              </div>
+<div class="cv-header">
 
-              <div class="project-card-type">
-                Student Project · Coming Soon
-              </div>
+<div class="cv-label">
+Curriculum Vitae
+</div>
 
-            </div>
+</div>
 
-          </article>
 
+<div class="cv-preview">
 
-          <article class="project-card">
+<iframe
+src="CV.pdf"
+title="Yanis Nennouche CV"
+>
+</iframe>
 
-            <div class="project-card-top">
+</div>
 
-              <span class="project-card-number">
-                03
-              </span>
 
-              <span class="project-card-arrow">
-                ↗
-              </span>
+<div class="cv-actions">
 
-            </div>
+<a
+href="CV.pdf"
+target="_blank"
+class="button red"
+>
+Open CV ↗
+</a>
 
-            <div>
+</div>
 
-              <div class="project-card-name">
-                Architectural Study
-              </div>
+</div>
 
-              <div class="project-card-type">
-                Student Project · Coming Soon
-              </div>
 
-            </div>
+</div>
 
-          </article>
+</div>
 
-        </div>
+</div>
 
-      </div>
+</section>
 
-    </section>
 
 
+<!-- =========================================================
+     WORK
+========================================================= -->
 
-    <!-- =======================================================
-         ECO DOME DETAIL
-    ======================================================== -->
+<section id="work">
 
-    <section
-      id="eco-dome"
-      class="project-detail"
-    >
+<div class="container">
 
-      <div class="project-detail-inner">
 
+<div class="work-heading reveal">
 
-        <div class="project-header">
 
+<div>
 
-          <div class="project-detail-image reveal">
+<div class="eyebrow">
+Selected work
+</div>
 
-            <img
-              src="./assets/Rendus_2 - Photo.jpg"
-              alt="Eco Dome du Hamma"
-            >
+<h2 class="section-title">
+Projects
+</h2>
 
-          </div>
+</div>
 
 
-          <div class="reveal">
+<p class="work-intro">
 
-            <div class="eyebrow">
-              Graduation Project · 2026
-            </div>
+A selection of architectural projects developed
+through academic and graduation work.
 
-            <div class="project-detail-number">
-              01
-            </div>
+The portfolio focuses on design process,
+architectural expression, environmental thinking
+and computational methods.
 
-            <h2 class="project-detail-title">
-              Eco Dome<br>
-              du Hamma
-            </h2>
+</p>
 
-            <p class="project-detail-text">
-              An ecosystemic architectural project developed
-              for the Jardin d'Essai du Hamma in Algiers.
+</div>
 
-              Inspired by the geometry of a snail shell, the
-              project explores the relationship between
-              architecture, living systems and environmental
-              performance.
-            </p>
 
 
-            <div class="project-meta-grid">
+<!-- =====================================================
+     FEATURED ECO DOME
+===================================================== -->
 
-              <div class="meta-box">
+<article
+class="featured-project reveal"
+data-project="eco"
+>
 
-                <div class="meta-label">
-                  Location
-                </div>
 
-                <div class="meta-value">
-                  Jardin d'Essai du Hamma<br>
-                  Algiers, Algeria
-                </div>
+<div class="featured-image">
 
-              </div>
+<div class="featured-project-label">
+01 / GRADUATION PROJECT
+</div>
 
 
-              <div class="meta-box">
+<img
+src="assets/Rendus_1 - Photo.jpg"
+alt="Eco Dôme du Hamma"
+>
 
-                <div class="meta-label">
-                  Type
-                </div>
 
-                <div class="meta-value">
-                  Public / Cultural<br>
-                  Biomimetic Architecture
-                </div>
+<div class="featured-project-arrow">
+↗
+</div>
 
-              </div>
+</div>
 
 
-              <div class="meta-box">
+<div class="featured-info">
 
-                <div class="meta-label">
-                  Concept
-                </div>
+<div class="project-number">
+01
+</div>
 
-                <div class="meta-value">
-                  Snail Shell / Ecosystem
-                </div>
 
-              </div>
+<div>
 
+<div class="featured-name">
+Eco Dôme du Hamma
+</div>
 
-              <div class="meta-box">
+</div>
 
-                <div class="meta-label">
-                  Approach
-                </div>
 
-                <div class="meta-value">
-                  Biomimicry · Biophilia<br>
-                  Environmental Simulation
-                </div>
+<div class="featured-type">
 
-              </div>
+Environmental Architecture<br>
+Biomimicry / Computational Design
 
-            </div>
+</div>
 
-          </div>
+</div>
 
-        </div>
+</article>
 
 
 
-        <!-- =================================================
-             SECTIONS
-        ================================================== -->
+<!-- =====================================================
+     OTHER PROJECTS
+===================================================== -->
 
-        <div class="media-section reveal">
+<div class="other-projects">
 
-          <div class="media-section-title">
 
-            <h3>
-              Drawings
-            </h3>
+<!-- PROJECT 02 -->
 
-            <span>
-              Sections
-            </span>
+<article
+class="project-card reveal"
+>
 
-          </div>
+<div class="project-card-image">
 
+<img
+src="assets/student-project-01.jpg"
+alt="Academic architectural project"
+>
 
-          <div class="drawings-grid">
+</div>
 
-            <div class="drawing">
 
-              <img
-                src="./assets/Coupe1.png"
-                alt="Longitudinal section"
-                onclick="openLightbox(
-                  './assets/Coupe1.png',
-                  'Longitudinal section'
-                )"
-              >
+<div class="project-card-info">
 
-            </div>
+<div class="project-number">
+02
+</div>
 
 
-            <div class="drawing">
+<div>
 
-              <img
-                src="./assets/Coupe2.png"
-                alt="Transversal section"
-                onclick="openLightbox(
-                  './assets/Coupe2.png',
-                  'Transversal section'
-                )"
-              >
+<div class="project-card-name">
+Academic Project
+</div>
 
-            </div>
+</div>
 
-          </div>
 
-        </div>
+<div class="project-card-type">
+Architectural Design
+</div>
 
+</div>
 
+</article>
 
-        <!-- =================================================
-             RENDERS
-        ================================================== -->
 
-        <div class="media-section reveal">
 
-          <div class="media-section-title">
+<!-- PROJECT 03 -->
 
-            <h3>
-              Visualisations
-            </h3>
+<article
+class="project-card reveal"
+>
 
-            <span>
-              Selected renders
-            </span>
+<div class="project-card-image">
 
-          </div>
+<img
+src="assets/student-project-02.jpg"
+alt="Academic architectural project"
+>
 
+</div>
 
-          <div class="render-grid">
 
-            <div class="render">
+<div class="project-card-info">
 
-              <img
-                src="./assets/Rendus_1 - Photo.jpg"
-                alt="Eco Dome render"
-                onclick="openLightbox(
-                  './assets/Rendus_1 - Photo.jpg',
-                  'Eco Dome render'
-                )"
-              >
+<div class="project-number">
+03
+</div>
 
-            </div>
 
+<div>
 
-            <div class="render">
+<div class="project-card-name">
+Academic Project
+</div>
 
-              <img
-                src="./assets/Rendus_3 - Photo.jpg"
-                alt="Eco Dome render"
-                onclick="openLightbox(
-                  './assets/Rendus_3 - Photo.jpg',
-                  'Eco Dome render'
-                )"
-              >
+</div>
 
-            </div>
 
+<div class="project-card-type">
+Architectural Design
+</div>
 
-            <div class="render">
+</div>
 
-              <img
-                src="./assets/Rendus_5 - Photo.jpg"
-                alt="Eco Dome render"
-                onclick="openLightbox(
-                  './assets/Rendus_5 - Photo.jpg',
-                  'Eco Dome render'
-                )"
-              >
+</article>
 
-            </div>
 
+</div>
 
-            <div class="render">
+</div>
 
-              <img
-                src="./assets/Rendus_6 - Photo.jpg"
-                alt="Eco Dome render"
-                onclick="openLightbox(
-                  './assets/Rendus_6 - Photo.jpg',
-                  'Eco Dome render'
-                )"
-              >
+</section>
 
-            </div>
 
 
-            <div class="render">
+<!-- =========================================================
+     ECO DOME DETAIL
+========================================================= -->
 
-              <img
-                src="./assets/Rendus_8 - Photo.jpg"
-                alt="Eco Dome render"
-                onclick="openLightbox(
-                  './assets/Rendus_8 - Photo.jpg',
-                  'Eco Dome render'
-                )"
-              >
+<section
+class="project-detail"
+id="eco-project"
+>
 
-            </div>
+<div class="container">
 
 
-            <div class="render">
+<!-- HEADER -->
 
-              <img
-                src="./assets/Rendus_9 - Photo.jpg"
-                alt="Eco Dome render"
-                onclick="openLightbox(
-                  './assets/Rendus_9 - Photo.jpg',
-                  'Eco Dome render'
-                )"
-              >
+<div class="project-header reveal">
 
-            </div>
 
+<div class="project-detail-number">
+PROJECT / 01
+</div>
 
-            <div class="render">
 
-              <img
-                src="./assets/rendus suite_1 - Photo.jpg"
-                alt="Eco Dome render"
-                onclick="openLightbox(
-                  './assets/rendus suite_1 - Photo.jpg',
-                  'Eco Dome render'
-                )"
-              >
+<h2 class="project-detail-title">
 
-            </div>
+Eco Dôme
+<br>
 
+<span class="red">
+du Hamma
+</span>
 
-            <div class="render">
+</h2>
 
-              <img
-                src="./assets/rendus suite_3 - Photo.jpg"
-                alt="Eco Dome render"
-                onclick="openLightbox(
-                  './assets/rendus suite_3 - Photo.jpg',
-                  'Eco Dome render'
-                )"
-              >
 
-            </div>
+<p class="project-detail-intro">
 
-          </div>
+A graduation project proposing the
+redevelopment of the zoo area of
+Jardin d'Essai du Hamma in Algiers.
 
-        </div>
+<br><br>
 
-      </div>
+Inspired by the geometry of a snail shell,
+the project explores architecture as an
+ecosystem where geometry, climate,
+material and living systems interact.
 
-    </section>
+</p>
 
+</div>
 
 
-    <!-- =======================================================
-         CONTACT
-    ======================================================== -->
 
-    <section id="contact">
+<!-- META -->
 
-      <div class="page-inner">
+<div class="project-meta reveal">
 
-        <div class="eyebrow reveal">
-          Get in touch
-        </div>
 
-        <h2 class="contact-title reveal">
-          Let's build<br>
-          <span class="outline">
-            something.
-          </span>
-        </h2>
+<div class="meta-item">
 
-        <p class="contact-copy reveal">
-          Open to architectural collaborations,
-          computational design projects and opportunities.
-        </p>
+<div class="meta-label">
+Location
+</div>
 
+<div class="meta-value">
+Jardin d'Essai du Hamma<br>
+Algiers, Algeria
+</div>
 
-        <div class="contact-links reveal">
+</div>
 
-          <a
-            class="btn"
-            href="https://www.linkedin.com/in/yanis-nennouche-b27040334/"
-            target="_blank"
-            rel="noopener"
-          >
-            LinkedIn ↗
-          </a>
 
-          <a
-            class="btn primary"
-            href="mailto:nennoucheyaya@gmail.com"
-          >
-            nennoucheyaya@gmail.com ↗
-          </a>
+<div class="meta-item">
 
-          <a
-            class="btn"
-            href="./CV.pdf"
-            target="_blank"
-          >
-            Open CV ↗
-          </a>
+<div class="meta-label">
+Type
+</div>
 
-        </div>
+<div class="meta-value">
+Public / Cultural
+</div>
 
+</div>
 
-        <div class="contact-footer">
 
-          <span>
-            YANIS NENNOUCHE / ARCHITECT
-          </span>
+<div class="meta-item">
 
-          <span>
-            Architecture · Computation · Environment
-          </span>
+<div class="meta-label">
+Area
+</div>
 
-        </div>
+<div class="meta-value">
+1.2 hectares
+</div>
 
-      </div>
+</div>
 
-    </section>
 
-  </main>
+<div class="meta-item">
 
+<div class="meta-label">
+Approach
+</div>
 
+<div class="meta-value">
+Biomimicry / Environment /
+Computational Design
+</div>
 
-  <!-- =========================================================
-       LIGHTBOX
-  ========================================================== -->
+</div>
 
-  <div
-    class="lightbox"
-    id="lightbox"
-    aria-hidden="true"
-  >
+</div>
 
-    <button
-      class="close-btn"
-      id="closeLightbox"
-      aria-label="Close image"
-    >
-      ×
-    </button>
 
-    <img
-      id="lightboxImage"
-      src=""
-      alt=""
-    >
 
-    <div
-      id="lightboxCaption"
-      class="lightbox-caption"
-    ></div>
+<!-- =====================================================
+     01 — ARCHITECTURE
+===================================================== -->
 
-  </div>
+<div class="story-block">
 
 
+<div class="story-heading reveal">
 
-  <!-- =========================================================
-       JAVASCRIPT
-  ========================================================== -->
+<div class="story-index">
+01
+</div>
 
-  <script type="module">
+<h3 class="story-title">
 
-    /* =========================================================
-       PDF CV RENDERING
-    ========================================================== */
+Architecture
+<br>
+as an ecosystem.
 
-    import * as pdfjsLib from
-      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs";
+</h3>
 
+</div>
 
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";
 
+<div class="large-media reveal">
 
-    async function renderCV() {
+<img
+src="assets/Rendus_2 - Photo.jpg"
+alt="Eco Dôme du Hamma final perspective"
+data-lightbox
+>
 
-      const canvas =
-        document.getElementById("cvCanvas");
+</div>
 
-      const loading =
-        document.getElementById("cvLoading");
 
-      try {
+<div class="caption">
 
-        const pdf =
-          await pdfjsLib.getDocument("./CV.pdf").promise;
+<span>
+Eco Dôme du Hamma
+</span>
 
+<span>
+Final perspective
+</span>
 
-        /*
-          We intentionally render only page 1.
+</div>
 
-          This means the website shows:
-          - the actual white CV sheet
-          - no browser PDF viewer
-          - no black background
-          - no PDF toolbar
-          - no thumbnails
-        */
+</div>
 
-        const page =
-          await pdf.getPage(1);
 
 
-        const desiredWidth = 1600;
+<!-- =====================================================
+     02 — CONCEPT
+===================================================== -->
 
-        const initialViewport =
-          page.getViewport({
-            scale: 1
-          });
+<div class="story-block">
 
 
-        const scale =
-          desiredWidth /
-          initialViewport.width;
+<div class="story-heading reveal">
 
+<div class="story-index">
+02
+</div>
 
-        const viewport =
-          page.getViewport({
-            scale
-          });
+<h3 class="story-title">
+Concept
+</h3>
 
+</div>
 
-        const context =
-          canvas.getContext("2d");
 
+<p class="story-text reveal">
 
-        canvas.width =
-          viewport.width;
+The architectural concept is derived from
+the spiral geometry of a snail shell.
 
-        canvas.height =
-          viewport.height;
+The shell becomes both a formal and
+environmental strategy, generating a
+continuous circulation sequence while
+creating controlled climatic conditions
+for different ecosystems.
 
+</p>
 
-        await page.render({
-          canvasContext: context,
-          viewport: viewport
-        }).promise;
+</div>
 
 
-        loading.style.display =
-          "none";
 
+<!-- =====================================================
+     03 — SPATIAL EXPERIENCE
+===================================================== -->
 
-      } catch (error) {
+<div class="story-block">
 
-        console.error(
-          "Could not load CV:",
-          error
-        );
 
-        loading.textContent =
-          "CV preview unavailable — use OPEN CV ↗";
+<div class="story-heading reveal">
 
-      }
+<div class="story-index">
+03
+</div>
 
-    }
+<h3 class="story-title">
+Spatial experience
+</h3>
 
+</div>
 
-    renderCV();
 
+<div class="split-media reveal">
 
 
-    /* =========================================================
-       NAVIGATION
-    ========================================================== */
+<div class="media">
 
-    const navbar =
-      document.getElementById("navbar");
+<img
+src="assets/Rendus_3 - Photo.jpg"
+alt="Eco Dôme interior"
+data-lightbox
+>
 
-    const menuBtn =
-      document.getElementById("menuBtn");
+</div>
 
-    const navLinks =
-      document.getElementById("navLinks");
 
+<div class="media">
 
-    menuBtn.addEventListener(
-      "click",
-      () => {
+<img
+src="assets/Rendus_5 - Photo.jpg"
+alt="Eco Dôme architecture"
+data-lightbox
+>
 
-        navLinks.classList.toggle("open");
+</div>
 
-        menuBtn.textContent =
-          navLinks.classList.contains("open")
-            ? "×"
-            : "☰";
+</div>
 
-      }
-    );
+</div>
 
 
-    document
-      .querySelectorAll(".nav-links a")
-      .forEach(link => {
 
-        link.addEventListener(
-          "click",
-          () => {
+<!-- =====================================================
+     04 — SECTIONS
+===================================================== -->
 
-            navLinks.classList.remove("open");
+<div class="story-block">
 
-            menuBtn.textContent =
-              "☰";
 
-          }
-        );
+<div class="story-heading reveal">
 
-      });
+<div class="story-index">
+04
+</div>
 
+<h3 class="story-title">
+Sections
+</h3>
 
-    function goToId(id) {
+</div>
 
-      const target =
-        document.getElementById(id);
 
-      if (!target) return;
+<div class="split-media reveal">
 
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
 
-    }
+<div class="media">
 
+<img
+src="assets/Coupe1.png"
+alt="Longitudinal architectural section"
+data-lightbox
+>
 
-    window.goToId =
-      goToId;
+</div>
 
 
+<div class="media">
 
-    /* =========================================================
-       ACTIVE NAV
-    ========================================================== */
+<img
+src="assets/Coupe2.png"
+alt="Transversal architectural section"
+data-lightbox
+>
 
-    const navigationSections =
-      document.querySelectorAll(
-        "#hero, #about, #work, #contact"
-      );
+</div>
 
+</div>
 
-    const sectionObserver =
-      new IntersectionObserver(
-        entries => {
 
-          entries.forEach(entry => {
+<div class="caption">
 
-            if (!entry.isIntersecting)
-              return;
+<span>
+Architectural sections
+</span>
 
+<span>
+Drawing studies
+</span>
 
-            const id =
-              entry.target.id;
+</div>
 
+</div>
 
-            document
-              .querySelectorAll(".nav-links a")
-              .forEach(link => {
 
-                link.classList.toggle(
-                  "active",
-                  link.dataset.nav === id
-                );
 
-              });
+<!-- =====================================================
+     05 — DESIGN PROCESS
+===================================================== -->
 
-          });
+<div class="story-block">
 
-        },
-        {
-          rootMargin:
-            "-40% 0px -50% 0px"
-        }
-      );
 
+<div class="story-heading reveal">
 
-    navigationSections.forEach(
-      section =>
-        sectionObserver.observe(section)
-    );
+<div class="story-index">
+05
+</div>
 
+<h3 class="story-title">
+Design process
+</h3>
 
+</div>
 
-    /* =========================================================
-       NAVBAR SCROLL
-    ========================================================== */
 
-    const hero =
-      document.getElementById("hero");
+<div class="process reveal">
 
 
-    const navbarObserver =
-      new IntersectionObserver(
-        ([entry]) => {
+<div class="process-step">
 
-          navbar.classList.toggle(
-            "scrolled",
-            !entry.isIntersecting
-          );
+<div class="process-number">
+01
+</div>
 
-        },
-        {
-          threshold: .15
-        }
-      );
+<div class="process-name">
+Biomimicry
+</div>
 
+<div class="process-description">
 
-    navbarObserver.observe(hero);
+Natural geometry becomes
+the initial design generator.
 
+</div>
 
+</div>
 
-    /* =========================================================
-       REVEAL ANIMATIONS
-    ========================================================== */
 
-    const revealObserver =
-      new IntersectionObserver(
-        entries => {
+<div class="process-step">
 
-          entries.forEach(entry => {
+<div class="process-number">
+02
+</div>
 
-            if (
-              entry.isIntersecting
-            ) {
+<div class="process-name">
+Geometry
+</div>
 
-              entry.target
-                .querySelectorAll(".reveal")
-                .forEach(element => {
+<div class="process-description">
 
-                  element.classList.add(
-                    "visible"
-                  );
+Parametric modelling defines
+the architectural system.
 
-                });
+</div>
 
-            }
+</div>
 
-          });
 
-        },
-        {
-          threshold: .12
-        }
-      );
+<div class="process-step">
 
+<div class="process-number">
+03
+</div>
 
-    document
-      .querySelectorAll("section")
-      .forEach(section => {
+<div class="process-name">
+Environment
+</div>
 
-        revealObserver.observe(
-          section
-        );
+<div class="process-description">
 
-      });
+Climate and environmental
+conditions inform the envelope.
 
+</div>
 
+</div>
 
-    /* =========================================================
-       LIGHTBOX
-    ========================================================== */
 
-    const lightbox =
-      document.getElementById("lightbox");
+<div class="process-step">
 
-    const lightboxImage =
-      document.getElementById("lightboxImage");
+<div class="process-number">
+04
+</div>
 
-    const lightboxCaption =
-      document.getElementById("lightboxCaption");
+<div class="process-name">
+Structure
+</div>
 
-    const closeLightbox =
-      document.getElementById("closeLightbox");
+<div class="process-description">
 
+Structural logic is integrated
+into the generated geometry.
 
-    function openLightbox(
-      src,
-      caption = ""
-    ) {
+</div>
 
-      lightboxImage.src =
-        src;
+</div>
 
-      lightboxImage.alt =
-        caption;
 
-      lightboxCaption.textContent =
-        caption;
+<div class="process-step">
 
-      lightbox.classList.add(
-        "open"
-      );
+<div class="process-number">
+05
+</div>
 
-      lightbox.setAttribute(
-        "aria-hidden",
-        "false"
-      );
+<div class="process-name">
+Architecture
+</div>
 
-    }
+<div class="process-description">
 
+The resulting system becomes
+a coherent spatial experience.
 
-    window.openLightbox =
-      openLightbox;
+</div>
 
+</div>
 
-    function closeLightboxFunction() {
+</div>
 
-      lightbox.classList.remove(
-        "open"
-      );
+</div>
 
-      lightbox.setAttribute(
-        "aria-hidden",
-        "true"
-      );
 
-      lightboxImage.src =
-        "";
 
-    }
+<!-- =====================================================
+     ENVIRONMENT
+===================================================== -->
 
+<div class="environment story-block">
 
-    closeLightbox.addEventListener(
-      "click",
-      closeLightboxFunction
-    );
 
+<div class="environment-grid">
 
-    lightbox.addEventListener(
-      "click",
-      event => {
 
-        if (
-          event.target === lightbox
-        ) {
+<div>
 
-          closeLightboxFunction();
+<div class="eyebrow">
+Environmental strategy
+</div>
 
-        }
 
-      }
-    );
+<h3>
 
+Designing
+<br>
 
-    document.addEventListener(
-      "keydown",
-      event => {
+with
+<span class="red">
+climate.
+</span>
 
-        if (
-          event.key === "Escape" &&
-          lightbox.classList.contains("open")
-        ) {
+</h3>
 
-          closeLightboxFunction();
 
-        }
+<p>
 
-      }
-    );
+Environmental performance is treated
+as part of the architectural design process.
 
+The envelope, geometry and spatial
+organisation are developed in relation
+to the climate of Algiers.
 
+</p>
 
-    /* =========================================================
-       CUSTOM CURSOR
-    ========================================================== */
+</div>
 
-    const cursor =
-      document.getElementById("cursor");
 
-    const cursorRing =
-      document.getElementById("cursorRing");
 
+<div class="environment-list">
 
-    if (
-      window.matchMedia(
-        "(pointer:fine)"
-      ).matches
-    ) {
 
-      document.body.classList.add(
-        "has-cursor"
-      );
+<div class="environment-item">
 
+<span>
+Passive environmental design
+</span>
 
-      let mouseX = 0;
-      let mouseY = 0;
+<span>
+01
+</span>
 
-      let ringX = 0;
-      let ringY = 0;
+</div>
 
 
-      window.addEventListener(
-        "mousemove",
-        event => {
+<div class="environment-item">
 
-          mouseX =
-            event.clientX;
+<span>
+ETFE envelope
+</span>
 
-          mouseY =
-            event.clientY;
+<span>
+02
+</span>
 
+</div>
 
-          cursor.style.left =
-            `${mouseX}px`;
 
-          cursor.style.top =
-            `${mouseY}px`;
+<div class="environment-item">
 
-        }
-      );
+<span>
+Solar control
+</span>
 
+<span>
+03
+</span>
 
-      function animateCursor() {
+</div>
 
-        ringX +=
-          (mouseX - ringX) * .16;
 
-        ringY +=
-          (mouseY - ringY) * .16;
+<div class="environment-item">
 
+<span>
+Natural ecosystems
+</span>
 
-        cursorRing.style.left =
-          `${ringX}px`;
+<span>
+04
+</span>
 
-        cursorRing.style.top =
-          `${ringY}px`;
+</div>
 
 
-        requestAnimationFrame(
-          animateCursor
-        );
+<div class="environment-item">
 
-      }
+<span>
+Water management
+</span>
 
+<span>
+05
+</span>
 
-      animateCursor();
+</div>
 
 
-      document
-        .querySelectorAll(
-          "a, button, .project-card, .featured-project, img"
-        )
-        .forEach(element => {
+</div>
 
-          element.addEventListener(
-            "mouseenter",
-            () => {
+</div>
 
-              cursorRing.style.width =
-                "52px";
+</div>
 
-              cursorRing.style.height =
-                "52px";
 
-            }
-          );
 
+<!-- =====================================================
+     FINAL VIEWS
+===================================================== -->
 
-          element.addEventListener(
-            "mouseleave",
-            () => {
+<div class="story-block">
 
-              cursorRing.style.width =
-                "34px";
 
-              cursorRing.style.height =
-                "34px";
+<div class="story-heading reveal">
 
-            }
-          );
+<div class="story-index">
+06
+</div>
 
-        });
+<h3 class="story-title">
+Final views
+</h3>
 
+</div>
 
-      window.addEventListener(
-        "mousemove",
-        event => {
 
-          const x =
-            (
-              event.clientX /
-              window.innerWidth -
-              .5
-            ) * 2;
+<div class="split-media reveal">
 
 
-          const y =
-            (
-              event.clientY /
-              window.innerHeight -
-              .5
-            ) * 2;
+<div class="media">
 
+<img
+src="assets/Rendus_6 - Photo.jpg"
+alt="Eco Dôme final view"
+data-lightbox
+>
 
-          const orb =
-            document.getElementById("orb");
+</div>
 
 
-          if (orb) {
+<div class="media">
 
-            orb.style.transform =
-              `translate(${x * -18}px, ${y * -12}px)`;
+<img
+src="assets/Rendus_8 - Photo.jpg"
+alt="Eco Dôme final view"
+data-lightbox
+>
 
-          }
+</div>
 
-        }
-      );
+</div>
 
-    }
 
-  </script>
+<br><br>
+
+
+<div class="split-media reveal">
+
+
+<div class="media">
+
+<img
+src="assets/Rendus_9 - Photo.jpg"
+alt="Eco Dôme final view"
+data-lightbox
+>
+
+</div>
+
+
+<div class="media">
+
+<img
+src="assets/rendus suite_1 - Photo.jpg"
+alt="Eco Dôme final view"
+data-lightbox
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section id="contact">
+
+
+<div class="contact-container">
+
+
+<div class="eyebrow reveal">
+Get in touch
+</div>
+
+
+<h2 class="contact-title reveal">
+
+LET'S
+
+<br>
+
+<span class="outline">
+BUILD.
+</span>
+
+</h2>
+
+
+<p class="contact-copy reveal">
+
+Open to architectural collaborations,
+computational design projects,
+environmental work and new opportunities.
+
+</p>
+
+
+<div class="contact-actions reveal">
+
+
+<a
+class="button red"
+href="mailto:nennoucheyaya@gmail.com"
+>
+Email ↗
+</a>
+
+
+<a
+class="button"
+href="https://www.linkedin.com/in/yanis-nennouche-b27040334/"
+target="_blank"
+rel="noopener"
+>
+LinkedIn ↗
+</a>
+
+
+<a
+class="button"
+href="https://www.instagram.com/yanis._nch/"
+target="_blank"
+rel="noopener"
+>
+Instagram ↗
+</a>
+
+
+<a
+class="button"
+href="https://github.com/nennoucheyanis"
+target="_blank"
+rel="noopener"
+>
+GitHub ↗
+</a>
+
+
+<a
+class="button"
+href="CV.pdf"
+target="_blank"
+>
+CV ↗
+</a>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+<div class="footer-inner">
+
+
+<div class="footer-left">
+
+© 2026
+YANIS NENNOUCHE / ARCHITECT
+
+</div>
+
+
+<div class="footer-right">
+
+<a href="#hero">
+Back to top ↑
+</a>
+
+<a href="#about">
+About
+</a>
+
+<a href="#work">
+Projects
+</a>
+
+<a href="#contact">
+Contact
+</a>
+
+</div>
+
+</div>
+
+</footer>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     LIGHTBOX
+========================================================= -->
+
+<div
+class="lightbox"
+id="lightbox"
+aria-hidden="true"
+>
+
+
+<button
+class="lightbox-close"
+id="lightboxClose"
+>
+×
+</button>
+
+
+<img
+id="lightboxImage"
+src=""
+alt=""
+>
+
+
+<div
+class="lightbox-caption"
+id="lightboxCaption"
+></div>
+
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+const navbar =
+document.getElementById("navbar");
+
+const navLinks =
+document.getElementById("navLinks");
+
+const menuBtn =
+document.getElementById("menuBtn");
+
+
+menuBtn.addEventListener("click",()=>{
+
+navLinks.classList.toggle("open");
+
+menuBtn.textContent =
+navLinks.classList.contains("open")
+? "×"
+: "☰";
+
+});
+
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+navLinks.classList.remove("open");
+
+menuBtn.textContent="☰";
+
+});
+
+});
+
+
+/* =========================================================
+   NAVBAR SCROLL
+========================================================= */
+
+const hero =
+document.getElementById("hero");
+
+const navbarObserver =
+new IntersectionObserver(
+([entry])=>{
+
+navbar.classList.toggle(
+"scrolled",
+!entry.isIntersecting
+);
+
+},
+{
+threshold:.15
+}
+);
+
+navbarObserver.observe(hero);
+
+
+/* =========================================================
+   ACTIVE NAV
+========================================================= */
+
+const pageSections =
+document.querySelectorAll(
+"#hero,#about,#work,#contact"
+);
+
+const sectionObserver =
+new IntersectionObserver(
+entries=>{
+
+entries.forEach(entry=>{
+
+if(!entry.isIntersecting)
+return;
+
+const id=entry.target.id;
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link=>{
+
+link.classList.toggle(
+"active",
+link.dataset.nav===id
+);
+
+});
+
+});
+
+},
+{
+rootMargin:"-35% 0px -55% 0px"
+}
+);
+
+pageSections.forEach(
+section=>sectionObserver.observe(section)
+);
+
+
+/* =========================================================
+   ECO DOME NAVIGATION
+========================================================= */
+
+document
+.querySelector(".featured-project")
+.addEventListener("click",()=>{
+
+document
+.getElementById("eco-project")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+});
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+const revealObserver =
+new IntersectionObserver(
+entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target
+.classList
+.add("visible");
+
+}
+
+});
+
+},
+{
+threshold:.12
+}
+);
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(element=>
+revealObserver.observe(element)
+);
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+const lightbox =
+document.getElementById("lightbox");
+
+const lightboxImage =
+document.getElementById("lightboxImage");
+
+const lightboxCaption =
+document.getElementById("lightboxCaption");
+
+const lightboxClose =
+document.getElementById("lightboxClose");
+
+
+function openLightbox(image){
+
+lightboxImage.src=image.src;
+
+lightboxImage.alt=image.alt;
+
+lightboxCaption.textContent=image.alt;
+
+lightbox.classList.add("open");
+
+lightbox.setAttribute(
+"aria-hidden",
+"false"
+);
+
+}
+
+
+function closeLightbox(){
+
+lightbox.classList.remove("open");
+
+lightbox.setAttribute(
+"aria-hidden",
+"true"
+);
+
+lightboxImage.src="";
+
+}
+
+
+document
+.querySelectorAll("[data-lightbox]")
+.forEach(image=>{
+
+image.addEventListener(
+"click",
+event=>{
+
+event.stopPropagation();
+
+openLightbox(image);
+
+}
+);
+
+});
+
+
+lightboxClose.addEventListener(
+"click",
+closeLightbox
+);
+
+
+lightbox.addEventListener(
+"click",
+event=>{
+
+if(event.target===lightbox){
+
+closeLightbox();
+
+}
+
+}
+);
+
+
+document.addEventListener(
+"keydown",
+event=>{
+
+if(event.key==="Escape"){
+
+closeLightbox();
+
+}
+
+}
+);
+
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+
+const cursor =
+document.getElementById("cursor");
+
+const cursorRing =
+document.getElementById("cursorRing");
+
+
+if(
+window.matchMedia(
+"(pointer:fine)"
+).matches
+){
+
+document.body
+.classList
+.add("has-cursor");
+
+
+let mouseX=0;
+let mouseY=0;
+
+let ringX=0;
+let ringY=0;
+
+
+window.addEventListener(
+"mousemove",
+event=>{
+
+mouseX=event.clientX;
+mouseY=event.clientY;
+
+cursor.style.left=
+`${mouseX}px`;
+
+cursor.style.top=
+`${mouseY}px`;
+
+}
+);
+
+
+function animateCursor(){
+
+ringX+=
+(mouseX-ringX)*.15;
+
+ringY+=
+(mouseY-ringY)*.15;
+
+cursorRing.style.left=
+`${ringX}px`;
+
+cursorRing.style.top=
+`${ringY}px`;
+
+requestAnimationFrame(
+animateCursor
+);
+
+}
+
+animateCursor();
+
+
+document
+.querySelectorAll(
+"a,button,.featured-project,.project-card,[data-lightbox]"
+)
+.forEach(element=>{
+
+element.addEventListener(
+"mouseenter",
+()=>{
+
+cursorRing.style.width="48px";
+cursorRing.style.height="48px";
+
+}
+);
+
+
+element.addEventListener(
+"mouseleave",
+()=>{
+
+cursorRing.style.width="30px";
+cursorRing.style.height="30px";
+
+}
+);
+
+});
+
+}
+
+</script>
 
 </body>
+
 </html>
