@@ -21,7 +21,6 @@
     rel="stylesheet"
 >
 
-
 <style>
 
 /* =========================================================
@@ -1644,6 +1643,14 @@ section{
     overflow:hidden;
 
     cursor:zoom-in;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-height:300px;
 }
 
 .split-media img{
@@ -1817,18 +1824,12 @@ section{
     color:var(--text);
 }
 
-
-/* N */
-
 .north-arrow-label{
 
     font-size:.7rem;
 
     font-weight:500;
 }
-
-
-/* HORIZONTAL LINE */
 
 .north-arrow-line{
 
@@ -1840,9 +1841,6 @@ section{
 
     background:var(--text);
 }
-
-
-/* ARROW HEAD — POINTING LEFT */
 
 .north-arrow-line::before{
 
@@ -1922,6 +1920,8 @@ section{
 
     position:relative;
 
+    width:100%;
+
     aspect-ratio:4/3;
 
     overflow:hidden;
@@ -1931,18 +1931,40 @@ section{
     border:1px solid var(--line);
 
     cursor:zoom-in;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 }
+
+
+/* IMPORTANT FIX */
 
 .perspective-image img{
 
+    display:block;
+
     width:100%;
+
     height:100%;
+
+    max-width:none;
+
+    max-height:none;
 
     object-fit:contain;
 
-    transition:
-        transform .5s ease;
+    object-position:center;
+
+    opacity:1;
+
+    visibility:visible;
+
+    transition:transform .5s ease;
 }
+
 
 .perspective-image:hover img{
 
@@ -1951,7 +1973,7 @@ section{
 
 
 /* =========================================================
-   PERSPECTIVE TEXT / EMPTY SIDE
+   PERSPECTIVE TEXT
 ========================================================= */
 
 .perspective-empty{
@@ -2148,17 +2170,19 @@ section{
     transform:scale(1.018);
 }
 
-.environment-drawing-wide
-.environment-drawing-image{
+
+/* FIXED SELECTORS */
+
+.environment-drawing-wide .environment-drawing-image{
 
     height:min(65vh,720px);
 }
 
-.environment-drawing:not(.environment-drawing-wide)
-.environment-drawing-image{
+.environment-drawing:not(.environment-drawing-wide) .environment-drawing-image{
 
     height:min(42vh,480px);
 }
+
 
 .environment-drawing-info{
 
@@ -2834,14 +2858,12 @@ footer{
         grid-column:auto;
     }
 
-    .environment-drawing-wide
-    .environment-drawing-image{
+    .environment-drawing-wide .environment-drawing-image{
 
         height:500px;
     }
 
-    .environment-drawing:not(.environment-drawing-wide)
-    .environment-drawing-image{
+    .environment-drawing:not(.environment-drawing-wide) .environment-drawing-image{
 
         height:400px;
     }
@@ -3073,14 +3095,12 @@ footer{
             70px 20px;
     }
 
-    .environment-drawing-wide
-    .environment-drawing-image{
+    .environment-drawing-wide .environment-drawing-image{
 
         height:350px;
     }
 
-    .environment-drawing:not(.environment-drawing-wide)
-    .environment-drawing-image{
+    .environment-drawing:not(.environment-drawing-wide) .environment-drawing-image{
 
         height:300px;
     }
@@ -3201,11 +3221,7 @@ footer{
         </ul>
 
 
-        <!-- SOCIALS -->
-
         <div class="socials">
-
-            <!-- LINKEDIN -->
 
             <a
                 class="social-link"
@@ -3224,8 +3240,6 @@ footer{
             </a>
 
 
-            <!-- INSTAGRAM -->
-
             <a
                 class="social-link"
                 href="https://www.instagram.com/yanis._nch/"
@@ -3243,8 +3257,6 @@ footer{
             </a>
 
 
-            <!-- GITHUB -->
-
             <a
                 class="social-link"
                 href="https://github.com/nennoucheyanis"
@@ -3261,8 +3273,6 @@ footer{
 
             </a>
 
-
-            <!-- EMAIL -->
 
             <a
                 class="social-link"
@@ -3447,8 +3457,6 @@ footer{
         <div class="about-grid">
 
 
-            <!-- PROFILE IMAGE -->
-
             <div class="about-photo reveal">
 
                 <div class="about-photo-frame">
@@ -3475,9 +3483,6 @@ footer{
 
             </div>
 
-
-
-            <!-- ABOUT CONTENT -->
 
             <div class="about-main">
 
@@ -3515,8 +3520,6 @@ footer{
                 </p>
 
 
-
-                <!-- PROFILE -->
 
                 <div class="profile-info reveal">
 
@@ -3585,8 +3588,6 @@ footer{
 
 
 
-                <!-- SKILLS -->
-
                 <div class="skills-section reveal">
 
                     <div class="skills-title">
@@ -3612,8 +3613,6 @@ footer{
                 </div>
 
 
-
-                <!-- CV -->
 
                 <div class="cv-section reveal">
 
@@ -3700,8 +3699,6 @@ footer{
 
 
 
-        <!-- FEATURED PROJECT -->
-
         <article
             class="featured-project reveal"
             data-project="eco"
@@ -3757,8 +3754,6 @@ footer{
         </article>
 
 
-
-        <!-- OTHER PROJECTS -->
 
         <div class="other-projects">
 
@@ -3847,7 +3842,7 @@ footer{
 
 
 <!-- =========================================================
-     PROJECT 01 — ECO DÔME DU HAMMA
+     PROJECT 01
 ========================================================= -->
 
 <section
@@ -3858,12 +3853,7 @@ footer{
 <div class="container">
 
 
-<!-- =========================================================
-     PROJECT HEADER
-========================================================= -->
-
 <div class="project-header reveal">
-
 
     <div class="project-detail-number">
         PROJECT / 01
@@ -3901,12 +3891,7 @@ footer{
 
 
 
-<!-- =========================================================
-     PROJECT METADATA
-========================================================= -->
-
 <div class="project-meta reveal">
-
 
     <div class="meta-item">
 
@@ -3972,7 +3957,7 @@ footer{
 
 
 <!-- =========================================================
-     01 — CONCEPT
+     01 CONCEPT
 ========================================================= -->
 
 <div class="story-block">
@@ -4008,7 +3993,7 @@ footer{
 
 
 <!-- =========================================================
-     02 — GENESIS
+     02 GENESIS
 ========================================================= -->
 
 <div class="story-block">
@@ -4072,7 +4057,7 @@ footer{
 
 
 <!-- =========================================================
-     03 — PLANS
+     03 PLANS
 ========================================================= -->
 
 <div class="story-block plans-section">
@@ -4095,10 +4080,6 @@ footer{
         Site / Site &amp; Ground Floor Plan / Spatial organisation
     </div>
 
-
-    <!-- =====================================================
-         03.01 — Site Plan
-    ===================================================== -->
 
     <div class="project-section-label">
         03.01 / Site Plan
@@ -4149,10 +4130,6 @@ footer{
     <br><br><br>
 
 
-    <!-- =====================================================
-         03.02 — Site & Ground Floor PLAN
-    ===================================================== -->
-
     <div class="project-section-label">
         03.02 / Site &amp; Ground Floor Plan
     </div>
@@ -4196,10 +4173,6 @@ footer{
 
     <br><br><br>
 
-
-    <!-- =====================================================
-         03.03 — BASEMENT FLOOR PLAN
-    ===================================================== -->
 
     <div class="project-section-label">
         03.03 / Basement Floor Plan
@@ -4247,7 +4220,7 @@ footer{
 
 
 <!-- =========================================================
-     04 — SECTIONS
+     04 SECTIONS
 ========================================================= -->
 
 <div class="story-block sections-section">
@@ -4274,8 +4247,6 @@ footer{
     <div class="split-media reveal">
 
 
-        <!-- SECTION 01 -->
-
         <div class="media">
 
             <img
@@ -4286,8 +4257,6 @@ footer{
 
         </div>
 
-
-        <!-- SECTION 02 -->
 
         <div class="media">
 
@@ -4320,7 +4289,7 @@ footer{
 
 
 <!-- =========================================================
-     05 — FACADES
+     05 FACADES
 ========================================================= -->
 
 <div class="story-block facades-section">
@@ -4347,8 +4316,6 @@ footer{
     <div class="split-media reveal">
 
 
-        <!-- FACADE 01 -->
-
         <div class="media">
 
             <img
@@ -4359,8 +4326,6 @@ footer{
 
         </div>
 
-
-        <!-- FACADE 02 -->
 
         <div class="media">
 
@@ -4393,7 +4358,7 @@ footer{
 
 
 <!-- =========================================================
-     06 — PERSPECTIVE
+     06 PERSPECTIVE
 ========================================================= -->
 
 <div class="story-block perspective-section">
@@ -4420,11 +4385,12 @@ footer{
     <div class="perspective-layout reveal">
 
 
-        <!-- =================================================
-             PERSPECTIVE IMAGE
-        ================================================= -->
+        <!-- PERSPECTIVE IMAGE -->
 
-        <div class="perspective-image">
+        <div
+            class="perspective-image"
+            data-perspective-lightbox
+        >
 
             <img
                 src="assets/Perspective.png"
@@ -4435,9 +4401,7 @@ footer{
         </div>
 
 
-        <!-- =================================================
-             TEXT / EMPTY AREA
-        ================================================= -->
+        <!-- TEXT -->
 
         <div class="perspective-empty">
 
@@ -4481,7 +4445,7 @@ footer{
 
 
 <!-- =========================================================
-     07 — ENVIRONMENTAL STRATEGIES
+     07 ENVIRONMENT
 ========================================================= -->
 
 <div class="story-block">
@@ -4506,8 +4470,6 @@ footer{
 
     <div class="environment">
 
-
-        <!-- ENVIRONMENT INTRO -->
 
         <div class="environment-intro reveal">
 
@@ -4569,12 +4531,8 @@ footer{
 
 
 
-        <!-- ENVIRONMENTAL DRAWINGS -->
-
         <div class="environment-drawings">
 
-
-            <!-- ENV 01 -->
 
             <div class="environment-drawing environment-drawing-wide reveal">
 
@@ -4618,8 +4576,6 @@ footer{
 
 
 
-            <!-- ENV 02 -->
-
             <div class="environment-drawing reveal">
 
                 <div class="environment-drawing-image">
@@ -4661,8 +4617,6 @@ footer{
             </div>
 
 
-
-            <!-- ENV 03 -->
 
             <div class="environment-drawing reveal">
 
@@ -4706,8 +4660,6 @@ footer{
 
 
 
-            <!-- ENV 04 -->
-
             <div class="environment-drawing reveal">
 
                 <div class="environment-drawing-image">
@@ -4749,8 +4701,6 @@ footer{
             </div>
 
 
-
-            <!-- ENV 05 -->
 
             <div class="environment-drawing environment-drawing-wide reveal">
 
@@ -4802,7 +4752,7 @@ footer{
 
 
 <!-- =========================================================
-     08 — FINAL RENDERS
+     08 FINAL RENDERS
 ========================================================= -->
 
 <div class="story-block final-renders-section">
@@ -4835,8 +4785,6 @@ footer{
 
 
 
-    <!-- RENDER 01 -->
-
     <div class="large-media reveal">
 
         <img
@@ -4863,9 +4811,6 @@ footer{
 
     <br><br>
 
-
-
-    <!-- RENDERS 02 + 03 -->
 
     <div class="split-media reveal">
 
@@ -4898,9 +4843,6 @@ footer{
     <br><br>
 
 
-
-    <!-- RENDERS 04 + 05 -->
-
     <div class="split-media reveal">
 
 
@@ -4931,9 +4873,6 @@ footer{
 
     <br><br>
 
-
-
-    <!-- RENDERS 06 + 07 -->
 
     <div class="split-media reveal">
 
@@ -5243,7 +5182,6 @@ footer{
 
 <script>
 
-
 /* =========================================================
    NAVIGATION
 ========================================================= */
@@ -5435,14 +5373,6 @@ const lightboxClose =
     document.getElementById("lightboxClose");
 
 
-/*
-   Opens an image in the lightbox.
-
-   If data-rotated="true" exists,
-   the exact same -90deg rotation
-   used in the page is applied.
-*/
-
 function openLightbox(image){
 
     lightboxImage.src =
@@ -5455,9 +5385,10 @@ function openLightbox(image){
         image.alt;
 
 
-    /* =====================================================
-       Site Plan — KEEP -90deg ROTATION
-    ===================================================== */
+    /*
+       Site plan keeps the same
+       -90deg rotation in lightbox.
+    */
 
     if(image.dataset.rotated === "true"){
 
@@ -5483,10 +5414,6 @@ function openLightbox(image){
 
 }
 
-
-/* =========================================================
-   CLOSE LIGHTBOX
-========================================================= */
 
 function closeLightbox(){
 
