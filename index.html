@@ -1851,15 +1851,18 @@ justify-content:center;
 }
 
 
-/* =========================================================
-   PLAN ROTATION
-========================================================= */
+/*
+   The plan itself is rotated -90 degrees
+   and enlarged to approximately 175%.
+*/
 
 .site-plan-rotation{
 
-position:absolute;
+position:relative;
 
-inset:0;
+width:100%;
+
+height:100%;
 
 display:flex;
 
@@ -1867,42 +1870,33 @@ align-items:center;
 
 justify-content:center;
 
-transform:rotate(-90deg);
+transform:rotate(-90deg) scale(1.5);
+
+transform-origin:center center;
 
 }
 
 
-/* =========================================================
-   PLAN SCALE
-========================================================= */
-
-/*
-   175% = agrandissement du plan masse.
-
-   Tu peux modifier uniquement ces deux valeurs :
-
-   170% = légèrement plus petit
-   175% = réglage actuel
-   180% = légèrement plus grand
-*/
+/* PLAN IMAGE */
 
 .site-plan-rotation img{
 
-width:150%;
+width:100%;
 
-height:150%;
+height:100%;
+
+object-fit:contain;
 
 max-width:none;
 
 max-height:none;
 
-object-fit:contain;
-
 transform:none;
 
-transition:transform .6s ease;
-
 }
+
+
+/* Hover */
 
 .site-plan-rotation:hover img{
 
@@ -1916,23 +1910,12 @@ transform:scale(1.012);
 ========================================================= */
 
 /*
-   IMPORTANT :
-
-   Cette valeur contrôle UNIQUEMENT la direction du Nord.
-
-   0deg   = ↑
-   90deg  = →
-   180deg = ↓
-   270deg = ←
-
-   Le plan reste à -90deg indépendamment de cette valeur.
-
-   Pour ton plan actuel, commence avec 90deg.
+   IMPORTANT:
+   The north arrow is outside the rotated container.
+   Therefore it stays perfectly vertical.
 */
 
 .north-arrow{
-
---north-rotation:-90deg;
 
 position:absolute;
 
@@ -1950,7 +1933,7 @@ align-items:center;
 
 justify-content:center;
 
-gap:5px;
+gap:3px;
 
 font-family:var(--mono);
 
@@ -1960,35 +1943,36 @@ letter-spacing:.08em;
 
 color:var(--text);
 
-transform:rotate(var(--north-rotation));
+}
 
-transform-origin:center center;
 
-pointer-events:none;
+/* N */
+
+.north-arrow-label{
+
+font-size:.7rem;
+
+font-weight:500;
 
 }
 
 
-/* =========================================================
-   NORTH ARROW LINE
-========================================================= */
+/* LINE */
 
 .north-arrow-line{
 
 position:relative;
 
-width:2px;
+width:1px;
 
-height:42px;
+height:38px;
 
 background:var(--text);
 
 }
 
 
-/* =========================================================
-   NORTH ARROW HEAD
-========================================================= */
+/* ARROW HEAD */
 
 .north-arrow-line::before{
 
@@ -2006,26 +1990,11 @@ width:0;
 
 height:0;
 
-border-left:6px solid transparent;
+border-left:5px solid transparent;
 
-border-right:6px solid transparent;
+border-right:5px solid transparent;
 
-border-bottom:11px solid var(--text);
-
-}
-
-
-/* =========================================================
-   NORTH LABEL
-========================================================= */
-
-.north-arrow-label{
-
-font-size:.72rem;
-
-font-weight:500;
-
-line-height:1;
+border-bottom:9px solid var(--text);
 
 }
 
@@ -2764,9 +2733,14 @@ color:#999;
    LIGHTBOX ROTATION
 ========================================================= */
 
+/*
+   IMPORTANT:
+   Same rotation as the page: -90deg.
+*/
+
 .lightbox-image-rotated{
 
-transform:rotate(90deg);
+transform:rotate(-90deg);
 
 max-width:88vh!important;
 
@@ -3049,6 +3023,18 @@ height:600px;
 
 }
 
+/*
+   Slightly reduced on tablet/mobile
+   so the plan remains readable without
+   being excessively cropped.
+*/
+
+.site-plan-rotation{
+
+transform:rotate(-90deg) scale(1.45);
+
+}
+
 .north-arrow{
 
 top:20px;
@@ -3057,20 +3043,6 @@ right:22px;
 
 }
 
-
-/*
-   On mobile we keep the same proportion,
-   but slightly reduce the scale to avoid
-   excessive cropping.
-*/
-
-.site-plan-rotation img{
-
-width:175%;
-
-height:175%;
-
-}
 
 }
 
@@ -3241,13 +3213,14 @@ width:100%;
 
 height:100%;
 
-}
+/*
+   Mobile scale.
+   The desktop version is 175%.
+   Here we use 135% to preserve readability
+   and prevent excessive cropping.
+*/
 
-.site-plan-rotation img{
-
-width:175%;
-
-height:175%;
+transform:rotate(-90deg) scale(1.35);
 
 }
 
@@ -3257,9 +3230,7 @@ top:15px;
 
 right:18px;
 
-transform:
-rotate(var(--north-rotation))
-scale(.85);
+transform:scale(.85);
 
 transform-origin:top right;
 
@@ -4216,10 +4187,7 @@ developed.
 </p>
 
 
-<div
-class="large-media reveal"
-style="margin-top:50px;"
->
+<div class="large-media reveal" style="margin-top:50px;">
 
 <img
 src="assets/Rendus_2 - Photo.jpg"
@@ -4280,9 +4248,7 @@ class="site-plan-media reveal"
 data-site-plan-lightbox
 >
 
-<!-- =====================================================
-     PLAN
-===================================================== -->
+<!-- PLAN ONLY -->
 
 <div class="site-plan-rotation">
 
@@ -4296,9 +4262,7 @@ data-rotated="true"
 </div>
 
 
-<!-- =====================================================
-     NORTH ARROW
-===================================================== -->
+<!-- NORTH ARROW — INDEPENDENT FROM PLAN ROTATION -->
 
 <div class="north-arrow">
 
@@ -4320,7 +4284,7 @@ Plan masse
 </span>
 
 <span>
-Site organisation 
+Site organisation / North
 </span>
 
 </div>
@@ -4648,9 +4612,7 @@ system and its surrounding climate.
 
 <!-- DRAWING 01 -->
 
-<div
-class="environment-drawing environment-drawing-wide reveal"
->
+<div class="environment-drawing environment-drawing-wide reveal">
 
 <div class="environment-drawing-image">
 
@@ -4822,9 +4784,7 @@ ENV / 04
 
 <!-- DRAWING 05 -->
 
-<div
-class="environment-drawing environment-drawing-wide reveal"
->
+<div class="environment-drawing environment-drawing-wide reveal">
 
 <div class="environment-drawing-image">
 
@@ -4873,9 +4833,9 @@ ENV / 05
 
 
 
-<!-- =========================================================
+<!-- =====================================================
      08 — FINAL RENDERS
-========================================================= -->
+===================================================== -->
 
 <div class="story-block">
 
@@ -5480,20 +5440,31 @@ const lightboxClose =
 document.getElementById("lightboxClose");
 
 
+/*
+   Opens an image in the lightbox.
+
+   If data-rotated="true" exists,
+   the exact same -90deg rotation
+   used in the page is applied.
+*/
+
 function openLightbox(image){
 
-lightboxImage.src=image.src;
+lightboxImage.src =
+image.src;
 
-lightboxImage.alt=image.alt;
+lightboxImage.alt =
+image.alt;
 
-lightboxCaption.textContent=image.alt;
+lightboxCaption.textContent =
+image.alt;
 
 
 /* =====================================================
-   KEEP PLAN MASSE ROTATED IN LIGHTBOX
+   PLAN MASSE — KEEP -90deg ROTATION
 ===================================================== */
 
-if(image.dataset.rotated==="true"){
+if(image.dataset.rotated === "true"){
 
 lightboxImage.classList.add(
 "lightbox-image-rotated"
@@ -5517,6 +5488,10 @@ lightbox.setAttribute(
 
 }
 
+
+/* =========================================================
+   CLOSE LIGHTBOX
+========================================================= */
 
 function closeLightbox(){
 
@@ -5564,7 +5539,7 @@ lightbox.addEventListener(
 "click",
 event=>{
 
-if(event.target===lightbox){
+if(event.target === lightbox){
 
 closeLightbox();
 
@@ -5577,7 +5552,7 @@ document.addEventListener(
 "keydown",
 event=>{
 
-if(event.key==="Escape"){
+if(event.key === "Escape"){
 
 closeLightbox();
 
@@ -5634,10 +5609,10 @@ cursor.style.top=
 
 function animateCursor(){
 
-ringX+=
+ringX +=
 (mouseX-ringX)*.15;
 
-ringY+=
+ringY +=
 (mouseY-ringY)*.15;
 
 cursorRing.style.left=
