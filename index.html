@@ -11,7 +11,7 @@ name="description"
 content="Yanis Nennouche — Architect / Computational Design / Environmental Architecture"
 >
 
-<title>YANIS NENNOUCHE / ARCHITECT</title>
+<title>YANIS NENNOUCHE — ARCHITECT & COMPUTATIONAL DESIGN</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,9 @@ content="Yanis Nennouche — Architect / Computational Design / Environmental Ar
 <link
 href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
 rel="stylesheet">
+
+<!-- PDF.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
 
 
 <style>
@@ -509,6 +512,7 @@ color:transparent;
 min-height:100vh;
 
 padding-top:130px;
+padding-bottom:90px;
 
 display:flex;
 
@@ -528,6 +532,7 @@ margin:auto;
 
 }
 
+
 .hero-top{
 
 display:flex;
@@ -536,7 +541,7 @@ justify-content:space-between;
 
 align-items:flex-start;
 
-margin-bottom:60px;
+margin-bottom:65px;
 
 }
 
@@ -549,12 +554,18 @@ font-size:.63rem;
 
 color:var(--muted);
 
+line-height:1.7;
+
 }
 
 .hero-location{
 text-align:right;
 }
 
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
 
 .hero-title{
 
@@ -573,6 +584,8 @@ position:relative;
 
 z-index:2;
 
+max-width:100%;
+
 }
 
 .hero-title .last{
@@ -586,6 +599,47 @@ color:transparent;
 }
 
 
+/* =========================================================
+   HERO ACADEMIC INFO
+========================================================= */
+
+.hero-credentials{
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+margin-top:42px;
+
+font-family:var(--mono);
+
+font-size:.61rem;
+
+letter-spacing:.08em;
+
+text-transform:uppercase;
+
+color:var(--muted);
+
+}
+
+.hero-credentials .separator{
+
+width:28px;
+
+height:1px;
+
+background:var(--red);
+
+}
+
+
+/* =========================================================
+   HERO DESCRIPTION
+========================================================= */
+
 .hero-subtitle{
 
 display:grid;
@@ -593,9 +647,11 @@ display:grid;
 grid-template-columns:
 1fr 1fr;
 
-gap:50px;
+gap:70px;
 
-margin-top:80px;
+margin-top:65px;
+
+max-width:1000px;
 
 }
 
@@ -605,7 +661,7 @@ max-width:500px;
 
 color:var(--muted);
 
-font-size:.9rem;
+font-size:.88rem;
 
 line-height:1.85;
 
@@ -620,59 +676,9 @@ font-weight:500;
 }
 
 
-.hero-image{
-
-position:absolute;
-
-right:0;
-
-top:19%;
-
-width:min(38vw,540px);
-
-aspect-ratio:4/5;
-
-overflow:hidden;
-
-z-index:1;
-
-}
-
-.hero-image img{
-
-width:100%;
-height:100%;
-
-object-fit:cover;
-
-filter:grayscale(100%);
-
-transition:
-filter .7s ease,
-transform 1s ease;
-
-}
-
-.hero-image:hover img{
-
-filter:grayscale(0%);
-
-transform:scale(1.03);
-
-}
-
-.hero-image::after{
-
-content:"";
-
-position:absolute;
-
-inset:13px;
-
-border:1px solid rgba(255,255,255,.35);
-
-}
-
+/* =========================================================
+   HERO BOTTOM
+========================================================= */
 
 .hero-red-line{
 
@@ -776,7 +782,9 @@ align-items:start;
 }
 
 
-/* PHOTO */
+/* =========================================================
+   PHOTO
+========================================================= */
 
 .about-photo{
 
@@ -877,7 +885,9 @@ color:var(--muted);
 }
 
 
-/* ABOUT TEXT */
+/* =========================================================
+   ABOUT TEXT
+========================================================= */
 
 .about-main{
 
@@ -919,7 +929,9 @@ line-height:1.9;
 }
 
 
-/* PROFILE INFO */
+/* =========================================================
+   PROFILE INFO
+========================================================= */
 
 .profile-info{
 
@@ -1049,7 +1061,7 @@ justify-content:space-between;
 
 align-items:center;
 
-margin-bottom:20px;
+margin-bottom:25px;
 
 }
 
@@ -1067,34 +1079,150 @@ color:var(--red);
 
 }
 
+
+/* =========================================================
+   CV PREVIEW — WHITE A4 PAGE
+========================================================= */
+
 .cv-preview{
 
 width:100%;
 
-height:620px;
+display:flex;
+
+justify-content:center;
+
+align-items:flex-start;
+
+padding:45px;
+
+background:#DCDAD4;
 
 border:1px solid var(--line);
 
+overflow:hidden;
+
+cursor:pointer;
+
+transition:
+background .3s ease;
+
+}
+
+.cv-preview:hover{
+
+background:#D4D2CC;
+
+}
+
+
+.cv-page{
+
+position:relative;
+
+width:min(100%,780px);
+
 background:#fff;
+
+box-shadow:
+0 18px 45px rgba(0,0,0,.12);
 
 overflow:hidden;
 
+transition:
+transform .5s cubic-bezier(.2,.7,.2,1),
+box-shadow .5s ease;
+
 }
 
-.cv-preview iframe{
+.cv-preview:hover .cv-page{
+
+transform:translateY(-4px);
+
+box-shadow:
+0 24px 55px rgba(0,0,0,.16);
+
+}
+
+
+#cvCanvas{
+
+display:block;
 
 width:100%;
-height:100%;
 
-border:0;
+height:auto;
+
+background:#fff;
 
 }
+
+
+.cv-loading{
+
+position:absolute;
+
+inset:0;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:#fff;
+
+font-family:var(--mono);
+
+font-size:.62rem;
+
+letter-spacing:.1em;
+
+text-transform:uppercase;
+
+color:var(--muted);
+
+}
+
+.cv-loading.hidden{
+
+display:none;
+
+}
+
+
+.cv-error{
+
+display:none;
+
+padding:80px 30px;
+
+text-align:center;
+
+background:#fff;
+
+font-size:.8rem;
+
+color:var(--muted);
+
+line-height:1.7;
+
+}
+
+.cv-error.visible{
+
+display:block;
+
+}
+
 
 .cv-actions{
 
 display:flex;
 
 justify-content:flex-end;
+
+gap:10px;
 
 margin-top:15px;
 
@@ -1565,7 +1693,9 @@ color:var(--muted);
 }
 
 
-/* META */
+/* =========================================================
+   META
+========================================================= */
 
 .project-meta{
 
@@ -2276,24 +2406,6 @@ display:block;
 
 }
 
-.hero-image{
-
-position:relative;
-
-top:auto;
-right:auto;
-
-width:70vw;
-
-max-width:400px;
-
-margin:
-60px
-0
-0
-auto;
-
-}
 
 .hero-title{
 
@@ -2308,13 +2420,24 @@ margin-left:5vw;
 
 }
 
+.hero-credentials{
+
+flex-wrap:wrap;
+
+margin-top:35px;
+
+}
+
 .hero-subtitle{
 
 grid-template-columns:1fr;
 
 margin-top:50px;
 
+gap:20px;
+
 }
+
 
 .about-top{
 
@@ -2345,6 +2468,7 @@ top:auto;
 max-width:450px;
 
 }
+
 
 .project-header{
 
@@ -2427,7 +2551,7 @@ grid-template-columns:1fr;
 
 .cv-preview{
 
-height:500px;
+padding:30px;
 
 }
 
@@ -2455,9 +2579,17 @@ margin-bottom:40px;
 
 }
 
-.hero-image{
+.hero-credentials{
 
-width:82vw;
+font-size:.55rem;
+
+gap:12px;
+
+}
+
+.hero-credentials .separator{
+
+width:18px;
 
 }
 
@@ -2548,12 +2680,28 @@ clamp(4rem,20vw,7rem);
 
 .cv-preview{
 
-height:450px;
+padding:15px;
+
+}
+
+.cv-page{
+
+width:100%;
+
+}
+
+.cv-actions{
+
+justify-content:flex-start;
 
 }
 
 }
 
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media(prefers-reduced-motion:reduce){
 
@@ -2739,8 +2887,7 @@ aria-label="Menu"
 </div>
 
 <div class="hero-location">
-ALGIERS, ALGERIA<br>
-2026
+ALGIERS — 2026
 </div>
 
 </div>
@@ -2759,6 +2906,25 @@ NENNOUCHE
 </h1>
 
 
+<!-- ACADEMIC / PROFESSIONAL CREDENTIALS -->
+
+<div class="hero-credentials reveal">
+
+<span>
+M.ARCH — ENVIRONMENT &amp; TECHNOLOGY
+</span>
+
+<span class="separator"></span>
+
+<span>
+UNIVERSITY OF ALGIERS 1
+</span>
+
+</div>
+
+
+<!-- HERO TEXT -->
+
 <div class="hero-subtitle reveal">
 
 <p>
@@ -2771,9 +2937,9 @@ Architect / Computational Design
 
 Architecture through computation.
 
-Exploring the relationship between
-architecture, environmental performance,
-geometry and digital design.
+Exploring architectural systems through
+computation, parametric design and
+environmental performance.
 
 </p>
 
@@ -2782,20 +2948,10 @@ geometry and digital design.
 
 My work focuses on architectural systems,
 parametric design, environmental strategies
-and the use of computational tools as part
-of the design process.
+and computational tools as part of the
+design process.
 
 </p>
-
-</div>
-
-
-<div class="hero-image reveal">
-
-<img
-src="assets/Rendus_2 - Photo.jpg"
-alt="Eco Dôme du Hamma"
->
 
 </div>
 
@@ -3056,7 +3212,9 @@ LaTeX
 
 
 
-<!-- CV -->
+<!-- =====================================================
+     CV
+===================================================== -->
 
 <div class="cv-section reveal">
 
@@ -3070,13 +3228,39 @@ Curriculum Vitae
 </div>
 
 
-<div class="cv-preview">
+<!-- WHITE A4 PAGE -->
 
-<iframe
-src="CV.pdf"
-title="Yanis Nennouche CV"
+<div
+class="cv-preview"
+id="cvPreview"
+title="Open CV"
 >
-</iframe>
+
+<div class="cv-page">
+
+<canvas
+id="cvCanvas"
+aria-label="Curriculum Vitae preview"
+>
+</canvas>
+
+<div
+class="cv-loading"
+id="cvLoading"
+>
+Loading CV
+</div>
+
+<div
+class="cv-error"
+id="cvError"
+>
+Unable to preview the CV.
+<br><br>
+Use "Open CV" to view the PDF.
+</div>
+
+</div>
 
 </div>
 
@@ -4130,7 +4314,179 @@ id="lightboxCaption"
 
 
 
-<script>
+<script type="module">
+
+/* =========================================================
+   PDF.JS — CV PREVIEW
+========================================================= */
+
+import {
+pdfjsLib
+} from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+
+const cvCanvas =
+document.getElementById("cvCanvas");
+
+const cvLoading =
+document.getElementById("cvLoading");
+
+const cvError =
+document.getElementById("cvError");
+
+const cvPreview =
+document.getElementById("cvPreview");
+
+
+async function renderCV(){
+
+try{
+
+const pdf =
+await pdfjsLib.getDocument("CV.pdf").promise;
+
+
+const page =
+await pdf.getPage(1);
+
+
+/*
+   The canvas is rendered at a high resolution
+   so the CV remains sharp on retina screens.
+*/
+
+const baseViewport =
+page.getViewport({
+scale:1
+});
+
+
+const desiredWidth =
+Math.min(
+780,
+window.innerWidth > 900
+? 780
+: window.innerWidth - 60
+);
+
+
+const scale =
+desiredWidth /
+baseViewport.width;
+
+
+const viewport =
+page.getViewport({
+scale
+});
+
+
+const outputScale =
+window.devicePixelRatio || 1;
+
+
+cvCanvas.width =
+Math.floor(
+viewport.width *
+outputScale
+);
+
+cvCanvas.height =
+Math.floor(
+viewport.height *
+outputScale
+);
+
+
+cvCanvas.style.width =
+`${viewport.width}px`;
+
+cvCanvas.style.height =
+`${viewport.height}px`;
+
+
+const context =
+cvCanvas.getContext("2d");
+
+
+context.setTransform(
+outputScale,
+0,
+0,
+outputScale,
+0,
+0
+);
+
+
+await page.render({
+
+canvasContext:context,
+
+viewport:viewport
+
+}).promise;
+
+
+cvLoading.classList.add("hidden");
+
+
+}catch(error){
+
+console.error(
+"CV preview error:",
+error
+);
+
+cvLoading.classList.add("hidden");
+
+cvError.classList.add("visible");
+
+}
+
+}
+
+
+/*
+   Render after page load so the PDF
+   has a reliable container size.
+*/
+
+window.addEventListener(
+"load",
+renderCV
+);
+
+
+/*
+   Clicking the preview opens
+   the complete PDF.
+*/
+
+cvPreview.addEventListener(
+"click",
+event=>{
+
+if(
+event.target.closest(
+".cv-error"
+)
+){
+return;
+}
+
+window.open(
+"CV.pdf",
+"_blank",
+"noopener"
+);
+
+});
+
 
 /* =========================================================
    NAVIGATION
@@ -4146,9 +4502,13 @@ const menuBtn =
 document.getElementById("menuBtn");
 
 
-menuBtn.addEventListener("click",()=>{
+menuBtn.addEventListener(
+"click",
+()=>{
 
-navLinks.classList.toggle("open");
+navLinks.classList.toggle(
+"open"
+);
 
 menuBtn.textContent =
 navLinks.classList.contains("open")
@@ -4162,9 +4522,13 @@ document
 .querySelectorAll(".nav-links a")
 .forEach(link=>{
 
-link.addEventListener("click",()=>{
+link.addEventListener(
+"click",
+()=>{
 
-navLinks.classList.remove("open");
+navLinks.classList.remove(
+"open"
+);
 
 menuBtn.textContent="☰";
 
@@ -4180,8 +4544,10 @@ menuBtn.textContent="☰";
 const hero =
 document.getElementById("hero");
 
+
 const navbarObserver =
 new IntersectionObserver(
+
 ([entry])=>{
 
 navbar.classList.toggle(
@@ -4190,10 +4556,13 @@ navbar.classList.toggle(
 );
 
 },
+
 {
 threshold:.15
 }
+
 );
+
 
 navbarObserver.observe(hero);
 
@@ -4207,8 +4576,10 @@ document.querySelectorAll(
 "#hero,#about,#work,#contact"
 );
 
+
 const sectionObserver =
 new IntersectionObserver(
+
 entries=>{
 
 entries.forEach(entry=>{
@@ -4216,7 +4587,9 @@ entries.forEach(entry=>{
 if(!entry.isIntersecting)
 return;
 
-const id=entry.target.id;
+const id =
+entry.target.id;
+
 
 document
 .querySelectorAll(".nav-links a")
@@ -4232,13 +4605,17 @@ link.dataset.nav===id
 });
 
 },
+
 {
 rootMargin:"-35% 0px -55% 0px"
 }
+
 );
 
+
 pageSections.forEach(
-section=>sectionObserver.observe(section)
+section=>
+sectionObserver.observe(section)
 );
 
 
@@ -4246,9 +4623,15 @@ section=>sectionObserver.observe(section)
    ECO DOME NAVIGATION
 ========================================================= */
 
-document
-.querySelector(".featured-project")
-.addEventListener("click",()=>{
+const featuredProject =
+document.querySelector(
+".featured-project"
+);
+
+
+featuredProject.addEventListener(
+"click",
+()=>{
 
 document
 .getElementById("eco-project")
@@ -4256,7 +4639,8 @@ document
 behavior:"smooth"
 });
 
-});
+}
+);
 
 
 /* =========================================================
@@ -4265,6 +4649,7 @@ behavior:"smooth"
 
 const revealObserver =
 new IntersectionObserver(
+
 entries=>{
 
 entries.forEach(entry=>{
@@ -4280,9 +4665,11 @@ entry.target
 });
 
 },
+
 {
 threshold:.12
 }
+
 );
 
 
@@ -4312,25 +4699,35 @@ document.getElementById("lightboxClose");
 
 function openLightbox(image){
 
-lightboxImage.src=image.src;
+lightboxImage.src =
+image.src;
 
-lightboxImage.alt=image.alt;
+lightboxImage.alt =
+image.alt;
 
-lightboxCaption.textContent=image.alt;
+lightboxCaption.textContent =
+image.alt;
 
-lightbox.classList.add("open");
+lightbox.classList.add(
+"open"
+);
 
 lightbox.setAttribute(
 "aria-hidden",
 "false"
 );
 
+document.body.style.overflow =
+"hidden";
+
 }
 
 
 function closeLightbox(){
 
-lightbox.classList.remove("open");
+lightbox.classList.remove(
+"open"
+);
 
 lightbox.setAttribute(
 "aria-hidden",
@@ -4338,6 +4735,9 @@ lightbox.setAttribute(
 );
 
 lightboxImage.src="";
+
+document.body.style.overflow =
+"";
 
 }
 
@@ -4370,7 +4770,9 @@ lightbox.addEventListener(
 "click",
 event=>{
 
-if(event.target===lightbox){
+if(
+event.target===lightbox
+){
 
 closeLightbox();
 
@@ -4384,7 +4786,9 @@ document.addEventListener(
 "keydown",
 event=>{
 
-if(event.key==="Escape"){
+if(
+event.key==="Escape"
+){
 
 closeLightbox();
 
@@ -4427,13 +4831,16 @@ window.addEventListener(
 "mousemove",
 event=>{
 
-mouseX=event.clientX;
-mouseY=event.clientY;
+mouseX =
+event.clientX;
 
-cursor.style.left=
+mouseY =
+event.clientY;
+
+cursor.style.left =
 `${mouseX}px`;
 
-cursor.style.top=
+cursor.style.top =
 `${mouseY}px`;
 
 }
@@ -4442,16 +4849,16 @@ cursor.style.top=
 
 function animateCursor(){
 
-ringX+=
+ringX +=
 (mouseX-ringX)*.15;
 
-ringY+=
+ringY +=
 (mouseY-ringY)*.15;
 
-cursorRing.style.left=
+cursorRing.style.left =
 `${ringX}px`;
 
-cursorRing.style.top=
+cursorRing.style.top =
 `${ringY}px`;
 
 requestAnimationFrame(
@@ -4460,12 +4867,13 @@ animateCursor
 
 }
 
+
 animateCursor();
 
 
 document
 .querySelectorAll(
-"a,button,.featured-project,.project-card,[data-lightbox]"
+"a,button,.featured-project,.project-card,[data-lightbox],.cv-preview"
 )
 .forEach(element=>{
 
@@ -4473,8 +4881,11 @@ element.addEventListener(
 "mouseenter",
 ()=>{
 
-cursorRing.style.width="48px";
-cursorRing.style.height="48px";
+cursorRing.style.width =
+"48px";
+
+cursorRing.style.height =
+"48px";
 
 }
 );
@@ -4484,8 +4895,11 @@ element.addEventListener(
 "mouseleave",
 ()=>{
 
-cursorRing.style.width="30px";
-cursorRing.style.height="30px";
+cursorRing.style.width =
+"30px";
+
+cursorRing.style.height =
+"30px";
 
 }
 );
