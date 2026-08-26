@@ -1712,7 +1712,7 @@ section{
 
 
 /* =========================================================
-   Site Plan — ROTATED
+   SITE PLAN — ROTATED
 ========================================================= */
 
 .site-plan-media{
@@ -1888,12 +1888,122 @@ section{
 
 
 /* =========================================================
-   06 — PERSPECTIVES
+   06 — PERSPECTIVE
 ========================================================= */
 
-.axonometry-section{
+.perspective-section{
 
     width:100%;
+}
+
+
+/* =========================================================
+   PERSPECTIVE LAYOUT
+========================================================= */
+
+.perspective-layout{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:20px;
+
+    align-items:stretch;
+}
+
+
+/* =========================================================
+   PERSPECTIVE IMAGE
+========================================================= */
+
+.perspective-image{
+
+    position:relative;
+
+    aspect-ratio:4/3;
+
+    overflow:hidden;
+
+    background:var(--bg-soft);
+
+    border:1px solid var(--line);
+
+    cursor:zoom-in;
+}
+
+.perspective-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    transition:
+        transform .5s ease;
+}
+
+.perspective-image:hover img{
+
+    transform:scale(1.015);
+}
+
+
+/* =========================================================
+   PERSPECTIVE TEXT / EMPTY SIDE
+========================================================= */
+
+.perspective-empty{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    padding:45px;
+
+    border-top:1px solid var(--line);
+
+    border-bottom:1px solid var(--line);
+
+    color:var(--muted);
+}
+
+.perspective-empty-label{
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:.1em;
+
+    color:var(--red);
+
+    margin-bottom:25px;
+}
+
+.perspective-empty-line{
+
+    width:45px;
+
+    height:1px;
+
+    background:var(--red);
+
+    margin-bottom:25px;
+}
+
+.perspective-empty p{
+
+    max-width:380px;
+
+    font-size:.82rem;
+
+    line-height:1.85;
 }
 
 
@@ -2707,17 +2817,6 @@ footer{
         margin-left:100px;
     }
 
-    .process{
-
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .process-step:nth-child(2){
-
-        border-right:0;
-    }
-
     .environment-intro{
 
         grid-template-columns:1fr;
@@ -2788,6 +2887,25 @@ footer{
         right:22px;
     }
 
+
+    /* =====================================================
+       MOBILE — PERSPECTIVE
+    ===================================================== */
+
+    .perspective-layout{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .perspective-empty{
+
+        min-height:250px;
+
+        padding:30px;
+
+    }
+
 }
 
 
@@ -2855,18 +2973,6 @@ footer{
     .story-text{
 
         margin-left:0;
-    }
-
-    .process{
-
-        grid-template-columns:1fr;
-    }
-
-    .process-step{
-
-        border-right:0;
-
-        border-bottom:1px solid var(--line);
     }
 
     .skills{
@@ -2956,6 +3062,11 @@ footer{
         transform-origin:top right;
     }
 
+
+    /* =====================================================
+       MOBILE — ENVIRONMENT
+    ===================================================== */
+
     .environment{
 
         padding:
@@ -2989,6 +3100,19 @@ footer{
     .final-renders-intro{
 
         margin-left:0;
+    }
+
+
+    /* =====================================================
+       MOBILE — PERSPECTIVE
+    ===================================================== */
+
+    .perspective-empty{
+
+        min-height:220px;
+
+        padding:25px;
+
     }
 
 }
@@ -3131,7 +3255,7 @@ footer{
 
                 <svg viewBox="0 0 24 24">
 
-                    <path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8.2.6.1 2.9.7.8 1.1 1.8 1.8 3 0 4.3-2.6 5.3-5.1 5.6.4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/>
+                    <path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8.2.6.1 2.9.7.8 1.1 1.8 1.8 3 0 4.3-2.6 5.3-5.3.4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/>
 
                 </svg>
 
@@ -3404,7 +3528,7 @@ footer{
 
                         <div class="profile-value">
 
-                            Master of Architecture — Environment &
+                            Master of Architecture — Environment &amp;
                             Technology
 
                             <br>
@@ -3968,7 +4092,7 @@ footer{
 
 
     <div class="project-section-label">
-        Site / Site & Ground Floor Plan / Spatial organisation
+        Site / Site &amp; Ground Floor Plan / Spatial organisation
     </div>
 
 
@@ -3986,8 +4110,6 @@ footer{
         data-site-plan-lightbox
     >
 
-        <!-- ROTATED PLAN -->
-
         <div class="site-plan-rotation">
 
             <img
@@ -3999,8 +4121,6 @@ footer{
 
         </div>
 
-
-        <!-- NORTH ARROW — INDEPENDENT -->
 
         <div class="north-arrow">
 
@@ -4034,17 +4154,9 @@ footer{
     ===================================================== -->
 
     <div class="project-section-label">
-        03.02 / Site & Ground Floor Plan
+        03.02 / Site &amp; Ground Floor Plan
     </div>
 
-
-    <!--
-        SECOND PLAN
-
-        position:relative is important because
-        it makes this container the reference
-        point for the north arrow.
-    -->
 
     <div
         class="large-media reveal"
@@ -4057,8 +4169,6 @@ footer{
             data-lightbox
         >
 
-
-        <!-- NORTH ARROW — SECOND PLAN -->
 
         <div class="north-arrow">
 
@@ -4076,7 +4186,7 @@ footer{
     <div class="caption">
 
         <span>
-            Site & Ground Floor Plan
+            Site &amp; Ground Floor Plan
         </span>
 
         <span></span>
@@ -4084,25 +4194,17 @@ footer{
     </div>
 
 
-</div>
+    <br><br><br>
 
 
     <!-- =====================================================
-         03.03 — Site & Ground Floor PLAN
+         03.03 — BASEMENT FLOOR PLAN
     ===================================================== -->
 
     <div class="project-section-label">
-        03.02 / Basement Floor Plan
+        03.03 / Basement Floor Plan
     </div>
 
-
-    <!--
-        SECOND PLAN
-
-        position:relative is important because
-        it makes this container the reference
-        point for the north arrow.
-    -->
 
     <div
         class="large-media reveal"
@@ -4115,8 +4217,6 @@ footer{
             data-lightbox
         >
 
-
-        <!-- NORTH ARROW — SECOND PLAN -->
 
         <div class="north-arrow">
 
@@ -4146,7 +4246,6 @@ footer{
 
 
 
-    
 <!-- =========================================================
      04 — SECTIONS
 ========================================================= -->
@@ -4294,10 +4393,10 @@ footer{
 
 
 <!-- =========================================================
-     06 — PERSPECTIVES
+     06 — PERSPECTIVE
 ========================================================= -->
 
-<div class="story-block axonometry-section">
+<div class="story-block perspective-section">
 
 
     <div class="story-heading reveal">
@@ -4307,40 +4406,25 @@ footer{
         </div>
 
         <h3 class="story-title">
-
-            Axonometry
-            <br>
-            &amp; perspectives
-
+            Perspective
         </h3>
 
     </div>
 
 
     <div class="project-section-label">
-        06.01 / Spatial representation
+        06.01 / Architectural perspective
     </div>
 
 
-    <div class="split-media reveal">
+    <div class="perspective-layout reveal">
 
 
-        <!-- AXONOMETRY -->
+        <!-- =================================================
+             PERSPECTIVE IMAGE
+        ================================================= -->
 
-        <div class="media">
-
-            <img
-                src="assets/axo.png"
-                alt="Eco Dôme axonometric view"
-                data-lightbox
-            >
-
-        </div>
-
-
-        <!-- PERSPECTIVE -->
-
-        <div class="media">
+        <div class="perspective-image">
 
             <img
                 src="assets/Perspective.png"
@@ -4351,13 +4435,39 @@ footer{
         </div>
 
 
+        <!-- =================================================
+             TEXT / EMPTY AREA
+        ================================================= -->
+
+        <div class="perspective-empty">
+
+            <div class="perspective-empty-label">
+                06 / SPATIAL EXPERIENCE
+            </div>
+
+
+            <div class="perspective-empty-line"></div>
+
+
+            <p>
+
+                Architectural perspective illustrating
+                the spatial atmosphere and relationship
+                between the interior environment and
+                the architectural envelope.
+
+            </p>
+
+        </div>
+
+
     </div>
 
 
     <div class="caption">
 
         <span>
-            Axonometric / spatial studies
+            Eco Dôme du Hamma
         </span>
 
         <span>
