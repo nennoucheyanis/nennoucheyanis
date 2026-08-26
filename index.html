@@ -1705,10 +1705,6 @@ section{
    03 — PLANS
 ========================================================= */
 
-/*
-   Everything related to plans is grouped here.
-*/
-
 .plans-section{
 
     width:100%;
@@ -1742,10 +1738,6 @@ section{
     justify-content:center;
 }
 
-
-/*
-   The plan itself is rotated -90 degrees.
-*/
 
 .site-plan-rotation{
 
@@ -1796,15 +1788,6 @@ section{
 /* =========================================================
    NORTH ARROW
 ========================================================= */
-
-/*
-   The north arrow is completely outside
-   the rotated plan container.
-
-   Therefore it does NOT rotate with the plan.
-
-   The arrow points LEFT.
-*/
 
 .north-arrow{
 
@@ -2540,11 +2523,6 @@ footer{
    LIGHTBOX ROTATION
 ========================================================= */
 
-/*
-   The Site Plan keeps the exact same -90deg
-   rotation inside the lightbox.
-*/
-
 .lightbox-image-rotated{
 
     transform:rotate(-90deg);
@@ -3099,12 +3077,9 @@ footer{
         </ul>
 
 
-        <!-- =====================================================
-             SOCIALS
-        ===================================================== -->
+        <!-- SOCIALS -->
 
         <div class="socials">
-
 
             <!-- LINKEDIN -->
 
@@ -3156,7 +3131,7 @@ footer{
 
                 <svg viewBox="0 0 24 24">
 
-                    <path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8.2.6.1 2.9.7.8 1.1 1.8 1.1 3 0 4.3-2.6 5.3-5.1 5.6.4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/>
+                    <path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8.2.6.1 2.9.7.8 1.1 1.8 1.8 3 0 4.3-2.6 5.3-5.1 5.6.4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/>
 
                 </svg>
 
@@ -3205,7 +3180,6 @@ footer{
 <section id="hero">
 
     <div class="hero-container">
-
 
         <div class="hero-top">
 
@@ -3319,7 +3293,6 @@ footer{
 <section id="about">
 
     <div class="container">
-
 
         <div class="about-top reveal">
 
@@ -4048,9 +4021,7 @@ footer{
             Site Plan
         </span>
 
-        <span>
-            
-        </span>
+        <span></span>
 
     </div>
 
@@ -4067,7 +4038,18 @@ footer{
     </div>
 
 
-    <div class="large-media reveal">
+    <!--
+        SECOND PLAN
+
+        position:relative is important because
+        it makes this container the reference
+        point for the north arrow.
+    -->
+
+    <div
+        class="large-media reveal"
+        style="position:relative;"
+    >
 
         <img
             src="assets/Plan-densemble.png"
@@ -4075,25 +4057,8 @@ footer{
             data-lightbox
         >
 
-    </div>
 
-
-    <div class="caption">
-
-        <span>
-            Site & Ground Floor Plan 
-        </span>
-
-        <span>
-            
-        </span>
-
-    </div>
-
-
-</div>
-
-      <!-- NORTH ARROW — INDEPENDENT -->
+        <!-- NORTH ARROW — SECOND PLAN -->
 
         <div class="north-arrow">
 
@@ -4111,17 +4076,16 @@ footer{
     <div class="caption">
 
         <span>
-           Site & Ground Floor Plan
+            Site & Ground Floor Plan
         </span>
 
-        <span>
-           
-        </span>
+        <span></span>
 
     </div>
 
 
-    <br><br><br>
+</div>
+
 
 
 <!-- =========================================================
@@ -4374,9 +4338,7 @@ footer{
     <div class="environment">
 
 
-        <!-- =================================================
-             ENVIRONMENT INTRO
-        ================================================= -->
+        <!-- ENVIRONMENT INTRO -->
 
         <div class="environment-intro reveal">
 
@@ -4438,16 +4400,12 @@ footer{
 
 
 
-        <!-- =================================================
-             ENVIRONMENTAL DRAWINGS
-        ================================================= -->
+        <!-- ENVIRONMENTAL DRAWINGS -->
 
         <div class="environment-drawings">
 
 
-            <!-- =============================================
-                 ENV 01 — CLIMATE
-            ============================================= -->
+            <!-- ENV 01 -->
 
             <div class="environment-drawing environment-drawing-wide reveal">
 
@@ -4491,9 +4449,7 @@ footer{
 
 
 
-            <!-- =============================================
-                 ENV 02 — ENVELOPE
-            ============================================= -->
+            <!-- ENV 02 -->
 
             <div class="environment-drawing reveal">
 
@@ -4537,9 +4493,7 @@ footer{
 
 
 
-            <!-- =============================================
-                 ENV 03 — LIVING SYSTEMS
-            ============================================= -->
+            <!-- ENV 03 -->
 
             <div class="environment-drawing reveal">
 
@@ -4583,9 +4537,7 @@ footer{
 
 
 
-            <!-- =============================================
-                 ENV 04 — PASSIVE DESIGN
-            ============================================= -->
+            <!-- ENV 04 -->
 
             <div class="environment-drawing reveal">
 
@@ -4629,9 +4581,7 @@ footer{
 
 
 
-            <!-- =============================================
-                 ENV 05 — WATER
-            ============================================= -->
+            <!-- ENV 05 -->
 
             <div class="environment-drawing environment-drawing-wide reveal">
 
@@ -4716,9 +4666,7 @@ footer{
 
 
 
-    <!-- =====================================================
-         RENDER 01 — MAIN
-    ===================================================== -->
+    <!-- RENDER 01 -->
 
     <div class="large-media reveal">
 
@@ -4748,9 +4696,7 @@ footer{
 
 
 
-    <!-- =====================================================
-         RENDERS 02 + 03
-    ===================================================== -->
+    <!-- RENDERS 02 + 03 -->
 
     <div class="split-media reveal">
 
@@ -4784,9 +4730,7 @@ footer{
 
 
 
-    <!-- =====================================================
-         RENDERS 04 + 05
-    ===================================================== -->
+    <!-- RENDERS 04 + 05 -->
 
     <div class="split-media reveal">
 
@@ -4820,9 +4764,7 @@ footer{
 
 
 
-    <!-- =====================================================
-         RENDERS 06 + 07
-    ===================================================== -->
+    <!-- RENDERS 06 + 07 -->
 
     <div class="split-media reveal">
 
