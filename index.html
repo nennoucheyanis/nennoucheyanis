@@ -1077,10 +1077,6 @@ color:var(--red);
 }
 
 
-/*
-   WHITE CV FRAME
-*/
-
 .cv-preview{
 
 width:100%;
@@ -1827,6 +1823,152 @@ color:var(--red);
 
 
 /* =========================================================
+   ROTATED SITE PLAN
+========================================================= */
+
+.site-plan-media{
+
+position:relative;
+
+width:100%;
+
+height:min(78vh,850px);
+
+overflow:hidden;
+
+background:var(--bg-soft);
+
+border:1px solid var(--line);
+
+cursor:zoom-in;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+.site-plan-rotation{
+
+position:relative;
+
+width:100%;
+
+height:100%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+transform:rotate(90deg);
+
+}
+
+.site-plan-rotation img{
+
+width:100%;
+
+height:100%;
+
+object-fit:contain;
+
+max-height:none;
+
+transform:none;
+
+}
+
+.site-plan-rotation:hover img{
+
+transform:scale(1.012);
+
+}
+
+
+/* =========================================================
+   NORTH ARROW
+========================================================= */
+
+.north-arrow{
+
+position:absolute;
+
+top:28px;
+
+right:32px;
+
+z-index:5;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+gap:3px;
+
+font-family:var(--mono);
+
+font-size:.62rem;
+
+letter-spacing:.08em;
+
+color:var(--text);
+
+}
+
+.north-arrow-line{
+
+position:relative;
+
+width:1px;
+
+height:38px;
+
+background:var(--text);
+
+}
+
+.north-arrow-line::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:0;
+
+height:0;
+
+border-left:5px solid transparent;
+
+border-right:5px solid transparent;
+
+border-bottom:9px solid var(--text);
+
+}
+
+.north-arrow-label{
+
+font-size:.7rem;
+
+font-weight:500;
+
+}
+
+
+/* =========================================================
    PROCESS
 ========================================================= */
 
@@ -1889,7 +2031,7 @@ color:var(--muted);
 
 
 /* =========================================================
-   ENVIRONMENT
+   ENVIRONMENTAL STRATEGIES
 ========================================================= */
 
 .environment{
@@ -1904,7 +2046,7 @@ clamp(25px,6vw,100px);
 
 }
 
-.environment-grid{
+.environment-intro{
 
 display:grid;
 
@@ -1913,7 +2055,9 @@ grid-template-columns:
 
 gap:70px;
 
-align-items:center;
+align-items:end;
+
+margin-bottom:80px;
 
 }
 
@@ -1934,7 +2078,7 @@ margin-top:20px;
 
 .environment p{
 
-max-width:500px;
+max-width:560px;
 
 margin-top:30px;
 
@@ -1946,31 +2090,184 @@ line-height:1.8;
 
 }
 
-.environment-list{
+.environment-note{
 
-border-top:1px solid rgba(255,255,255,.15);
+border-left:1px solid var(--red);
+
+padding-left:30px;
 
 }
 
-.environment-item{
+.environment-note-label{
+
+font-family:var(--mono);
+
+font-size:.58rem;
+
+text-transform:uppercase;
+
+letter-spacing:.1em;
+
+color:var(--red);
+
+margin-bottom:15px;
+
+}
+
+.environment-note-text{
+
+margin-top:0!important;
+
+max-width:500px!important;
+
+}
+
+
+/* =========================================================
+   ENVIRONMENTAL DRAWINGS
+========================================================= */
+
+.environment-drawings{
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:22px;
+
+}
+
+.environment-drawing{
+
+position:relative;
+
+background:#181816;
+
+border:1px solid rgba(255,255,255,.14);
+
+overflow:hidden;
+
+}
+
+.environment-drawing-wide{
+
+grid-column:1 / -1;
+
+}
+
+.environment-drawing-image{
+
+position:relative;
+
+background:#E8E7E2;
+
+overflow:hidden;
+
+}
+
+.environment-drawing img{
+
+width:100%;
+
+height:100%;
+
+object-fit:contain;
+
+transition:
+transform .7s cubic-bezier(.2,.7,.2,1);
+
+}
+
+.environment-drawing:hover img{
+
+transform:scale(1.018);
+
+}
+
+.environment-drawing-wide .environment-drawing-image{
+
+height:min(65vh,720px);
+
+}
+
+.environment-drawing:not(.environment-drawing-wide)
+.environment-drawing-image{
+
+height:min(42vh,480px);
+
+}
+
+.environment-drawing-info{
 
 display:flex;
 
 justify-content:space-between;
 
-padding:18px 0;
+align-items:flex-start;
 
-border-bottom:1px solid rgba(255,255,255,.15);
+gap:25px;
 
-font-size:.76rem;
+padding:18px 20px 20px;
+
+border-top:1px solid rgba(255,255,255,.14);
 
 }
 
-.environment-item span:last-child{
+.environment-drawing-title{
+
+font-family:var(--display);
+
+font-size:1rem;
+
+color:var(--white);
+
+}
+
+.environment-drawing-description{
+
+max-width:430px;
+
+margin:0!important;
+
+font-size:.68rem!important;
+
+line-height:1.6!important;
+
+color:#8D8D88!important;
+
+}
+
+.environment-drawing-number{
 
 font-family:var(--mono);
 
+font-size:.58rem;
+
 color:var(--red);
+
+white-space:nowrap;
+
+}
+
+
+/* =========================================================
+   FINAL RENDERS
+========================================================= */
+
+.final-renders-intro{
+
+max-width:650px;
+
+margin-left:160px;
+
+margin-bottom:45px;
+
+font-size:.9rem;
+
+line-height:1.9;
+
+color:var(--muted);
 
 }
 
@@ -2402,6 +2699,21 @@ color:#999;
 
 
 /* =========================================================
+   LIGHTBOX ROTATION
+========================================================= */
+
+.lightbox-image-rotated{
+
+transform:rotate(90deg);
+
+max-width:88vh!important;
+
+max-height:94vw!important;
+
+}
+
+
+/* =========================================================
    REVEAL
 ========================================================= */
 
@@ -2611,9 +2923,42 @@ border-right:0;
 
 }
 
-.environment-grid{
+.environment-intro{
 
 grid-template-columns:1fr;
+
+gap:40px;
+
+}
+
+.environment-drawings{
+
+grid-template-columns:1fr;
+
+}
+
+.environment-drawing-wide{
+
+grid-column:auto;
+
+}
+
+.environment-drawing-wide .environment-drawing-image{
+
+height:500px;
+
+}
+
+.environment-drawing:not(.environment-drawing-wide)
+.environment-drawing-image{
+
+height:400px;
+
+}
+
+.final-renders-intro{
+
+margin-left:100px;
 
 }
 
@@ -2628,6 +2973,23 @@ gap:60px;
 .cv-preview{
 
 height:550px;
+
+}
+
+
+/* MOBILE SITE PLAN */
+
+.site-plan-media{
+
+height:600px;
+
+}
+
+.north-arrow{
+
+top:20px;
+
+right:22px;
 
 }
 
@@ -2783,6 +3145,76 @@ flex-direction:column;
 
 }
 
+
+/* MOBILE SITE PLAN */
+
+.site-plan-media{
+
+height:500px;
+
+}
+
+.site-plan-rotation{
+
+width:100%;
+
+height:100%;
+
+}
+
+.north-arrow{
+
+top:15px;
+
+right:18px;
+
+transform:scale(.85);
+
+transform-origin:top right;
+
+}
+
+.environment{
+
+padding:
+70px 20px;
+
+}
+
+.environment-drawing-wide
+.environment-drawing-image{
+
+height:350px;
+
+}
+
+.environment-drawing:not(.environment-drawing-wide)
+.environment-drawing-image{
+
+height:300px;
+
+}
+
+.environment-drawing-info{
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+.environment-drawing-description{
+
+max-width:none;
+
+}
+
+.final-renders-intro{
+
+margin-left:0;
+
+}
+
 }
 
 
@@ -2923,7 +3355,7 @@ aria-label="GitHub"
 >
 
 <svg viewBox="0 0 24 24">
-<path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8 1.1 1.8 1.1 3 0 4.3-2.6 5.3-5.1 5.6.4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/>
+<path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8.2.6.1 2.9.7.8 1.1 1.8 1.1 3 0 4.3-2.6 5.3-5.1 5.6.4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/>
 </svg>
 
 </a>
@@ -3029,10 +3461,6 @@ of the design process.
 </div>
 
 
-<!-- =====================================================
-     HERO INFO
-===================================================== -->
-
 <div class="hero-info reveal">
 
 <div class="hero-info-item">
@@ -3118,8 +3546,6 @@ core of my approach.
 <div class="about-grid">
 
 
-<!-- PHOTO -->
-
 <div class="about-photo reveal">
 
 <div class="about-photo-frame">
@@ -3147,8 +3573,6 @@ Architect
 </div>
 
 
-
-<!-- MAIN -->
 
 <div class="about-main">
 
@@ -3187,8 +3611,6 @@ to architecture.
 
 
 
-<!-- PROFILE -->
-
 <div class="profile-info reveal">
 
 
@@ -3219,9 +3641,7 @@ Graduation
 </div>
 
 <div class="profile-value">
-
 2026
-
 </div>
 
 </div>
@@ -3234,9 +3654,7 @@ Based
 </div>
 
 <div class="profile-value">
-
 Algiers, Algeria
-
 </div>
 
 </div>
@@ -3262,8 +3680,6 @@ Environmental Design
 
 
 
-<!-- SKILLS -->
-
 <div class="skills-section reveal">
 
 <div class="skills-title">
@@ -3273,55 +3689,22 @@ Tools &amp; Skills
 
 <div class="skills">
 
-<div class="skill">
-Rhinoceros 3D
-</div>
-
-<div class="skill">
-Grasshopper
-</div>
-
-<div class="skill">
-Parametric Design
-</div>
-
-<div class="skill">
-Environmental Simulation
-</div>
-
-<div class="skill">
-Python
-</div>
-
-<div class="skill">
-Ladybug Tools
-</div>
-
-<div class="skill">
-Revit
-</div>
-
-<div class="skill">
-AutoCAD
-</div>
-
-<div class="skill">
-D5 Render
-</div>
-
-<div class="skill">
-LaTeX
-</div>
+<div class="skill">Rhinoceros 3D</div>
+<div class="skill">Grasshopper</div>
+<div class="skill">Parametric Design</div>
+<div class="skill">Environmental Simulation</div>
+<div class="skill">Python</div>
+<div class="skill">Ladybug Tools</div>
+<div class="skill">Revit</div>
+<div class="skill">AutoCAD</div>
+<div class="skill">D5 Render</div>
+<div class="skill">LaTeX</div>
 
 </div>
 
 </div>
 
 
-
-<!-- =====================================================
-     CV
-===================================================== -->
 
 <div class="cv-section reveal">
 
@@ -3410,10 +3793,6 @@ and computational methods.
 
 
 
-<!-- =====================================================
-     FEATURED ECO DOME
-===================================================== -->
-
 <article
 class="featured-project reveal"
 data-project="eco"
@@ -3469,18 +3848,10 @@ Biomimicry / Computational Design
 
 
 
-<!-- =====================================================
-     OTHER PROJECTS
-===================================================== -->
-
 <div class="other-projects">
 
 
-<!-- PROJECT 02 -->
-
-<article
-class="project-card reveal"
->
+<article class="project-card reveal">
 
 <div class="project-card-image">
 
@@ -3518,11 +3889,7 @@ Architectural Design
 
 
 
-<!-- PROJECT 03 -->
-
-<article
-class="project-card reveal"
->
+<article class="project-card reveal">
 
 <div class="project-card-image">
 
@@ -3810,15 +4177,35 @@ Site / Ground floor / Spatial organisation
 </div>
 
 
-<!-- PLAN MASSE -->
+<!-- =====================================================
+     ROTATED PLAN MASSE
+===================================================== -->
 
-<div class="large-media reveal">
+<div
+class="site-plan-media reveal"
+data-site-plan-lightbox
+>
+
+<div class="site-plan-rotation">
 
 <img
 src="assets/plan-masse.png"
 alt="Eco Dôme site plan"
 data-lightbox
+data-rotated="true"
 >
+
+<div class="north-arrow">
+
+<div class="north-arrow-label">
+N
+</div>
+
+<div class="north-arrow-line"></div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -3830,7 +4217,7 @@ Plan masse
 </span>
 
 <span>
-Site organisation
+Site organisation / North
 </span>
 
 </div>
@@ -3839,7 +4226,9 @@ Site organisation
 <br><br><br>
 
 
-<!-- RDC -->
+<!-- =====================================================
+     RDC
+===================================================== -->
 
 <div class="large-media reveal">
 
@@ -4085,7 +4474,9 @@ strategies
 <div class="environment">
 
 
-<div class="environment-grid">
+<!-- ENVIRONMENT INTRO -->
+
+<div class="environment-intro reveal">
 
 
 <div>
@@ -4110,88 +4501,261 @@ climate.
 
 <p>
 
-Environmental performance is treated
-as part of the architectural design process.
+Environmental performance is not presented
+as a list of isolated strategies, but as part
+of the architectural design process.
 
-The envelope, geometry and spatial
-organisation are developed in relation
-to the climate of Algiers.
+The following studies document the way
+climate, envelope, vegetation, solar exposure
+and water systems informed the project.
 
 </p>
 
 </div>
 
 
+<div class="environment-note">
 
-<div class="environment-list">
-
-
-<div class="environment-item">
-
-<span>
-Passive environmental design
-</span>
-
-<span>
-01
-</span>
-
+<div class="environment-note-label">
+Design process
 </div>
 
+<p class="environment-note-text">
 
-<div class="environment-item">
+A series of analytical drawings and
+environmental studies developed to explain
+the relationship between the architectural
+system and its surrounding climate.
 
-<span>
-ETFE envelope
-</span>
-
-<span>
-02
-</span>
-
-</div>
-
-
-<div class="environment-item">
-
-<span>
-Solar control
-</span>
-
-<span>
-03
-</span>
-
-</div>
-
-
-<div class="environment-item">
-
-<span>
-Natural ecosystems
-</span>
-
-<span>
-04
-</span>
-
-</div>
-
-
-<div class="environment-item">
-
-<span>
-Water management
-</span>
-
-<span>
-05
-</span>
+</p>
 
 </div>
 
 
 </div>
+
+
+
+<!-- =====================================================
+     ENVIRONMENTAL DRAWINGS
+===================================================== -->
+
+<div class="environment-drawings">
+
+
+<!-- DRAWING 01 -->
+
+<div class="environment-drawing environment-drawing-wide reveal">
+
+<div class="environment-drawing-image">
+
+<img
+src="assets/environmental-01.png"
+alt="Environmental strategy diagram — climate and solar response"
+data-lightbox
+>
+
+</div>
+
+
+<div class="environment-drawing-info">
+
+<div>
+
+<div class="environment-drawing-title">
+01 / Climate &amp; solar response
+</div>
+
+<p class="environment-drawing-description">
+
+Diagram explaining the relationship between
+the building geometry, solar exposure and
+environmental response.
+
+</p>
+
+</div>
+
+<div class="environment-drawing-number">
+ENV / 01
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- DRAWING 02 -->
+
+<div class="environment-drawing reveal">
+
+<div class="environment-drawing-image">
+
+<img
+src="assets/environmental-02.png"
+alt="Environmental strategy diagram — ETFE envelope"
+data-lightbox
+>
+
+</div>
+
+
+<div class="environment-drawing-info">
+
+<div>
+
+<div class="environment-drawing-title">
+02 / Envelope
+</div>
+
+<p class="environment-drawing-description">
+
+Study of the envelope as an environmental
+interface between the interior ecosystems
+and the exterior climate.
+
+</p>
+
+</div>
+
+<div class="environment-drawing-number">
+ENV / 02
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- DRAWING 03 -->
+
+<div class="environment-drawing reveal">
+
+<div class="environment-drawing-image">
+
+<img
+src="assets/environmental-03.png"
+alt="Environmental strategy diagram — natural ecosystems"
+data-lightbox
+>
+
+</div>
+
+
+<div class="environment-drawing-info">
+
+<div>
+
+<div class="environment-drawing-title">
+03 / Living systems
+</div>
+
+<p class="environment-drawing-description">
+
+Study illustrating the relationship between
+vegetation, ecosystems and the architectural
+organisation of the dome.
+
+</p>
+
+</div>
+
+<div class="environment-drawing-number">
+ENV / 03
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- DRAWING 04 -->
+
+<div class="environment-drawing reveal">
+
+<div class="environment-drawing-image">
+
+<img
+src="assets/environmental-04.png"
+alt="Environmental strategy diagram — passive environmental design"
+data-lightbox
+>
+
+</div>
+
+
+<div class="environment-drawing-info">
+
+<div>
+
+<div class="environment-drawing-title">
+04 / Passive design
+</div>
+
+<p class="environment-drawing-description">
+
+Environmental principles developed through
+the geometry, orientation and spatial
+configuration of the project.
+
+</p>
+
+</div>
+
+<div class="environment-drawing-number">
+ENV / 04
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- DRAWING 05 -->
+
+<div class="environment-drawing environment-drawing-wide reveal">
+
+<div class="environment-drawing-image">
+
+<img
+src="assets/environmental-05.png"
+alt="Environmental strategy diagram — water management"
+data-lightbox
+>
+
+</div>
+
+
+<div class="environment-drawing-info">
+
+<div>
+
+<div class="environment-drawing-title">
+05 / Water system
+</div>
+
+<p class="environment-drawing-description">
+
+Study of water collection, management and
+its relationship with the landscape and
+ecological systems of the project.
+
+</p>
+
+</div>
+
+<div class="environment-drawing-number">
+ENV / 05
+</div>
+
+</div>
+
+</div>
+
 
 </div>
 
@@ -4220,6 +4784,19 @@ Final renders
 </h3>
 
 </div>
+
+
+<p class="final-renders-intro reveal">
+
+The final images bring together the formal,
+environmental and spatial investigations
+developed throughout the project.
+
+They present the Eco Dôme as the final
+architectural expression of the relationship
+between geometry, climate and living systems.
+
+</p>
 
 
 <div class="large-media reveal">
@@ -4804,6 +5381,26 @@ lightboxImage.alt=image.alt;
 
 lightboxCaption.textContent=image.alt;
 
+
+/* =====================================================
+   KEEP PLAN MASSE ROTATED IN LIGHTBOX
+===================================================== */
+
+if(image.dataset.rotated==="true"){
+
+lightboxImage.classList.add(
+"lightbox-image-rotated"
+);
+
+}else{
+
+lightboxImage.classList.remove(
+"lightbox-image-rotated"
+);
+
+}
+
+
 lightbox.classList.add("open");
 
 lightbox.setAttribute(
@@ -4824,6 +5421,10 @@ lightbox.setAttribute(
 );
 
 lightboxImage.src="";
+
+lightboxImage.classList.remove(
+"lightbox-image-rotated"
+);
 
 }
 
