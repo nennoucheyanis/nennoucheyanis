@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta
-name="description"
-content="Yanis Nennouche — Architect / Computational Design / Environmental Architecture"
+    name="description"
+    content="Yanis Nennouche — Architect / Computational Design / Environmental Architecture"
 >
 
 <title>YANIS NENNOUCHE / ARCHITECT</title>
@@ -17,8 +17,9 @@ content="Yanis Nennouche — Architect / Computational Design / Environmental Ar
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link
-href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
 
 
 <style>
@@ -29,29 +30,28 @@ rel="stylesheet">
 
 :root{
 
---bg:#F3F2EE;
---bg-soft:#E8E7E2;
+    --bg:#F3F2EE;
+    --bg-soft:#E8E7E2;
 
---dark:#10100F;
---dark-soft:#181816;
+    --dark:#10100F;
+    --dark-soft:#181816;
 
---text:#111111;
---muted:#74746E;
+    --text:#111111;
+    --muted:#74746E;
 
---line:rgba(17,17,17,.14);
---line-dark:rgba(255,255,255,.14);
+    --line:rgba(17,17,17,.14);
+    --line-dark:rgba(255,255,255,.14);
 
---red:#C92828;
---red-dark:#961E1E;
+    --red:#C92828;
+    --red-dark:#961E1E;
 
---white:#F8F7F3;
+    --white:#F8F7F3;
 
---sans:"Inter",sans-serif;
---display:"Space Grotesk",sans-serif;
---mono:"DM Mono",monospace;
+    --sans:"Inter",sans-serif;
+    --display:"Space Grotesk",sans-serif;
+    --mono:"DM Mono",monospace;
 
---max-width:1500px;
-
+    --max-width:1500px;
 }
 
 
@@ -60,35 +60,35 @@ rel="stylesheet">
 ========================================================= */
 
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 html{
-scroll-behavior:smooth;
-background:var(--bg);
+    scroll-behavior:smooth;
+    background:var(--bg);
 }
 
 body{
-background:var(--bg);
-color:var(--text);
-font-family:var(--sans);
-overflow-x:hidden;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    overflow-x:hidden;
 }
 
 img{
-max-width:100%;
-display:block;
+    max-width:100%;
+    display:block;
 }
 
 a{
-color:inherit;
-text-decoration:none;
+    color:inherit;
+    text-decoration:none;
 }
 
 button{
-font-family:inherit;
+    font-family:inherit;
 }
 
 
@@ -98,22 +98,21 @@ font-family:inherit;
 
 body::before{
 
-content:"";
+    content:"";
 
-position:fixed;
+    position:fixed;
 
-inset:0;
+    inset:0;
 
-pointer-events:none;
+    pointer-events:none;
 
-z-index:9999;
+    z-index:9999;
 
-opacity:.025;
+    opacity:.025;
 
-background-image:url(
-"data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"
-);
-
+    background-image:url(
+        "data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"
+    );
 }
 
 
@@ -122,19 +121,19 @@ background-image:url(
 ========================================================= */
 
 ::-webkit-scrollbar{
-width:7px;
+    width:7px;
 }
 
 ::-webkit-scrollbar-track{
-background:var(--bg);
+    background:var(--bg);
 }
 
 ::-webkit-scrollbar-thumb{
-background:#B8B7B2;
+    background:#B8B7B2;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-background:var(--red);
+    background:var(--red);
 }
 
 
@@ -145,51 +144,48 @@ background:var(--red);
 .cursor,
 .cursor-ring{
 
-position:fixed;
+    position:fixed;
 
-pointer-events:none;
+    pointer-events:none;
 
-z-index:10000;
+    z-index:10000;
 
-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%);
 
-opacity:0;
-
+    opacity:0;
 }
 
 .cursor{
 
-width:6px;
-height:6px;
+    width:6px;
+    height:6px;
 
-background:var(--red);
+    background:var(--red);
 
-border-radius:50%;
-
+    border-radius:50%;
 }
 
 .cursor-ring{
 
-width:30px;
-height:30px;
+    width:30px;
+    height:30px;
 
-border:1px solid var(--red);
+    border:1px solid var(--red);
 
-border-radius:50%;
+    border-radius:50%;
 
-transition:
-width .25s ease,
-height .25s ease,
-background .25s ease;
-
+    transition:
+        width .25s ease,
+        height .25s ease,
+        background .25s ease;
 }
 
 @media(pointer:fine){
 
-body.has-cursor .cursor,
-body.has-cursor .cursor-ring{
-opacity:1;
-}
+    body.has-cursor .cursor,
+    body.has-cursor .cursor-ring{
+        opacity:1;
+    }
 
 }
 
@@ -200,136 +196,126 @@ opacity:1;
 
 nav{
 
-position:fixed;
+    position:fixed;
 
-top:0;
-left:0;
+    top:0;
+    left:0;
 
-width:100%;
+    width:100%;
 
-z-index:900;
+    z-index:900;
 
-padding:
-25px
-clamp(22px,5vw,70px);
+    padding:
+        25px
+        clamp(22px,5vw,70px);
 
-display:flex;
+    display:flex;
 
-justify-content:space-between;
-align-items:center;
+    justify-content:space-between;
+    align-items:center;
 
-background:rgba(243,242,238,.86);
+    background:rgba(243,242,238,.86);
 
-backdrop-filter:blur(18px);
+    backdrop-filter:blur(18px);
 
-border-bottom:1px solid transparent;
+    border-bottom:1px solid transparent;
 
-transition:
-padding .35s ease,
-border-color .35s ease;
-
+    transition:
+        padding .35s ease,
+        border-color .35s ease;
 }
 
 nav.scrolled{
 
-padding-top:15px;
-padding-bottom:15px;
+    padding-top:15px;
+    padding-bottom:15px;
 
-border-color:var(--line);
-
+    border-color:var(--line);
 }
 
 
 .logo{
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-weight:600;
+    font-weight:600;
 
-font-size:.84rem;
+    font-size:.84rem;
 
-letter-spacing:.07em;
+    letter-spacing:.07em;
 
-white-space:nowrap;
-
+    white-space:nowrap;
 }
 
 .logo span{
 
-color:var(--red);
+    color:var(--red);
 
-font-weight:500;
-
+    font-weight:500;
 }
 
 
 .nav-right{
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-gap:35px;
-
+    gap:35px;
 }
 
 
 .nav-links{
 
-display:flex;
+    display:flex;
 
-gap:clamp(20px,3vw,42px);
+    gap:clamp(20px,3vw,42px);
 
-list-style:none;
-
+    list-style:none;
 }
 
 .nav-links a{
 
-position:relative;
+    position:relative;
 
-font-size:.72rem;
+    font-size:.72rem;
 
-letter-spacing:.08em;
+    letter-spacing:.08em;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-color:var(--muted);
+    color:var(--muted);
 
-transition:color .25s ease;
-
+    transition:color .25s ease;
 }
 
 .nav-links a::after{
 
-content:"";
+    content:"";
 
-position:absolute;
+    position:absolute;
 
-left:0;
-bottom:-7px;
+    left:0;
+    bottom:-7px;
 
-width:0;
-height:1px;
+    width:0;
+    height:1px;
 
-background:var(--red);
+    background:var(--red);
 
-transition:width .25s ease;
-
+    transition:width .25s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.active{
 
-color:var(--text);
-
+    color:var(--text);
 }
 
 .nav-links a:hover::after,
 .nav-links a.active::after{
 
-width:100%;
-
+    width:100%;
 }
 
 
@@ -339,52 +325,48 @@ width:100%;
 
 .socials{
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-gap:8px;
-
+    gap:8px;
 }
 
 .social-link{
 
-width:30px;
-height:30px;
+    width:30px;
+    height:30px;
 
-display:flex;
+    display:flex;
 
-align-items:center;
-justify-content:center;
+    align-items:center;
+    justify-content:center;
 
-border:1px solid var(--line);
+    border:1px solid var(--line);
 
-color:var(--muted);
+    color:var(--muted);
 
-transition:
-color .25s ease,
-border-color .25s ease,
-transform .25s ease;
-
+    transition:
+        color .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
 }
 
 .social-link svg{
 
-width:14px;
-height:14px;
+    width:14px;
+    height:14px;
 
-fill:currentColor;
-
+    fill:currentColor;
 }
 
 .social-link:hover{
 
-color:var(--red);
+    color:var(--red);
 
-border-color:var(--red);
+    border-color:var(--red);
 
-transform:translateY(-3px);
-
+    transform:translateY(-3px);
 }
 
 
@@ -394,16 +376,15 @@ transform:translateY(-3px);
 
 .menu-btn{
 
-display:none;
+    display:none;
 
-border:0;
+    border:0;
 
-background:none;
+    background:none;
 
-font-size:1.5rem;
+    font-size:1.5rem;
 
-cursor:pointer;
-
+    cursor:pointer;
 }
 
 
@@ -413,24 +394,22 @@ cursor:pointer;
 
 section{
 
-position:relative;
+    position:relative;
 
-width:100%;
+    width:100%;
 
-padding:
-150px
-clamp(22px,7vw,110px);
-
+    padding:
+        150px
+        clamp(22px,7vw,110px);
 }
 
 .container{
 
-width:100%;
+    width:100%;
 
-max-width:var(--max-width);
+    max-width:var(--max-width);
 
-margin:auto;
-
+    margin:auto;
 }
 
 
@@ -440,63 +419,59 @@ margin:auto;
 
 .eyebrow{
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-gap:10px;
+    gap:10px;
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.62rem;
+    font-size:.62rem;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-letter-spacing:.13em;
+    letter-spacing:.13em;
 
-color:var(--muted);
-
+    color:var(--muted);
 }
 
 .eyebrow::before{
 
-content:"";
+    content:"";
 
-width:25px;
-height:1px;
+    width:25px;
+    height:1px;
 
-background:var(--red);
-
+    background:var(--red);
 }
 
 
 .section-title{
 
-margin-top:20px;
+    margin-top:20px;
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-weight:500;
+    font-weight:500;
 
-font-size:clamp(3.2rem,7vw,7rem);
+    font-size:clamp(3.2rem,7vw,7rem);
 
-letter-spacing:-.075em;
+    letter-spacing:-.075em;
 
-line-height:.88;
-
+    line-height:.88;
 }
 
 .red{
-color:var(--red);
+    color:var(--red);
 }
 
 .outline{
 
-color:transparent;
+    color:transparent;
 
--webkit-text-stroke:
-1px rgba(17,17,17,.45);
-
+    -webkit-text-stroke:
+        1px rgba(17,17,17,.45);
 }
 
 
@@ -506,119 +481,110 @@ color:transparent;
 
 #hero{
 
-min-height:100vh;
+    min-height:100vh;
 
-padding-top:130px;
+    padding-top:130px;
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-overflow:hidden;
-
+    overflow:hidden;
 }
 
 .hero-container{
 
-width:100%;
+    width:100%;
 
-max-width:var(--max-width);
+    max-width:var(--max-width);
 
-margin:auto;
-
+    margin:auto;
 }
 
 .hero-top{
 
-display:flex;
+    display:flex;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-align-items:flex-start;
+    align-items:flex-start;
 
-margin-bottom:60px;
-
+    margin-bottom:60px;
 }
 
 .hero-index,
 .hero-location{
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.63rem;
+    font-size:.63rem;
 
-color:var(--muted);
-
+    color:var(--muted);
 }
 
 .hero-location{
-text-align:right;
+    text-align:right;
 }
 
 
 .hero-title{
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-weight:600;
+    font-weight:600;
 
-font-size:
-clamp(5rem,14vw,14rem);
+    font-size:
+        clamp(5rem,14vw,14rem);
 
-line-height:.76;
+    line-height:.76;
 
-letter-spacing:-.1em;
+    letter-spacing:-.1em;
 
-position:relative;
+    position:relative;
 
-z-index:2;
-
+    z-index:2;
 }
 
 .hero-title .last{
 
-margin-left:13vw;
+    margin-left:13vw;
 
-color:transparent;
+    color:transparent;
 
--webkit-text-stroke:1px var(--text);
-
+    -webkit-text-stroke:1px var(--text);
 }
 
 
 .hero-subtitle{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
-gap:50px;
+    gap:50px;
 
-margin-top:80px;
+    margin-top:80px;
 
-max-width:950px;
-
+    max-width:950px;
 }
 
 .hero-subtitle p{
 
-max-width:500px;
+    max-width:500px;
 
-color:var(--muted);
+    color:var(--muted);
 
-font-size:.9rem;
+    font-size:.9rem;
 
-line-height:1.85;
-
+    line-height:1.85;
 }
 
 .hero-subtitle strong{
 
-color:var(--text);
+    color:var(--text);
 
-font-weight:500;
-
+    font-weight:500;
 }
 
 
@@ -628,105 +594,96 @@ font-weight:500;
 
 .hero-info{
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-gap:45px;
+    gap:45px;
 
-margin-top:55px;
+    margin-top:55px;
 
-padding-top:20px;
+    padding-top:20px;
 
-border-top:1px solid var(--line);
+    border-top:1px solid var(--line);
 
-max-width:700px;
-
+    max-width:700px;
 }
 
 .hero-info-item{
 
-display:flex;
+    display:flex;
 
-flex-direction:column;
+    flex-direction:column;
 
-gap:7px;
-
+    gap:7px;
 }
 
 .hero-info-label{
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.55rem;
+    font-size:.55rem;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-letter-spacing:.1em;
+    letter-spacing:.1em;
 
-color:var(--red);
-
+    color:var(--red);
 }
 
 .hero-info-value{
 
-font-size:.73rem;
+    font-size:.73rem;
 
-line-height:1.4;
-
+    line-height:1.4;
 }
-
 
 .hero-red-line{
 
-position:absolute;
+    position:absolute;
 
-left:0;
+    left:0;
 
-bottom:60px;
+    bottom:60px;
 
-width:120px;
+    width:120px;
 
-height:1px;
+    height:1px;
 
-background:var(--red);
-
+    background:var(--red);
 }
-
 
 .scroll-indicator{
 
-position:absolute;
+    position:absolute;
 
-right:0;
+    right:0;
 
-bottom:35px;
+    bottom:35px;
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-gap:12px;
+    gap:12px;
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.6rem;
+    font-size:.6rem;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-letter-spacing:.1em;
+    letter-spacing:.1em;
 
-color:var(--muted);
-
+    color:var(--muted);
 }
 
 .scroll-indicator span{
 
-width:45px;
-height:1px;
+    width:45px;
+    height:1px;
 
-background:var(--red);
-
+    background:var(--red);
 }
 
 
@@ -736,149 +693,137 @@ background:var(--red);
 
 #about{
 
-background:var(--bg-soft);
-
+    background:var(--bg-soft);
 }
 
 .about-top{
 
-display:flex;
+    display:flex;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-align-items:flex-end;
+    align-items:flex-end;
 
-margin-bottom:90px;
-
+    margin-bottom:90px;
 }
 
 .about-top-copy{
 
-max-width:430px;
+    max-width:430px;
 
-font-size:.8rem;
+    font-size:.8rem;
 
-line-height:1.8;
+    line-height:1.8;
 
-color:var(--muted);
-
+    color:var(--muted);
 }
-
 
 .about-grid{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-.75fr 1.25fr;
+    grid-template-columns:
+        .75fr 1.25fr;
 
-gap:100px;
+    gap:100px;
 
-align-items:start;
-
+    align-items:start;
 }
 
 
 /* =========================================================
-   PHOTO
+   ABOUT PHOTO
 ========================================================= */
 
 .about-photo{
 
-position:sticky;
+    position:sticky;
 
-top:120px;
-
+    top:120px;
 }
 
 .about-photo-frame{
 
-position:relative;
+    position:relative;
 
-overflow:hidden;
+    overflow:hidden;
 
-background:#D8D7D2;
-
+    background:#D8D7D2;
 }
 
 .about-photo img{
 
-width:100%;
+    width:100%;
 
-aspect-ratio:4/5;
+    aspect-ratio:4/5;
 
-object-fit:cover;
+    object-fit:cover;
 
-filter:grayscale(100%);
+    filter:grayscale(100%);
 
-transition:
-filter .6s ease,
-transform .8s ease;
-
+    transition:
+        filter .6s ease,
+        transform .8s ease;
 }
 
 .about-photo:hover img{
 
-filter:grayscale(0%);
+    filter:grayscale(0%);
 
-transform:scale(1.02);
-
+    transform:scale(1.02);
 }
 
 .about-photo-frame::before{
 
-content:"";
+    content:"";
 
-position:absolute;
+    position:absolute;
 
-top:18px;
-left:18px;
+    top:18px;
+    left:18px;
 
-width:35px;
-height:35px;
+    width:35px;
+    height:35px;
 
-border-top:1px solid var(--red);
-border-left:1px solid var(--red);
+    border-top:1px solid var(--red);
+    border-left:1px solid var(--red);
 
-z-index:2;
-
+    z-index:2;
 }
 
 .about-photo-frame::after{
 
-content:"";
+    content:"";
 
-position:absolute;
+    position:absolute;
 
-right:18px;
-bottom:18px;
+    right:18px;
+    bottom:18px;
 
-width:35px;
-height:35px;
+    width:35px;
+    height:35px;
 
-border-right:1px solid var(--red);
-border-bottom:1px solid var(--red);
+    border-right:1px solid var(--red);
+    border-bottom:1px solid var(--red);
 
-z-index:2;
-
+    z-index:2;
 }
 
 .about-photo-caption{
 
-display:flex;
+    display:flex;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-padding-top:12px;
+    padding-top:12px;
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.58rem;
+    font-size:.58rem;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-color:var(--muted);
-
+    color:var(--muted);
 }
 
 
@@ -888,41 +833,37 @@ color:var(--muted);
 
 .about-main{
 
-max-width:750px;
-
+    max-width:750px;
 }
 
 .about-statement{
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-size:
-clamp(2.5rem,5vw,5.5rem);
+    font-size:
+        clamp(2.5rem,5vw,5.5rem);
 
-line-height:.94;
+    line-height:.94;
 
-letter-spacing:-.07em;
-
+    letter-spacing:-.07em;
 }
 
 .about-statement span{
 
-color:var(--red);
-
+    color:var(--red);
 }
 
 .about-copy{
 
-margin-top:45px;
+    margin-top:45px;
 
-max-width:600px;
+    max-width:600px;
 
-color:var(--muted);
+    color:var(--muted);
 
-font-size:.9rem;
+    font-size:.9rem;
 
-line-height:1.9;
-
+    line-height:1.9;
 }
 
 
@@ -932,51 +873,47 @@ line-height:1.9;
 
 .profile-info{
 
-margin-top:65px;
+    margin-top:65px;
 
-border-top:1px solid var(--line);
+    border-top:1px solid var(--line);
 
-border-bottom:1px solid var(--line);
-
+    border-bottom:1px solid var(--line);
 }
 
 .profile-row{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-150px 1fr;
+    grid-template-columns:
+        150px 1fr;
 
-padding:20px 0;
+    padding:20px 0;
 
-border-bottom:1px solid var(--line);
-
+    border-bottom:1px solid var(--line);
 }
 
 .profile-row:last-child{
-border-bottom:0;
+    border-bottom:0;
 }
 
 .profile-label{
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.58rem;
+    font-size:.58rem;
 
-letter-spacing:.1em;
+    letter-spacing:.1em;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-color:var(--red);
-
+    color:var(--red);
 }
 
 .profile-value{
 
-font-size:.78rem;
+    font-size:.78rem;
 
-line-height:1.7;
-
+    line-height:1.7;
 }
 
 
@@ -986,53 +923,48 @@ line-height:1.7;
 
 .skills-section{
 
-margin-top:70px;
-
+    margin-top:70px;
 }
 
 .skills-title{
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-size:1.2rem;
+    font-size:1.2rem;
 
-margin-bottom:20px;
-
+    margin-bottom:20px;
 }
 
 .skills{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-repeat(2,1fr);
+    grid-template-columns:
+        repeat(2,1fr);
 
-border-top:1px solid var(--line);
-
+    border-top:1px solid var(--line);
 }
 
 .skill{
 
-padding:15px 0;
+    padding:15px 0;
 
-border-bottom:1px solid var(--line);
+    border-bottom:1px solid var(--line);
 
-font-size:.76rem;
+    font-size:.76rem;
 
-color:var(--muted);
+    color:var(--muted);
 
-transition:
-color .25s ease,
-padding-left .25s ease;
-
+    transition:
+        color .25s ease,
+        padding-left .25s ease;
 }
 
 .skill:hover{
 
-color:var(--red);
+    color:var(--red);
 
-padding-left:8px;
-
+    padding-left:8px;
 }
 
 
@@ -1042,73 +974,66 @@ padding-left:8px;
 
 .cv-section{
 
-margin-top:75px;
+    margin-top:75px;
 
-padding-top:30px;
+    padding-top:30px;
 
-border-top:1px solid var(--line);
-
+    border-top:1px solid var(--line);
 }
 
 .cv-header{
 
-display:flex;
+    display:flex;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-align-items:center;
+    align-items:center;
 
-margin-bottom:20px;
-
+    margin-bottom:20px;
 }
 
 .cv-label{
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.62rem;
+    font-size:.62rem;
 
-letter-spacing:.1em;
+    letter-spacing:.1em;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-color:var(--red);
-
+    color:var(--red);
 }
-
 
 .cv-preview{
 
-width:100%;
+    width:100%;
 
-height:700px;
+    height:700px;
 
-background:#FFFFFF;
+    background:#FFFFFF;
 
-border:1px solid var(--line);
+    border:1px solid var(--line);
 
-overflow:hidden;
+    overflow:hidden;
 
-display:flex;
+    display:flex;
 
-justify-content:center;
+    justify-content:center;
 
-align-items:flex-start;
+    align-items:flex-start;
 
-padding:0;
-
+    padding:0;
 }
 
 .cv-preview iframe{
 
-width:100%;
+    width:100%;
+    height:100%;
 
-height:100%;
+    border:0;
 
-border:0;
-
-background:#FFFFFF;
-
+    background:#FFFFFF;
 }
 
 
@@ -1118,68 +1043,63 @@ background:#FFFFFF;
 
 .button{
 
-display:inline-flex;
+    display:inline-flex;
 
-align-items:center;
+    align-items:center;
 
-justify-content:center;
+    justify-content:center;
 
-min-height:45px;
+    min-height:45px;
 
-padding:0 20px;
+    padding:0 20px;
 
-border:1px solid var(--line);
+    border:1px solid var(--line);
 
-font-size:.68rem;
+    font-size:.68rem;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-letter-spacing:.08em;
+    letter-spacing:.08em;
 
-transition:
-background .25s ease,
-color .25s ease,
-border-color .25s ease,
-transform .25s ease;
-
+    transition:
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
 }
 
 .button:hover{
 
-transform:translateY(-3px);
+    transform:translateY(-3px);
 
-border-color:var(--red);
+    border-color:var(--red);
 
-color:var(--red);
-
+    color:var(--red);
 }
 
 .button.red{
 
-background:var(--red);
+    background:var(--red);
 
-border-color:var(--red);
+    border-color:var(--red);
 
-color:white;
-
+    color:white;
 }
 
 .button.red:hover{
 
-background:var(--red-dark);
+    background:var(--red-dark);
 
-color:white;
-
+    color:white;
 }
 
 .cv-actions{
 
-display:flex;
+    display:flex;
 
-justify-content:flex-end;
+    justify-content:flex-end;
 
-margin-top:15px;
-
+    margin-top:15px;
 }
 
 
@@ -1189,44 +1109,42 @@ margin-top:15px;
 
 #work{
 
-background:var(--dark);
+    background:var(--dark);
 
-color:var(--white);
-
+    color:var(--white);
 }
 
 #work .eyebrow{
-color:#999994;
+    color:#999994;
 }
 
 #work .section-title{
-color:var(--white);
+    color:var(--white);
 }
 
 .work-heading{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
-gap:80px;
+    gap:80px;
 
-align-items:end;
+    align-items:end;
 
-margin-bottom:100px;
-
+    margin-bottom:100px;
 }
 
 .work-intro{
 
-max-width:500px;
+    max-width:500px;
 
-color:#8E8E89;
+    color:#8E8E89;
 
-font-size:.88rem;
+    font-size:.88rem;
 
-line-height:1.85;
-
+    line-height:1.85;
 }
 
 
@@ -1236,178 +1154,169 @@ line-height:1.85;
 
 .featured-project{
 
-position:relative;
+    position:relative;
 
-margin-bottom:140px;
+    margin-bottom:140px;
 
+    cursor:pointer;
 }
 
 .featured-image{
 
-position:relative;
+    position:relative;
 
-width:100%;
+    width:100%;
 
-aspect-ratio:16/8;
+    aspect-ratio:16/8;
 
-overflow:hidden;
+    overflow:hidden;
 
-background:#1C1C1A;
+    background:#1C1C1A;
 
-cursor:pointer;
-
+    cursor:pointer;
 }
 
 .featured-image img{
 
-width:100%;
-height:100%;
+    width:100%;
+    height:100%;
 
-object-fit:cover;
+    object-fit:cover;
 
-filter:grayscale(40%);
+    filter:grayscale(40%);
 
-transition:
-transform 1s cubic-bezier(.2,.7,.2,1),
-filter .7s ease;
-
+    transition:
+        transform 1s cubic-bezier(.2,.7,.2,1),
+        filter .7s ease;
 }
 
 .featured-project:hover .featured-image img{
 
-transform:scale(1.035);
+    transform:scale(1.035);
 
-filter:grayscale(0%);
-
+    filter:grayscale(0%);
 }
 
 .featured-image::after{
 
-content:"";
+    content:"";
 
-position:absolute;
+    position:absolute;
 
-inset:18px;
+    inset:18px;
 
-border:1px solid rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.18);
 
-transition:border-color .4s ease;
-
+    transition:border-color .4s ease;
 }
 
 .featured-project:hover .featured-image::after{
 
-border-color:var(--red);
-
+    border-color:var(--red);
 }
 
 .featured-project-label{
 
-position:absolute;
+    position:absolute;
 
-top:30px;
-left:30px;
+    top:30px;
+    left:30px;
 
-z-index:2;
+    z-index:2;
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.62rem;
+    font-size:.62rem;
 
-letter-spacing:.1em;
+    letter-spacing:.1em;
 
-color:white;
+    color:white;
 
-background:rgba(10,10,10,.55);
+    background:rgba(10,10,10,.55);
 
-padding:9px 12px;
-
+    padding:9px 12px;
 }
 
 .featured-project-arrow{
 
-position:absolute;
+    position:absolute;
 
-right:35px;
-bottom:35px;
+    right:35px;
+    bottom:35px;
 
-width:50px;
-height:50px;
+    width:50px;
+    height:50px;
 
-display:flex;
+    display:flex;
 
-align-items:center;
-justify-content:center;
+    align-items:center;
+    justify-content:center;
 
-border:1px solid rgba(255,255,255,.4);
+    border:1px solid rgba(255,255,255,.4);
 
-color:white;
+    color:white;
 
-font-size:1.1rem;
+    font-size:1.1rem;
 
-opacity:0;
+    opacity:0;
 
-transform:translateY(10px);
+    transform:translateY(10px);
 
-transition:
-opacity .3s ease,
-transform .3s ease,
-background .3s ease;
-
+    transition:
+        opacity .3s ease,
+        transform .3s ease,
+        background .3s ease;
 }
 
 .featured-project:hover .featured-project-arrow{
 
-opacity:1;
+    opacity:1;
 
-transform:translateY(0);
-
+    transform:translateY(0);
 }
 
 .featured-info{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:70px 1fr auto;
+    grid-template-columns:
+        70px 1fr auto;
 
-gap:20px;
+    gap:20px;
 
-padding-top:22px;
+    padding-top:22px;
 
-border-top:1px solid rgba(255,255,255,.15);
+    border-top:1px solid rgba(255,255,255,.15);
 
-margin-top:15px;
-
+    margin-top:15px;
 }
 
 .project-number{
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.65rem;
+    font-size:.65rem;
 
-color:var(--red);
-
+    color:var(--red);
 }
 
 .featured-name{
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-size:clamp(1.5rem,3vw,3rem);
+    font-size:
+        clamp(1.5rem,3vw,3rem);
 
-letter-spacing:-.05em;
-
+    letter-spacing:-.05em;
 }
 
 .featured-type{
 
-font-size:.65rem;
+    font-size:.65rem;
 
-color:#81817C;
+    color:#81817C;
 
-text-align:right;
-
+    text-align:right;
 }
 
 
@@ -1417,110 +1326,101 @@ text-align:right;
 
 .other-projects{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
-gap:25px;
-
+    gap:25px;
 }
 
 .project-card{
 
-position:relative;
+    position:relative;
 
-cursor:pointer;
-
+    cursor:pointer;
 }
 
 .project-card-image{
 
-position:relative;
+    position:relative;
 
-aspect-ratio:4/3;
+    aspect-ratio:4/3;
 
-overflow:hidden;
+    overflow:hidden;
 
-background:#1C1C1A;
-
+    background:#1C1C1A;
 }
 
 .project-card-image img{
 
-width:100%;
-height:100%;
+    width:100%;
+    height:100%;
 
-object-fit:cover;
+    object-fit:cover;
 
-filter:grayscale(70%);
+    filter:grayscale(70%);
 
-transition:
-transform .8s ease,
-filter .5s ease;
-
+    transition:
+        transform .8s ease,
+        filter .5s ease;
 }
 
 .project-card:hover img{
 
-transform:scale(1.04);
+    transform:scale(1.04);
 
-filter:grayscale(0%);
-
+    filter:grayscale(0%);
 }
 
 .project-card-image::after{
 
-content:"";
+    content:"";
 
-position:absolute;
+    position:absolute;
 
-inset:13px;
+    inset:13px;
 
-border:1px solid rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.15);
 
-transition:border-color .3s ease;
-
+    transition:border-color .3s ease;
 }
 
 .project-card:hover .project-card-image::after{
 
-border-color:var(--red);
-
+    border-color:var(--red);
 }
 
 .project-card-info{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:45px 1fr auto;
+    grid-template-columns:
+        45px 1fr auto;
 
-gap:15px;
+    gap:15px;
 
-padding-top:18px;
+    padding-top:18px;
 
-border-top:1px solid rgba(255,255,255,.15);
+    border-top:1px solid rgba(255,255,255,.15);
 
-margin-top:14px;
-
+    margin-top:14px;
 }
 
 .project-card-name{
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-size:1.15rem;
-
+    font-size:1.15rem;
 }
 
 .project-card-type{
 
-font-size:.62rem;
+    font-size:.62rem;
 
-color:#777772;
+    color:#777772;
 
-text-align:right;
-
+    text-align:right;
 }
 
 
@@ -1530,175 +1430,163 @@ text-align:right;
 
 .project-detail{
 
-background:var(--bg);
+    background:var(--bg);
 
-color:var(--text);
-
+    color:var(--text);
 }
 
 .project-header{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:100px 1fr 1fr;
+    grid-template-columns:
+        100px 1fr 1fr;
 
-gap:40px;
+    gap:40px;
 
-margin-bottom:100px;
+    margin-bottom:100px;
 
-align-items:start;
-
+    align-items:start;
 }
 
 .project-detail-number{
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.68rem;
+    font-size:.68rem;
 
-color:var(--red);
-
+    color:var(--red);
 }
 
 .project-detail-title{
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-size:
-clamp(3.5rem,7vw,8rem);
+    font-size:
+        clamp(3.5rem,7vw,8rem);
 
-line-height:.83;
+    line-height:.83;
 
-letter-spacing:-.08em;
-
+    letter-spacing:-.08em;
 }
 
 .project-detail-intro{
 
-max-width:480px;
+    max-width:480px;
 
-font-size:.88rem;
+    font-size:.88rem;
 
-line-height:1.9;
+    line-height:1.9;
 
-color:var(--muted);
-
+    color:var(--muted);
 }
 
 
 /* =========================================================
-   META
+   PROJECT META
 ========================================================= */
 
 .project-meta{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
-border-top:1px solid var(--line);
+    border-top:1px solid var(--line);
 
-border-bottom:1px solid var(--line);
+    border-bottom:1px solid var(--line);
 
-margin-bottom:110px;
-
+    margin-bottom:110px;
 }
 
 .meta-item{
 
-padding:20px;
+    padding:20px;
 
-border-right:1px solid var(--line);
-
+    border-right:1px solid var(--line);
 }
 
 .meta-item:last-child{
-border-right:0;
+    border-right:0;
 }
 
 .meta-label{
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.58rem;
+    font-size:.58rem;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-letter-spacing:.1em;
+    letter-spacing:.1em;
 
-color:var(--red);
+    color:var(--red);
 
-margin-bottom:9px;
-
+    margin-bottom:9px;
 }
 
 .meta-value{
 
-font-size:.76rem;
+    font-size:.76rem;
 
-line-height:1.5;
-
+    line-height:1.5;
 }
 
 
 /* =========================================================
-   STORY
+   STORY BLOCK
 ========================================================= */
 
 .story-block{
 
-margin-bottom:150px;
-
+    margin-bottom:150px;
 }
 
 .story-heading{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:120px 1fr;
+    grid-template-columns:
+        120px 1fr;
 
-gap:40px;
+    gap:40px;
 
-margin-bottom:45px;
-
+    margin-bottom:45px;
 }
 
 .story-index{
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.63rem;
+    font-size:.63rem;
 
-color:var(--red);
-
+    color:var(--red);
 }
 
 .story-title{
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-size:
-clamp(2.3rem,4.5vw,5rem);
+    font-size:
+        clamp(2.3rem,4.5vw,5rem);
 
-line-height:.9;
+    line-height:.9;
 
-letter-spacing:-.06em;
-
+    letter-spacing:-.06em;
 }
 
 .story-text{
 
-max-width:650px;
+    max-width:650px;
 
-margin-left:160px;
+    margin-left:160px;
 
-font-size:.9rem;
+    font-size:.9rem;
 
-line-height:1.9;
+    line-height:1.9;
 
-color:var(--muted);
-
+    color:var(--muted);
 }
 
 
@@ -1708,172 +1596,176 @@ color:var(--muted);
 
 .large-media{
 
-width:100%;
+    width:100%;
 
-max-height:78vh;
+    max-height:78vh;
 
-overflow:hidden;
+    overflow:hidden;
 
-background:var(--bg-soft);
+    background:var(--bg-soft);
 
-border:1px solid var(--line);
+    border:1px solid var(--line);
 
-cursor:zoom-in;
-
+    cursor:zoom-in;
 }
 
 .large-media img{
 
-width:100%;
+    width:100%;
 
-max-height:78vh;
+    max-height:78vh;
 
-object-fit:contain;
+    object-fit:contain;
 
-transition:transform .6s ease;
-
+    transition:transform .6s ease;
 }
 
 .large-media:hover img{
 
-transform:scale(1.012);
-
+    transform:scale(1.012);
 }
 
 .split-media{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
-gap:20px;
-
+    gap:20px;
 }
 
 .split-media .media{
 
-background:var(--bg-soft);
+    background:var(--bg-soft);
 
-border:1px solid var(--line);
+    border:1px solid var(--line);
 
-overflow:hidden;
+    overflow:hidden;
 
-cursor:zoom-in;
-
+    cursor:zoom-in;
 }
 
 .split-media img{
 
-width:100%;
-height:100%;
+    width:100%;
+    height:100%;
 
-object-fit:contain;
+    object-fit:contain;
 
-transition:transform .5s ease;
-
+    transition:transform .5s ease;
 }
 
 .split-media .media:hover img{
 
-transform:scale(1.015);
-
+    transform:scale(1.015);
 }
 
 .caption{
 
-display:flex;
+    display:flex;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-margin-top:12px;
+    margin-top:12px;
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.58rem;
+    font-size:.58rem;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-letter-spacing:.08em;
+    letter-spacing:.08em;
 
-color:var(--muted);
-
+    color:var(--muted);
 }
 
 
 /* =========================================================
-   PROJECT ORDER LABEL
+   PROJECT SECTION LABEL
 ========================================================= */
 
 .project-section-label{
 
-margin-bottom:35px;
+    margin-bottom:35px;
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.58rem;
+    font-size:.58rem;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-letter-spacing:.12em;
+    letter-spacing:.12em;
 
-color:var(--red);
-
+    color:var(--red);
 }
 
 
 /* =========================================================
-   ROTATED SITE PLAN
+   03 — PLANS
+========================================================= */
+
+/*
+   Everything related to plans is grouped here.
+*/
+
+.plans-section{
+
+    width:100%;
+}
+
+
+/* =========================================================
+   PLAN MASSE — ROTATED
 ========================================================= */
 
 .site-plan-media{
 
-position:relative;
+    position:relative;
 
-width:100%;
+    width:100%;
 
-height:min(78vh,850px);
+    height:min(78vh,850px);
 
-overflow:hidden;
+    overflow:hidden;
 
-background:var(--bg-soft);
+    background:var(--bg-soft);
 
-border:1px solid var(--line);
+    border:1px solid var(--line);
 
-cursor:zoom-in;
+    cursor:zoom-in;
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-justify-content:center;
-
+    justify-content:center;
 }
 
 
 /*
-   The plan itself is rotated -90 degrees
-   and enlarged to approximately 175%.
+   The plan itself is rotated -90 degrees.
 */
 
 .site-plan-rotation{
 
-position:relative;
+    position:relative;
 
-width:100%;
+    width:100%;
 
-height:100%;
+    height:100%;
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-justify-content:center;
+    justify-content:center;
 
-transform:rotate(-90deg) scale(1.5);
+    transform:
+        rotate(-90deg)
+        scale(1.5);
 
-transform-origin:center center;
-
+    transform-origin:center center;
 }
 
 
@@ -1881,18 +1773,15 @@ transform-origin:center center;
 
 .site-plan-rotation img{
 
-width:100%;
+    width:100%;
+    height:100%;
 
-height:100%;
+    object-fit:contain;
 
-object-fit:contain;
+    max-width:none;
+    max-height:none;
 
-max-width:none;
-
-max-height:none;
-
-transform:none;
-
+    transform:none;
 }
 
 
@@ -1900,8 +1789,7 @@ transform:none;
 
 .site-plan-rotation:hover img{
 
-transform:scale(1.012);
-
+    transform:scale(1.012);
 }
 
 
@@ -1910,39 +1798,40 @@ transform:scale(1.012);
 ========================================================= */
 
 /*
-   IMPORTANT:
-   The north arrow is outside the rotated container.
-   Therefore it stays perfectly vertical.
+   The north arrow is completely outside
+   the rotated plan container.
+
+   Therefore it does NOT rotate with the plan.
+
+   The arrow points LEFT.
 */
 
 .north-arrow{
 
-position:absolute;
+    position:absolute;
 
-top:28px;
+    top:28px;
+    right:32px;
 
-right:32px;
+    z-index:10;
 
-z-index:10;
+    display:flex;
 
-display:flex;
+    flex-direction:column;
 
-flex-direction:column;
+    align-items:center;
 
-align-items:center;
+    justify-content:center;
 
-justify-content:center;
+    gap:5px;
 
-gap:3px;
+    font-family:var(--mono);
 
-font-family:var(--mono);
+    font-size:.62rem;
 
-font-size:.62rem;
+    letter-spacing:.08em;
 
-letter-spacing:.08em;
-
-color:var(--text);
-
+    color:var(--text);
 }
 
 
@@ -1950,207 +1839,164 @@ color:var(--text);
 
 .north-arrow-label{
 
-font-size:.7rem;
+    font-size:.7rem;
 
-font-weight:500;
-
+    font-weight:500;
 }
 
 
-/* LINE */
+/* HORIZONTAL LINE */
 
 .north-arrow-line{
 
-position:relative;
+    position:relative;
 
-width:1px;
+    width:38px;
 
-height:38px;
+    height:1px;
 
-background:var(--text);
-
+    background:var(--text);
 }
 
 
-/* ARROW HEAD */
+/* ARROW HEAD — POINTING LEFT */
 
 .north-arrow-line::before{
 
-content:"";
+    content:"";
 
-position:absolute;
+    position:absolute;
 
-top:0;
+    left:0;
 
-left:50%;
+    top:50%;
 
-transform:translateX(-50%);
+    transform:translateY(-50%);
 
-width:0;
+    width:0;
+    height:0;
 
-height:0;
+    border-top:5px solid transparent;
 
-border-left:5px solid transparent;
+    border-bottom:5px solid transparent;
 
-border-right:5px solid transparent;
-
-border-bottom:9px solid var(--text);
-
+    border-right:9px solid var(--text);
 }
 
 
 /* =========================================================
-   PROCESS
+   04 — SECTIONS
 ========================================================= */
 
-.process{
+.sections-section{
 
-display:grid;
-
-grid-template-columns:
-repeat(5,1fr);
-
-border-top:1px solid var(--line);
-
-border-bottom:1px solid var(--line);
-
-}
-
-.process-step{
-
-padding:25px 20px 30px;
-
-border-right:1px solid var(--line);
-
-}
-
-.process-step:last-child{
-border-right:0;
-}
-
-.process-number{
-
-font-family:var(--mono);
-
-font-size:.6rem;
-
-color:var(--red);
-
-margin-bottom:45px;
-
-}
-
-.process-name{
-
-font-family:var(--display);
-
-font-size:.9rem;
-
-margin-bottom:9px;
-
-}
-
-.process-description{
-
-font-size:.67rem;
-
-line-height:1.6;
-
-color:var(--muted);
-
+    width:100%;
 }
 
 
 /* =========================================================
-   ENVIRONMENTAL STRATEGIES
+   05 — FACADES
+========================================================= */
+
+.facades-section{
+
+    width:100%;
+}
+
+
+/* =========================================================
+   06 — AXONOMETRY & PERSPECTIVES
+========================================================= */
+
+.axonometry-section{
+
+    width:100%;
+}
+
+
+/* =========================================================
+   07 — ENVIRONMENTAL STRATEGIES
 ========================================================= */
 
 .environment{
 
-background:var(--dark);
+    background:var(--dark);
 
-color:var(--white);
+    color:var(--white);
 
-padding:
-100px
-clamp(25px,6vw,100px);
-
+    padding:
+        100px
+        clamp(25px,6vw,100px);
 }
 
 .environment-intro{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
-gap:70px;
+    gap:70px;
 
-align-items:end;
+    align-items:end;
 
-margin-bottom:80px;
-
+    margin-bottom:80px;
 }
 
 .environment h3{
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-size:
-clamp(2.7rem,5vw,5.5rem);
+    font-size:
+        clamp(2.7rem,5vw,5.5rem);
 
-line-height:.88;
+    line-height:.88;
 
-letter-spacing:-.06em;
+    letter-spacing:-.06em;
 
-margin-top:20px;
-
+    margin-top:20px;
 }
 
 .environment p{
 
-max-width:560px;
+    max-width:560px;
 
-margin-top:30px;
+    margin-top:30px;
 
-color:#8D8D88;
+    color:#8D8D88;
 
-font-size:.88rem;
+    font-size:.88rem;
 
-line-height:1.8;
-
+    line-height:1.8;
 }
 
 .environment-note{
 
-border-left:1px solid var(--red);
+    border-left:1px solid var(--red);
 
-padding-left:30px;
-
+    padding-left:30px;
 }
 
 .environment-note-label{
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.58rem;
+    font-size:.58rem;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-letter-spacing:.1em;
+    letter-spacing:.1em;
 
-color:var(--red);
+    color:var(--red);
 
-margin-bottom:15px;
-
+    margin-bottom:15px;
 }
 
 .environment-note-text{
 
-margin-top:0!important;
+    margin-top:0!important;
 
-max-width:500px!important;
-
+    max-width:500px!important;
 }
 
 
@@ -2160,146 +2006,139 @@ max-width:500px!important;
 
 .environment-drawings{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-repeat(2,1fr);
+    grid-template-columns:
+        repeat(2,1fr);
 
-gap:22px;
-
+    gap:22px;
 }
 
 .environment-drawing{
 
-position:relative;
+    position:relative;
 
-background:#181816;
+    background:#181816;
 
-border:1px solid rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.14);
 
-overflow:hidden;
-
+    overflow:hidden;
 }
 
 .environment-drawing-wide{
 
-grid-column:1 / -1;
-
+    grid-column:1 / -1;
 }
 
 .environment-drawing-image{
 
-position:relative;
+    position:relative;
 
-background:#E8E7E2;
+    background:#E8E7E2;
 
-overflow:hidden;
-
+    overflow:hidden;
 }
 
 .environment-drawing img{
 
-width:100%;
+    width:100%;
+    height:100%;
 
-height:100%;
+    object-fit:contain;
 
-object-fit:contain;
-
-transition:
-transform .7s cubic-bezier(.2,.7,.2,1);
-
+    transition:
+        transform .7s cubic-bezier(.2,.7,.2,1);
 }
 
 .environment-drawing:hover img{
 
-transform:scale(1.018);
-
+    transform:scale(1.018);
 }
 
-.environment-drawing-wide .environment-drawing-image{
+.environment-drawing-wide
+.environment-drawing-image{
 
-height:min(65vh,720px);
-
+    height:min(65vh,720px);
 }
 
 .environment-drawing:not(.environment-drawing-wide)
 .environment-drawing-image{
 
-height:min(42vh,480px);
-
+    height:min(42vh,480px);
 }
 
 .environment-drawing-info{
 
-display:flex;
+    display:flex;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-align-items:flex-start;
+    align-items:flex-start;
 
-gap:25px;
+    gap:25px;
 
-padding:18px 20px 20px;
+    padding:
+        18px 20px 20px;
 
-border-top:1px solid rgba(255,255,255,.14);
-
+    border-top:1px solid rgba(255,255,255,.14);
 }
 
 .environment-drawing-title{
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-size:1rem;
+    font-size:1rem;
 
-color:var(--white);
-
+    color:var(--white);
 }
 
 .environment-drawing-description{
 
-max-width:430px;
+    max-width:430px;
 
-margin:0!important;
+    margin:0!important;
 
-font-size:.68rem!important;
+    font-size:.68rem!important;
 
-line-height:1.6!important;
+    line-height:1.6!important;
 
-color:#8D8D88!important;
-
+    color:#8D8D88!important;
 }
 
 .environment-drawing-number{
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.58rem;
+    font-size:.58rem;
 
-color:var(--red);
+    color:var(--red);
 
-white-space:nowrap;
-
+    white-space:nowrap;
 }
 
 
 /* =========================================================
-   FINAL RENDERS
+   08 — FINAL RENDERS
 ========================================================= */
+
+.final-renders-section{
+
+    width:100%;
+}
 
 .final-renders-intro{
 
-max-width:650px;
+    max-width:650px;
 
-margin-left:160px;
+    margin-left:160px;
 
-margin-bottom:45px;
+    margin-bottom:45px;
 
-font-size:.9rem;
+    font-size:.9rem;
 
-line-height:1.9;
+    line-height:1.9;
 
-color:var(--muted);
-
+    color:var(--muted);
 }
 
 
@@ -2309,152 +2148,140 @@ color:var(--muted);
 
 #research{
 
-background:var(--bg-soft);
+    background:var(--bg-soft);
 
-min-height:75vh;
+    min-height:75vh;
 
-display:flex;
+    display:flex;
 
-align-items:center;
-
+    align-items:center;
 }
 
 .research-container{
 
-width:100%;
+    width:100%;
 
-max-width:var(--max-width);
+    max-width:var(--max-width);
 
-margin:auto;
-
+    margin:auto;
 }
 
 .research-grid{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-.8fr 1.2fr;
+    grid-template-columns:
+        .8fr 1.2fr;
 
-gap:100px;
+    gap:100px;
 
-align-items:end;
-
+    align-items:end;
 }
 
 .research-intro{
 
-max-width:650px;
-
+    max-width:650px;
 }
 
 .research-title{
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-size:
-clamp(3.5rem,8vw,9rem);
+    font-size:
+        clamp(3.5rem,8vw,9rem);
 
-line-height:.82;
+    line-height:.82;
 
-letter-spacing:-.085em;
+    letter-spacing:-.085em;
 
-margin-top:25px;
-
+    margin-top:25px;
 }
 
 .research-title span{
 
-color:var(--red);
-
+    color:var(--red);
 }
 
 .research-copy{
 
-max-width:560px;
+    max-width:560px;
 
-font-size:.95rem;
+    font-size:.95rem;
 
-line-height:1.9;
+    line-height:1.9;
 
-color:var(--muted);
-
+    color:var(--muted);
 }
 
 .research-status{
 
-margin-top:55px;
+    margin-top:55px;
 
-padding-top:20px;
+    padding-top:20px;
 
-border-top:1px solid var(--line);
+    border-top:1px solid var(--line);
 
-display:flex;
+    display:flex;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-align-items:center;
+    align-items:center;
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.6rem;
+    font-size:.6rem;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-letter-spacing:.1em;
-
+    letter-spacing:.1em;
 }
 
 .research-status span:last-child{
 
-color:var(--red);
-
+    color:var(--red);
 }
 
 .research-note{
 
-border-left:1px solid var(--red);
+    border-left:1px solid var(--red);
 
-padding-left:35px;
-
+    padding-left:35px;
 }
 
 .research-note-number{
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.6rem;
+    font-size:.6rem;
 
-color:var(--red);
+    color:var(--red);
 
-margin-bottom:30px;
-
+    margin-bottom:30px;
 }
 
 .research-note h3{
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-size:clamp(2rem,4vw,4.5rem);
+    font-size:
+        clamp(2rem,4vw,4.5rem);
 
-line-height:.9;
+    line-height:.9;
 
-letter-spacing:-.06em;
+    letter-spacing:-.06em;
 
-margin-bottom:30px;
-
+    margin-bottom:30px;
 }
 
 .research-note p{
 
-max-width:520px;
+    max-width:520px;
 
-font-size:.85rem;
+    font-size:.85rem;
 
-line-height:1.85;
+    line-height:1.85;
 
-color:var(--muted);
-
+    color:var(--muted);
 }
 
 
@@ -2464,100 +2291,91 @@ color:var(--muted);
 
 #contact{
 
-background:var(--dark);
+    background:var(--dark);
 
-color:var(--white);
+    color:var(--white);
 
-min-height:85vh;
+    min-height:85vh;
 
-display:flex;
+    display:flex;
 
-align-items:center;
-
+    align-items:center;
 }
 
 .contact-container{
 
-width:100%;
+    width:100%;
 
-max-width:var(--max-width);
+    max-width:var(--max-width);
 
-margin:auto;
-
+    margin:auto;
 }
 
 .contact-title{
 
-margin-top:30px;
+    margin-top:30px;
 
-font-family:var(--display);
+    font-family:var(--display);
 
-font-size:
-clamp(4rem,12vw,12rem);
+    font-size:
+        clamp(4rem,12vw,12rem);
 
-line-height:.78;
+    line-height:.78;
 
-letter-spacing:-.09em;
-
+    letter-spacing:-.09em;
 }
 
 .contact-title .outline{
 
--webkit-text-stroke:
-1px rgba(255,255,255,.45);
-
+    -webkit-text-stroke:
+        1px rgba(255,255,255,.45);
 }
 
 .contact-copy{
 
-max-width:500px;
+    max-width:500px;
 
-margin-top:45px;
+    margin-top:45px;
 
-color:#8D8D88;
+    color:#8D8D88;
 
-font-size:.9rem;
+    font-size:.9rem;
 
-line-height:1.8;
-
+    line-height:1.8;
 }
 
 .contact-actions{
 
-display:flex;
+    display:flex;
 
-flex-wrap:wrap;
+    flex-wrap:wrap;
 
-gap:10px;
+    gap:10px;
 
-margin-top:40px;
-
+    margin-top:40px;
 }
 
 #contact .button{
 
-border-color:rgba(255,255,255,.2);
+    border-color:rgba(255,255,255,.2);
 
-color:white;
-
+    color:white;
 }
 
 #contact .button:hover{
 
-border-color:var(--red);
+    border-color:var(--red);
 
-color:var(--red);
-
+    color:var(--red);
 }
 
 #contact .button.red{
 
-background:var(--red);
+    background:var(--red);
 
-border-color:var(--red);
+    border-color:var(--red);
 
-color:white;
-
+    color:white;
 }
 
 
@@ -2567,60 +2385,55 @@ color:white;
 
 footer{
 
-background:var(--dark);
+    background:var(--dark);
 
-color:#777772;
+    color:#777772;
 
-padding:
-25px
-clamp(22px,7vw,110px);
+    padding:
+        25px
+        clamp(22px,7vw,110px);
 
-border-top:1px solid rgba(255,255,255,.1);
-
+    border-top:1px solid rgba(255,255,255,.1);
 }
 
 .footer-inner{
 
-max-width:var(--max-width);
+    max-width:var(--max-width);
 
-margin:auto;
+    margin:auto;
 
-display:flex;
+    display:flex;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-align-items:center;
+    align-items:center;
 
-gap:30px;
-
+    gap:30px;
 }
 
 .footer-left{
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.57rem;
+    font-size:.57rem;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-letter-spacing:.08em;
-
+    letter-spacing:.08em;
 }
 
 .footer-right{
 
-display:flex;
+    display:flex;
 
-gap:20px;
+    gap:20px;
 
-font-size:.6rem;
-
+    font-size:.6rem;
 }
 
 .footer-right a:hover{
 
-color:var(--red);
-
+    color:var(--red);
 }
 
 
@@ -2630,102 +2443,96 @@ color:var(--red);
 
 .lightbox{
 
-position:fixed;
+    position:fixed;
 
-inset:0;
+    inset:0;
 
-z-index:3000;
+    z-index:3000;
 
-background:rgba(8,8,8,.97);
+    background:rgba(8,8,8,.97);
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-justify-content:center;
+    justify-content:center;
 
-padding:30px;
+    padding:30px;
 
-opacity:0;
+    opacity:0;
 
-visibility:hidden;
+    visibility:hidden;
 
-transition:
-opacity .3s ease,
-visibility .3s ease;
-
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
 }
 
 .lightbox.open{
 
-opacity:1;
+    opacity:1;
 
-visibility:visible;
-
+    visibility:visible;
 }
 
 .lightbox img{
 
-max-width:94vw;
+    max-width:94vw;
 
-max-height:88vh;
+    max-height:88vh;
 
-object-fit:contain;
+    object-fit:contain;
 
-border:1px solid rgba(255,255,255,.15);
-
+    border:1px solid rgba(255,255,255,.15);
 }
 
 .lightbox-close{
 
-position:fixed;
+    position:fixed;
 
-top:25px;
-right:25px;
+    top:25px;
+    right:25px;
 
-width:42px;
-height:42px;
+    width:42px;
+    height:42px;
 
-background:transparent;
+    background:transparent;
 
-border:1px solid rgba(255,255,255,.2);
+    border:1px solid rgba(255,255,255,.2);
 
-color:white;
+    color:white;
 
-font-size:1.3rem;
+    font-size:1.3rem;
 
-cursor:pointer;
-
+    cursor:pointer;
 }
 
 .lightbox-close:hover{
 
-border-color:var(--red);
+    border-color:var(--red);
 
-color:var(--red);
-
+    color:var(--red);
 }
 
 .lightbox-caption{
 
-position:fixed;
+    position:fixed;
 
-bottom:25px;
+    bottom:25px;
 
-left:50%;
+    left:50%;
 
-transform:translateX(-50%);
+    transform:translateX(-50%);
 
-font-family:var(--mono);
+    font-family:var(--mono);
 
-font-size:.6rem;
+    font-size:.6rem;
 
-letter-spacing:.1em;
+    letter-spacing:.1em;
 
-text-transform:uppercase;
+    text-transform:uppercase;
 
-color:#999;
-
+    color:#999;
 }
 
 
@@ -2734,18 +2541,17 @@ color:#999;
 ========================================================= */
 
 /*
-   IMPORTANT:
-   Same rotation as the page: -90deg.
+   The plan masse keeps the exact same -90deg
+   rotation inside the lightbox.
 */
 
 .lightbox-image-rotated{
 
-transform:rotate(-90deg);
+    transform:rotate(-90deg);
 
-max-width:88vh!important;
+    max-width:88vh!important;
 
-max-height:94vw!important;
-
+    max-height:94vw!important;
 }
 
 
@@ -2755,527 +2561,457 @@ max-height:94vw!important;
 
 .reveal{
 
-opacity:0;
+    opacity:0;
 
-transform:translateY(25px);
+    transform:translateY(25px);
 
-transition:
-opacity .8s ease,
-transform .8s cubic-bezier(.2,.7,.2,1);
-
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.7,.2,1);
 }
 
 .reveal.visible{
 
-opacity:1;
+    opacity:1;
 
-transform:translateY(0);
-
+    transform:translateY(0);
 }
 
 
 /* =========================================================
-   MOBILE
+   MOBILE — 900px
 ========================================================= */
 
 @media(max-width:900px){
 
-nav{
+    nav{
 
-padding:20px;
+        padding:20px;
+    }
 
-}
+    .nav-right{
 
-.nav-right{
+        gap:15px;
+    }
 
-gap:15px;
+    .nav-links{
 
-}
+        position:fixed;
 
-.nav-links{
+        top:70px;
 
-position:fixed;
+        left:20px;
+        right:20px;
 
-top:70px;
+        display:none;
 
-left:20px;
-right:20px;
+        flex-direction:column;
 
-display:none;
+        padding:25px;
 
-flex-direction:column;
+        background:var(--bg);
 
-padding:25px;
+        border:1px solid var(--line);
 
-background:var(--bg);
+        gap:22px;
+    }
 
-border:1px solid var(--line);
+    .nav-links.open{
 
-gap:22px;
+        display:flex;
+    }
 
-}
+    .menu-btn{
 
-.nav-links.open{
+        display:block;
+    }
 
-display:flex;
+    .hero-title{
 
-}
+        font-size:
+            clamp(4rem,18vw,8rem);
+    }
 
-.menu-btn{
+    .hero-title .last{
 
-display:block;
+        margin-left:5vw;
+    }
 
-}
+    .hero-subtitle{
 
-.hero-title{
+        grid-template-columns:1fr;
 
-font-size:
-clamp(4rem,18vw,8rem);
+        margin-top:50px;
+    }
 
-}
+    .hero-info{
 
-.hero-title .last{
+        flex-wrap:wrap;
 
-margin-left:5vw;
+        gap:25px;
+    }
 
-}
+    .about-top{
 
-.hero-subtitle{
+        display:block;
+    }
 
-grid-template-columns:1fr;
+    .about-top-copy{
 
-margin-top:50px;
+        margin-top:25px;
+    }
 
-}
+    .about-grid{
 
-.hero-info{
+        grid-template-columns:1fr;
 
-flex-wrap:wrap;
+        gap:60px;
+    }
 
-gap:25px;
+    .about-photo{
 
-}
+        position:relative;
 
-.about-top{
+        top:auto;
 
-display:block;
+        max-width:450px;
+    }
 
-}
+    .project-header{
 
-.about-top-copy{
+        grid-template-columns:1fr;
 
-margin-top:25px;
+        gap:25px;
+    }
 
-}
+    .project-meta{
 
-.about-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
 
-grid-template-columns:1fr;
+    .meta-item:nth-child(2){
 
-gap:60px;
+        border-right:0;
+    }
 
-}
+    .work-heading{
 
-.about-photo{
+        grid-template-columns:1fr;
 
-position:relative;
+        gap:30px;
+    }
 
-top:auto;
+    .featured-info{
 
-max-width:450px;
+        grid-template-columns:
+            55px 1fr;
+    }
 
-}
+    .featured-type{
 
-.project-header{
+        display:none;
+    }
 
-grid-template-columns:1fr;
+    .other-projects{
 
-gap:25px;
+        grid-template-columns:1fr;
+    }
 
-}
+    .story-heading{
 
-.project-meta{
+        grid-template-columns:
+            60px 1fr;
+    }
 
-grid-template-columns:
-repeat(2,1fr);
+    .story-text{
 
-}
+        margin-left:100px;
+    }
 
-.meta-item:nth-child(2){
+    .process{
 
-border-right:0;
+        grid-template-columns:
+            repeat(2,1fr);
+    }
 
-}
+    .process-step:nth-child(2){
 
-.work-heading{
+        border-right:0;
+    }
 
-grid-template-columns:1fr;
+    .environment-intro{
 
-gap:30px;
+        grid-template-columns:1fr;
 
-}
+        gap:40px;
+    }
 
-.featured-info{
+    .environment-drawings{
 
-grid-template-columns:
-55px 1fr;
+        grid-template-columns:1fr;
+    }
 
-}
+    .environment-drawing-wide{
 
-.featured-type{
+        grid-column:auto;
+    }
 
-display:none;
+    .environment-drawing-wide
+    .environment-drawing-image{
 
-}
+        height:500px;
+    }
 
-.other-projects{
+    .environment-drawing:not(.environment-drawing-wide)
+    .environment-drawing-image{
 
-grid-template-columns:1fr;
+        height:400px;
+    }
 
-}
+    .final-renders-intro{
 
-.story-heading{
+        margin-left:100px;
+    }
 
-grid-template-columns:60px 1fr;
+    .research-grid{
 
-}
+        grid-template-columns:1fr;
 
-.story-text{
+        gap:60px;
+    }
 
-margin-left:100px;
+    .cv-preview{
 
-}
+        height:550px;
+    }
 
-.process{
 
-grid-template-columns:
-repeat(2,1fr);
+    /* =====================================================
+       MOBILE — SITE PLAN
+    ===================================================== */
 
-}
+    .site-plan-media{
 
-.process-step:nth-child(2){
+        height:600px;
+    }
 
-border-right:0;
+    .site-plan-rotation{
 
-}
+        transform:
+            rotate(-90deg)
+            scale(1.45);
+    }
 
-.environment-intro{
+    .north-arrow{
 
-grid-template-columns:1fr;
+        top:20px;
 
-gap:40px;
-
-}
-
-.environment-drawings{
-
-grid-template-columns:1fr;
-
-}
-
-.environment-drawing-wide{
-
-grid-column:auto;
-
-}
-
-.environment-drawing-wide .environment-drawing-image{
-
-height:500px;
-
-}
-
-.environment-drawing:not(.environment-drawing-wide)
-.environment-drawing-image{
-
-height:400px;
-
-}
-
-.final-renders-intro{
-
-margin-left:100px;
-
-}
-
-.research-grid{
-
-grid-template-columns:1fr;
-
-gap:60px;
-
-}
-
-.cv-preview{
-
-height:550px;
+        right:22px;
+    }
 
 }
 
 
 /* =========================================================
-   MOBILE SITE PLAN
+   MOBILE — 600px
 ========================================================= */
-
-.site-plan-media{
-
-height:600px;
-
-}
-
-/*
-   Slightly reduced on tablet/mobile
-   so the plan remains readable without
-   being excessively cropped.
-*/
-
-.site-plan-rotation{
-
-transform:rotate(-90deg) scale(1.45);
-
-}
-
-.north-arrow{
-
-top:20px;
-
-right:22px;
-
-}
-
-
-}
-
 
 @media(max-width:600px){
 
-section{
+    section{
 
-padding:
-100px 20px;
+        padding:
+            100px 20px;
+    }
 
-}
+    .socials{
 
-.socials{
+        display:none;
+    }
 
-display:none;
+    .hero-top{
 
-}
+        margin-bottom:40px;
+    }
 
-.hero-top{
+    .hero-subtitle{
 
-margin-bottom:40px;
+        margin-top:45px;
+    }
 
-}
+    .hero-info{
 
-.hero-subtitle{
+        display:grid;
 
-margin-top:45px;
+        grid-template-columns:
+            1fr 1fr;
+    }
 
-}
+    .hero-red-line{
 
-.hero-info{
+        display:none;
+    }
 
-display:grid;
+    .scroll-indicator{
 
-grid-template-columns:1fr 1fr;
+        display:none;
+    }
 
-}
+    .project-meta{
 
-.hero-red-line{
+        grid-template-columns:
+            1fr 1fr;
+    }
 
-display:none;
+    .split-media{
 
-}
+        grid-template-columns:1fr;
+    }
 
-.scroll-indicator{
+    .story-heading{
 
-display:none;
+        grid-template-columns:1fr;
+    }
 
-}
+    .story-text{
 
-.project-meta{
+        margin-left:0;
+    }
 
-grid-template-columns:1fr 1fr;
+    .process{
 
-}
+        grid-template-columns:1fr;
+    }
 
-.split-media{
+    .process-step{
 
-grid-template-columns:1fr;
+        border-right:0;
 
-}
+        border-bottom:1px solid var(--line);
+    }
 
-.story-heading{
+    .skills{
 
-grid-template-columns:1fr;
+        grid-template-columns:1fr;
+    }
 
-}
+    .profile-row{
 
-.story-text{
+        grid-template-columns:1fr;
 
-margin-left:0;
+        gap:8px;
+    }
 
-}
+    .featured-image{
 
-.process{
+        aspect-ratio:4/3;
+    }
 
-grid-template-columns:1fr;
+    .featured-project-arrow{
 
-}
+        display:none;
+    }
 
-.process-step{
+    .footer-inner{
 
-border-right:0;
+        flex-direction:column;
 
-border-bottom:1px solid var(--line);
+        align-items:flex-start;
+    }
 
-}
+    .contact-title{
 
-.skills{
+        font-size:
+            clamp(4rem,20vw,7rem);
+    }
 
-grid-template-columns:1fr;
+    .cv-preview{
 
-}
+        height:450px;
+    }
 
-.profile-row{
+    .research-title{
 
-grid-template-columns:1fr;
+        font-size:
+            clamp(3.5rem,18vw,6rem);
+    }
 
-gap:8px;
+    .research-status{
 
-}
+        align-items:flex-start;
 
-.featured-image{
+        gap:15px;
 
-aspect-ratio:4/3;
+        flex-direction:column;
+    }
 
-}
 
-.featured-project-arrow{
+    /* =====================================================
+       MOBILE — SITE PLAN
+    ===================================================== */
 
-display:none;
+    .site-plan-media{
 
-}
+        height:500px;
+    }
 
-.footer-inner{
+    .site-plan-rotation{
 
-flex-direction:column;
+        width:100%;
 
-align-items:flex-start;
+        height:100%;
 
-}
+        transform:
+            rotate(-90deg)
+            scale(1.35);
+    }
 
-.contact-title{
+    .north-arrow{
 
-font-size:
-clamp(4rem,20vw,7rem);
+        top:15px;
 
-}
+        right:18px;
 
-.cv-preview{
+        transform:scale(.85);
 
-height:450px;
+        transform-origin:top right;
+    }
 
-}
+    .environment{
 
-.research-title{
+        padding:
+            70px 20px;
+    }
 
-font-size:
-clamp(3.5rem,18vw,6rem);
+    .environment-drawing-wide
+    .environment-drawing-image{
 
-}
+        height:350px;
+    }
 
-.research-status{
+    .environment-drawing:not(.environment-drawing-wide)
+    .environment-drawing-image{
 
-align-items:flex-start;
+        height:300px;
+    }
 
-gap:15px;
+    .environment-drawing-info{
 
-flex-direction:column;
+        flex-direction:column;
 
-}
+        gap:10px;
+    }
 
+    .environment-drawing-description{
 
-/* =========================================================
-   MOBILE SITE PLAN
-========================================================= */
+        max-width:none;
+    }
 
-.site-plan-media{
+    .final-renders-intro{
 
-height:500px;
-
-}
-
-.site-plan-rotation{
-
-width:100%;
-
-height:100%;
-
-/*
-   Mobile scale.
-   The desktop version is 175%.
-   Here we use 135% to preserve readability
-   and prevent excessive cropping.
-*/
-
-transform:rotate(-90deg) scale(1.35);
-
-}
-
-.north-arrow{
-
-top:15px;
-
-right:18px;
-
-transform:scale(.85);
-
-transform-origin:top right;
-
-}
-
-.environment{
-
-padding:
-70px 20px;
-
-}
-
-.environment-drawing-wide
-.environment-drawing-image{
-
-height:350px;
-
-}
-
-.environment-drawing:not(.environment-drawing-wide)
-.environment-drawing-image{
-
-height:300px;
-
-}
-
-.environment-drawing-info{
-
-flex-direction:column;
-
-gap:10px;
-
-}
-
-.environment-drawing-description{
-
-max-width:none;
-
-}
-
-.final-renders-intro{
-
-margin-left:0;
-
-}
+        margin-left:0;
+    }
 
 }
 
@@ -3286,25 +3022,23 @@ margin-left:0;
 
 @media(prefers-reduced-motion:reduce){
 
-*,
-*::before,
-*::after{
+    *,
+    *::before,
+    *::after{
 
-animation:none!important;
+        animation:none!important;
 
-transition:none!important;
+        transition:none!important;
 
-scroll-behavior:auto!important;
+        scroll-behavior:auto!important;
+    }
 
-}
+    .reveal{
 
-.reveal{
+        opacity:1;
 
-opacity:1;
-
-transform:none;
-
-}
+        transform:none;
+    }
 
 }
 
@@ -3330,125 +3064,133 @@ transform:none;
 
 <nav id="navbar">
 
-<a href="#hero" class="logo">
+    <a href="#hero" class="logo">
 
-YANIS NENNOUCHE
-<span>/ ARCHITECT</span>
+        YANIS NENNOUCHE
+        <span>/ ARCHITECT</span>
 
-</a>
-
-
-<div class="nav-right">
-
-<ul class="nav-links" id="navLinks">
-
-<li>
-<a href="#hero" data-nav="hero">Home</a>
-</li>
-
-<li>
-<a href="#about" data-nav="about">About</a>
-</li>
-
-<li>
-<a href="#work" data-nav="work">Work</a>
-</li>
-
-<li>
-<a href="#research" data-nav="research">Research</a>
-</li>
-
-<li>
-<a href="#contact" data-nav="contact">Contact</a>
-</li>
-
-</ul>
+    </a>
 
 
-<!-- =====================================================
-     SOCIALS
-===================================================== -->
+    <div class="nav-right">
 
-<div class="socials">
+        <ul class="nav-links" id="navLinks">
 
+            <li>
+                <a href="#hero" data-nav="hero">Home</a>
+            </li>
 
-<!-- LINKEDIN -->
+            <li>
+                <a href="#about" data-nav="about">About</a>
+            </li>
 
-<a
-class="social-link"
-href="https://www.linkedin.com/in/yanis-nennouche-b27040334/"
-target="_blank"
-rel="noopener"
-aria-label="LinkedIn"
->
+            <li>
+                <a href="#work" data-nav="work">Work</a>
+            </li>
 
-<svg viewBox="0 0 24 24">
-<path d="M5.2 3.5A2.7 2.7 0 1 1 5.2 8.9 2.7 2.7 0 0 1 5.2 3.5ZM2.8 10.7h4.8V21H2.8V10.7ZM10.2 10.7h4.6v1.4h.1c.6-1 1.8-2 4-2 4.3 0 5.1 2.8 5.1 6.4V21h-4.8v-4.1c0-1 0-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2V21h-4.8V10.7Z"/>
-</svg>
+            <li>
+                <a href="#research" data-nav="research">Research</a>
+            </li>
 
-</a>
+            <li>
+                <a href="#contact" data-nav="contact">Contact</a>
+            </li>
 
-
-<!-- INSTAGRAM -->
-
-<a
-class="social-link"
-href="https://www.instagram.com/yanis._nch/"
-target="_blank"
-rel="noopener"
-aria-label="Instagram"
->
-
-<svg viewBox="0 0 24 24">
-<path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 12 16.5 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 12 14.5 2.5 2.5 0 0 0 12 9.5Zm5.2-2.7a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/>
-</svg>
-
-</a>
+        </ul>
 
 
-<!-- GITHUB -->
+        <!-- =====================================================
+             SOCIALS
+        ===================================================== -->
 
-<a
-class="social-link"
-href="https://github.com/nennoucheyanis"
-target="_blank"
-rel="noopener"
-aria-label="GitHub"
->
-
-<svg viewBox="0 0 24 24">
-<path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8.2.6.1 2.9.7.8 1.1 1.8 1.8 1.1 3 0 4.3-2.6 5.3-5.1 5.6.4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/>
-</svg>
-
-</a>
+        <div class="socials">
 
 
-<!-- EMAIL -->
+            <!-- LINKEDIN -->
 
-<a
-class="social-link"
-href="mailto:nennoucheyaya@gmail.com"
-aria-label="Email"
->
+            <a
+                class="social-link"
+                href="https://www.linkedin.com/in/yanis-nennouche-b27040334/"
+                target="_blank"
+                rel="noopener"
+                aria-label="LinkedIn"
+            >
 
-<svg viewBox="0 0 24 24">
-<path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.5-.5a.5.5 0 0 0-.3.1L12 11.2l7.8-6.1a.5.5 0 0 0-.3-.1h-15ZM20 7.1l-7.4 5.8a1 1 0 0 1-1.2 0L4 7.1v11.4c0 .3.2.5.5.5h15a.5.5 0 0 0 .5-.5V7.1Z"/>
-</svg>
+                <svg viewBox="0 0 24 24">
 
-</a>
+                    <path d="M5.2 3.5A2.7 2.7 0 1 1 5.2 8.9 2.7 2.7 0 0 1 5.2 3.5ZM2.8 10.7h4.8V21H2.8V10.7ZM10.2 10.7h4.6v1.4h.1c.6-1 1.8-2 4-2 4.3 0 5.1 2.8 5.1 6.4V21h-4.8v-4.1c0-1 0-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2V21h-4.8V10.7Z"/>
 
-</div>
+                </svg>
+
+            </a>
 
 
-<button
-class="menu-btn"
-id="menuBtn"
-aria-label="Menu"
->
-☰
-</button>
+            <!-- INSTAGRAM -->
 
-</div>
+            <a
+                class="social-link"
+                href="https://www.instagram.com/yanis._nch/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+            >
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 12 16.5 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 12 14.5 2.5 2.5 0 0 0 12 9.5Zm5.2-2.7a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/>
+
+                </svg>
+
+            </a>
+
+
+            <!-- GITHUB -->
+
+            <a
+                class="social-link"
+                href="https://github.com/nennoucheyanis"
+                target="_blank"
+                rel="noopener"
+                aria-label="GitHub"
+            >
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8.2.6.1 2.9.7.8 1.1 1.8 1.1 3 0 4.3-2.6 5.3-5.1 5.6.4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/>
+
+                </svg>
+
+            </a>
+
+
+            <!-- EMAIL -->
+
+            <a
+                class="social-link"
+                href="mailto:nennoucheyaya@gmail.com"
+                aria-label="Email"
+            >
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.5-.5a.5.5 0 0 0-.3.1L12 11.2l7.8-6.1a.5.5 0 0 0-.3-.1h-15ZM20 7.1l-7.4 5.8a1 1 0 0 1-1.2 0L4 7.1v11.4c0 .3.2.5.5.5h15a.5.5 0 0 0 .5-.5V7.1Z"/>
+
+                </svg>
+
+            </a>
+
+        </div>
+
+
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            aria-label="Menu"
+        >
+            ☰
+        </button>
+
+    </div>
 
 </nav>
 
@@ -3462,109 +3204,109 @@ aria-label="Menu"
 
 <section id="hero">
 
-<div class="hero-container">
+    <div class="hero-container">
 
 
-<div class="hero-top">
+        <div class="hero-top">
 
-<div class="hero-index">
-00 / PORTFOLIO
-</div>
+            <div class="hero-index">
+                00 / PORTFOLIO
+            </div>
 
-<div class="hero-location">
-ALGIERS, ALGERIA<br>
-2026
-</div>
+            <div class="hero-location">
+                ALGIERS, ALGERIA<br>
+                2026
+            </div>
 
-</div>
-
-
-<h1 class="hero-title reveal">
-
-YANIS
-
-<br>
-
-<span class="last">
-NENNOUCHE
-</span>
-
-</h1>
+        </div>
 
 
-<div class="hero-subtitle reveal">
+        <h1 class="hero-title reveal">
 
-<p>
+            YANIS
 
-<strong>
-Architect / Computational Design
-</strong>
+            <br>
 
-<br><br>
+            <span class="last">
+                NENNOUCHE
+            </span>
 
-Architecture through computation.
-
-Exploring the relationship between
-architecture, environmental performance,
-geometry and digital design.
-
-</p>
+        </h1>
 
 
-<p>
+        <div class="hero-subtitle reveal">
 
-My work focuses on architectural systems,
-parametric design, environmental strategies
-and the use of computational tools as part
-of the design process.
+            <p>
 
-</p>
+                <strong>
+                    Architect / Computational Design
+                </strong>
 
-</div>
+                <br><br>
 
+                Architecture through computation.
 
-<div class="hero-info reveal">
+                Exploring the relationship between
+                architecture, environmental performance,
+                geometry and digital design.
 
-<div class="hero-info-item">
-
-<span class="hero-info-label">
-Location
-</span>
-
-<span class="hero-info-value">
-ALGIERS — 2026
-</span>
-
-</div>
+            </p>
 
 
-<div class="hero-info-item">
+            <p>
 
-<span class="hero-info-label">
-Education
-</span>
+                My work focuses on architectural systems,
+                parametric design, environmental strategies
+                and the use of computational tools as part
+                of the design process.
 
-<span class="hero-info-value">
-M.Arch / Environment &amp; Technology
-</span>
+            </p>
 
-</div>
-
-</div>
+        </div>
 
 
-<div class="hero-red-line"></div>
+        <div class="hero-info reveal">
+
+            <div class="hero-info-item">
+
+                <span class="hero-info-label">
+                    Location
+                </span>
+
+                <span class="hero-info-value">
+                    ALGIERS — 2026
+                </span>
+
+            </div>
 
 
-<div class="scroll-indicator">
+            <div class="hero-info-item">
 
-<span></span>
+                <span class="hero-info-label">
+                    Education
+                </span>
 
-Scroll to explore
+                <span class="hero-info-value">
+                    M.Arch / Environment &amp; Technology
+                </span>
 
-</div>
+            </div>
 
-</div>
+        </div>
+
+
+        <div class="hero-red-line"></div>
+
+
+        <div class="scroll-indicator">
+
+            <span></span>
+
+            Scroll to explore
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -3576,1408 +3318,1510 @@ Scroll to explore
 
 <section id="about">
 
-<div class="container">
+    <div class="container">
 
 
-<div class="about-top reveal">
+        <div class="about-top reveal">
 
-<div>
+            <div>
 
-<div class="eyebrow">
-Profile
-</div>
+                <div class="eyebrow">
+                    Profile
+                </div>
 
-<h2 class="section-title">
-About me
-</h2>
+                <h2 class="section-title">
+                    About me
+                </h2>
 
-</div>
+            </div>
 
 
-<p class="about-top-copy">
+            <p class="about-top-copy">
 
-Architectural design, computational thinking
-and environmental performance are at the
-core of my approach.
+                Architectural design, computational thinking
+                and environmental performance are at the
+                core of my approach.
 
-</p>
+            </p>
 
-</div>
+        </div>
 
 
-<div class="about-grid">
+        <div class="about-grid">
 
 
-<div class="about-photo reveal">
+            <!-- PROFILE IMAGE -->
 
-<div class="about-photo-frame">
+            <div class="about-photo reveal">
 
-<img
-src="assets/profile.jpg.jpeg"
-alt="Yanis Nennouche"
->
+                <div class="about-photo-frame">
 
-</div>
+                    <img
+                        src="assets/profile.jpg.jpeg"
+                        alt="Yanis Nennouche"
+                    >
 
+                </div>
 
-<div class="about-photo-caption">
 
-<span>
-Yanis Nennouche
-</span>
+                <div class="about-photo-caption">
 
-<span>
-Architect
-</span>
+                    <span>
+                        Yanis Nennouche
+                    </span>
 
-</div>
+                    <span>
+                        Architect
+                    </span>
 
-</div>
+                </div>
 
+            </div>
 
 
-<div class="about-main">
 
+            <!-- ABOUT CONTENT -->
 
-<div class="about-statement reveal">
+            <div class="about-main">
 
-Architecture
-<span>through</span>
-computation.
 
-</div>
+                <div class="about-statement reveal">
 
+                    Architecture
+                    <span>through</span>
+                    computation.
 
-<p class="about-copy reveal">
+                </div>
 
-I am an architect interested in the intersection
-between architectural design, environmental
-performance and computational methods.
 
-<br><br>
+                <p class="about-copy reveal">
 
-My approach considers digital tools not only
-as representation tools, but as part of the
-design process itself — generating geometry,
-testing performance and developing architectural
-systems.
+                    I am an architect interested in the intersection
+                    between architectural design, environmental
+                    performance and computational methods.
 
-<br><br>
+                    <br><br>
 
-I am particularly interested in biomimicry,
-parametric design, environmental simulation,
-computational geometry and generative approaches
-to architecture.
+                    My approach considers digital tools not only
+                    as representation tools, but as part of the
+                    design process itself — generating geometry,
+                    testing performance and developing architectural
+                    systems.
 
-</p>
+                    <br><br>
 
+                    I am particularly interested in biomimicry,
+                    parametric design, environmental simulation,
+                    computational geometry and generative approaches
+                    to architecture.
 
+                </p>
 
-<div class="profile-info reveal">
 
 
-<div class="profile-row">
+                <!-- PROFILE -->
 
-<div class="profile-label">
-Education
-</div>
+                <div class="profile-info reveal">
 
-<div class="profile-value">
+                    <div class="profile-row">
 
-Master of Architecture — Environment &amp;
-Technology
+                        <div class="profile-label">
+                            Education
+                        </div>
 
-<br>
+                        <div class="profile-value">
 
-University of Algiers 1
+                            Master of Architecture — Environment &
+                            Technology
 
-</div>
+                            <br>
 
-</div>
+                            University of Algiers 1
 
+                        </div>
 
-<div class="profile-row">
+                    </div>
 
-<div class="profile-label">
-Graduation
-</div>
 
-<div class="profile-value">
-2026
-</div>
+                    <div class="profile-row">
 
-</div>
+                        <div class="profile-label">
+                            Graduation
+                        </div>
 
+                        <div class="profile-value">
+                            2026
+                        </div>
 
-<div class="profile-row">
+                    </div>
 
-<div class="profile-label">
-Based
-</div>
 
-<div class="profile-value">
-Algiers, Algeria
-</div>
+                    <div class="profile-row">
 
-</div>
+                        <div class="profile-label">
+                            Based
+                        </div>
 
+                        <div class="profile-value">
+                            Algiers, Algeria
+                        </div>
 
-<div class="profile-row">
+                    </div>
 
-<div class="profile-label">
-Focus
-</div>
 
-<div class="profile-value">
+                    <div class="profile-row">
 
-Architecture / Computational Design /
-Environmental Design
+                        <div class="profile-label">
+                            Focus
+                        </div>
 
-</div>
+                        <div class="profile-value">
 
-</div>
+                            Architecture / Computational Design /
+                            Environmental Design
 
+                        </div>
 
-</div>
+                    </div>
 
+                </div>
 
 
-<div class="skills-section reveal">
 
-<div class="skills-title">
-Tools &amp; Skills
-</div>
+                <!-- SKILLS -->
 
+                <div class="skills-section reveal">
 
-<div class="skills">
+                    <div class="skills-title">
+                        Tools &amp; Skills
+                    </div>
 
-<div class="skill">Rhinoceros 3D</div>
-<div class="skill">Grasshopper</div>
-<div class="skill">Parametric Design</div>
-<div class="skill">Environmental Simulation</div>
-<div class="skill">Python</div>
-<div class="skill">Ladybug Tools</div>
-<div class="skill">Revit</div>
-<div class="skill">AutoCAD</div>
-<div class="skill">D5 Render</div>
-<div class="skill">LaTeX</div>
 
-</div>
+                    <div class="skills">
 
-</div>
+                        <div class="skill">Rhinoceros 3D</div>
+                        <div class="skill">Grasshopper</div>
+                        <div class="skill">Parametric Design</div>
+                        <div class="skill">Environmental Simulation</div>
+                        <div class="skill">Python</div>
+                        <div class="skill">Ladybug Tools</div>
+                        <div class="skill">Revit</div>
+                        <div class="skill">AutoCAD</div>
+                        <div class="skill">D5 Render</div>
+                        <div class="skill">LaTeX</div>
 
+                    </div>
 
+                </div>
 
-<div class="cv-section reveal">
 
-<div class="cv-header">
 
-<div class="cv-label">
-Curriculum Vitae
-</div>
+                <!-- CV -->
 
-</div>
+                <div class="cv-section reveal">
 
+                    <div class="cv-header">
 
-<div class="cv-preview">
+                        <div class="cv-label">
+                            Curriculum Vitae
+                        </div>
 
-<iframe
-src="CV.pdf#toolbar=0&navpanes=0&scrollbar=0"
-title="Yanis Nennouche CV"
->
-</iframe>
+                    </div>
 
-</div>
 
+                    <div class="cv-preview">
 
-<div class="cv-actions">
+                        <iframe
+                            src="CV.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                            title="Yanis Nennouche CV"
+                        ></iframe>
 
-<a
-href="CV.pdf"
-target="_blank"
-class="button red"
->
-Open CV ↗
-</a>
+                    </div>
 
-</div>
 
-</div>
+                    <div class="cv-actions">
 
+                        <a
+                            href="CV.pdf"
+                            target="_blank"
+                            class="button red"
+                        >
+                            Open CV ↗
+                        </a>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-</div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
 
 <!-- =========================================================
-     WORK
+     SELECTED WORK
 ========================================================= -->
 
 <section id="work">
 
-<div class="container">
+    <div class="container">
 
 
-<div class="work-heading reveal">
+        <div class="work-heading reveal">
 
+            <div>
 
-<div>
+                <div class="eyebrow">
+                    Selected work
+                </div>
 
-<div class="eyebrow">
-Selected work
-</div>
+                <h2 class="section-title">
+                    Projects
+                </h2>
 
-<h2 class="section-title">
-Projects
-</h2>
+            </div>
 
-</div>
 
+            <p class="work-intro">
 
-<p class="work-intro">
+                A selection of architectural projects developed
+                through academic and graduation work.
 
-A selection of architectural projects developed
-through academic and graduation work.
+                The portfolio focuses on design process,
+                architectural expression, environmental thinking
+                and computational methods.
 
-The portfolio focuses on design process,
-architectural expression, environmental thinking
-and computational methods.
+            </p>
 
-</p>
+        </div>
 
-</div>
 
 
+        <!-- FEATURED PROJECT -->
 
-<article
-class="featured-project reveal"
-data-project="eco"
->
+        <article
+            class="featured-project reveal"
+            data-project="eco"
+        >
 
+            <div class="featured-image">
 
-<div class="featured-image">
+                <div class="featured-project-label">
+                    01 / GRADUATION PROJECT
+                </div>
 
-<div class="featured-project-label">
-01 / GRADUATION PROJECT
-</div>
 
+                <img
+                    src="assets/Rendus_1 - Photo.jpg"
+                    alt="Eco Dôme du Hamma"
+                >
 
-<img
-src="assets/Rendus_1 - Photo.jpg"
-alt="Eco Dôme du Hamma"
->
 
+                <div class="featured-project-arrow">
+                    ↗
+                </div>
 
-<div class="featured-project-arrow">
-↗
-</div>
+            </div>
 
-</div>
 
+            <div class="featured-info">
 
-<div class="featured-info">
+                <div class="project-number">
+                    01
+                </div>
 
-<div class="project-number">
-01
-</div>
 
+                <div>
 
-<div>
+                    <div class="featured-name">
+                        Eco Dôme du Hamma
+                    </div>
 
-<div class="featured-name">
-Eco Dôme du Hamma
-</div>
+                </div>
 
-</div>
 
+                <div class="featured-type">
 
-<div class="featured-type">
+                    Environmental Architecture
+                    <br>
 
-Environmental Architecture<br>
-Biomimicry / Computational Design
+                    Biomimicry / Computational Design
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-</article>
+        </article>
 
 
 
-<div class="other-projects">
+        <!-- OTHER PROJECTS -->
 
+        <div class="other-projects">
 
-<article class="project-card reveal">
 
-<div class="project-card-image">
+            <article class="project-card reveal">
 
-<img
-src="assets/student-project-01.jpg"
-alt="Academic architectural project"
->
+                <div class="project-card-image">
 
-</div>
+                    <img
+                        src="assets/student-project-01.jpg"
+                        alt="Academic architectural project"
+                    >
 
+                </div>
 
-<div class="project-card-info">
 
-<div class="project-number">
-02
-</div>
+                <div class="project-card-info">
 
+                    <div class="project-number">
+                        02
+                    </div>
 
-<div>
 
-<div class="project-card-name">
-Academic Project
-</div>
+                    <div>
 
-</div>
+                        <div class="project-card-name">
+                            Academic Project
+                        </div>
 
+                    </div>
 
-<div class="project-card-type">
-Architectural Design
-</div>
 
-</div>
+                    <div class="project-card-type">
+                        Architectural Design
+                    </div>
 
-</article>
+                </div>
 
+            </article>
 
 
-<article class="project-card reveal">
 
-<div class="project-card-image">
+            <article class="project-card reveal">
 
-<img
-src="assets/student-project-02.jpg"
-alt="Academic architectural project"
->
+                <div class="project-card-image">
 
-</div>
+                    <img
+                        src="assets/student-project-02.jpg"
+                        alt="Academic architectural project"
+                    >
 
+                </div>
 
-<div class="project-card-info">
 
-<div class="project-number">
-03
-</div>
+                <div class="project-card-info">
 
+                    <div class="project-number">
+                        03
+                    </div>
 
-<div>
 
-<div class="project-card-name">
-Academic Project
-</div>
+                    <div>
 
-</div>
+                        <div class="project-card-name">
+                            Academic Project
+                        </div>
 
+                    </div>
 
-<div class="project-card-type">
-Architectural Design
-</div>
 
-</div>
+                    <div class="project-card-type">
+                        Architectural Design
+                    </div>
 
-</article>
+                </div>
 
+            </article>
 
-</div>
 
-</div>
+        </div>
+
+    </div>
 
 </section>
 
 
 
 <!-- =========================================================
-     ECO DOME DETAIL
+     PROJECT 01 — ECO DÔME DU HAMMA
 ========================================================= -->
 
 <section
-class="project-detail"
-id="eco-project"
+    class="project-detail"
+    id="eco-project"
 >
 
 <div class="container">
 
 
-<!-- =====================================================
+<!-- =========================================================
      PROJECT HEADER
-===================================================== -->
+========================================================= -->
 
 <div class="project-header reveal">
 
 
-<div class="project-detail-number">
-PROJECT / 01
+    <div class="project-detail-number">
+        PROJECT / 01
+    </div>
+
+
+    <h2 class="project-detail-title">
+
+        Eco Dôme
+        <br>
+
+        <span class="red">
+            du Hamma
+        </span>
+
+    </h2>
+
+
+    <p class="project-detail-intro">
+
+        A graduation project proposing the
+        redevelopment of the zoo area of
+        Jardin d'Essai du Hamma in Algiers.
+
+        <br><br>
+
+        Inspired by the geometry of a snail shell,
+        the project explores architecture as an
+        ecosystem where geometry, climate,
+        material and living systems interact.
+
+    </p>
+
 </div>
 
 
-<h2 class="project-detail-title">
 
-Eco Dôme
-<br>
-
-<span class="red">
-du Hamma
-</span>
-
-</h2>
-
-
-<p class="project-detail-intro">
-
-A graduation project proposing the
-redevelopment of the zoo area of
-Jardin d'Essai du Hamma in Algiers.
-
-<br><br>
-
-Inspired by the geometry of a snail shell,
-the project explores architecture as an
-ecosystem where geometry, climate,
-material and living systems interact.
-
-</p>
-
-</div>
-
-
-
-<!-- =====================================================
-     META
-===================================================== -->
+<!-- =========================================================
+     PROJECT METADATA
+========================================================= -->
 
 <div class="project-meta reveal">
 
 
-<div class="meta-item">
+    <div class="meta-item">
 
-<div class="meta-label">
-Location
+        <div class="meta-label">
+            Location
+        </div>
+
+        <div class="meta-value">
+
+            Jardin d'Essai du Hamma
+            <br>
+
+            Algiers, Algeria
+
+        </div>
+
+    </div>
+
+
+    <div class="meta-item">
+
+        <div class="meta-label">
+            Type
+        </div>
+
+        <div class="meta-value">
+            Public / Cultural
+        </div>
+
+    </div>
+
+
+    <div class="meta-item">
+
+        <div class="meta-label">
+            Area
+        </div>
+
+        <div class="meta-value">
+            1.2 hectares
+        </div>
+
+    </div>
+
+
+    <div class="meta-item">
+
+        <div class="meta-label">
+            Approach
+        </div>
+
+        <div class="meta-value">
+
+            Biomimicry / Environment /
+            Computational Design
+
+        </div>
+
+    </div>
+
 </div>
 
-<div class="meta-value">
-Jardin d'Essai du Hamma<br>
-Algiers, Algeria
-</div>
-
-</div>
 
 
-<div class="meta-item">
-
-<div class="meta-label">
-Type
-</div>
-
-<div class="meta-value">
-Public / Cultural
-</div>
-
-</div>
-
-
-<div class="meta-item">
-
-<div class="meta-label">
-Area
-</div>
-
-<div class="meta-value">
-1.2 hectares
-</div>
-
-</div>
-
-
-<div class="meta-item">
-
-<div class="meta-label">
-Approach
-</div>
-
-<div class="meta-value">
-Biomimicry / Environment /
-Computational Design
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
+<!-- =========================================================
      01 — CONCEPT
-===================================================== -->
+========================================================= -->
 
 <div class="story-block">
 
+    <div class="story-heading reveal">
 
-<div class="story-heading reveal">
+        <div class="story-index">
+            01
+        </div>
 
-<div class="story-index">
-01
+        <h3 class="story-title">
+            Concept
+        </h3>
+
+    </div>
+
+
+    <p class="story-text reveal">
+
+        The architectural concept is derived from
+        the spiral geometry of a snail shell.
+
+        The shell becomes both a formal and
+        environmental strategy, generating a
+        continuous circulation sequence while
+        creating controlled climatic conditions
+        for different ecosystems.
+
+    </p>
+
 </div>
 
-<h3 class="story-title">
-Concept
-</h3>
-
-</div>
 
 
-<p class="story-text reveal">
-
-The architectural concept is derived from
-the spiral geometry of a snail shell.
-
-The shell becomes both a formal and
-environmental strategy, generating a
-continuous circulation sequence while
-creating controlled climatic conditions
-for different ecosystems.
-
-</p>
-
-</div>
-
-
-
-<!-- =====================================================
+<!-- =========================================================
      02 — GENESIS
-===================================================== -->
+========================================================= -->
 
 <div class="story-block">
 
+    <div class="story-heading reveal">
 
-<div class="story-heading reveal">
+        <div class="story-index">
+            02
+        </div>
 
-<div class="story-index">
-02
+        <h3 class="story-title">
+            Genesis
+        </h3>
+
+    </div>
+
+
+    <p class="story-text reveal">
+
+        The project develops from an exploration
+        of natural geometry, movement and
+        environmental adaptation.
+
+        The spiral becomes a generative system
+        from which the building form, circulation,
+        spatial sequence and relationship between
+        the different ecosystems are progressively
+        developed.
+
+    </p>
+
+
+    <div
+        class="large-media reveal"
+        style="margin-top:50px;"
+    >
+
+        <img
+            src="assets/Rendus_2 - Photo.jpg"
+            alt="Eco Dôme concept and genesis"
+            data-lightbox
+        >
+
+    </div>
+
+
+    <div class="caption">
+
+        <span>
+            Concept development
+        </span>
+
+        <span>
+            Genesis
+        </span>
+
+    </div>
+
 </div>
 
-<h3 class="story-title">
-Genesis
-</h3>
-
-</div>
 
 
-<p class="story-text reveal">
-
-The project develops from an exploration
-of natural geometry, movement and
-environmental adaptation.
-
-The spiral becomes a generative system
-from which the building form, circulation,
-spatial sequence and relationship between
-the different ecosystems are progressively
-developed.
-
-</p>
-
-
-<div class="large-media reveal" style="margin-top:50px;">
-
-<img
-src="assets/Rendus_2 - Photo.jpg"
-alt="Eco Dôme concept and genesis"
-data-lightbox
->
-
-</div>
-
-
-<div class="caption">
-
-<span>
-Concept development
-</span>
-
-<span>
-Genesis
-</span>
-
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
+<!-- =========================================================
      03 — PLANS
-===================================================== -->
+========================================================= -->
 
-<div class="story-block">
+<div class="story-block plans-section">
 
 
-<div class="story-heading reveal">
+    <div class="story-heading reveal">
 
-<div class="story-index">
-03
+        <div class="story-index">
+            03
+        </div>
+
+        <h3 class="story-title">
+            Plans
+        </h3>
+
+    </div>
+
+
+    <div class="project-section-label">
+        Site / Ground floor / Spatial organisation
+    </div>
+
+
+    <!-- =====================================================
+         03.01 — PLAN MASSE
+    ===================================================== -->
+
+    <div class="project-section-label">
+        03.01 / Plan masse
+    </div>
+
+
+    <div
+        class="site-plan-media reveal"
+        data-site-plan-lightbox
+    >
+
+        <!-- ROTATED PLAN -->
+
+        <div class="site-plan-rotation">
+
+            <img
+                src="assets/plan-masse.png"
+                alt="Eco Dôme site plan"
+                data-lightbox
+                data-rotated="true"
+            >
+
+        </div>
+
+
+        <!-- NORTH ARROW — INDEPENDENT -->
+
+        <div class="north-arrow">
+
+            <div class="north-arrow-label">
+                N
+            </div>
+
+            <div class="north-arrow-line"></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="caption">
+
+        <span>
+            Plan masse
+        </span>
+
+        <span>
+            Site organisation
+        </span>
+
+    </div>
+
+
+    <br><br><br>
+
+
+    <!-- =====================================================
+         03.02 — GROUND FLOOR PLAN
+    ===================================================== -->
+
+    <div class="project-section-label">
+        03.02 / Ground floor
+    </div>
+
+
+    <div class="large-media reveal">
+
+        <img
+            src="assets/Plan-densemble.png"
+            alt="Eco Dôme ground floor plan"
+            data-lightbox
+        >
+
+    </div>
+
+
+    <div class="caption">
+
+        <span>
+            Ground floor plan
+        </span>
+
+        <span>
+            Spatial organisation
+        </span>
+
+    </div>
+
+
 </div>
 
-<h3 class="story-title">
-Plans
-</h3>
-
-</div>
 
 
-<div class="project-section-label">
-Site / Ground floor / Spatial organisation
-</div>
-
-
-<!-- =====================================================
-     ROTATED PLAN MASSE
-===================================================== -->
-
-<div
-class="site-plan-media reveal"
-data-site-plan-lightbox
->
-
-<!-- PLAN ONLY -->
-
-<div class="site-plan-rotation">
-
-<img
-src="assets/plan-masse.png"
-alt="Eco Dôme site plan"
-data-lightbox
-data-rotated="true"
->
-
-</div>
-
-
-<!-- NORTH ARROW — INDEPENDENT FROM PLAN ROTATION -->
-
-<div class="north-arrow">
-
-<div class="north-arrow-label">
-N
-</div>
-
-<div class="north-arrow-line"></div>
-
-</div>
-
-</div>
-
-
-<div class="caption">
-
-<span>
-Plan masse
-</span>
-
-<span>
-Site organisation 
-</span>
-
-</div>
-
-
-<br><br><br>
-
-
-<!-- =====================================================
-     RDC
-===================================================== -->
-
-<div class="large-media reveal">
-
-<img
-src="assets/Plan-densemble.png"
-alt="Eco Dôme ground floor plan"
-data-lightbox
->
-
-</div>
-
-
-<div class="caption">
-
-<span>
-Ground floor plan
-</span>
-
-<span>
-Spatial organisation
-</span>
-
-</div>
-
-
-</div>
-
-
-
-<!-- =====================================================
+<!-- =========================================================
      04 — SECTIONS
-===================================================== -->
+========================================================= -->
 
-<div class="story-block">
+<div class="story-block sections-section">
 
 
-<div class="story-heading reveal">
+    <div class="story-heading reveal">
 
-<div class="story-index">
-04
+        <div class="story-index">
+            04
+        </div>
+
+        <h3 class="story-title">
+            Sections
+        </h3>
+
+    </div>
+
+
+    <div class="project-section-label">
+        04.01 / Architectural sections
+    </div>
+
+
+    <div class="split-media reveal">
+
+
+        <!-- SECTION 01 -->
+
+        <div class="media">
+
+            <img
+                src="assets/Coupe1.png"
+                alt="Longitudinal architectural section"
+                data-lightbox
+            >
+
+        </div>
+
+
+        <!-- SECTION 02 -->
+
+        <div class="media">
+
+            <img
+                src="assets/Coupe2.png"
+                alt="Transversal architectural section"
+                data-lightbox
+            >
+
+        </div>
+
+
+    </div>
+
+
+    <div class="caption">
+
+        <span>
+            Architectural sections
+        </span>
+
+        <span>
+            Drawing studies
+        </span>
+
+    </div>
+
 </div>
 
-<h3 class="story-title">
-Sections
-</h3>
-
-</div>
 
 
-<div class="split-media reveal">
-
-
-<div class="media">
-
-<img
-src="assets/Coupe1.png"
-alt="Longitudinal architectural section"
-data-lightbox
->
-
-</div>
-
-
-<div class="media">
-
-<img
-src="assets/Coupe2.png"
-alt="Transversal architectural section"
-data-lightbox
->
-
-</div>
-
-</div>
-
-
-<div class="caption">
-
-<span>
-Architectural sections
-</span>
-
-<span>
-Drawing studies
-</span>
-
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
+<!-- =========================================================
      05 — FACADES
-===================================================== -->
+========================================================= -->
 
-<div class="story-block">
-
-
-<div class="story-heading reveal">
-
-<div class="story-index">
-05
-</div>
-
-<h3 class="story-title">
-Facades
-</h3>
-
-</div>
+<div class="story-block facades-section">
 
 
-<div class="split-media reveal">
+    <div class="story-heading reveal">
+
+        <div class="story-index">
+            05
+        </div>
+
+        <h3 class="story-title">
+            Facades
+        </h3>
+
+    </div>
 
 
-<div class="media">
-
-<img
-src="assets/facade1.png"
-alt="Eco Dôme facade"
-data-lightbox
->
-
-</div>
+    <div class="project-section-label">
+        05.01 / Architectural elevations
+    </div>
 
 
-<div class="media">
-
-<img
-src="assets/facade2.png"
-alt="Eco Dôme facade"
-data-lightbox
->
-
-</div>
-
-</div>
+    <div class="split-media reveal">
 
 
-<div class="caption">
+        <!-- FACADE 01 -->
 
-<span>
-Architectural elevations
-</span>
+        <div class="media">
 
-<span>
-Facade studies
-</span>
+            <img
+                src="assets/facade1.png"
+                alt="Eco Dôme facade 01"
+                data-lightbox
+            >
 
-</div>
-
-</div>
+        </div>
 
 
+        <!-- FACADE 02 -->
 
-<!-- =====================================================
-     06 — AXONOMETRY / PERSPECTIVE
-===================================================== -->
+        <div class="media">
 
-<div class="story-block">
+            <img
+                src="assets/facade2.png"
+                alt="Eco Dôme facade 02"
+                data-lightbox
+            >
 
-
-<div class="story-heading reveal">
-
-<div class="story-index">
-06
-</div>
-
-<h3 class="story-title">
-Axonometry
-<br>
-&amp; perspectives
-</h3>
-
-</div>
+        </div>
 
 
-<div class="split-media reveal">
+    </div>
 
 
-<div class="media">
+    <div class="caption">
 
-<img
-src="assets/axo.png"
-alt="Eco Dôme axonometric view"
-data-lightbox
->
+        <span>
+            Architectural elevations
+        </span>
 
-</div>
+        <span>
+            Facade studies
+        </span>
 
-
-<div class="media">
-
-<img
-src="assets/Rendus_3 - Photo.jpg"
-alt="Eco Dôme architectural perspective"
-data-lightbox
->
-
-</div>
-
-</div>
-
-
-<div class="caption">
-
-<span>
-Axonometric / spatial studies
-</span>
-
-<span>
-Architectural perspective
-</span>
-
-</div>
+    </div>
 
 </div>
 
 
 
-<!-- =====================================================
+<!-- =========================================================
+     06 — AXONOMETRY & PERSPECTIVES
+========================================================= -->
+
+<div class="story-block axonometry-section">
+
+
+    <div class="story-heading reveal">
+
+        <div class="story-index">
+            06
+        </div>
+
+        <h3 class="story-title">
+
+            Axonometry
+            <br>
+            &amp; perspectives
+
+        </h3>
+
+    </div>
+
+
+    <div class="project-section-label">
+        06.01 / Spatial representation
+    </div>
+
+
+    <div class="split-media reveal">
+
+
+        <!-- AXONOMETRY -->
+
+        <div class="media">
+
+            <img
+                src="assets/axo.png"
+                alt="Eco Dôme axonometric view"
+                data-lightbox
+            >
+
+        </div>
+
+
+        <!-- PERSPECTIVE -->
+
+        <div class="media">
+
+            <img
+                src="assets/Rendus_3 - Photo.jpg"
+                alt="Eco Dôme architectural perspective"
+                data-lightbox
+            >
+
+        </div>
+
+
+    </div>
+
+
+    <div class="caption">
+
+        <span>
+            Axonometric / spatial studies
+        </span>
+
+        <span>
+            Architectural perspective
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
      07 — ENVIRONMENTAL STRATEGIES
-===================================================== -->
+========================================================= -->
 
 <div class="story-block">
 
 
-<div class="story-heading reveal">
+    <div class="story-heading reveal">
 
-<div class="story-index">
-07
+        <div class="story-index">
+            07
+        </div>
+
+        <h3 class="story-title">
+
+            Environmental
+            <br>
+            strategies
+
+        </h3>
+
+    </div>
+
+
+    <div class="environment">
+
+
+        <!-- =================================================
+             ENVIRONMENT INTRO
+        ================================================= -->
+
+        <div class="environment-intro reveal">
+
+
+            <div>
+
+                <div class="eyebrow">
+                    Environmental strategy
+                </div>
+
+
+                <h3>
+
+                    Designing
+                    <br>
+
+                    with
+                    <span class="red">
+                        climate.
+                    </span>
+
+                </h3>
+
+
+                <p>
+
+                    Environmental performance is not presented
+                    as a list of isolated strategies, but as part
+                    of the architectural design process.
+
+                    The following studies document the way
+                    climate, envelope, vegetation, solar exposure
+                    and water systems informed the project.
+
+                </p>
+
+            </div>
+
+
+            <div class="environment-note">
+
+                <div class="environment-note-label">
+                    Design process
+                </div>
+
+                <p class="environment-note-text">
+
+                    A series of analytical drawings and
+                    environmental studies developed to explain
+                    the relationship between the architectural
+                    system and its surrounding climate.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             ENVIRONMENTAL DRAWINGS
+        ================================================= -->
+
+        <div class="environment-drawings">
+
+
+            <!-- =============================================
+                 ENV 01 — CLIMATE
+            ============================================= -->
+
+            <div class="environment-drawing environment-drawing-wide reveal">
+
+                <div class="environment-drawing-image">
+
+                    <img
+                        src="assets/environmental-01.png"
+                        alt="Environmental strategy diagram — climate and solar response"
+                        data-lightbox
+                    >
+
+                </div>
+
+
+                <div class="environment-drawing-info">
+
+                    <div>
+
+                        <div class="environment-drawing-title">
+                            01 / Climate &amp; solar response
+                        </div>
+
+                        <p class="environment-drawing-description">
+
+                            Diagram explaining the relationship between
+                            the building geometry, solar exposure and
+                            environmental response.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="environment-drawing-number">
+                        ENV / 01
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 ENV 02 — ENVELOPE
+            ============================================= -->
+
+            <div class="environment-drawing reveal">
+
+                <div class="environment-drawing-image">
+
+                    <img
+                        src="assets/environmental-02.png"
+                        alt="Environmental strategy diagram — ETFE envelope"
+                        data-lightbox
+                    >
+
+                </div>
+
+
+                <div class="environment-drawing-info">
+
+                    <div>
+
+                        <div class="environment-drawing-title">
+                            02 / Envelope
+                        </div>
+
+                        <p class="environment-drawing-description">
+
+                            Study of the envelope as an environmental
+                            interface between the interior ecosystems
+                            and the exterior climate.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="environment-drawing-number">
+                        ENV / 02
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 ENV 03 — LIVING SYSTEMS
+            ============================================= -->
+
+            <div class="environment-drawing reveal">
+
+                <div class="environment-drawing-image">
+
+                    <img
+                        src="assets/environmental-03.png"
+                        alt="Environmental strategy diagram — natural ecosystems"
+                        data-lightbox
+                    >
+
+                </div>
+
+
+                <div class="environment-drawing-info">
+
+                    <div>
+
+                        <div class="environment-drawing-title">
+                            03 / Living systems
+                        </div>
+
+                        <p class="environment-drawing-description">
+
+                            Study illustrating the relationship between
+                            vegetation, ecosystems and the architectural
+                            organisation of the dome.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="environment-drawing-number">
+                        ENV / 03
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 ENV 04 — PASSIVE DESIGN
+            ============================================= -->
+
+            <div class="environment-drawing reveal">
+
+                <div class="environment-drawing-image">
+
+                    <img
+                        src="assets/environmental-04.png"
+                        alt="Environmental strategy diagram — passive environmental design"
+                        data-lightbox
+                    >
+
+                </div>
+
+
+                <div class="environment-drawing-info">
+
+                    <div>
+
+                        <div class="environment-drawing-title">
+                            04 / Passive design
+                        </div>
+
+                        <p class="environment-drawing-description">
+
+                            Environmental principles developed through
+                            the geometry, orientation and spatial
+                            configuration of the project.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="environment-drawing-number">
+                        ENV / 04
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 ENV 05 — WATER
+            ============================================= -->
+
+            <div class="environment-drawing environment-drawing-wide reveal">
+
+                <div class="environment-drawing-image">
+
+                    <img
+                        src="assets/environmental-05.png"
+                        alt="Environmental strategy diagram — water management"
+                        data-lightbox
+                    >
+
+                </div>
+
+
+                <div class="environment-drawing-info">
+
+                    <div>
+
+                        <div class="environment-drawing-title">
+                            05 / Water system
+                        </div>
+
+                        <p class="environment-drawing-description">
+
+                            Study of water collection, management and
+                            its relationship with the landscape and
+                            ecological systems of the project.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="environment-drawing-number">
+                        ENV / 05
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
 </div>
 
-<h3 class="story-title">
-Environmental
-<br>
-strategies
-</h3>
 
-</div>
 
-
-<div class="environment">
-
-
-<!-- ENVIRONMENT INTRO -->
-
-<div class="environment-intro reveal">
-
-
-<div>
-
-<div class="eyebrow">
-Environmental strategy
-</div>
-
-
-<h3>
-
-Designing
-<br>
-
-with
-<span class="red">
-climate.
-</span>
-
-</h3>
-
-
-<p>
-
-Environmental performance is not presented
-as a list of isolated strategies, but as part
-of the architectural design process.
-
-The following studies document the way
-climate, envelope, vegetation, solar exposure
-and water systems informed the project.
-
-</p>
-
-</div>
-
-
-<div class="environment-note">
-
-<div class="environment-note-label">
-Design process
-</div>
-
-<p class="environment-note-text">
-
-A series of analytical drawings and
-environmental studies developed to explain
-the relationship between the architectural
-system and its surrounding climate.
-
-</p>
-
-</div>
-
-
-</div>
-
-
-
-<!-- =====================================================
-     ENVIRONMENTAL DRAWINGS
-===================================================== -->
-
-<div class="environment-drawings">
-
-
-<!-- DRAWING 01 -->
-
-<div class="environment-drawing environment-drawing-wide reveal">
-
-<div class="environment-drawing-image">
-
-<img
-src="assets/environmental-01.png"
-alt="Environmental strategy diagram — climate and solar response"
-data-lightbox
->
-
-</div>
-
-
-<div class="environment-drawing-info">
-
-<div>
-
-<div class="environment-drawing-title">
-01 / Climate &amp; solar response
-</div>
-
-<p class="environment-drawing-description">
-
-Diagram explaining the relationship between
-the building geometry, solar exposure and
-environmental response.
-
-</p>
-
-</div>
-
-<div class="environment-drawing-number">
-ENV / 01
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- DRAWING 02 -->
-
-<div class="environment-drawing reveal">
-
-<div class="environment-drawing-image">
-
-<img
-src="assets/environmental-02.png"
-alt="Environmental strategy diagram — ETFE envelope"
-data-lightbox
->
-
-</div>
-
-
-<div class="environment-drawing-info">
-
-<div>
-
-<div class="environment-drawing-title">
-02 / Envelope
-</div>
-
-<p class="environment-drawing-description">
-
-Study of the envelope as an environmental
-interface between the interior ecosystems
-and the exterior climate.
-
-</p>
-
-</div>
-
-<div class="environment-drawing-number">
-ENV / 02
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- DRAWING 03 -->
-
-<div class="environment-drawing reveal">
-
-<div class="environment-drawing-image">
-
-<img
-src="assets/environmental-03.png"
-alt="Environmental strategy diagram — natural ecosystems"
-data-lightbox
->
-
-</div>
-
-
-<div class="environment-drawing-info">
-
-<div>
-
-<div class="environment-drawing-title">
-03 / Living systems
-</div>
-
-<p class="environment-drawing-description">
-
-Study illustrating the relationship between
-vegetation, ecosystems and the architectural
-organisation of the dome.
-
-</p>
-
-</div>
-
-<div class="environment-drawing-number">
-ENV / 03
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- DRAWING 04 -->
-
-<div class="environment-drawing reveal">
-
-<div class="environment-drawing-image">
-
-<img
-src="assets/environmental-04.png"
-alt="Environmental strategy diagram — passive environmental design"
-data-lightbox
->
-
-</div>
-
-
-<div class="environment-drawing-info">
-
-<div>
-
-<div class="environment-drawing-title">
-04 / Passive design
-</div>
-
-<p class="environment-drawing-description">
-
-Environmental principles developed through
-the geometry, orientation and spatial
-configuration of the project.
-
-</p>
-
-</div>
-
-<div class="environment-drawing-number">
-ENV / 04
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- DRAWING 05 -->
-
-<div class="environment-drawing environment-drawing-wide reveal">
-
-<div class="environment-drawing-image">
-
-<img
-src="assets/environmental-05.png"
-alt="Environmental strategy diagram — water management"
-data-lightbox
->
-
-</div>
-
-
-<div class="environment-drawing-info">
-
-<div>
-
-<div class="environment-drawing-title">
-05 / Water system
-</div>
-
-<p class="environment-drawing-description">
-
-Study of water collection, management and
-its relationship with the landscape and
-ecological systems of the project.
-
-</p>
-
-</div>
-
-<div class="environment-drawing-number">
-ENV / 05
-</div>
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-</div>
-
-
-
-<!-- =====================================================
+<!-- =========================================================
      08 — FINAL RENDERS
-===================================================== -->
+========================================================= -->
 
-<div class="story-block">
-
-
-<div class="story-heading reveal">
-
-<div class="story-index">
-08
-</div>
-
-<h3 class="story-title">
-Final renders
-</h3>
-
-</div>
+<div class="story-block final-renders-section">
 
 
-<p class="final-renders-intro reveal">
+    <div class="story-heading reveal">
 
-The final images bring together the formal,
-environmental and spatial investigations
-developed throughout the project.
+        <div class="story-index">
+            08
+        </div>
 
-They present the Eco Dôme as the final
-architectural expression of the relationship
-between geometry, climate and living systems.
+        <h3 class="story-title">
+            Final renders
+        </h3>
 
-</p>
-
-
-<div class="large-media reveal">
-
-<img
-src="assets/Rendus_2 - Photo.jpg"
-alt="Eco Dôme final perspective"
-data-lightbox
->
-
-</div>
+    </div>
 
 
-<div class="caption">
+    <p class="final-renders-intro reveal">
 
-<span>
-Eco Dôme du Hamma
-</span>
+        The final images bring together the formal,
+        environmental and spatial investigations
+        developed throughout the project.
 
-<span>
-Final perspective
-</span>
+        They present the Eco Dôme as the final
+        architectural expression of the relationship
+        between geometry, climate and living systems.
 
-</div>
-
-
-<br><br>
+    </p>
 
 
-<div class="split-media reveal">
+
+    <!-- =====================================================
+         RENDER 01 — MAIN
+    ===================================================== -->
+
+    <div class="large-media reveal">
+
+        <img
+            src="assets/Rendus_2 - Photo.jpg"
+            alt="Eco Dôme final perspective"
+            data-lightbox
+        >
+
+    </div>
 
 
-<div class="media">
+    <div class="caption">
 
-<img
-src="assets/Rendus_3 - Photo.jpg"
-alt="Eco Dôme interior"
-data-lightbox
->
+        <span>
+            Eco Dôme du Hamma
+        </span>
 
-</div>
+        <span>
+            Final perspective
+        </span>
 
-
-<div class="media">
-
-<img
-src="assets/Rendus_5 - Photo.jpg"
-alt="Eco Dôme architecture"
-data-lightbox
->
-
-</div>
-
-</div>
+    </div>
 
 
-<br><br>
+    <br><br>
 
 
-<div class="split-media reveal">
+
+    <!-- =====================================================
+         RENDERS 02 + 03
+    ===================================================== -->
+
+    <div class="split-media reveal">
 
 
-<div class="media">
+        <div class="media">
 
-<img
-src="assets/Rendus_6 - Photo.jpg"
-alt="Eco Dôme final view"
-data-lightbox
->
+            <img
+                src="assets/Rendus_3 - Photo.jpg"
+                alt="Eco Dôme interior"
+                data-lightbox
+            >
 
-</div>
-
-
-<div class="media">
-
-<img
-src="assets/Rendus_8 - Photo.jpg"
-alt="Eco Dôme final view"
-data-lightbox
->
-
-</div>
-
-</div>
+        </div>
 
 
-<br><br>
+        <div class="media">
+
+            <img
+                src="assets/Rendus_5 - Photo.jpg"
+                alt="Eco Dôme architecture"
+                data-lightbox
+            >
+
+        </div>
 
 
-<div class="split-media reveal">
+    </div>
 
 
-<div class="media">
-
-<img
-src="assets/Rendus_9 - Photo.jpg"
-alt="Eco Dôme final view"
-data-lightbox
->
-
-</div>
+    <br><br>
 
 
-<div class="media">
 
-<img
-src="assets/rendus suite_1 - Photo.jpg"
-alt="Eco Dôme final view"
-data-lightbox
->
+    <!-- =====================================================
+         RENDERS 04 + 05
+    ===================================================== -->
 
-</div>
+    <div class="split-media reveal">
 
-</div>
+
+        <div class="media">
+
+            <img
+                src="assets/Rendus_6 - Photo.jpg"
+                alt="Eco Dôme final view"
+                data-lightbox
+            >
+
+        </div>
+
+
+        <div class="media">
+
+            <img
+                src="assets/Rendus_8 - Photo.jpg"
+                alt="Eco Dôme final view"
+                data-lightbox
+            >
+
+        </div>
+
+
+    </div>
+
+
+    <br><br>
+
+
+
+    <!-- =====================================================
+         RENDERS 06 + 07
+    ===================================================== -->
+
+    <div class="split-media reveal">
+
+
+        <div class="media">
+
+            <img
+                src="assets/Rendus_9 - Photo.jpg"
+                alt="Eco Dôme final view"
+                data-lightbox
+            >
+
+        </div>
+
+
+        <div class="media">
+
+            <img
+                src="assets/rendus suite_1 - Photo.jpg"
+                alt="Eco Dôme final view"
+                data-lightbox
+            >
+
+        </div>
+
+
+    </div>
+
 
 </div>
 
@@ -4994,81 +4838,83 @@ data-lightbox
 
 <section id="research">
 
-<div class="research-container">
+    <div class="research-container">
 
 
-<div class="research-grid">
+        <div class="research-grid">
 
 
-<div class="research-intro reveal">
+            <div class="research-intro reveal">
 
-<div class="eyebrow">
-Research
-</div>
-
-
-<h2 class="research-title">
-
-Future
-<br>
-
-<span>research.</span>
-
-</h2>
+                <div class="eyebrow">
+                    Research
+                </div>
 
 
-<div class="research-status">
+                <h2 class="research-title">
 
-<span>
-Current status
-</span>
+                    Future
+                    <br>
 
-<span>
-In development
-</span>
+                    <span>
+                        research.
+                    </span>
 
-</div>
-
-</div>
+                </h2>
 
 
+                <div class="research-status">
 
-<div class="research-note reveal">
+                    <span>
+                        Current status
+                    </span>
 
-<div class="research-note-number">
-01 / FUTURE EXPLORATIONS
-</div>
+                    <span>
+                        In development
+                    </span>
 
+                </div>
 
-<h3>
-
-Architecture,
-computation
-&amp; environment.
-
-</h3>
+            </div>
 
 
-<p>
 
-A space dedicated to future explorations
-in architecture, computation and
-environmental design.
+            <div class="research-note reveal">
 
-<br><br>
-
-I hope to have the opportunity to develop
-and publish research and investigations
-in these fields in the future.
-
-</p>
-
-</div>
+                <div class="research-note-number">
+                    01 / FUTURE EXPLORATIONS
+                </div>
 
 
-</div>
+                <h3>
 
-</div>
+                    Architecture,
+                    computation
+                    &amp; environment.
+
+                </h3>
+
+
+                <p>
+
+                    A space dedicated to future explorations
+                    in architecture, computation and
+                    environmental design.
+
+                    <br><br>
+
+                    I hope to have the opportunity to develop
+                    and publish research and investigations
+                    in these fields in the future.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -5080,90 +4926,89 @@ in these fields in the future.
 
 <section id="contact">
 
-
-<div class="contact-container">
-
-
-<div class="eyebrow reveal">
-Get in touch
-</div>
+    <div class="contact-container">
 
 
-<h2 class="contact-title reveal">
-
-LET'S
-
-<br>
-
-<span class="outline">
-BUILD.
-</span>
-
-</h2>
+        <div class="eyebrow reveal">
+            Get in touch
+        </div>
 
 
-<p class="contact-copy reveal">
+        <h2 class="contact-title reveal">
 
-Open to architectural collaborations,
-computational design projects,
-environmental work and new opportunities.
+            LET'S
 
-</p>
+            <br>
 
+            <span class="outline">
+                BUILD.
+            </span>
 
-<div class="contact-actions reveal">
-
-
-<a
-class="button red"
-href="mailto:nennoucheyaya@gmail.com"
->
-Email ↗
-</a>
+        </h2>
 
 
-<a
-class="button"
-href="https://www.linkedin.com/in/yanis-nennouche-b27040334/"
-target="_blank"
-rel="noopener"
->
-LinkedIn ↗
-</a>
+        <p class="contact-copy reveal">
+
+            Open to architectural collaborations,
+            computational design projects,
+            environmental work and new opportunities.
+
+        </p>
 
 
-<a
-class="button"
-href="https://www.instagram.com/yanis._nch/"
-target="_blank"
-rel="noopener"
->
-Instagram ↗
-</a>
+        <div class="contact-actions reveal">
 
 
-<a
-class="button"
-href="https://github.com/nennoucheyanis"
-target="_blank"
-rel="noopener"
->
-GitHub ↗
-</a>
+            <a
+                class="button red"
+                href="mailto:nennoucheyaya@gmail.com"
+            >
+                Email ↗
+            </a>
 
 
-<a
-class="button"
-href="CV.pdf"
-target="_blank"
->
-CV ↗
-</a>
+            <a
+                class="button"
+                href="https://www.linkedin.com/in/yanis-nennouche-b27040334/"
+                target="_blank"
+                rel="noopener"
+            >
+                LinkedIn ↗
+            </a>
 
 
-</div>
+            <a
+                class="button"
+                href="https://www.instagram.com/yanis._nch/"
+                target="_blank"
+                rel="noopener"
+            >
+                Instagram ↗
+            </a>
 
-</div>
+
+            <a
+                class="button"
+                href="https://github.com/nennoucheyanis"
+                target="_blank"
+                rel="noopener"
+            >
+                GitHub ↗
+            </a>
+
+
+            <a
+                class="button"
+                href="CV.pdf"
+                target="_blank"
+            >
+                CV ↗
+            </a>
+
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -5175,42 +5020,42 @@ CV ↗
 
 <footer>
 
-<div class="footer-inner">
+    <div class="footer-inner">
 
 
-<div class="footer-left">
+        <div class="footer-left">
 
-© 2026
-YANIS NENNOUCHE / ARCHITECT
+            © 2026
+            YANIS NENNOUCHE / ARCHITECT
 
-</div>
+        </div>
 
 
-<div class="footer-right">
+        <div class="footer-right">
 
-<a href="#hero">
-Back to top ↑
-</a>
+            <a href="#hero">
+                Back to top ↑
+            </a>
 
-<a href="#about">
-About
-</a>
+            <a href="#about">
+                About
+            </a>
 
-<a href="#work">
-Projects
-</a>
+            <a href="#work">
+                Projects
+            </a>
 
-<a href="#research">
-Research
-</a>
+            <a href="#research">
+                Research
+            </a>
 
-<a href="#contact">
-Contact
-</a>
+            <a href="#contact">
+                Contact
+            </a>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
 </footer>
 
@@ -5224,31 +5069,32 @@ Contact
 ========================================================= -->
 
 <div
-class="lightbox"
-id="lightbox"
-aria-hidden="true"
+    class="lightbox"
+    id="lightbox"
+    aria-hidden="true"
 >
 
 
-<button
-class="lightbox-close"
-id="lightboxClose"
->
-×
-</button>
+    <button
+        class="lightbox-close"
+        id="lightboxClose"
+        aria-label="Close image"
+    >
+        ×
+    </button>
 
 
-<img
-id="lightboxImage"
-src=""
-alt=""
->
+    <img
+        id="lightboxImage"
+        src=""
+        alt=""
+    >
 
 
-<div
-class="lightbox-caption"
-id="lightboxCaption"
-></div>
+    <div
+        class="lightbox-caption"
+        id="lightboxCaption"
+    ></div>
 
 
 </div>
@@ -5257,45 +5103,46 @@ id="lightboxCaption"
 
 <script>
 
+
 /* =========================================================
    NAVIGATION
 ========================================================= */
 
 const navbar =
-document.getElementById("navbar");
+    document.getElementById("navbar");
 
 const navLinks =
-document.getElementById("navLinks");
+    document.getElementById("navLinks");
 
 const menuBtn =
-document.getElementById("menuBtn");
+    document.getElementById("menuBtn");
 
 
 menuBtn.addEventListener("click",()=>{
 
-navLinks.classList.toggle("open");
+    navLinks.classList.toggle("open");
 
-menuBtn.textContent =
-navLinks.classList.contains("open")
-? "×"
-: "☰";
+    menuBtn.textContent =
+        navLinks.classList.contains("open")
+            ? "×"
+            : "☰";
 
 });
 
 
 document
-.querySelectorAll(".nav-links a")
-.forEach(link=>{
+    .querySelectorAll(".nav-links a")
+    .forEach(link=>{
 
-link.addEventListener("click",()=>{
+        link.addEventListener("click",()=>{
 
-navLinks.classList.remove("open");
+            navLinks.classList.remove("open");
 
-menuBtn.textContent="☰";
+            menuBtn.textContent="☰";
 
-});
+        });
 
-});
+    });
 
 
 /* =========================================================
@@ -5303,22 +5150,24 @@ menuBtn.textContent="☰";
 ========================================================= */
 
 const hero =
-document.getElementById("hero");
+    document.getElementById("hero");
+
 
 const navbarObserver =
-new IntersectionObserver(
-([entry])=>{
+    new IntersectionObserver(
+        ([entry])=>{
 
-navbar.classList.toggle(
-"scrolled",
-!entry.isIntersecting
-);
+            navbar.classList.toggle(
+                "scrolled",
+                !entry.isIntersecting
+            );
 
-},
-{
-threshold:.15
-}
-);
+        },
+        {
+            threshold:.15
+        }
+    );
+
 
 navbarObserver.observe(hero);
 
@@ -5328,63 +5177,69 @@ navbarObserver.observe(hero);
 ========================================================= */
 
 const pageSections =
-document.querySelectorAll(
-"#hero,#about,#work,#research,#contact"
-);
+    document.querySelectorAll(
+        "#hero,#about,#work,#research,#contact"
+    );
+
 
 const sectionObserver =
-new IntersectionObserver(
-entries=>{
+    new IntersectionObserver(
+        entries=>{
 
-entries.forEach(entry=>{
+            entries.forEach(entry=>{
 
-if(!entry.isIntersecting)
-return;
+                if(!entry.isIntersecting)
+                    return;
 
-const id=entry.target.id;
+                const id =
+                    entry.target.id;
 
-document
-.querySelectorAll(".nav-links a")
-.forEach(link=>{
 
-link.classList.toggle(
-"active",
-link.dataset.nav===id
-);
+                document
+                    .querySelectorAll(".nav-links a")
+                    .forEach(link=>{
 
-});
+                        link.classList.toggle(
+                            "active",
+                            link.dataset.nav===id
+                        );
 
-});
+                    });
 
-},
-{
-rootMargin:"-35% 0px -55% 0px"
-}
-);
+            });
+
+        },
+        {
+            rootMargin:"-35% 0px -55% 0px"
+        }
+    );
+
 
 pageSections.forEach(
-section=>sectionObserver.observe(section)
+    section =>
+        sectionObserver.observe(section)
 );
 
 
 /* =========================================================
-   ECO DOME NAVIGATION
+   ECO DÔME NAVIGATION
 ========================================================= */
 
 const featuredProject =
-document.querySelector(".featured-project");
+    document.querySelector(".featured-project");
+
 
 if(featuredProject){
 
-featuredProject.addEventListener("click",()=>{
+    featuredProject.addEventListener("click",()=>{
 
-document
-.getElementById("eco-project")
-.scrollIntoView({
-behavior:"smooth"
-});
+        document
+            .getElementById("eco-project")
+            .scrollIntoView({
+                behavior:"smooth"
+            });
 
-});
+    });
 
 }
 
@@ -5394,33 +5249,33 @@ behavior:"smooth"
 ========================================================= */
 
 const revealObserver =
-new IntersectionObserver(
-entries=>{
+    new IntersectionObserver(
+        entries=>{
 
-entries.forEach(entry=>{
+            entries.forEach(entry=>{
 
-if(entry.isIntersecting){
+                if(entry.isIntersecting){
 
-entry.target
-.classList
-.add("visible");
+                    entry.target
+                        .classList
+                        .add("visible");
 
-}
+                }
 
-});
+            });
 
-},
-{
-threshold:.12
-}
-);
+        },
+        {
+            threshold:.12
+        }
+    );
 
 
 document
-.querySelectorAll(".reveal")
-.forEach(element=>
-revealObserver.observe(element)
-);
+    .querySelectorAll(".reveal")
+    .forEach(element=>
+        revealObserver.observe(element)
+    );
 
 
 /* =========================================================
@@ -5428,16 +5283,16 @@ revealObserver.observe(element)
 ========================================================= */
 
 const lightbox =
-document.getElementById("lightbox");
+    document.getElementById("lightbox");
 
 const lightboxImage =
-document.getElementById("lightboxImage");
+    document.getElementById("lightboxImage");
 
 const lightboxCaption =
-document.getElementById("lightboxCaption");
+    document.getElementById("lightboxCaption");
 
 const lightboxClose =
-document.getElementById("lightboxClose");
+    document.getElementById("lightboxClose");
 
 
 /*
@@ -5450,41 +5305,41 @@ document.getElementById("lightboxClose");
 
 function openLightbox(image){
 
-lightboxImage.src =
-image.src;
+    lightboxImage.src =
+        image.src;
 
-lightboxImage.alt =
-image.alt;
+    lightboxImage.alt =
+        image.alt;
 
-lightboxCaption.textContent =
-image.alt;
-
-
-/* =====================================================
-   PLAN MASSE — KEEP -90deg ROTATION
-===================================================== */
-
-if(image.dataset.rotated === "true"){
-
-lightboxImage.classList.add(
-"lightbox-image-rotated"
-);
-
-}else{
-
-lightboxImage.classList.remove(
-"lightbox-image-rotated"
-);
-
-}
+    lightboxCaption.textContent =
+        image.alt;
 
 
-lightbox.classList.add("open");
+    /* =====================================================
+       PLAN MASSE — KEEP -90deg ROTATION
+    ===================================================== */
 
-lightbox.setAttribute(
-"aria-hidden",
-"false"
-);
+    if(image.dataset.rotated === "true"){
+
+        lightboxImage.classList.add(
+            "lightbox-image-rotated"
+        );
+
+    }else{
+
+        lightboxImage.classList.remove(
+            "lightbox-image-rotated"
+        );
+
+    }
+
+
+    lightbox.classList.add("open");
+
+    lightbox.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
 }
 
@@ -5495,70 +5350,72 @@ lightbox.setAttribute(
 
 function closeLightbox(){
 
-lightbox.classList.remove("open");
+    lightbox.classList.remove("open");
 
-lightbox.setAttribute(
-"aria-hidden",
-"true"
-);
+    lightbox.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 
-lightboxImage.src="";
+    lightboxImage.src="";
 
-lightboxImage.classList.remove(
-"lightbox-image-rotated"
-);
+    lightboxImage.classList.remove(
+        "lightbox-image-rotated"
+    );
 
 }
 
 
 document
-.querySelectorAll("[data-lightbox]")
-.forEach(image=>{
+    .querySelectorAll("[data-lightbox]")
+    .forEach(image=>{
 
-image.addEventListener(
-"click",
-event=>{
+        image.addEventListener(
+            "click",
+            event=>{
 
-event.stopPropagation();
+                event.stopPropagation();
 
-openLightbox(image);
+                openLightbox(image);
 
-}
-);
+            }
+        );
 
-});
+    });
 
 
 lightboxClose.addEventListener(
-"click",
-closeLightbox
+    "click",
+    closeLightbox
 );
 
 
 lightbox.addEventListener(
-"click",
-event=>{
+    "click",
+    event=>{
 
-if(event.target === lightbox){
+        if(event.target === lightbox){
 
-closeLightbox();
+            closeLightbox();
 
-}
+        }
 
-});
+    }
+);
 
 
 document.addEventListener(
-"keydown",
-event=>{
+    "keydown",
+    event=>{
 
-if(event.key === "Escape"){
+        if(event.key === "Escape"){
 
-closeLightbox();
+            closeLightbox();
 
-}
+        }
 
-});
+    }
+);
 
 
 /* =========================================================
@@ -5566,98 +5423,103 @@ closeLightbox();
 ========================================================= */
 
 const cursor =
-document.getElementById("cursor");
+    document.getElementById("cursor");
 
 const cursorRing =
-document.getElementById("cursorRing");
+    document.getElementById("cursorRing");
 
 
 if(
-window.matchMedia(
-"(pointer:fine)"
-).matches
+    window.matchMedia(
+        "(pointer:fine)"
+    ).matches
 ){
 
-document.body
-.classList
-.add("has-cursor");
+    document.body
+        .classList
+        .add("has-cursor");
 
 
-let mouseX=0;
-let mouseY=0;
+    let mouseX=0;
+    let mouseY=0;
 
-let ringX=0;
-let ringY=0;
-
-
-window.addEventListener(
-"mousemove",
-event=>{
-
-mouseX=event.clientX;
-mouseY=event.clientY;
-
-cursor.style.left=
-`${mouseX}px`;
-
-cursor.style.top=
-`${mouseY}px`;
-
-}
-);
+    let ringX=0;
+    let ringY=0;
 
 
-function animateCursor(){
+    window.addEventListener(
+        "mousemove",
+        event=>{
 
-ringX +=
-(mouseX-ringX)*.15;
+            mouseX=event.clientX;
+            mouseY=event.clientY;
 
-ringY +=
-(mouseY-ringY)*.15;
+            cursor.style.left =
+                `${mouseX}px`;
 
-cursorRing.style.left=
-`${ringX}px`;
+            cursor.style.top =
+                `${mouseY}px`;
 
-cursorRing.style.top=
-`${ringY}px`;
-
-requestAnimationFrame(
-animateCursor
-);
-
-}
-
-animateCursor();
+        }
+    );
 
 
-document
-.querySelectorAll(
-"a,button,.featured-project,.project-card,[data-lightbox]"
-)
-.forEach(element=>{
+    function animateCursor(){
 
-element.addEventListener(
-"mouseenter",
-()=>{
+        ringX +=
+            (mouseX-ringX)*.15;
 
-cursorRing.style.width="48px";
-cursorRing.style.height="48px";
-
-}
-);
+        ringY +=
+            (mouseY-ringY)*.15;
 
 
-element.addEventListener(
-"mouseleave",
-()=>{
+        cursorRing.style.left =
+            `${ringX}px`;
 
-cursorRing.style.width="30px";
-cursorRing.style.height="30px";
+        cursorRing.style.top =
+            `${ringY}px`;
 
-}
-);
 
-});
+        requestAnimationFrame(
+            animateCursor
+        );
+
+    }
+
+
+    animateCursor();
+
+
+    document
+        .querySelectorAll(
+            "a,button,.featured-project,.project-card,[data-lightbox]"
+        )
+        .forEach(element=>{
+
+            element.addEventListener(
+                "mouseenter",
+                ()=>{
+
+                    cursorRing.style.width="48px";
+
+                    cursorRing.style.height="48px";
+
+                }
+            );
+
+
+            element.addEventListener(
+                "mouseleave",
+                ()=>{
+
+                    cursorRing.style.width="30px";
+
+                    cursorRing.style.height="30px";
+
+                }
+            );
+
+        });
 
 }
 
