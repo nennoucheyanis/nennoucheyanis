@@ -11,7 +11,7 @@ name="description"
 content="Yanis Nennouche — Architect / Computational Design / Environmental Architecture"
 >
 
-<title>YANIS NENNOUCHE — ARCHITECT & COMPUTATIONAL DESIGN</title>
+<title>YANIS NENNOUCHE / ARCHITECT</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,9 +19,6 @@ content="Yanis Nennouche — Architect / Computational Design / Environmental Ar
 <link
 href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
 rel="stylesheet">
-
-<!-- PDF.JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
 
 
 <style>
@@ -512,7 +509,6 @@ color:transparent;
 min-height:100vh;
 
 padding-top:130px;
-padding-bottom:90px;
 
 display:flex;
 
@@ -532,7 +528,6 @@ margin:auto;
 
 }
 
-
 .hero-top{
 
 display:flex;
@@ -541,7 +536,7 @@ justify-content:space-between;
 
 align-items:flex-start;
 
-margin-bottom:65px;
+margin-bottom:60px;
 
 }
 
@@ -554,18 +549,12 @@ font-size:.63rem;
 
 color:var(--muted);
 
-line-height:1.7;
-
 }
 
 .hero-location{
 text-align:right;
 }
 
-
-/* =========================================================
-   HERO TITLE
-========================================================= */
 
 .hero-title{
 
@@ -584,8 +573,6 @@ position:relative;
 
 z-index:2;
 
-max-width:100%;
-
 }
 
 .hero-title .last{
@@ -599,47 +586,6 @@ color:transparent;
 }
 
 
-/* =========================================================
-   HERO ACADEMIC INFO
-========================================================= */
-
-.hero-credentials{
-
-display:flex;
-
-align-items:center;
-
-gap:18px;
-
-margin-top:42px;
-
-font-family:var(--mono);
-
-font-size:.61rem;
-
-letter-spacing:.08em;
-
-text-transform:uppercase;
-
-color:var(--muted);
-
-}
-
-.hero-credentials .separator{
-
-width:28px;
-
-height:1px;
-
-background:var(--red);
-
-}
-
-
-/* =========================================================
-   HERO DESCRIPTION
-========================================================= */
-
 .hero-subtitle{
 
 display:grid;
@@ -647,11 +593,11 @@ display:grid;
 grid-template-columns:
 1fr 1fr;
 
-gap:70px;
+gap:50px;
 
-margin-top:65px;
+margin-top:80px;
 
-max-width:1000px;
+max-width:950px;
 
 }
 
@@ -661,7 +607,7 @@ max-width:500px;
 
 color:var(--muted);
 
-font-size:.88rem;
+font-size:.9rem;
 
 line-height:1.85;
 
@@ -677,8 +623,59 @@ font-weight:500;
 
 
 /* =========================================================
-   HERO BOTTOM
+   HERO INFO
 ========================================================= */
+
+.hero-info{
+
+display:flex;
+
+align-items:center;
+
+gap:45px;
+
+margin-top:55px;
+
+padding-top:20px;
+
+border-top:1px solid var(--line);
+
+max-width:700px;
+
+}
+
+.hero-info-item{
+
+display:flex;
+
+flex-direction:column;
+
+gap:7px;
+
+}
+
+.hero-info-label{
+
+font-family:var(--mono);
+
+font-size:.55rem;
+
+text-transform:uppercase;
+
+letter-spacing:.1em;
+
+color:var(--red);
+
+}
+
+.hero-info-value{
+
+font-size:.73rem;
+
+line-height:1.4;
+
+}
+
 
 .hero-red-line{
 
@@ -1061,7 +1058,7 @@ justify-content:space-between;
 
 align-items:center;
 
-margin-bottom:25px;
+margin-bottom:20px;
 
 }
 
@@ -1080,13 +1077,21 @@ color:var(--red);
 }
 
 
-/* =========================================================
-   CV PREVIEW — WHITE A4 PAGE
-========================================================= */
+/*
+   WHITE CV FRAME
+*/
 
 .cv-preview{
 
 width:100%;
+
+height:700px;
+
+background:#FFFFFF;
+
+border:1px solid var(--line);
+
+overflow:hidden;
 
 display:flex;
 
@@ -1094,137 +1099,19 @@ justify-content:center;
 
 align-items:flex-start;
 
-padding:45px;
-
-background:#DCDAD4;
-
-border:1px solid var(--line);
-
-overflow:hidden;
-
-cursor:pointer;
-
-transition:
-background .3s ease;
+padding:0;
 
 }
 
-.cv-preview:hover{
-
-background:#D4D2CC;
-
-}
-
-
-.cv-page{
-
-position:relative;
-
-width:min(100%,780px);
-
-background:#fff;
-
-box-shadow:
-0 18px 45px rgba(0,0,0,.12);
-
-overflow:hidden;
-
-transition:
-transform .5s cubic-bezier(.2,.7,.2,1),
-box-shadow .5s ease;
-
-}
-
-.cv-preview:hover .cv-page{
-
-transform:translateY(-4px);
-
-box-shadow:
-0 24px 55px rgba(0,0,0,.16);
-
-}
-
-
-#cvCanvas{
-
-display:block;
+.cv-preview iframe{
 
 width:100%;
 
-height:auto;
+height:100%;
 
-background:#fff;
+border:0;
 
-}
-
-
-.cv-loading{
-
-position:absolute;
-
-inset:0;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-background:#fff;
-
-font-family:var(--mono);
-
-font-size:.62rem;
-
-letter-spacing:.1em;
-
-text-transform:uppercase;
-
-color:var(--muted);
-
-}
-
-.cv-loading.hidden{
-
-display:none;
-
-}
-
-
-.cv-error{
-
-display:none;
-
-padding:80px 30px;
-
-text-align:center;
-
-background:#fff;
-
-font-size:.8rem;
-
-color:var(--muted);
-
-line-height:1.7;
-
-}
-
-.cv-error.visible{
-
-display:block;
-
-}
-
-
-.cv-actions{
-
-display:flex;
-
-justify-content:flex-end;
-
-gap:10px;
-
-margin-top:15px;
+background:#FFFFFF;
 
 }
 
@@ -1286,6 +1173,16 @@ color:white;
 background:var(--red-dark);
 
 color:white;
+
+}
+
+.cv-actions{
+
+display:flex;
+
+justify-content:flex-end;
+
+margin-top:15px;
 
 }
 
@@ -1632,7 +1529,7 @@ text-align:right;
 
 
 /* =========================================================
-   ECO PROJECT
+   PROJECT DETAIL
 ========================================================= */
 
 .project-detail{
@@ -1909,6 +1806,27 @@ color:var(--muted);
 
 
 /* =========================================================
+   PROJECT ORDER LABEL
+========================================================= */
+
+.project-section-label{
+
+margin-bottom:35px;
+
+font-family:var(--mono);
+
+font-size:.58rem;
+
+text-transform:uppercase;
+
+letter-spacing:.12em;
+
+color:var(--red);
+
+}
+
+
+/* =========================================================
    PROCESS
 ========================================================= */
 
@@ -2053,6 +1971,161 @@ font-size:.76rem;
 font-family:var(--mono);
 
 color:var(--red);
+
+}
+
+
+/* =========================================================
+   RESEARCH
+========================================================= */
+
+#research{
+
+background:var(--bg-soft);
+
+min-height:75vh;
+
+display:flex;
+
+align-items:center;
+
+}
+
+.research-container{
+
+width:100%;
+
+max-width:var(--max-width);
+
+margin:auto;
+
+}
+
+.research-grid{
+
+display:grid;
+
+grid-template-columns:
+.8fr 1.2fr;
+
+gap:100px;
+
+align-items:end;
+
+}
+
+.research-intro{
+
+max-width:650px;
+
+}
+
+.research-title{
+
+font-family:var(--display);
+
+font-size:
+clamp(3.5rem,8vw,9rem);
+
+line-height:.82;
+
+letter-spacing:-.085em;
+
+margin-top:25px;
+
+}
+
+.research-title span{
+
+color:var(--red);
+
+}
+
+.research-copy{
+
+max-width:560px;
+
+font-size:.95rem;
+
+line-height:1.9;
+
+color:var(--muted);
+
+}
+
+.research-status{
+
+margin-top:55px;
+
+padding-top:20px;
+
+border-top:1px solid var(--line);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+font-family:var(--mono);
+
+font-size:.6rem;
+
+text-transform:uppercase;
+
+letter-spacing:.1em;
+
+}
+
+.research-status span:last-child{
+
+color:var(--red);
+
+}
+
+.research-note{
+
+border-left:1px solid var(--red);
+
+padding-left:35px;
+
+}
+
+.research-note-number{
+
+font-family:var(--mono);
+
+font-size:.6rem;
+
+color:var(--red);
+
+margin-bottom:30px;
+
+}
+
+.research-note h3{
+
+font-family:var(--display);
+
+font-size:clamp(2rem,4vw,4.5rem);
+
+line-height:.9;
+
+letter-spacing:-.06em;
+
+margin-bottom:30px;
+
+}
+
+.research-note p{
+
+max-width:520px;
+
+font-size:.85rem;
+
+line-height:1.85;
+
+color:var(--muted);
 
 }
 
@@ -2406,7 +2479,6 @@ display:block;
 
 }
 
-
 .hero-title{
 
 font-size:
@@ -2420,24 +2492,21 @@ margin-left:5vw;
 
 }
 
-.hero-credentials{
-
-flex-wrap:wrap;
-
-margin-top:35px;
-
-}
-
 .hero-subtitle{
 
 grid-template-columns:1fr;
 
 margin-top:50px;
 
-gap:20px;
-
 }
 
+.hero-info{
+
+flex-wrap:wrap;
+
+gap:25px;
+
+}
 
 .about-top{
 
@@ -2468,7 +2537,6 @@ top:auto;
 max-width:450px;
 
 }
-
 
 .project-header{
 
@@ -2549,9 +2617,17 @@ grid-template-columns:1fr;
 
 }
 
+.research-grid{
+
+grid-template-columns:1fr;
+
+gap:60px;
+
+}
+
 .cv-preview{
 
-padding:30px;
+height:550px;
 
 }
 
@@ -2579,17 +2655,23 @@ margin-bottom:40px;
 
 }
 
-.hero-credentials{
+.hero-subtitle{
 
-font-size:.55rem;
-
-gap:12px;
+margin-top:45px;
 
 }
 
-.hero-credentials .separator{
+.hero-info{
 
-width:18px;
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+}
+
+.hero-red-line{
+
+display:none;
 
 }
 
@@ -2680,19 +2762,24 @@ clamp(4rem,20vw,7rem);
 
 .cv-preview{
 
-padding:15px;
+height:450px;
 
 }
 
-.cv-page{
+.research-title{
 
-width:100%;
+font-size:
+clamp(3.5rem,18vw,6rem);
 
 }
 
-.cv-actions{
+.research-status{
 
-justify-content:flex-start;
+align-items:flex-start;
+
+gap:15px;
+
+flex-direction:column;
 
 }
 
@@ -2771,6 +2858,10 @@ YANIS NENNOUCHE
 
 <li>
 <a href="#work" data-nav="work">Work</a>
+</li>
+
+<li>
+<a href="#research" data-nav="research">Research</a>
 </li>
 
 <li>
@@ -2887,7 +2978,8 @@ aria-label="Menu"
 </div>
 
 <div class="hero-location">
-ALGIERS — 2026
+ALGIERS, ALGERIA<br>
+2026
 </div>
 
 </div>
@@ -2906,25 +2998,6 @@ NENNOUCHE
 </h1>
 
 
-<!-- ACADEMIC / PROFESSIONAL CREDENTIALS -->
-
-<div class="hero-credentials reveal">
-
-<span>
-M.ARCH — ENVIRONMENT &amp; TECHNOLOGY
-</span>
-
-<span class="separator"></span>
-
-<span>
-UNIVERSITY OF ALGIERS 1
-</span>
-
-</div>
-
-
-<!-- HERO TEXT -->
-
 <div class="hero-subtitle reveal">
 
 <p>
@@ -2937,9 +3010,9 @@ Architect / Computational Design
 
 Architecture through computation.
 
-Exploring architectural systems through
-computation, parametric design and
-environmental performance.
+Exploring the relationship between
+architecture, environmental performance,
+geometry and digital design.
 
 </p>
 
@@ -2948,10 +3021,44 @@ environmental performance.
 
 My work focuses on architectural systems,
 parametric design, environmental strategies
-and computational tools as part of the
-design process.
+and the use of computational tools as part
+of the design process.
 
 </p>
+
+</div>
+
+
+<!-- =====================================================
+     HERO INFO
+===================================================== -->
+
+<div class="hero-info reveal">
+
+<div class="hero-info-item">
+
+<span class="hero-info-label">
+Location
+</span>
+
+<span class="hero-info-value">
+ALGIERS — 2026
+</span>
+
+</div>
+
+
+<div class="hero-info-item">
+
+<span class="hero-info-label">
+Education
+</span>
+
+<span class="hero-info-value">
+M.Arch / Environment &amp; Technology
+</span>
+
+</div>
 
 </div>
 
@@ -3218,7 +3325,6 @@ LaTeX
 
 <div class="cv-section reveal">
 
-
 <div class="cv-header">
 
 <div class="cv-label">
@@ -3228,39 +3334,13 @@ Curriculum Vitae
 </div>
 
 
-<!-- WHITE A4 PAGE -->
+<div class="cv-preview">
 
-<div
-class="cv-preview"
-id="cvPreview"
-title="Open CV"
+<iframe
+src="CV.pdf#toolbar=0&navpanes=0&scrollbar=0"
+title="Yanis Nennouche CV"
 >
-
-<div class="cv-page">
-
-<canvas
-id="cvCanvas"
-aria-label="Curriculum Vitae preview"
->
-</canvas>
-
-<div
-class="cv-loading"
-id="cvLoading"
->
-Loading CV
-</div>
-
-<div
-class="cv-error"
-id="cvError"
->
-Unable to preview the CV.
-<br><br>
-Use "Open CV" to view the PDF.
-</div>
-
-</div>
+</iframe>
 
 </div>
 
@@ -3499,7 +3579,9 @@ id="eco-project"
 <div class="container">
 
 
-<!-- HEADER -->
+<!-- =====================================================
+     PROJECT HEADER
+===================================================== -->
 
 <div class="project-header reveal">
 
@@ -3540,7 +3622,9 @@ material and living systems interact.
 
 
 
-<!-- META -->
+<!-- =====================================================
+     META
+===================================================== -->
 
 <div class="project-meta reveal">
 
@@ -3603,7 +3687,7 @@ Computational Design
 
 
 <!-- =====================================================
-     01 — ARCHITECTURE
+     01 — CONCEPT
 ===================================================== -->
 
 <div class="story-block">
@@ -3613,57 +3697,6 @@ Computational Design
 
 <div class="story-index">
 01
-</div>
-
-<h3 class="story-title">
-
-Architecture
-<br>
-as an ecosystem.
-
-</h3>
-
-</div>
-
-
-<div class="large-media reveal">
-
-<img
-src="assets/Rendus_2 - Photo.jpg"
-alt="Eco Dôme du Hamma final perspective"
-data-lightbox
->
-
-</div>
-
-
-<div class="caption">
-
-<span>
-Eco Dôme du Hamma
-</span>
-
-<span>
-Final perspective
-</span>
-
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
-     02 — CONCEPT
-===================================================== -->
-
-<div class="story-block">
-
-
-<div class="story-heading reveal">
-
-<div class="story-index">
-02
 </div>
 
 <h3 class="story-title">
@@ -3691,7 +3724,69 @@ for different ecosystems.
 
 
 <!-- =====================================================
-     03 — SPATIAL EXPERIENCE
+     02 — GENESIS
+===================================================== -->
+
+<div class="story-block">
+
+
+<div class="story-heading reveal">
+
+<div class="story-index">
+02
+</div>
+
+<h3 class="story-title">
+Genesis
+</h3>
+
+</div>
+
+
+<p class="story-text reveal">
+
+The project develops from an exploration
+of natural geometry, movement and
+environmental adaptation.
+
+The spiral becomes a generative system
+from which the building form, circulation,
+spatial sequence and relationship between
+the different ecosystems are progressively
+developed.
+
+</p>
+
+
+<div class="large-media reveal" style="margin-top:50px;">
+
+<img
+src="assets/Rendus_2 - Photo.jpg"
+alt="Eco Dôme concept and genesis"
+data-lightbox
+>
+
+</div>
+
+
+<div class="caption">
+
+<span>
+Concept development
+</span>
+
+<span>
+Genesis
+</span>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     03 — PLANS
 ===================================================== -->
 
 <div class="story-block">
@@ -3704,37 +3799,71 @@ for different ecosystems.
 </div>
 
 <h3 class="story-title">
-Spatial experience
+Plans
 </h3>
 
 </div>
 
 
-<div class="split-media reveal">
+<div class="project-section-label">
+Site / Ground floor / Spatial organisation
+</div>
 
 
-<div class="media">
+<!-- PLAN MASSE -->
+
+<div class="large-media reveal">
 
 <img
-src="assets/Rendus_3 - Photo.jpg"
-alt="Eco Dôme interior"
+src="assets/plan-masse.png"
+alt="Eco Dôme site plan"
 data-lightbox
 >
 
 </div>
 
 
-<div class="media">
+<div class="caption">
+
+<span>
+Plan masse
+</span>
+
+<span>
+Site organisation
+</span>
+
+</div>
+
+
+<br><br><br>
+
+
+<!-- RDC -->
+
+<div class="large-media reveal">
 
 <img
-src="assets/Rendus_5 - Photo.jpg"
-alt="Eco Dôme architecture"
+src="assets/plan-rdc.png"
+alt="Eco Dôme ground floor plan"
 data-lightbox
 >
 
 </div>
 
+
+<div class="caption">
+
+<span>
+Ground floor plan
+</span>
+
+<span>
+Spatial organisation
+</span>
+
 </div>
+
 
 </div>
 
@@ -3804,7 +3933,7 @@ Drawing studies
 
 
 <!-- =====================================================
-     05 — DESIGN PROCESS
+     05 — FACADES
 ===================================================== -->
 
 <div class="story-block">
@@ -3817,113 +3946,48 @@ Drawing studies
 </div>
 
 <h3 class="story-title">
-Design process
+Facades
 </h3>
 
 </div>
 
 
-<div class="process reveal">
+<div class="split-media reveal">
 
 
-<div class="process-step">
+<div class="media">
 
-<div class="process-number">
-01
-</div>
-
-<div class="process-name">
-Biomimicry
-</div>
-
-<div class="process-description">
-
-Natural geometry becomes
-the initial design generator.
-
-</div>
+<img
+src="assets/facade1.png"
+alt="Eco Dôme facade"
+data-lightbox
+>
 
 </div>
 
 
-<div class="process-step">
+<div class="media">
 
-<div class="process-number">
-02
-</div>
-
-<div class="process-name">
-Geometry
-</div>
-
-<div class="process-description">
-
-Parametric modelling defines
-the architectural system.
+<img
+src="assets/facade2.png"
+alt="Eco Dôme facade"
+data-lightbox
+>
 
 </div>
 
 </div>
 
 
-<div class="process-step">
+<div class="caption">
 
-<div class="process-number">
-03
-</div>
+<span>
+Architectural elevations
+</span>
 
-<div class="process-name">
-Environment
-</div>
-
-<div class="process-description">
-
-Climate and environmental
-conditions inform the envelope.
-
-</div>
-
-</div>
-
-
-<div class="process-step">
-
-<div class="process-number">
-04
-</div>
-
-<div class="process-name">
-Structure
-</div>
-
-<div class="process-description">
-
-Structural logic is integrated
-into the generated geometry.
-
-</div>
-
-</div>
-
-
-<div class="process-step">
-
-<div class="process-number">
-05
-</div>
-
-<div class="process-name">
-Architecture
-</div>
-
-<div class="process-description">
-
-The resulting system becomes
-a coherent spatial experience.
-
-</div>
-
-</div>
+<span>
+Facade studies
+</span>
 
 </div>
 
@@ -3932,10 +3996,93 @@ a coherent spatial experience.
 
 
 <!-- =====================================================
-     ENVIRONMENT
+     06 — AXONOMETRY / PERSPECTIVE
 ===================================================== -->
 
-<div class="environment story-block">
+<div class="story-block">
+
+
+<div class="story-heading reveal">
+
+<div class="story-index">
+06
+</div>
+
+<h3 class="story-title">
+Axonometry
+<br>
+&amp; perspectives
+</h3>
+
+</div>
+
+
+<div class="split-media reveal">
+
+
+<div class="media">
+
+<img
+src="assets/axo.png"
+alt="Eco Dôme axonometric view"
+data-lightbox
+>
+
+</div>
+
+
+<div class="media">
+
+<img
+src="assets/Rendus_3 - Photo.jpg"
+alt="Eco Dôme architectural perspective"
+data-lightbox
+>
+
+</div>
+
+</div>
+
+
+<div class="caption">
+
+<span>
+Axonometric / spatial studies
+</span>
+
+<span>
+Architectural perspective
+</span>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     07 — ENVIRONMENTAL STRATEGIES
+===================================================== -->
+
+<div class="story-block">
+
+
+<div class="story-heading reveal">
+
+<div class="story-index">
+07
+</div>
+
+<h3 class="story-title">
+Environmental
+<br>
+strategies
+</h3>
+
+</div>
+
+
+<div class="environment">
 
 
 <div class="environment-grid">
@@ -4051,9 +4198,12 @@ Water management
 </div>
 
 
+</div>
+
+
 
 <!-- =====================================================
-     FINAL VIEWS
+     08 — FINAL RENDERS
 ===================================================== -->
 
 <div class="story-block">
@@ -4062,14 +4212,71 @@ Water management
 <div class="story-heading reveal">
 
 <div class="story-index">
-06
+08
 </div>
 
 <h3 class="story-title">
-Final views
+Final renders
 </h3>
 
 </div>
+
+
+<div class="large-media reveal">
+
+<img
+src="assets/Rendus_2 - Photo.jpg"
+alt="Eco Dôme final perspective"
+data-lightbox
+>
+
+</div>
+
+
+<div class="caption">
+
+<span>
+Eco Dôme du Hamma
+</span>
+
+<span>
+Final perspective
+</span>
+
+</div>
+
+
+<br><br>
+
+
+<div class="split-media reveal">
+
+
+<div class="media">
+
+<img
+src="assets/Rendus_3 - Photo.jpg"
+alt="Eco Dôme interior"
+data-lightbox
+>
+
+</div>
+
+
+<div class="media">
+
+<img
+src="assets/Rendus_5 - Photo.jpg"
+alt="Eco Dôme architecture"
+data-lightbox
+>
+
+</div>
+
+</div>
+
+
+<br><br>
 
 
 <div class="split-media reveal">
@@ -4130,6 +4337,92 @@ data-lightbox
 
 </div>
 
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================================
+     RESEARCH
+========================================================= -->
+
+<section id="research">
+
+<div class="research-container">
+
+
+<div class="research-grid">
+
+
+<div class="research-intro reveal">
+
+<div class="eyebrow">
+Research
+</div>
+
+
+<h2 class="research-title">
+
+Future
+<br>
+
+<span>research.</span>
+
+</h2>
+
+
+<div class="research-status">
+
+<span>
+Current status
+</span>
+
+<span>
+In development
+</span>
+
+</div>
+
+</div>
+
+
+
+<div class="research-note reveal">
+
+<div class="research-note-number">
+01 / FUTURE EXPLORATIONS
+</div>
+
+
+<h3>
+
+Architecture,
+computation
+&amp; environment.
+
+</h3>
+
+
+<p>
+
+A space dedicated to future explorations
+in architecture, computation and
+environmental design.
+
+<br><br>
+
+I hope to have the opportunity to develop
+and publish research and investigations
+in these fields in the future.
+
+</p>
+
+</div>
+
+
+</div>
 
 </div>
 
@@ -4263,6 +4556,10 @@ About
 Projects
 </a>
 
+<a href="#research">
+Research
+</a>
+
 <a href="#contact">
 Contact
 </a>
@@ -4314,179 +4611,7 @@ id="lightboxCaption"
 
 
 
-<script type="module">
-
-/* =========================================================
-   PDF.JS — CV PREVIEW
-========================================================= */
-
-import {
-pdfjsLib
-} from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
-
-
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
-
-
-const cvCanvas =
-document.getElementById("cvCanvas");
-
-const cvLoading =
-document.getElementById("cvLoading");
-
-const cvError =
-document.getElementById("cvError");
-
-const cvPreview =
-document.getElementById("cvPreview");
-
-
-async function renderCV(){
-
-try{
-
-const pdf =
-await pdfjsLib.getDocument("CV.pdf").promise;
-
-
-const page =
-await pdf.getPage(1);
-
-
-/*
-   The canvas is rendered at a high resolution
-   so the CV remains sharp on retina screens.
-*/
-
-const baseViewport =
-page.getViewport({
-scale:1
-});
-
-
-const desiredWidth =
-Math.min(
-780,
-window.innerWidth > 900
-? 780
-: window.innerWidth - 60
-);
-
-
-const scale =
-desiredWidth /
-baseViewport.width;
-
-
-const viewport =
-page.getViewport({
-scale
-});
-
-
-const outputScale =
-window.devicePixelRatio || 1;
-
-
-cvCanvas.width =
-Math.floor(
-viewport.width *
-outputScale
-);
-
-cvCanvas.height =
-Math.floor(
-viewport.height *
-outputScale
-);
-
-
-cvCanvas.style.width =
-`${viewport.width}px`;
-
-cvCanvas.style.height =
-`${viewport.height}px`;
-
-
-const context =
-cvCanvas.getContext("2d");
-
-
-context.setTransform(
-outputScale,
-0,
-0,
-outputScale,
-0,
-0
-);
-
-
-await page.render({
-
-canvasContext:context,
-
-viewport:viewport
-
-}).promise;
-
-
-cvLoading.classList.add("hidden");
-
-
-}catch(error){
-
-console.error(
-"CV preview error:",
-error
-);
-
-cvLoading.classList.add("hidden");
-
-cvError.classList.add("visible");
-
-}
-
-}
-
-
-/*
-   Render after page load so the PDF
-   has a reliable container size.
-*/
-
-window.addEventListener(
-"load",
-renderCV
-);
-
-
-/*
-   Clicking the preview opens
-   the complete PDF.
-*/
-
-cvPreview.addEventListener(
-"click",
-event=>{
-
-if(
-event.target.closest(
-".cv-error"
-)
-){
-return;
-}
-
-window.open(
-"CV.pdf",
-"_blank",
-"noopener"
-);
-
-});
-
+<script>
 
 /* =========================================================
    NAVIGATION
@@ -4502,13 +4627,9 @@ const menuBtn =
 document.getElementById("menuBtn");
 
 
-menuBtn.addEventListener(
-"click",
-()=>{
+menuBtn.addEventListener("click",()=>{
 
-navLinks.classList.toggle(
-"open"
-);
+navLinks.classList.toggle("open");
 
 menuBtn.textContent =
 navLinks.classList.contains("open")
@@ -4522,13 +4643,9 @@ document
 .querySelectorAll(".nav-links a")
 .forEach(link=>{
 
-link.addEventListener(
-"click",
-()=>{
+link.addEventListener("click",()=>{
 
-navLinks.classList.remove(
-"open"
-);
+navLinks.classList.remove("open");
 
 menuBtn.textContent="☰";
 
@@ -4544,10 +4661,8 @@ menuBtn.textContent="☰";
 const hero =
 document.getElementById("hero");
 
-
 const navbarObserver =
 new IntersectionObserver(
-
 ([entry])=>{
 
 navbar.classList.toggle(
@@ -4556,13 +4671,10 @@ navbar.classList.toggle(
 );
 
 },
-
 {
 threshold:.15
 }
-
 );
-
 
 navbarObserver.observe(hero);
 
@@ -4573,13 +4685,11 @@ navbarObserver.observe(hero);
 
 const pageSections =
 document.querySelectorAll(
-"#hero,#about,#work,#contact"
+"#hero,#about,#work,#research,#contact"
 );
-
 
 const sectionObserver =
 new IntersectionObserver(
-
 entries=>{
 
 entries.forEach(entry=>{
@@ -4587,9 +4697,7 @@ entries.forEach(entry=>{
 if(!entry.isIntersecting)
 return;
 
-const id =
-entry.target.id;
-
+const id=entry.target.id;
 
 document
 .querySelectorAll(".nav-links a")
@@ -4605,17 +4713,13 @@ link.dataset.nav===id
 });
 
 },
-
 {
 rootMargin:"-35% 0px -55% 0px"
 }
-
 );
 
-
 pageSections.forEach(
-section=>
-sectionObserver.observe(section)
+section=>sectionObserver.observe(section)
 );
 
 
@@ -4624,14 +4728,11 @@ sectionObserver.observe(section)
 ========================================================= */
 
 const featuredProject =
-document.querySelector(
-".featured-project"
-);
+document.querySelector(".featured-project");
 
+if(featuredProject){
 
-featuredProject.addEventListener(
-"click",
-()=>{
+featuredProject.addEventListener("click",()=>{
 
 document
 .getElementById("eco-project")
@@ -4639,8 +4740,9 @@ document
 behavior:"smooth"
 });
 
+});
+
 }
-);
 
 
 /* =========================================================
@@ -4649,7 +4751,6 @@ behavior:"smooth"
 
 const revealObserver =
 new IntersectionObserver(
-
 entries=>{
 
 entries.forEach(entry=>{
@@ -4665,11 +4766,9 @@ entry.target
 });
 
 },
-
 {
 threshold:.12
 }
-
 );
 
 
@@ -4699,35 +4798,25 @@ document.getElementById("lightboxClose");
 
 function openLightbox(image){
 
-lightboxImage.src =
-image.src;
+lightboxImage.src=image.src;
 
-lightboxImage.alt =
-image.alt;
+lightboxImage.alt=image.alt;
 
-lightboxCaption.textContent =
-image.alt;
+lightboxCaption.textContent=image.alt;
 
-lightbox.classList.add(
-"open"
-);
+lightbox.classList.add("open");
 
 lightbox.setAttribute(
 "aria-hidden",
 "false"
 );
 
-document.body.style.overflow =
-"hidden";
-
 }
 
 
 function closeLightbox(){
 
-lightbox.classList.remove(
-"open"
-);
+lightbox.classList.remove("open");
 
 lightbox.setAttribute(
 "aria-hidden",
@@ -4735,9 +4824,6 @@ lightbox.setAttribute(
 );
 
 lightboxImage.src="";
-
-document.body.style.overflow =
-"";
 
 }
 
@@ -4770,32 +4856,26 @@ lightbox.addEventListener(
 "click",
 event=>{
 
-if(
-event.target===lightbox
-){
+if(event.target===lightbox){
 
 closeLightbox();
 
 }
 
-}
-);
+});
 
 
 document.addEventListener(
 "keydown",
 event=>{
 
-if(
-event.key==="Escape"
-){
+if(event.key==="Escape"){
 
 closeLightbox();
 
 }
 
-}
-);
+});
 
 
 /* =========================================================
@@ -4831,16 +4911,13 @@ window.addEventListener(
 "mousemove",
 event=>{
 
-mouseX =
-event.clientX;
+mouseX=event.clientX;
+mouseY=event.clientY;
 
-mouseY =
-event.clientY;
-
-cursor.style.left =
+cursor.style.left=
 `${mouseX}px`;
 
-cursor.style.top =
+cursor.style.top=
 `${mouseY}px`;
 
 }
@@ -4849,16 +4926,16 @@ cursor.style.top =
 
 function animateCursor(){
 
-ringX +=
+ringX+=
 (mouseX-ringX)*.15;
 
-ringY +=
+ringY+=
 (mouseY-ringY)*.15;
 
-cursorRing.style.left =
+cursorRing.style.left=
 `${ringX}px`;
 
-cursorRing.style.top =
+cursorRing.style.top=
 `${ringY}px`;
 
 requestAnimationFrame(
@@ -4867,13 +4944,12 @@ animateCursor
 
 }
 
-
 animateCursor();
 
 
 document
 .querySelectorAll(
-"a,button,.featured-project,.project-card,[data-lightbox],.cv-preview"
+"a,button,.featured-project,.project-card,[data-lightbox]"
 )
 .forEach(element=>{
 
@@ -4881,11 +4957,8 @@ element.addEventListener(
 "mouseenter",
 ()=>{
 
-cursorRing.style.width =
-"48px";
-
-cursorRing.style.height =
-"48px";
+cursorRing.style.width="48px";
+cursorRing.style.height="48px";
 
 }
 );
@@ -4895,11 +4968,8 @@ element.addEventListener(
 "mouseleave",
 ()=>{
 
-cursorRing.style.width =
-"30px";
-
-cursorRing.style.height =
-"30px";
+cursorRing.style.width="30px";
+cursorRing.style.height="30px";
 
 }
 );
