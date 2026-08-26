@@ -25,16 +25,15 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html {
-      scroll-behavior: smooth;
-      scroll-snap-type: y mandatory;
+    html, body {
+      height: 100%;
+      overflow: hidden;
     }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: Inter, sans-serif;
-      overflow-x: hidden;
       cursor: default;
     }
 
@@ -118,23 +117,42 @@
     .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
     .menu-btn { display: none; background: transparent; color: var(--text); border: 0; font-size: 1.4rem; }
 
-    /* ========================= PAGES / BOOK ========================= */
-    main { position: relative; }
+    /* ========================= PAGES / BOOK (flip stage) ========================= */
+    main#book {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      height: 100svh;
+      perspective: 1900px;
+      overflow: hidden;
+    }
 
-    section {
-      min-height: 100vh;
-      min-height: 100svh;
+    #pagesContainer { position: static; }
+
+    main#book section {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
       padding: 130px clamp(22px, 7vw, 110px);
-      position: relative;
-      display: flex;
+      display: none;
       flex-direction: column;
       justify-content: center;
       max-width: 1700px;
       margin: auto;
-      scroll-snap-align: start;
+      backface-visibility: hidden;
+      transform-origin: top center;
+      will-change: transform, opacity;
     }
 
-    section.page-strict { scroll-snap-stop: always; }
+    main#book section::-webkit-scrollbar { display: none; }
+
+    main#book section.slide-current { display: flex; z-index: 1; }
+    main#book section.slide-leaf { display: flex; z-index: 2; }
 
     .eyebrow {
       display: inline-flex; align-items: center; gap: 10px; color: var(--accent);
@@ -325,17 +343,21 @@
     .contact-copy { color: var(--muted); max-width: 550px; line-height: 1.7; margin: 28px auto 35px; }
     .contact-links { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 
-    footer {
-      padding: 25px clamp(22px, 7vw, 110px); border-top: 1px solid var(--line);
-      display: flex; justify-content: space-between; color: var(--muted); font-size: .7rem;
-      scroll-snap-align: end;
+    .contact-footer {
+      position: absolute;
+      left: clamp(22px, 7vw, 110px);
+      right: clamp(22px, 7vw, 110px);
+      bottom: 28px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: .68rem;
+      letter-spacing: .03em;
     }
 
     /* ========================= MOBILE ========================= */
-    @media (max-width: 900px) {
-      html { scroll-snap-type: y proximity; }
-    }
-
     @media (max-width: 800px) {
       .nav-links {
         position: absolute; top: 70px; right: 22px; left: 22px; display: none; flex-direction: column;
@@ -354,7 +376,7 @@
       .page-grid-renders { grid-template-columns: 1fr; }
       .stack { grid-template-columns: 1fr; }
       .page-indicator { display: none; }
-      footer { flex-direction: column; gap: 8px; }
+      .contact-footer { flex-direction: column; gap: 6px; position: static; margin-top: 40px; }
     }
 
     @media (max-width: 500px) {
@@ -552,14 +574,14 @@
         <a class="btn primary" href="mailto:nennoucheyaya@gmail.com">nennoucheyaya@gmail.com ↗</a>
         <a class="btn" href="./CV.pdf" target="_blank">View / download CV</a>
       </div>
+
+      <div class="contact-footer">
+        <span>YANIS NENNOUCHE / ARCHITECT</span>
+        <span>Architecture · Computation · Environment</span>
+      </div>
     </section>
 
   </main>
-
-  <footer>
-    <span>YANIS NENNOUCHE / ARCHITECT</span>
-    <span>Architecture · Computation · Environment</span>
-  </footer>
 
   <!-- ============ LIGHTBOX ============ -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
@@ -711,9 +733,7 @@
       item.appendChild(info);
 
       item.addEventListener("click", () => {
-        history.pushState(null, "", `#project-${project.id}`);
-        const target = document.getElementById(`project-${project.id}`);
-        if (target) target.scrollIntoView({ behavior: "smooth" });
+        goToId(`project-${project.id}`);
       });
 
       tocGrid.appendChild(item);
@@ -844,15 +864,10 @@
         footlink.textContent = "Scroll to continue ↓";
       } else if (nextProject) {
         footlink.textContent = `Next — Project ${nextProject.id} · ${nextProject.name} ↓`;
-        footlink.addEventListener("click", () => {
-          const target = document.getElementById(`project-${nextProject.id}`);
-          if (target) target.scrollIntoView({ behavior: "smooth" });
-        });
+        footlink.addEventListener("click", () => goToId(`project-${nextProject.id}`));
       } else {
         footlink.textContent = "Continue to contact ↓";
-        footlink.addEventListener("click", () => {
-          document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
-        });
+        footlink.addEventListener("click", () => goToId("contact"));
       }
       section.appendChild(footlink);
 
@@ -886,15 +901,10 @@
         footlink.className = "page-footlink reveal";
         if (nextProject) {
           footlink.textContent = `Next — Project ${nextProject.id} · ${nextProject.name} ↓`;
-          footlink.addEventListener("click", () => {
-            const target = document.getElementById(`project-${nextProject.id}`);
-            if (target) target.scrollIntoView({ behavior: "smooth" });
-          });
+          footlink.addEventListener("click", () => goToId(`project-${nextProject.id}`));
         } else {
           footlink.textContent = "Continue to contact ↓";
-          footlink.addEventListener("click", () => {
-            document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
-          });
+          footlink.addEventListener("click", () => goToId("contact"));
         }
         lastSection.appendChild(footlink);
       }
@@ -924,36 +934,26 @@
       });
     });
 
-    function updateScrollUI() {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = `${docHeight > 0 ? (scrollTop / docHeight) * 100 : 0}%`;
-      navbar.classList.toggle("scrolled", scrollTop > 30);
-    }
-    window.addEventListener("scroll", updateScrollUI, { passive: true });
-    updateScrollUI();
+    navbar.classList.add("scrolled");
 
-    // reveal-on-scroll (applies to all pages, including generated ones)
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-      });
-    }, { threshold: .12 });
-    document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+    /* =========================================================
+       SLIDE DECK + 3D PAGE-FLIP CONTROLLER
+       One wheel notch / arrow key / swipe = one page turn.
+       Inner content taller than the viewport scrolls natively
+       first; only once a page's edge is reached does the next
+       wheel/swipe trigger an actual flip.
+    ========================================================= */
 
-    // active top-nav highlighting for the 4 primary sections
-    const navSections = ["hero", "about", "work", "contact"].map(id => document.getElementById(id));
-    const navAnchors = document.querySelectorAll(".nav-links a");
-    const navObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        navAnchors.forEach(a => a.classList.toggle("active", a.dataset.nav === entry.target.id));
-      });
-    }, { rootMargin: "-35% 0px -55% 0px" });
-    navSections.forEach(s => s && navObserver.observe(s));
+    const slides = Array.from(
+      document.querySelectorAll("#hero, #about, #work, #pagesContainer > section, #contact")
+    );
 
-    // page indicator: label the page currently in view
+    const FLIP_MS = 650;
+    let currentIndex = 0;
+    let animating = false;
+
     function labelFor(section) {
+      if (!section) return "";
       if (section.id === "hero") return "Home";
       if (section.id === "about") return "About";
       if (section.id === "work") return "Contents";
@@ -969,22 +969,170 @@
       return "";
     }
 
-    const allPages = document.querySelectorAll("main > section, #pagesContainer > section");
-    const pageIndicatorObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const label = labelFor(entry.target);
-          if (label) pageIndicatorText.textContent = label;
-        }
-      });
-    }, { threshold: .5 });
-    allPages.forEach(s => pageIndicatorObserver.observe(s));
-
-    // hash sync so direct links to a project page work on load
-    if (location.hash) {
-      const target = document.querySelector(location.hash);
-      if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: "auto" }));
+    function navIdFor(section) {
+      if (!section) return "";
+      if (section.id === "hero") return "hero";
+      if (section.id === "about") return "about";
+      if (section.id === "contact") return "contact";
+      return "work"; // work + every project sub-page count as "Work"
     }
+
+    function onSlideChange() {
+      const slide = slides[currentIndex];
+      progress.style.width = `${slides.length > 1 ? (currentIndex / (slides.length - 1)) * 100 : 0}%`;
+      pageIndicatorText.textContent = labelFor(slide);
+
+      const activeNav = navIdFor(slide);
+      document.querySelectorAll(".nav-links a").forEach(a => {
+        a.classList.toggle("active", a.dataset.nav === activeNav);
+      });
+
+      slide.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
+
+      const newHash = `#${slide.id}`;
+      if (location.hash !== newHash) history.replaceState(null, "", newHash);
+    }
+
+    function resetSlideStyles(el) {
+      el.style.transition = "none";
+      el.style.transform = "none";
+      el.style.opacity = "1";
+      el.style.zIndex = "1";
+      el.classList.remove("slide-leaf", "slide-current");
+    }
+
+    function showOnly(idx) {
+      slides.forEach((s, i) => {
+        resetSlideStyles(s);
+        s.classList.toggle("slide-current", i === idx);
+        if (i === idx) s.scrollTop = 0;
+      });
+      currentIndex = idx;
+      onSlideChange();
+    }
+
+    function flip(targetIndex, direction) {
+      if (animating || targetIndex < 0 || targetIndex >= slides.length || targetIndex === currentIndex) return;
+      animating = true;
+
+      const current = slides[currentIndex];
+      const target = slides[targetIndex];
+
+      resetSlideStyles(current);
+      resetSlideStyles(target);
+      target.classList.add("slide-current");
+      current.classList.add("slide-current");
+      target.scrollTop = 0;
+
+      if (direction === "forward") {
+        // target sits flat underneath; current folds up and away at the top hinge
+        target.style.zIndex = "1";
+        current.classList.add("slide-leaf");
+        current.style.zIndex = "2";
+        current.style.transform = "rotateX(0deg)";
+        current.style.opacity = "1";
+        void current.offsetWidth; // force reflow so the "from" state is committed
+
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          current.style.transition = `transform ${FLIP_MS}ms cubic-bezier(.55,.06,.68,.19), opacity ${FLIP_MS}ms ease`;
+          current.style.transform = "rotateX(-100deg)";
+          current.style.opacity = ".1";
+        }));
+      } else {
+        // target folds down into place from the top hinge, covering current
+        current.style.zIndex = "1";
+        target.classList.add("slide-leaf");
+        target.style.zIndex = "2";
+        target.style.transition = "none";
+        target.style.transform = "rotateX(-100deg)";
+        target.style.opacity = ".1";
+        void target.offsetWidth; // force reflow so the "from" state is committed
+
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          target.style.transition = `transform ${FLIP_MS}ms cubic-bezier(.25,.46,.45,.94), opacity ${FLIP_MS}ms ease`;
+          target.style.transform = "rotateX(0deg)";
+          target.style.opacity = "1";
+        }));
+      }
+
+      setTimeout(() => {
+        showOnly(targetIndex);
+        animating = false;
+      }, FLIP_MS + 40);
+    }
+
+    function goTo(targetIndex) {
+      if (targetIndex === currentIndex) return;
+      flip(targetIndex, targetIndex > currentIndex ? "forward" : "backward");
+    }
+
+    function goToId(id) {
+      const idx = slides.findIndex(s => s.id === id);
+      if (idx !== -1) goTo(idx);
+    }
+
+    // wheel: one notch = one page turn; inner content scrolls first
+    let wheelLocked = false;
+    window.addEventListener("wheel", e => {
+      if (animating) { e.preventDefault(); return; }
+
+      const dir = e.deltaY > 0 ? 1 : -1;
+      const slide = slides[currentIndex];
+      const atTop = slide.scrollTop <= 1;
+      const atBottom = slide.scrollTop + slide.clientHeight >= slide.scrollHeight - 1;
+
+      if (dir > 0 && !atBottom) return;   // let inner content keep scrolling down
+      if (dir < 0 && !atTop) return;      // let inner content keep scrolling up
+
+      e.preventDefault();
+      if (wheelLocked) return;
+      wheelLocked = true;
+      setTimeout(() => { wheelLocked = false; }, FLIP_MS + 180);
+
+      if (dir > 0) flip(currentIndex + 1, "forward");
+      else flip(currentIndex - 1, "backward");
+    }, { passive: false });
+
+    // keyboard: arrows / page keys / space
+    document.addEventListener("keydown", e => {
+      if (["ArrowDown", "PageDown", " "].includes(e.key)) {
+        e.preventDefault();
+        flip(currentIndex + 1, "forward");
+      } else if (["ArrowUp", "PageUp"].includes(e.key)) {
+        e.preventDefault();
+        flip(currentIndex - 1, "backward");
+      }
+    });
+
+    // touch: swipe past a page's inner-scroll boundary to flip
+    let touchStartY = null;
+    window.addEventListener("touchstart", e => { touchStartY = e.touches[0].clientY; }, { passive: true });
+    window.addEventListener("touchend", e => {
+      if (touchStartY === null || animating) return;
+      const deltaY = touchStartY - e.changedTouches[0].clientY;
+      touchStartY = null;
+      if (Math.abs(deltaY) < 60) return;
+
+      const slide = slides[currentIndex];
+      const atTop = slide.scrollTop <= 1;
+      const atBottom = slide.scrollTop + slide.clientHeight >= slide.scrollHeight - 1;
+
+      if (deltaY > 0 && atBottom) flip(currentIndex + 1, "forward");
+      else if (deltaY < 0 && atTop) flip(currentIndex - 1, "backward");
+    }, { passive: true });
+
+    // top-nav clicks jump straight to a slide
+    document.querySelectorAll(".nav-links a[data-nav]").forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        goToId(link.getAttribute("href").slice(1));
+      });
+    });
+
+    // initial slide: honour a #project-xx deep link, else start at the cover
+    const initialId = location.hash ? location.hash.slice(1) : "hero";
+    const initialIndex = Math.max(0, slides.findIndex(s => s.id === initialId));
+    showOnly(initialIndex);
 
     /* ========================= CUSTOM CURSOR ========================= */
     const cursor = document.getElementById("cursor");
