@@ -3,1107 +3,2865 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Yanis Nennouche — Architectural Portfolio">
-  <title>YANIS NENNOUCHE / ARCHITECT — Portfolio</title>
+
+  <meta name="description" content="Yanis Nennouche — Architect / Architectural Portfolio">
+  <title>YANIS NENNOUCHE / ARCHITECT</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
+
     :root {
-      --bg: #08090c;
-      --surface: #101218;
-      --surface-2: #151821;
-      --text: #f1f3f5;
-      --muted: #8c93a3;
-      --line: rgba(255,255,255,.10);
+      --bg: #f3f2ed;
+      --paper: #ebeae5;
+      --white: #f8f7f3;
+      --text: #111111;
+      --muted: #777773;
+      --light-muted: #9b9a95;
+      --line: #d4d2ca;
       --accent: #96C08C;
-      --accent-soft: rgba(150,192,140,.12);
-      --max: 1440px;
+
+      --max: 1500px;
+      --pad: clamp(22px, 5vw, 80px);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body {
-      min-height: 100%;
-      overflow-x: hidden;
-      overflow-y: auto;
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: Inter, sans-serif;
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
       cursor: default;
     }
 
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
-
-    /* ========================= CURSOR ========================= */
-    .cursor, .cursor-ring {
-      position: fixed; pointer-events: none; z-index: 9999;
-      border-radius: 50%; transform: translate(-50%, -50%); opacity: 0;
-      transition: opacity .2s ease;
-    }
-    .cursor { width: 7px; height: 7px; background: var(--accent); }
-    .cursor-ring {
-      width: 34px; height: 34px; border: 1px solid var(--accent);
-      transition: width .25s ease, height .25s ease, opacity .2s ease;
-    }
-    @media (pointer:fine) {
-      body.has-cursor .cursor, body.has-cursor .cursor-ring { opacity: 1; }
-    }
-
-    /* ========================= GRAIN ========================= */
-    body::before {
-      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9998; opacity: .035;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
-    }
-
-    /* ========================= PROGRESS ========================= */
-    .progress { display: none; }
-
-    /* ========================= PAGE INDICATOR ========================= */
-    .page-indicator {
-      display: none;
-      position: fixed;
-      right: clamp(16px, 4vw, 34px);
-      bottom: 22px;
-      z-index: 950;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      font: 500 .68rem "Space Grotesk", sans-serif;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      pointer-events: none;
-    }
-    .page-indicator::before {
-      content: "";
-      width: 22px; height: 1px;
-      background: var(--accent);
-    }
-    .page-indicator span { color: var(--text); }
-
-    /* ========================= NAVIGATION ========================= */
-    nav {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 900;
-      padding: 24px clamp(22px, 5vw, 72px);
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background .35s ease, padding .35s ease, backdrop-filter .35s ease;
-      mix-blend-mode: normal;
-    }
-    nav.scrolled {
-      padding-top: 15px; padding-bottom: 15px;
-      background: rgba(8,9,12,.72); backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--line);
-    }
-    .logo { font: 600 .92rem "Space Grotesk", sans-serif; letter-spacing: .08em; white-space: nowrap; }
-    .logo span { color: var(--muted); font-weight: 400; letter-spacing: .04em; }
-    .nav-links { display: flex; gap: clamp(18px, 3vw, 42px); list-style: none; }
-    .nav-links a {
-      position: relative; color: var(--muted); font-size: .82rem; letter-spacing: .03em;
-      transition: color .25s ease;
-    }
-    .nav-links a::after {
-      content: ""; position: absolute; left: 0; bottom: -7px; width: 0; height: 1px;
-      background: var(--accent); transition: width .25s ease;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-    .menu-btn { display: none; background: transparent; color: var(--text); border: 0; font-size: 1.4rem; }
-
-    /* ========================= PAGES / SCROLL LAYOUT ========================= */
-    main#book {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      overflow: visible;
-      perspective: none;
-    }
-
-    #pagesContainer { position: static; }
-
-    main#book section {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      overflow: visible;
-      padding: 130px clamp(22px, 7vw, 110px);
+    img {
       display: block;
-      backface-visibility: visible;
-      transform: none !important;
-      opacity: 1 !important;
-      will-change: auto;
-      scroll-margin-top: 80px;
+      max-width: 100%;
     }
 
-    main#book section::-webkit-scrollbar { display: none; }
-
-    .page-inner {
-      min-height: calc(100vh - 190px);
-      max-width: 1700px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    /* ========================= HERO (COVER) ========================= */
-    #hero { overflow: hidden; }
-    .hero-grid {
-      position: absolute; inset: 0; opacity: .25;
-      background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-                         linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-      background-size: 70px 70px;
-      mask-image: linear-gradient(to bottom, black, transparent 75%);
-    }
-    .orb {
-      position: absolute; width: 52vw; height: 52vw; max-width: 700px; max-height: 700px;
-      right: -12vw; top: 10%; border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, rgba(150,192,140,.22), transparent 50%);
-      filter: blur(12px); animation: float 8s ease-in-out infinite;
-    }
-    @keyframes float { 0%,100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(-25px,20px,0); } }
-
-    .hero-layout {
-      position: relative; z-index: 2; display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(260px, .55fr);
-      gap: clamp(45px, 7vw, 120px); align-items: end; width: 100%;
-    }
-    .profile-card { justify-self: end; width: min(100%, 360px); }
-    .profile-image {
-      width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block;
-      border: 1px solid var(--line); filter: grayscale(100%); background: var(--surface);
-      transition: filter .5s ease, transform .5s ease, border-color .5s ease;
-    }
-    .profile-card:hover .profile-image { filter: grayscale(0%); transform: translateY(-5px); border-color: rgba(150,192,140,.45); }
-    .profile-caption {
-      display: flex; justify-content: space-between; gap: 20px; margin-top: 12px;
-      color: var(--muted); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
-    }
-    .availability {
-      display: inline-flex; align-items: center; gap: 8px; margin-top: 18px;
-      color: var(--muted); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase;
-    }
-    .availability::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px rgba(150,192,140,.5); }
-    .hero-content { position: relative; z-index: 2; max-width: 1100px; }
-    .hero-title { font: 600 clamp(4rem, 10vw, 9.5rem) "Space Grotesk", sans-serif; letter-spacing: -.085em; line-height: .84; max-width: 1100px; }
-    .outline { color: transparent; -webkit-text-stroke: 1px rgba(241,243,245,.45); }
-    .hero-sub { margin-top: 34px; max-width: 650px; color: var(--muted); line-height: 1.8; font-size: clamp(.95rem, 1.4vw, 1.12rem); }
-    .hero-actions { display: flex; gap: 12px; margin-top: 38px; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-      min-height: 50px; padding: 0 21px; border: 1px solid var(--line); background: rgba(255,255,255,.025);
-      color: var(--text); font: 500 .78rem "Space Grotesk", sans-serif; letter-spacing: .04em;
-      transition: transform .3s ease, background .3s ease, border-color .3s ease;
-    }
-    .btn:hover { transform: translateY(-3px); border-color: var(--accent); background: var(--accent-soft); }
-    .btn.primary { background: var(--accent); color: #07100c; border-color: var(--accent); }
-    .btn.primary:hover { background: #b8dcae; }
-    .scroll-note {
-      position: absolute; bottom: 35px; left: clamp(22px, 7vw, 110px); color: var(--muted);
-      font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; display: flex; align-items: center; gap: 12px;
-    }
-    .scroll-note span { width: 42px; height: 1px; background: var(--muted); }
-
-    /* ========================= ABOUT ========================= */
-    #about { background: var(--surface); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(50px, 7vw, 120px); align-items: start; }
-    .about-statement { color: var(--muted); line-height: 1.9; max-width: 640px; }
-    .about-statement strong { color: var(--text); font-weight: 500; }
-    .about-block { margin-top: 46px; }
-    .about-block:first-of-type { margin-top: 0; }
-
-    .timeline { border-top: 1px solid var(--line); }
-    .timeline-item { display: grid; grid-template-columns: 110px 1fr; gap: 30px; padding: 18px 0; border-bottom: 1px solid var(--line); }
-    .timeline-date { color: var(--muted); font-size: .72rem; letter-spacing: .08em; }
-    .timeline-title { font-family: "Space Grotesk", sans-serif; font-size: .98rem; margin-bottom: 5px; }
-    .timeline-meta { color: var(--muted); font-size: .76rem; line-height: 1.6; }
-
-    .lang-list { border-top: 1px solid var(--line); }
-    .lang-item {
-      display: flex; justify-content: space-between; align-items: center; gap: 16px;
-      padding: 14px 0; border-bottom: 1px solid var(--line);
-    }
-    .lang-name { font-family: "Space Grotesk", sans-serif; font-size: .9rem; }
-    .lang-level { color: var(--muted); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
-
-    .chip-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 6px; }
-    .tag-chip {
-      padding: 8px 13px; border: 1px solid var(--line); color: var(--muted);
-      font-size: .74rem; letter-spacing: .02em; transition: color .2s ease, border-color .2s ease;
-    }
-    .tag-chip:hover { color: var(--accent); border-color: var(--accent); }
-
-    .stack { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); }
-    .stack-item {
-      padding: 16px 0; border-bottom: 1px solid var(--line); color: var(--muted);
-      font-size: .82rem; transition: color .25s ease, padding-left .25s ease;
-    }
-    .stack-item:hover { color: var(--accent); padding-left: 8px; }
-
-    /* ========================= CONTENTS / WORK ========================= */
-    #work { padding-top: 150px; padding-bottom: 150px; }
-    .work-intro { display: flex; justify-content: space-between; gap: 30px; align-items: end; margin-bottom: 55px; }
-    .work-intro p { max-width: 520px; color: var(--muted); line-height: 1.7; }
-
-    .toc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; background: var(--line); border: 1px solid var(--line); }
-    .toc-item {
-      background: var(--bg); cursor: pointer; display: flex; flex-direction: column;
-      transition: transform .35s ease, background .35s ease;
-    }
-    .toc-item:hover { transform: translateY(-5px); background: var(--surface); }
-    .toc-thumb { aspect-ratio: 4 / 3; background: var(--surface-2); overflow: hidden; position: relative; }
-    .toc-thumb img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(55%); transition: filter .45s ease, transform .5s ease; display: block; }
-    .toc-item:hover .toc-thumb img { filter: grayscale(0%); transform: scale(1.045); }
-    .toc-thumb .media-placeholder { position: absolute; inset: 0; }
-    .toc-info { padding: 20px 22px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
-    .toc-top-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
-    .toc-number { color: var(--muted); font: .72rem "Space Grotesk", sans-serif; letter-spacing: .1em; }
-    .toc-arrow { color: var(--muted); font-size: 1.1rem; transition: transform .3s ease, color .3s ease; }
-    .toc-item:hover .toc-arrow { transform: translateX(5px); color: var(--accent); }
-    .toc-name { font: 500 1.25rem "Space Grotesk", sans-serif; letter-spacing: -.03em; }
-    .toc-typology { color: var(--muted); font-size: .78rem; line-height: 1.5; }
-
-    /* ========================= PROJECT PAGES ========================= */
-    .proj-cover-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(40px, 6vw, 90px); align-items: center; width: 100%; }
-    .proj-cover-media { border: 1px solid var(--line); background: var(--surface-2); aspect-ratio: 4/5; overflow: hidden; }
-    .proj-cover-media img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); }
-    .proj-number { font: 600 clamp(3.5rem, 8vw, 7rem) "Space Grotesk", sans-serif; color: transparent; -webkit-text-stroke: 1px rgba(241,243,245,.35); letter-spacing: -.04em; line-height: 1; margin-bottom: 18px; }
-    .proj-name { font: 600 clamp(1.9rem, 4vw, 3.2rem) "Space Grotesk", sans-serif; letter-spacing: -.04em; margin-bottom: 20px; }
-    .proj-meta-row { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-bottom: 26px; }
-    .proj-meta-item { color: var(--muted); font-size: .78rem; line-height: 1.6; }
-    .proj-meta-item span { display: block; color: var(--accent); font: 500 .65rem "Space Grotesk", sans-serif; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 6px; }
-    .proj-text { color: var(--muted); line-height: 1.85; max-width: 560px; }
-
-    .page-single { text-align: center; min-height: 100vh; }
-    .page-single .page-inner { align-items: center; }
-    .page-eyebrow-row { display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
-    .media-frame {
-      width: 100%; max-width: min(1150px, 92vw); max-height: 66vh;
-      border: 1px solid var(--line); background: var(--surface-2);
-      display: flex; align-items: center; justify-content: center; overflow: hidden;
-      margin: 0 auto;
-    }
-    .media-frame img { max-width: 100%; max-height: 66vh; object-fit: contain; cursor: zoom-in; transition: transform .4s ease; }
-    .media-frame:hover img { transform: scale(1.01); }
-    .media-frame .media-placeholder { min-height: 260px; width: 100%; }
-    .page-caption { margin-top: 20px; color: var(--muted); font-size: .8rem; letter-spacing: .04em; }
-
-    .page-grid-renders { width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1300px; margin: 0 auto; }
-    .page-grid-renders .media-item { aspect-ratio: 4/3; border: 1px solid var(--line); overflow: hidden; background: var(--surface-2); }
-    .page-grid-renders .media-item img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; transition: transform .4s ease; display: block; }
-    .page-grid-renders .media-item:hover img { transform: scale(1.05); }
-
-    .media-placeholder {
-      width: 100%; min-height: 140px; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 18px; color: var(--muted); font-size: .72rem; letter-spacing: .04em;
-      line-height: 1.6; border: 1px dashed var(--line); cursor: default;
+    button {
+      font: inherit;
     }
 
-    .page-footlink { margin-top: 46px; display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-size: .78rem; letter-spacing: .04em; transition: color .2s ease; cursor: pointer; }
-    .page-footlink:hover { color: var(--accent); }
-
-    /* ========================= LIGHTBOX ========================= */
-    .lightbox {
-      position: fixed; inset: 0; z-index: 2100; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; padding: 40px; background: rgba(3,4,6,.94);
-      opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s ease;
-    }
-    .lightbox.open { opacity: 1; visibility: visible; }
-    .lightbox img { max-width: 100%; max-height: 82vh; object-fit: contain; border: 1px solid var(--line); }
-    .lightbox-caption { margin-top: 18px; text-align: center; color: var(--muted); font-size: .8rem; letter-spacing: .05em; display: none; }
-    .lightbox .close-btn {
-      position: fixed; right: 25px; top: 25px; width: 40px; height: 40px; border: 1px solid var(--line);
-      background: rgba(8,9,12,.7); color: var(--text); cursor: pointer;
-      transition: border-color .2s ease, color .2s ease;
-    }
-    .lightbox .close-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* ========================= CONTACT ========================= */
-    #contact { text-align: center; overflow: hidden; }
-    #contact .page-inner { align-items: center; }
-    .contact-title { font: 600 clamp(3rem, 8vw, 8rem) "Space Grotesk", sans-serif; letter-spacing: -.07em; line-height: .9; max-width: 1000px; }
-    .contact-copy { color: var(--muted); max-width: 550px; line-height: 1.7; margin: 28px auto 35px; }
-    .contact-links { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-
-    .contact-footer {
-      width: 100%;
-      margin-top: 60px;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      color: var(--muted);
-      font-size: .68rem;
-      letter-spacing: .03em;
-    }
-
-    /* ========================= MOBILE ========================= */
-    @media (max-width: 800px) {
-      .nav-links {
-        position: absolute; top: 70px; right: 22px; left: 22px; display: none; flex-direction: column;
-        padding: 22px; background: rgba(16,18,24,.95); border: 1px solid var(--line); backdrop-filter: blur(18px);
-      }
-      .nav-links.open { display: flex; }
-      .menu-btn { display: block; }
-      .hero-layout { grid-template-columns: 1fr; }
-      .profile-card { justify-self: start; width: min(230px, 65vw); order: 2; }
-      .hero-content { order: 1; }
-      .about-grid { grid-template-columns: 1fr; }
-      .work-intro { display: block; }
-      .work-intro p { margin-top: -25px; margin-bottom: 35px; }
-      .proj-cover-grid { grid-template-columns: 1fr; }
-      .proj-cover-media { order: -1; max-width: 320px; margin: 0 auto; }
-      .page-grid-renders { grid-template-columns: 1fr; }
-      .stack { grid-template-columns: 1fr; }
-      .page-indicator { display: none; }
-      main#book section { min-height: auto; }
-      .page-inner { min-height: calc(100vh - 170px); }
-      .contact-footer { flex-direction: column; gap: 6px; }
-      main#book section { padding: 110px 20px 60px; }
-    }
-
-    @media (max-width: 500px) {
-      .hero-title { font-size: clamp(3.4rem, 17vw, 5rem); }
-      .scroll-note { left: 20px; }
-      .profile-card { width: 190px; }
-      .timeline-item { grid-template-columns: 1fr; gap: 7px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="progress" id="progress"></div>
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-  <div class="page-indicator" id="pageIndicator"><span id="pageIndicatorText">Home</span></div>
-
-  <nav id="navbar">
-    <a href="#hero" class="logo">YANIS NENNOUCHE <span>/ ARCHITECT</span></a>
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#hero" data-nav="hero">Home</a></li>
-      <li><a href="#about" data-nav="about">About</a></li>
-      <li><a href="#work" data-nav="work">Work</a></li>
-      <li><a href="#contact" data-nav="contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <main id="book">
-
-    <!-- ============ COVER ============ -->
-    <section id="hero" class="page-strict">
-      <div class="page-inner">
-        <div class="hero-grid"></div>
-        <div class="orb" id="orb"></div>
-
-        <div class="hero-layout">
-          <div class="hero-content reveal">
-            <div class="eyebrow">Architecture · Computation · Environment</div>
-            <h1 class="hero-title">Yanis<br><span class="outline">Nennouche</span></h1>
-            <p class="hero-sub">
-              Architect exploring the intersection of architecture,
-              environmental performance and computational design.
-              I use geometry, data and simulation as tools for
-              developing more responsive architectural systems.
-            </p>
-            <div class="availability">Open to architectural collaborations &amp; opportunities</div>
-            <div class="hero-actions">
-              <a class="btn primary" href="#about">Enter portfolio ↓</a>
-              <a class="btn" href="./CV.pdf" target="_blank">View CV</a>
-            </div>
-          </div>
-
-          <div class="profile-card reveal">
-            <!-- Add your portrait at: ./assets/profile.jpg.jpeg -->
-            <img class="profile-image" src="./assets/profile.jpg.jpeg" alt="Portrait of Yanis Nennouche">
-            <div class="profile-caption">
-              <span>Yanis Nennouche</span>
-              <span>Architect</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="scroll-note"><span></span>Scroll to explore</div>
-      </div>
-    </section>
-
-    <!-- ============ ABOUT ============ -->
-    <section id="about">
-      <div class="page-inner">
-        <div class="eyebrow reveal">Page 01 — About</div>
-        <div class="about-grid">
-
-          <div class="reveal">
-            <h2 class="section-title">Architecture<br>through computation.</h2>
-            <p class="about-statement">
-              I am an architect developing an approach at the intersection
-              of <strong>architecture, environmental performance and computational design</strong>.
-              My work explores how digital tools can help generate, analyse
-              and optimise architectural systems rather than simply represent them.
-              <br><br>
-              From parametric modelling to environmental simulation, I use
-              computation as an extension of the design process, with a focus
-              on climate, geometry and performance.
-            </p>
-
-            <div class="about-block">
-              <div class="eyebrow">Interests</div>
-              <!-- Edit these to match your real interests -->
-              <div class="chip-row">
-                <span class="tag-chip">Computational design</span>
-                <span class="tag-chip">Environmental performance</span>
-                <span class="tag-chip">Biomimicry</span>
-                <span class="tag-chip">Parametric geometry</span>
-                <span class="tag-chip">Climate simulation</span>
-                <span class="tag-chip">Generative art</span>
-              </div>
-            </div>
-
-            <div class="hero-actions" style="margin-top:34px;">
-              <a class="btn" href="./CV.pdf" target="_blank">View full CV ↗</a>
-            </div>
-          </div>
-
-          <div class="reveal">
-            <div class="eyebrow">Education &amp; Experience</div>
-            <div class="timeline">
-              <div class="timeline-item">
-                <div class="timeline-date">2026</div>
-                <div>
-                  <div class="timeline-title">M.Arch in Environmental &amp; Technological Architecture</div>
-                  <div class="timeline-meta">University of Algiers 1 · Master's Degree</div>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-date">—</div>
-                <div>
-                  <div class="timeline-title">Add relevant experience</div>
-                  <div class="timeline-meta">Practice / research / competition · Dates</div>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-date">Base</div>
-                <div>
-                  <div class="timeline-title">Algiers, Algeria</div>
-                  <div class="timeline-meta">Currently based here · open to relocation</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="about-block">
-              <div class="eyebrow">Languages</div>
-              <!-- Edit levels to match your real proficiency -->
-              <div class="lang-list">
-                <div class="lang-item"><span class="lang-name">Arabic</span><span class="lang-level">Native</span></div>
-                <div class="lang-item"><span class="lang-name">French</span><span class="lang-level">Fluent</span></div>
-                <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">Professional</span></div>
-              </div>
-            </div>
-
-            <div class="about-block">
-              <div class="eyebrow">Software &amp; Skills</div>
-              <div class="stack">
-                <div class="stack-item">Rhinoceros 3D</div>
-                <div class="stack-item">Grasshopper</div>
-                <div class="stack-item">Environmental Simulation</div>
-                <div class="stack-item">Parametric Design</div>
-                <div class="stack-item">Python</div>
-                <div class="stack-item">Revit</div>
-                <div class="stack-item">D5 Render</div>
-                <div class="stack-item">Ladybug Tools</div>
-                <div class="stack-item">AutoCAD</div>
-                <div class="stack-item">LaTeX</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CONTENTS / WORK ============ -->
-    <section id="work">
-      <div class="page-inner">
-        <div class="work-intro reveal">
-          <div>
-            <div class="eyebrow">Page 02 — Contents</div>
-            <h2 class="section-title">Selected Work</h2>
-          </div>
-          <p>
-            A curated selection of architectural studies, computational
-            explorations and environmental design work. Select a project
-            to jump straight in, or keep scrolling to explore the portfolio.
-          </p>
-        </div>
-
-        <div class="toc-grid reveal" id="tocGrid"></div>
-      </div>
-    </section>
-
-    <!-- Project pages are generated here by JS -->
-    <div id="pagesContainer"></div>
-
-    <!-- ============ CONTACT ============ -->
-    <section id="contact">
-      <div class="page-inner">
-        <div class="eyebrow reveal">Get in touch</div>
-        <h2 class="contact-title reveal">Let's build<br><span class="outline">something.</span></h2>
-        <p class="contact-copy reveal">
-          Open to collaborations, computational architecture projects,
-          research, parametric modelling and environmental design.
-        </p>
-        <div class="contact-links reveal">
-          <a class="btn" href="https://www.linkedin.com/in/yanis-nennouche-b27040334/" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a class="btn primary" href="mailto:nennoucheyaya@gmail.com">nennoucheyaya@gmail.com ↗</a>
-          <a class="btn" href="./CV.pdf" target="_blank">View / download CV</a>
-        </div>
-
-        <div class="contact-footer">
-          <span>YANIS NENNOUCHE / ARCHITECT</span>
-          <span>Architecture · Computation · Environment</span>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ============ LIGHTBOX ============ -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="close-btn" id="closeLightbox" aria-label="Close image">×</button>
-    <img id="lightboxImage" src="" alt="">
-    <div id="lightboxCaption" class="lightbox-caption"></div>
-  </div>
-
-  <script>
 
     /* =========================================================
-       PROJECT DATA
-       Add / edit projects here. Each project can define:
-       cover, plans[], sections[], facades[], renders[]
-       Each media entry can be a string path or { src, caption }
-       Leave arrays empty to skip that page entirely.
+       TYPOGRAPHY
     ========================================================= */
 
-    const projects = [
-      {
-        id: "01",
-        name: "L'éco-dôme du Hamma",
-        typology: "Public / Cultural — Biomimetic Pavilion",
-        location: "Jardin d'Essai du Hamma, Algiers, Algeria",
-        text: "Design of a biomimetic dome inspired by a snail shell for the Jardin d'Essai du Hamma in Algiers. The project combines ecosystemic architecture, parametric modelling and environmental analysis.",
-        cover: "assets/Rendus_2 - Photo.jpg",
-        plans: [],
-        sections: [
-          { src: "assets/Coupe1.png", caption: "Coupe longitudinale" },
-          { src: "assets/Coupe2.png", caption: "Coupe transversale" }
-        ],
-        facades: [],
-        renders: [
-          { src: "assets/Rendus_1 - Photo.jpg", caption: "Rendu ensemble" },
-          { src: "assets/Rendus_3 - Photo.jpg", caption: "Rendu ensemble" },
-          { src: "assets/Rendus_5 - Photo.jpg", caption: "Rendu ensemble" },
-          { src: "assets/Rendus_6 - Photo.jpg", caption: "Rendu ensemble" },
-          { src: "assets/Rendus_8 - Photo.jpg", caption: "Rendu ensemble" },
-          { src: "assets/Rendus_9 - Photo.jpg", caption: "Rendu ensemble" },
-          { src: "assets/rendus suite_1 - Photo.jpg", caption: "Rendu ensemble" },
-          { src: "assets/rendus suite_3 - Photo.jpg", caption: "Rendu ensemble" }
-        ]
-      },
-      {
-        id: "02",
-        name: "Coming Soon",
-        typology: "Generative design — Structures / Algorithms",
-        location: "TBD",
-        text: "Development of Grasshopper definitions to explore complex geometries, lightweight structures and solar control strategies. The approach combines parametrisation, automation and optimisation.",
-        cover: "",
-        plans: [], sections: [], facades: [], renders: []
-      },
-      {
-        id: "03",
-        name: "Coming Soon",
-        typology: "Realtime rendering — Visual exploration",
-        location: "TBD",
-        text: "Exploration of architectural visualisation workflows combining real-time rendering and generative tools. The goal is to quickly test different atmospheres and spatial narratives.",
-        cover: "",
-        plans: [], sections: [], facades: [], renders: []
-      }
-    ];
+    .mono {
+      font-family: "DM Mono", monospace;
+    }
 
-    const categoryLabels = { plans: "Plans", sections: "Sections", facades: "Elevations", renders: "Renders" };
-    const RENDERS_PER_PAGE = 4;
+    .eyebrow {
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(48px, 8vw, 125px);
+      line-height: .87;
+      letter-spacing: -.065em;
+      font-weight: 500;
+    }
+
+    .outline {
+      color: transparent;
+      -webkit-text-stroke: 1px var(--text);
+    }
+
+
+    /* =========================================================
+       NAVIGATION
+    ========================================================= */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+
+      padding: 22px var(--pad);
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      background: rgba(243,242,237,.92);
+      backdrop-filter: blur(12px);
+
+      border-bottom: 1px solid transparent;
+
+      transition:
+        padding .35s ease,
+        border-color .35s ease;
+    }
+
+    nav.scrolled {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-color: var(--line);
+    }
+
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      position: relative;
+
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+
+      color: var(--muted);
+
+      transition: color .25s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+
+      width: 0;
+      height: 1px;
+
+      background: var(--text);
+
+      transition: width .25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .menu-btn {
+      display: none;
+
+      border: 0;
+      background: transparent;
+
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+
+    /* =========================================================
+       PAGE COUNTER
+    ========================================================= */
+
+    .page-counter {
+      position: fixed;
+
+      right: var(--pad);
+      bottom: 25px;
+
+      z-index: 800;
+
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
+      font-family: "DM Mono", monospace;
+      font-size: 9px;
+      letter-spacing: .1em;
+
+      color: var(--muted);
+    }
+
+    .page-counter::before {
+      content: "";
+
+      width: 28px;
+      height: 1px;
+
+      background: var(--text);
+    }
+
+    .page-counter span {
+      color: var(--text);
+    }
+
+
+    /* =========================================================
+       GENERAL SECTIONS
+    ========================================================= */
+
+    section {
+      position: relative;
+      width: 100%;
+      padding: 150px var(--pad);
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: auto;
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    #hero {
+      min-height: 100vh;
+      padding-top: 130px;
+      padding-bottom: 60px;
+
+      display: flex;
+      align-items: center;
+    }
+
+    .hero {
+      width: 100%;
+      max-width: var(--max);
+      margin: auto;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      margin-bottom: 45px;
+    }
+
+    .hero-location {
+      text-align: right;
+
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      line-height: 1.7;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: clamp(70px, 15vw, 220px);
+      line-height: .77;
+
+      letter-spacing: -.09em;
+      font-weight: 500;
+
+      max-width: 1300px;
+    }
+
+    .hero-title .second {
+      margin-left: 8vw;
+    }
+
+    .hero-bottom {
+      margin-top: 70px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      gap: 60px;
+      align-items: end;
+    }
+
+    .hero-description {
+      max-width: 550px;
+
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .hero-description strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .hero-profile {
+      justify-self: end;
+
+      width: min(250px, 100%);
+    }
+
+    .hero-profile img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+
+      filter: grayscale(100%);
+
+      transition:
+        filter .5s ease,
+        transform .5s ease;
+    }
+
+    .hero-profile:hover img {
+      filter: grayscale(0%);
+      transform: translateY(-5px);
+    }
+
+    .profile-caption {
+      display: flex;
+      justify-content: space-between;
+
+      margin-top: 9px;
+
+      font-family: "DM Mono", monospace;
+      font-size: 8px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-scroll {
+      margin-top: 70px;
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      font-family: "DM Mono", monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+
+      color: var(--muted);
+    }
+
+    .hero-scroll::before {
+      content: "";
+
+      width: 40px;
+      height: 1px;
+
+      background: var(--text);
+    }
+
+
+    /* =========================================================
+       ABOUT
+    ========================================================= */
+
+    #about {
+      border-top: 1px solid var(--line);
+    }
+
+    .about-header {
+      display: grid;
+
+      grid-template-columns: 120px 1fr;
+
+      gap: 50px;
+
+      margin-bottom: 120px;
+    }
+
+    .about-header h2 {
+      max-width: 900px;
+    }
+
+    .about-grid {
+      display: grid;
+
+      grid-template-columns: 1.1fr .9fr;
+
+      gap: 100px;
+    }
+
+    .about-intro {
+      font-size: clamp(22px, 3vw, 40px);
+      line-height: 1.25;
+      letter-spacing: -.035em;
+      max-width: 750px;
+    }
+
+    .about-intro span {
+      color: var(--muted);
+    }
+
+    .about-text {
+      margin-top: 45px;
+
+      max-width: 620px;
+
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .info-column {
+      border-top: 1px solid var(--line);
+    }
+
+    .info-row {
+      display: grid;
+
+      grid-template-columns: 130px 1fr;
+
+      padding: 17px 0;
+
+      border-bottom: 1px solid var(--line);
+
+      font-size: 12px;
+    }
+
+    .info-label {
+      font-family: "DM Mono", monospace;
+
+      font-size: 9px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .info-value {
+      line-height: 1.6;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 7px;
+    }
+
+    .skill {
+      border: 1px solid var(--line);
+
+      padding: 6px 9px;
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 8px;
+
+      color: var(--muted);
+    }
+
+
+    /* =========================================================
+       WORK INTRO
+    ========================================================= */
+
+    #work {
+      padding-top: 170px;
+    }
+
+    .work-header {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: flex-end;
+
+      margin-bottom: 100px;
+    }
+
+    .work-title {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: clamp(60px, 11vw, 160px);
+
+      line-height: .8;
+
+      letter-spacing: -.08em;
+
+      font-weight: 500;
+    }
+
+    .work-description {
+      max-width: 350px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+
+    /* =========================================================
+       PROJECT INDEX
+    ========================================================= */
+
+    .project-index {
+      border-top: 1px solid var(--text);
+    }
+
+    .project-item {
+      position: relative;
+
+      display: grid;
+
+      grid-template-columns: 80px 1fr 300px 40px;
+
+      align-items: center;
+
+      gap: 30px;
+
+      min-height: 110px;
+
+      border-bottom: 1px solid var(--line);
+
+      transition:
+        padding .4s ease,
+        background .4s ease;
+    }
+
+    .project-item:hover {
+      padding-left: 20px;
+      padding-right: 20px;
+
+      background: var(--paper);
+    }
+
+    .project-number {
+      font-family: "DM Mono", monospace;
+
+      font-size: 10px;
+
+      color: var(--muted);
+    }
+
+    .project-name {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: clamp(24px, 3vw, 43px);
+
+      letter-spacing: -.045em;
+    }
+
+    .project-type {
+      font-family: "DM Mono", monospace;
+
+      font-size: 9px;
+      line-height: 1.5;
+
+      color: var(--muted);
+
+      text-transform: uppercase;
+    }
+
+    .project-arrow {
+      font-size: 20px;
+
+      color: var(--muted);
+
+      transition:
+        transform .3s ease,
+        color .3s ease;
+    }
+
+    .project-item:hover .project-arrow {
+      transform: translateX(7px);
+
+      color: var(--text);
+    }
+
+
+    /* =========================================================
+       PROJECT PAGES
+    ========================================================= */
+
+    .project-page {
+      padding-top: 180px;
+      padding-bottom: 180px;
+
+      border-top: 1px solid var(--line);
+    }
+
+    .project-heading {
+      display: grid;
+
+      grid-template-columns: 120px 1fr;
+
+      gap: 50px;
+
+      margin-bottom: 80px;
+    }
+
+    .project-heading-content {
+      display: grid;
+
+      grid-template-columns: 1fr 320px;
+
+      gap: 80px;
+
+      align-items: end;
+    }
+
+    .project-big-number {
+      font-family: "DM Mono", monospace;
+
+      font-size: 12px;
+
+      color: var(--muted);
+    }
+
+    .project-title {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: clamp(48px, 8vw, 115px);
+
+      line-height: .85;
+
+      letter-spacing: -.07em;
+
+      font-weight: 500;
+    }
+
+    .project-meta {
+      border-top: 1px solid var(--line);
+    }
+
+    .meta-row {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding: 10px 0;
+
+      border-bottom: 1px solid var(--line);
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 8px;
+
+      text-transform: uppercase;
+    }
+
+    .meta-row span:first-child {
+      color: var(--muted);
+    }
+
+    .project-description {
+      max-width: 650px;
+
+      margin-left: 170px;
+
+      margin-top: 45px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+
+      line-height: 1.9;
+    }
+
+
+    /* =========================================================
+       HERO PROJECT IMAGE
+    ========================================================= */
+
+    .project-cover {
+      position: relative;
+
+      margin-top: 100px;
+
+      width: 100%;
+
+      overflow: hidden;
+
+      background: var(--paper);
+    }
+
+    .project-cover img {
+      width: 100%;
+
+      height: min(78vh, 850px);
+
+      object-fit: cover;
+
+      transition: transform .8s ease;
+    }
+
+    .project-cover:hover img {
+      transform: scale(1.015);
+    }
+
+    .image-label {
+      position: absolute;
+
+      left: 20px;
+      bottom: 20px;
+
+      padding: 7px 9px;
+
+      background: rgba(243,242,237,.88);
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 8px;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
+       ARCHITECTURAL SPREAD
+    ========================================================= */
+
+    .spread {
+      margin-top: 160px;
+
+      display: grid;
+
+      grid-template-columns: 150px 1fr;
+
+      gap: 50px;
+    }
+
+    .spread-label {
+      padding-top: 8px;
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 9px;
+
+      color: var(--muted);
+
+      text-transform: uppercase;
+    }
+
+    .spread-content {
+      min-width: 0;
+    }
+
+    .spread-title {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: clamp(35px, 5vw, 70px);
+
+      letter-spacing: -.055em;
+
+      line-height: .95;
+
+      margin-bottom: 50px;
+    }
+
+    .spread-text {
+      max-width: 550px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.9;
+
+      margin-bottom: 60px;
+    }
+
+
+    /* =========================================================
+       ARCHITECTURAL DRAWING
+    ========================================================= */
+
+    .drawing {
+      background: #e7e5de;
+
+      border: 1px solid var(--line);
+
+      overflow: hidden;
+
+      cursor: zoom-in;
+    }
+
+    .drawing img {
+      width: 100%;
+
+      max-height: 80vh;
+
+      object-fit: contain;
+
+      transition: transform .5s ease;
+    }
+
+    .drawing:hover img {
+      transform: scale(1.01);
+    }
+
+    .drawing-caption {
+      display: flex;
+
+      justify-content: space-between;
+
+      padding: 10px 0;
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 8px;
+
+      color: var(--muted);
+
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
+       TWO DRAWINGS
+    ========================================================= */
+
+    .drawing-grid {
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 20px;
+    }
+
+
+    /* =========================================================
+       RENDERS
+    ========================================================= */
+
+    .render-grid {
+      display: grid;
+
+      grid-template-columns: repeat(12, 1fr);
+
+      gap: 20px;
+    }
+
+    .render {
+      background: var(--paper);
+
+      overflow: hidden;
+    }
+
+    .render:nth-child(1) {
+      grid-column: span 8;
+    }
+
+    .render:nth-child(2) {
+      grid-column: span 4;
+    }
+
+    .render:nth-child(3) {
+      grid-column: span 5;
+    }
+
+    .render:nth-child(4) {
+      grid-column: span 7;
+    }
+
+    .render:nth-child(5),
+    .render:nth-child(6),
+    .render:nth-child(7),
+    .render:nth-child(8) {
+      grid-column: span 6;
+    }
+
+    .render img {
+      width: 100%;
+
+      aspect-ratio: 4/3;
+
+      object-fit: cover;
+
+      transition: transform .6s ease;
+    }
+
+    .render:hover img {
+      transform: scale(1.025);
+    }
+
+
+    /* =========================================================
+       PROJECT FOOTER
+    ========================================================= */
+
+    .project-next {
+      margin-top: 160px;
+
+      padding-top: 25px;
+
+      border-top: 1px solid var(--text);
+
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      cursor: pointer;
+    }
+
+    .project-next-label {
+      font-family: "DM Mono", monospace;
+
+      font-size: 9px;
+
+      text-transform: uppercase;
+
+      color: var(--muted);
+    }
+
+    .project-next-name {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: clamp(30px, 5vw, 70px);
+
+      letter-spacing: -.055em;
+
+      transition: transform .3s ease;
+    }
+
+    .project-next:hover .project-next-name {
+      transform: translateX(10px);
+    }
+
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+
+    #contact {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-inner {
+      width: 100%;
+    }
+
+    .contact-title {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: clamp(70px, 14vw, 210px);
+
+      line-height: .75;
+
+      letter-spacing: -.09em;
+
+      font-weight: 500;
+
+      margin-top: 45px;
+    }
+
+    .contact-bottom {
+      margin-top: 90px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-end;
+    }
+
+    .contact-description {
+      max-width: 430px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: flex-end;
+
+      gap: 9px;
+    }
+
+    .contact-link {
+      font-family: "DM Mono", monospace;
+
+      font-size: 11px;
+
+      text-transform: uppercase;
+
+      border-bottom: 1px solid var(--line);
+
+      padding-bottom: 5px;
+
+      transition:
+        color .25s ease,
+        border-color .25s ease;
+    }
+
+    .contact-link:hover {
+      color: var(--accent);
+
+      border-color: var(--accent);
+    }
+
+    .footer {
+      margin-top: 130px;
+
+      padding-top: 15px;
+
+      border-top: 1px solid var(--line);
+
+      display: flex;
+
+      justify-content: space-between;
+
+      font-family: "DM Mono", monospace;
+
+      font-size: 8px;
+
+      text-transform: uppercase;
+
+      color: var(--muted);
+    }
+
 
     /* =========================================================
        LIGHTBOX
     ========================================================= */
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImage = document.getElementById("lightboxImage");
-    const lightboxCaption = document.getElementById("lightboxCaption");
-    const closeLightboxBtn = document.getElementById("closeLightbox");
 
-    function openLightbox(src, alt, caption) {
-      lightboxImage.src = src;
-      lightboxImage.alt = alt;
-      if (caption) {
-        lightboxCaption.textContent = caption;
-        lightboxCaption.style.display = "block";
-      } else {
-        lightboxCaption.textContent = "";
-        lightboxCaption.style.display = "none";
-      }
-      lightbox.classList.add("open");
-      lightbox.setAttribute("aria-hidden", "false");
-    }
-    function closeLightboxFn() {
-      lightbox.classList.remove("open");
-      lightbox.setAttribute("aria-hidden", "true");
-      lightboxImage.src = "";
-      lightboxCaption.textContent = "";
-      lightboxCaption.style.display = "none";
-    }
-    closeLightboxBtn.addEventListener("click", closeLightboxFn);
-    lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightboxFn(); });
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightboxFn();
-    });
+    .lightbox {
+      position: fixed;
 
-    function mediaEntry(entry) {
-      const src = typeof entry === "string" ? entry : (entry && entry.src) || "";
-      const caption = (entry && typeof entry === "object" && entry.caption) || "";
-      return { src, caption };
+      inset: 0;
+
+      z-index: 3000;
+
+      background: rgba(20,20,18,.96);
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 40px;
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition:
+        opacity .3s ease,
+        visibility .3s ease;
     }
 
-    function chunk(arr, size) {
-      const out = [];
-      for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
-      return out;
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
     }
+
+    .lightbox img {
+      max-width: 94vw;
+      max-height: 90vh;
+
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: fixed;
+
+      top: 25px;
+      right: 25px;
+
+      width: 42px;
+      height: 42px;
+
+      border: 1px solid rgba(255,255,255,.3);
+
+      background: transparent;
+
+      color: white;
+
+      font-size: 22px;
+
+      cursor: pointer;
+    }
+
 
     /* =========================================================
-       BUILD CONTENTS (TOC) GRID
+       REVEAL ANIMATION
     ========================================================= */
-    const tocGrid = document.getElementById("tocGrid");
 
-    projects.forEach(project => {
-      const item = document.createElement("div");
-      item.className = "toc-item";
+    .reveal {
+      opacity: 0;
 
-      const thumb = document.createElement("div");
-      thumb.className = "toc-thumb";
-      if (project.cover) {
-        const img = document.createElement("img");
-        img.src = project.cover;
-        img.alt = project.name;
-        thumb.appendChild(img);
-      } else {
-        const ph = document.createElement("div");
-        ph.className = "media-placeholder";
-        ph.style.border = "none";
-        ph.textContent = "Add a cover image";
-        thumb.appendChild(ph);
+      transform: translateY(25px);
+
+      transition:
+        opacity .8s ease,
+        transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+
+      transform: translateY(0);
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 900px) {
+
+      nav {
+        padding: 18px 20px;
       }
 
-      const info = document.createElement("div");
-      info.className = "toc-info";
-      info.innerHTML = `
-        <div class="toc-top-row">
-          <span class="toc-number">${project.id} / ${String(projects.length).padStart(2,"0")}</span>
-          <span class="toc-arrow">↗</span>
+      .nav-links {
+        position: absolute;
+
+        top: 65px;
+        left: 20px;
+        right: 20px;
+
+        display: none;
+
+        flex-direction: column;
+
+        padding: 20px;
+
+        background: var(--bg);
+
+        border: 1px solid var(--line);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      section {
+        padding: 110px 20px;
+      }
+
+      .hero-title {
+        font-size: clamp(60px, 18vw, 110px);
+      }
+
+      .hero-title .second {
+        margin-left: 0;
+      }
+
+      .hero-top {
+        margin-bottom: 60px;
+      }
+
+      .hero-location {
+        display: none;
+      }
+
+      .hero-bottom {
+        grid-template-columns: 1fr;
+
+        margin-top: 55px;
+      }
+
+      .hero-profile {
+        justify-self: start;
+
+        width: 180px;
+      }
+
+      .about-header {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+        margin-bottom: 70px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+
+        gap: 70px;
+      }
+
+      .work-header {
+        display: block;
+
+        margin-bottom: 60px;
+      }
+
+      .work-description {
+        margin-top: 30px;
+      }
+
+      .project-item {
+        grid-template-columns: 45px 1fr 25px;
+
+        gap: 10px;
+      }
+
+      .project-type {
+        display: none;
+      }
+
+      .project-heading {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+      }
+
+      .project-heading-content {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+      }
+
+      .project-description {
+        margin-left: 0;
+      }
+
+      .project-cover img {
+        height: 60vh;
+      }
+
+      .spread {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+        margin-top: 100px;
+      }
+
+      .drawing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .render-grid {
+        display: grid;
+
+        grid-template-columns: 1fr;
+      }
+
+      .render,
+      .render:nth-child(n) {
+        grid-column: span 1;
+      }
+
+      .contact-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 50px;
+      }
+
+      .contact-links {
+        align-items: flex-start;
+      }
+
+      .footer {
+        flex-direction: column;
+
+        gap: 8px;
+      }
+
+      .page-counter {
+        display: none;
+      }
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+
+        transition: none !important;
+      }
+
+      .reveal {
+        opacity: 1;
+
+        transform: none;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =========================================================
+       NAVIGATION
+  ========================================================= -->
+
+  <nav id="navbar">
+
+    <a href="#hero" class="logo">
+      YANIS NENNOUCHE <span>/ ARCHITECT</span>
+    </a>
+
+    <button
+      class="menu-btn"
+      id="menuBtn"
+      aria-label="Open menu">
+      ☰
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+
+      <li>
+        <a href="#hero" data-nav="hero">Home</a>
+      </li>
+
+      <li>
+        <a href="#about" data-nav="about">About</a>
+      </li>
+
+      <li>
+        <a href="#work" data-nav="work">Work</a>
+      </li>
+
+      <li>
+        <a href="#contact" data-nav="contact">Contact</a>
+      </li>
+
+    </ul>
+
+  </nav>
+
+
+  <!-- =========================================================
+       PAGE COUNTER
+  ========================================================= -->
+
+  <div class="page-counter">
+    <span id="currentPage">00</span>
+    /
+    <span id="totalPage">08</span>
+  </div>
+
+
+  <!-- =========================================================
+       MAIN
+  ========================================================= -->
+
+  <main>
+
+
+    <!-- =======================================================
+         HERO
+    ======================================================= -->
+
+    <section id="hero">
+
+      <div class="hero">
+
+        <div class="hero-top">
+
+          <div class="eyebrow">
+            Architectural Portfolio
+          </div>
+
+          <div class="hero-location">
+            Algiers<br>
+            Algeria<br>
+            2026
+          </div>
+
         </div>
-        <div class="toc-name">${project.name}</div>
-        <div class="toc-typology">${project.typology}</div>
-      `;
 
-      item.appendChild(thumb);
-      item.appendChild(info);
 
-      item.addEventListener("click", () => {
-        goToId(`project-${project.id}`);
-      });
+        <h1 class="hero-title reveal">
 
-      tocGrid.appendChild(item);
-    });
+          Yanis
 
-    /* =========================================================
-       BUILD PROJECT PAGES
-       Each generated <section> gets its own .page-inner wrapper
-       so vertical centering never fights with the section's own
-       overflow-y:auto scrolling on mobile.
-    ========================================================= */
-    const pagesContainer = document.getElementById("pagesContainer");
+          <span class="second">
+            <span class="outline">Nennouche</span>
+          </span>
 
-    function buildSinglePage(id, sectionKey, entry, index, total) {
-      const section = document.createElement("section");
-      section.className = "page-single page-strict";
-      section.id = `project-${id}-${sectionKey}${total > 1 ? "-" + (index + 1) : ""}`;
+        </h1>
 
-      const inner = document.createElement("div");
-      inner.className = "page-inner";
 
-      const label = categoryLabels[sectionKey];
-      const m = mediaEntry(entry);
+        <div class="hero-bottom">
 
-      const eyebrowRow = document.createElement("div");
-      eyebrowRow.className = "page-eyebrow-row reveal";
-      eyebrowRow.innerHTML = `<div class="eyebrow" style="margin-bottom:0;">Project ${id} — ${label}${total > 1 ? ` (${index + 1}/${total})` : ""}</div>`;
+          <div>
 
-      const frame = document.createElement("div");
-      frame.className = "media-frame reveal";
+            <p class="hero-description reveal">
 
-      if (m.src) {
-        const img = document.createElement("img");
-        img.src = m.src;
-        img.alt = m.caption || `${label} — project ${id}`;
-        img.addEventListener("click", () => openLightbox(m.src, img.alt, m.caption));
-        frame.appendChild(img);
-      } else {
-        const ph = document.createElement("div");
-        ph.className = "media-placeholder";
-        ph.textContent = `Add ${label.toLowerCase()} image here`;
-        frame.appendChild(ph);
-      }
+              Architect working at the intersection of
+              <strong>architecture, environmental performance
+              and computational design.</strong>
 
-      inner.appendChild(eyebrowRow);
-      inner.appendChild(frame);
+              My work explores how geometry, simulation
+              and digital tools can become active components
+              of architectural thinking.
 
-      if (m.caption) {
-        const cap = document.createElement("div");
-        cap.className = "page-caption reveal";
-        cap.textContent = m.caption;
-        inner.appendChild(cap);
-      }
+            </p>
 
-      section.appendChild(inner);
-      return section;
-    }
 
-    function buildRendersPage(id, group, index, total) {
-      const section = document.createElement("section");
-      section.className = "page-single page-strict";
-      section.id = `project-${id}-renders${total > 1 ? "-" + (index + 1) : ""}`;
+            <div class="hero-scroll">
+              Scroll to explore
+            </div>
 
-      const inner = document.createElement("div");
-      inner.className = "page-inner";
+          </div>
 
-      const eyebrowRow = document.createElement("div");
-      eyebrowRow.className = "page-eyebrow-row reveal";
-      eyebrowRow.innerHTML = `<div class="eyebrow" style="margin-bottom:0;">Project ${id} — Renders${total > 1 ? ` (${index + 1}/${total})` : ""}</div>`;
-      inner.appendChild(eyebrowRow);
 
-      const grid = document.createElement("div");
-      grid.className = "page-grid-renders reveal";
+          <div class="hero-profile reveal">
 
-      group.forEach(entry => {
-        const m = mediaEntry(entry);
-        const cell = document.createElement("div");
-        cell.className = "media-item";
-        const img = document.createElement("img");
-        img.src = m.src;
-        img.alt = m.caption || `Render — project ${id}`;
-        img.addEventListener("click", () => openLightbox(m.src, img.alt, m.caption));
-        cell.appendChild(img);
-        grid.appendChild(cell);
-      });
+            <img
+              src="./assets/profile.jpg.jpeg"
+              alt="Yanis Nennouche — Architect">
 
-      inner.appendChild(grid);
-      section.appendChild(inner);
-      return section;
-    }
+            <div class="profile-caption">
 
-    function buildCoverPage(project, nextProject) {
-      const section = document.createElement("section");
-      section.className = "proj-cover page-strict";
-      section.id = `project-${project.id}`;
+              <span>
+                Yanis Nennouche
+              </span>
 
-      const inner = document.createElement("div");
-      inner.className = "page-inner";
+              <span>
+                Architect
+              </span>
 
-      const grid = document.createElement("div");
-      grid.className = "proj-cover-grid";
+            </div>
 
-      const info = document.createElement("div");
-      info.className = "reveal";
+          </div>
 
-      const hasContent = project.cover || project.plans.length || project.sections.length || project.facades.length || project.renders.length;
-
-      info.innerHTML = `
-        <div class="proj-number">${project.id}</div>
-        <h2 class="proj-name">${project.name}</h2>
-        <div class="proj-meta-row">
-          <div class="proj-meta-item"><span>Typology</span>${project.typology}</div>
-          <div class="proj-meta-item"><span>Location</span>${project.location}</div>
         </div>
-        <p class="proj-text">${project.text}</p>
-      `;
 
-      const media = document.createElement("div");
-      media.className = "proj-cover-media reveal";
-      if (project.cover) {
-        const img = document.createElement("img");
-        img.src = project.cover;
-        img.alt = project.name;
-        img.style.cursor = "zoom-in";
-        img.addEventListener("click", () => openLightbox(project.cover, project.name, ""));
-        media.appendChild(img);
-      } else {
-        const ph = document.createElement("div");
-        ph.className = "media-placeholder";
-        ph.style.height = "100%";
-        ph.textContent = "Add a cover image here";
-        media.appendChild(ph);
-      }
+      </div>
 
-      grid.appendChild(info);
-      grid.appendChild(media);
-      inner.appendChild(grid);
+    </section>
 
-      const footlink = document.createElement("div");
-      footlink.className = "page-footlink reveal";
-      if (hasContent && (project.plans.length || project.sections.length || project.facades.length || project.renders.length)) {
-        footlink.textContent = "Scroll to continue ↓";
-      } else if (nextProject) {
-        footlink.textContent = `Next — Project ${nextProject.id} · ${nextProject.name} ↓`;
-        footlink.addEventListener("click", () => goToId(`project-${nextProject.id}`));
-      } else {
-        footlink.textContent = "Continue to contact ↓";
-        footlink.addEventListener("click", () => goToId("contact"));
-      }
-      inner.appendChild(footlink);
 
-      section.appendChild(inner);
-      return section;
-    }
 
-    projects.forEach((project, pIndex) => {
-      const nextProject = projects[pIndex + 1] || null;
+    <!-- =======================================================
+         ABOUT
+    ======================================================= -->
 
-      pagesContainer.appendChild(buildCoverPage(project, nextProject));
+    <section id="about">
 
-      ["plans", "sections", "facades"].forEach(key => {
-        const list = project[key];
-        list.forEach((entry, i) => {
-          pagesContainer.appendChild(buildSinglePage(project.id, key, entry, i, list.length));
-        });
-      });
+      <div class="container">
 
-      if (project.renders.length) {
-        const groups = chunk(project.renders, RENDERS_PER_PAGE);
-        groups.forEach((group, i) => {
-          pagesContainer.appendChild(buildRendersPage(project.id, group, i, groups.length));
-        });
-      }
+        <div class="about-header reveal">
 
-      // final "next project" link after the last media page of this project
-      const hasMedia = project.plans.length || project.sections.length || project.facades.length || project.renders.length;
-      if (hasMedia) {
-        const lastSection = pagesContainer.lastElementChild;
-        const lastInner = lastSection.querySelector(".page-inner") || lastSection;
-        const footlink = document.createElement("div");
-        footlink.className = "page-footlink reveal";
-        if (nextProject) {
-          footlink.textContent = `Next — Project ${nextProject.id} · ${nextProject.name} ↓`;
-          footlink.addEventListener("click", () => goToId(`project-${nextProject.id}`));
-        } else {
-          footlink.textContent = "Continue to contact ↓";
-          footlink.addEventListener("click", () => goToId("contact"));
-        }
-        lastInner.appendChild(footlink);
-      }
-    });
+          <div class="eyebrow">
+            01 — About
+          </div>
+
+          <h2 class="section-title">
+
+            Architecture
+            <br>
+
+            <span class="outline">
+              through computation.
+            </span>
+
+          </h2>
+
+        </div>
+
+
+        <div class="about-grid">
+
+
+          <div>
+
+            <p class="about-intro reveal">
+
+              Architecture is not only about
+              <span>representing space.</span>
+
+              It is about understanding,
+              generating and optimising it.
+
+            </p>
+
+
+            <p class="about-text reveal">
+
+              I am an architect interested in the relationship
+              between digital design, environmental performance
+              and architectural systems.
+
+              <br><br>
+
+              My approach combines parametric modelling,
+              environmental simulation, biomimicry and
+              computational design to investigate how
+              architecture can respond to its context.
+
+            </p>
+
+          </div>
+
+
+          <div class="info-column reveal">
+
+
+            <div class="info-row">
+
+              <div class="info-label">
+                Education
+              </div>
+
+              <div class="info-value">
+                M.Arch — Environmental &amp;
+                Technological Architecture
+                <br>
+                University of Algiers 1 · 2026
+              </div>
+
+            </div>
+
+
+            <div class="info-row">
+
+              <div class="info-label">
+                Location
+              </div>
+
+              <div class="info-value">
+                Algiers, Algeria
+              </div>
+
+            </div>
+
+
+            <div class="info-row">
+
+              <div class="info-label">
+                Fields
+              </div>
+
+              <div class="info-value">
+
+                Computational Architecture<br>
+                Environmental Design<br>
+                Parametric Design<br>
+                Biomimicry<br>
+                Architectural Research
+
+              </div>
+
+            </div>
+
+
+            <div class="info-row">
+
+              <div class="info-label">
+                Software
+              </div>
+
+              <div class="info-value">
+
+                <div class="skills">
+
+                  <span class="skill">Rhino</span>
+                  <span class="skill">Grasshopper</span>
+                  <span class="skill">Python</span>
+                  <span class="skill">Ladybug Tools</span>
+                  <span class="skill">Revit</span>
+                  <span class="skill">AutoCAD</span>
+                  <span class="skill">D5 Render</span>
+                  <span class="skill">LaTeX</span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="info-row">
+
+              <div class="info-label">
+                Languages
+              </div>
+
+              <div class="info-value">
+                Arabic · French · English
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         WORK
+    ======================================================= -->
+
+    <section id="work">
+
+      <div class="container">
+
+
+        <div class="work-header reveal">
+
+          <div>
+
+            <div class="eyebrow">
+              02 — Selected Work
+            </div>
+
+            <h2 class="work-title">
+              Works
+            </h2>
+
+          </div>
+
+
+          <p class="work-description">
+
+            Selected architectural projects,
+            environmental studies and computational
+            explorations.
+
+            <br><br>
+
+            Each project is presented as an architectural
+            document rather than a conventional web page.
+
+          </p>
+
+        </div>
+
+
+        <div class="project-index">
+
+
+          <div
+            class="project-item reveal"
+            onclick="goToProject('project-01')">
+
+            <div class="project-number">
+              01
+            </div>
+
+            <div class="project-name">
+              Eco Dôme du Hamma
+            </div>
+
+            <div class="project-type">
+              Environmental Architecture<br>
+              Biomimicry · ETFE
+            </div>
+
+            <div class="project-arrow">
+              ↗
+            </div>
+
+          </div>
+
+
+          <div
+            class="project-item reveal"
+            onclick="goToProject('project-02')">
+
+            <div class="project-number">
+              02
+            </div>
+
+            <div class="project-name">
+              Computational Structures
+            </div>
+
+            <div class="project-type">
+              Generative Design<br>
+              Parametric Systems
+            </div>
+
+            <div class="project-arrow">
+              ↗
+            </div>
+
+          </div>
+
+
+          <div
+            class="project-item reveal"
+            onclick="goToProject('project-03')">
+
+            <div class="project-number">
+              03
+            </div>
+
+            <div class="project-name">
+              Visual Explorations
+            </div>
+
+            <div class="project-type">
+              Architectural Visualization<br>
+              Digital Atmospheres
+            </div>
+
+            <div class="project-arrow">
+              ↗
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         PROJECT 01
+    ======================================================= -->
+
+    <section
+      id="project-01"
+      class="project-page">
+
+      <div class="container">
+
+
+        <div class="project-heading reveal">
+
+          <div class="project-big-number">
+            01
+          </div>
+
+
+          <div class="project-heading-content">
+
+            <div>
+
+              <div class="eyebrow">
+                Environmental Architecture · 2026
+              </div>
+
+              <h2 class="project-title">
+                Eco Dôme
+                <br>
+                <span class="outline">
+                  du Hamma
+                </span>
+              </h2>
+
+            </div>
+
+
+            <div class="project-meta">
+
+              <div class="meta-row">
+                <span>Location</span>
+                <span>Algiers</span>
+              </div>
+
+              <div class="meta-row">
+                <span>Site</span>
+                <span>1.2 ha</span>
+              </div>
+
+              <div class="meta-row">
+                <span>Type</span>
+                <span>Public</span>
+              </div>
+
+              <div class="meta-row">
+                <span>Year</span>
+                <span>2026</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <p class="project-description reveal">
+
+          A biomimetic architectural system developed
+          for the redevelopment of the zoo area of the
+          Jardin d'Essai du Hamma.
+
+          <br><br>
+
+          Inspired by the geometry of a snail shell,
+          the project creates a controlled environment
+          where architecture, vegetation, climate and
+          animal habitats coexist as one ecosystem.
+
+        </p>
+
+
+        <!-- HERO RENDER -->
+
+        <div class="project-cover reveal">
+
+          <img
+            src="assets/Rendus_2 - Photo.jpg"
+            alt="Eco Dôme du Hamma">
+
+          <div class="image-label">
+            Project view · 01
+          </div>
+
+        </div>
+
+
+
+        <!-- CONCEPT -->
+
+        <div class="spread">
+
+          <div class="spread-label">
+            01 / Concept
+          </div>
+
+          <div class="spread-content">
+
+            <h3 class="spread-title reveal">
+              Architecture
+              <br>
+              as an ecosystem.
+            </h3>
+
+            <p class="spread-text reveal">
+
+              The project investigates the relationship
+              between architecture and living systems.
+
+              The snail shell becomes a geometric generator:
+              a continuous spatial sequence wrapping around
+              different climatic environments.
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- SECTIONS -->
+
+        <div class="spread">
+
+          <div class="spread-label">
+            02 / Sections
+          </div>
+
+          <div class="spread-content">
+
+            <h3 class="spread-title reveal">
+              Spatial
+              <br>
+              organisation.
+            </h3>
+
+
+            <div class="drawing-grid">
+
+
+              <div class="drawing reveal">
+
+                <img
+                  src="assets/Coupe1.png"
+                  alt="Longitudinal section">
+
+                <div class="drawing-caption">
+
+                  <span>
+                    Section 01
+                  </span>
+
+                  <span>
+                    Longitudinal
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="drawing reveal">
+
+                <img
+                  src="assets/Coupe2.png"
+                  alt="Transversal section">
+
+                <div class="drawing-caption">
+
+                  <span>
+                    Section 02
+                  </span>
+
+                  <span>
+                    Transversal
+                  </span>
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- PROGRAM -->
+
+        <div class="spread">
+
+          <div class="spread-label">
+            03 / Program
+          </div>
+
+          <div class="spread-content">
+
+            <h3 class="spread-title reveal">
+              A sequence
+              <br>
+              of ecosystems.
+            </h3>
+
+            <p class="spread-text reveal">
+
+              The visitor moves through different
+              environmental conditions organised along
+              the continuous circulation system.
+
+              <br><br>
+
+              Tropical · Savanna · Montagnard
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- RENDERS -->
+
+        <div class="spread">
+
+          <div class="spread-label">
+            04 / Atmosphere
+          </div>
+
+          <div class="spread-content">
+
+            <h3 class="spread-title reveal">
+              Living
+              <br>
+              environments.
+            </h3>
+
+
+            <div class="render-grid">
+
+
+              <div class="render reveal">
+
+                <img
+                  src="assets/Rendus_1 - Photo.jpg"
+                  alt="Eco Dome render">
+
+              </div>
+
+
+              <div class="render reveal">
+
+                <img
+                  src="assets/Rendus_3 - Photo.jpg"
+                  alt="Eco Dome render">
+
+              </div>
+
+
+              <div class="render reveal">
+
+                <img
+                  src="assets/Rendus_5 - Photo.jpg"
+                  alt="Eco Dome render">
+
+              </div>
+
+
+              <div class="render reveal">
+
+                <img
+                  src="assets/Rendus_6 - Photo.jpg"
+                  alt="Eco Dome render">
+
+              </div>
+
+
+              <div class="render reveal">
+
+                <img
+                  src="assets/Rendus_8 - Photo.jpg"
+                  alt="Eco Dome render">
+
+              </div>
+
+
+              <div class="render reveal">
+
+                <img
+                  src="assets/Rendus_9 - Photo.jpg"
+                  alt="Eco Dome render">
+
+              </div>
+
+
+              <div class="render reveal">
+
+                <img
+                  src="assets/rendus suite_1 - Photo.jpg"
+                  alt="Eco Dome render">
+
+              </div>
+
+
+              <div class="render reveal">
+
+                <img
+                  src="assets/rendus suite_3 - Photo.jpg"
+                  alt="Eco Dome render">
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- NEXT -->
+
+        <div
+          class="project-next reveal"
+          onclick="goToProject('project-02')">
+
+          <div>
+
+            <div class="project-next-label">
+              Next project
+            </div>
+
+            <div class="project-next-name">
+              Computational Structures →
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         PROJECT 02
+    ======================================================= -->
+
+    <section
+      id="project-02"
+      class="project-page">
+
+      <div class="container">
+
+
+        <div class="project-heading reveal">
+
+          <div class="project-big-number">
+            02
+          </div>
+
+
+          <div class="project-heading-content">
+
+            <div>
+
+              <div class="eyebrow">
+                Computational Design
+              </div>
+
+              <h2 class="project-title">
+                Generative
+                <br>
+                <span class="outline">
+                  Structures
+                </span>
+              </h2>
+
+            </div>
+
+
+            <div class="project-meta">
+
+              <div class="meta-row">
+                <span>Field</span>
+                <span>Generative</span>
+              </div>
+
+              <div class="meta-row">
+                <span>Tools</span>
+                <span>Rhino / GH</span>
+              </div>
+
+              <div class="meta-row">
+                <span>Method</span>
+                <span>Parametric</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <p class="project-description reveal">
+
+          A computational exploration focused on
+          parametric structures, geometric systems and
+          generative architectural processes.
+
+          <br><br>
+
+          This project section is ready to receive your
+          Grasshopper experiments, structural studies,
+          laser-cut patterns or future research.
+
+        </p>
+
+
+        <div class="project-cover reveal">
+
+          <div
+            class="drawing"
+            style="min-height:500px;
+                   display:flex;
+                   align-items:center;
+                   justify-content:center;">
+
+            <div
+              style="
+              text-align:center;
+              padding:40px;
+              font-family:'DM Mono',monospace;
+              font-size:10px;
+              color:var(--muted);
+              text-transform:uppercase;">
+
+              Project documentation coming soon
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="project-next reveal"
+          onclick="goToProject('project-03')">
+
+          <div>
+
+            <div class="project-next-label">
+              Next project
+            </div>
+
+            <div class="project-next-name">
+              Visual Explorations →
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         PROJECT 03
+    ======================================================= -->
+
+    <section
+      id="project-03"
+      class="project-page">
+
+      <div class="container">
+
+
+        <div class="project-heading reveal">
+
+          <div class="project-big-number">
+            03
+          </div>
+
+
+          <div class="project-heading-content">
+
+            <div>
+
+              <div class="eyebrow">
+                Architectural Visualization
+              </div>
+
+              <h2 class="project-title">
+                Visual
+                <br>
+                <span class="outline">
+                  Explorations
+                </span>
+              </h2>
+
+            </div>
+
+
+            <div class="project-meta">
+
+              <div class="meta-row">
+                <span>Field</span>
+                <span>Visualization</span>
+              </div>
+
+              <div class="meta-row">
+                <span>Tools</span>
+                <span>D5 / 3D</span>
+              </div>
+
+              <div class="meta-row">
+                <span>Focus</span>
+                <span>Atmosphere</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <p class="project-description reveal">
+
+          A collection of architectural visualisations
+          exploring atmosphere, materiality, light and
+          spatial perception.
+
+        </p>
+
+
+        <div
+          class="project-cover reveal">
+
+          <div
+            class="drawing"
+            style="min-height:500px;
+                   display:flex;
+                   align-items:center;
+                   justify-content:center;">
+
+            <div
+              style="
+              text-align:center;
+              padding:40px;
+              font-family:'DM Mono',monospace;
+              font-size:10px;
+              color:var(--muted);
+              text-transform:uppercase;">
+
+              Visual archive coming soon
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="project-next reveal"
+          onclick="goToProject('contact')">
+
+          <div>
+
+            <div class="project-next-label">
+              Continue
+            </div>
+
+            <div class="project-next-name">
+              Contact →
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =======================================================
+         CONTACT
+    ======================================================= -->
+
+    <section id="contact">
+
+      <div class="container contact-inner">
+
+
+        <div class="eyebrow reveal">
+          03 — Contact
+        </div>
+
+
+        <h2 class="contact-title reveal">
+
+          Let's build
+          <br>
+
+          <span class="outline">
+            something.
+          </span>
+
+        </h2>
+
+
+        <div class="contact-bottom">
+
+
+          <p class="contact-description reveal">
+
+            Open to architectural collaborations,
+            computational design projects,
+            environmental research and
+            architectural opportunities.
+
+          </p>
+
+
+          <div class="contact-links reveal">
+
+            <a
+              class="contact-link"
+              href="mailto:nennoucheyaya@gmail.com">
+
+              nennoucheyaya@gmail.com ↗
+
+            </a>
+
+
+            <a
+              class="contact-link"
+              href="https://www.linkedin.com/in/yanis-nennouche-b27040334/"
+              target="_blank"
+              rel="noopener">
+
+              LinkedIn ↗
+
+            </a>
+
+
+            <a
+              class="contact-link"
+              href="./CV.pdf"
+              target="_blank">
+
+              Curriculum Vitae ↗
+
+            </a>
+
+          </div>
+
+
+        </div>
+
+
+        <div class="footer">
+
+          <span>
+            YANIS NENNOUCHE / ARCHITECT
+          </span>
+
+          <span>
+            Architecture · Computation · Environment
+          </span>
+
+          <span>
+            © 2026
+          </span>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =========================================================
+       LIGHTBOX
+  ========================================================= -->
+
+  <div
+    class="lightbox"
+    id="lightbox">
+
+    <button
+      class="lightbox-close"
+      id="lightboxClose">
+
+      ×
+
+    </button>
+
+    <img
+      id="lightboxImage"
+      src=""
+      alt="">
+
+  </div>
+
+
+
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================= -->
+
+  <script>
+
 
     /* =========================================================
-       UI: cursor / grain / progress / nav / reveal
-       (initialised after pages are built)
+       NAVIGATION
     ========================================================= */
 
-    const body = document.body;
-    const navbar = document.getElementById("navbar");
-    const progress = document.getElementById("progress");
-    const navLinksEl = document.getElementById("navLinks");
-    const menuBtn = document.getElementById("menuBtn");
-    const orb = document.getElementById("orb");
-    const pageIndicatorText = document.getElementById("pageIndicatorText");
+    const navbar =
+      document.getElementById("navbar");
+
+    const menuBtn =
+      document.getElementById("menuBtn");
+
+    const navLinks =
+      document.getElementById("navLinks");
+
 
     menuBtn.addEventListener("click", () => {
-      navLinksEl.classList.toggle("open");
-      menuBtn.textContent = navLinksEl.classList.contains("open") ? "×" : "☰";
-    });
-    document.querySelectorAll(".nav-links a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinksEl.classList.remove("open");
-        menuBtn.textContent = "☰";
-      });
+
+      navLinks.classList.toggle("open");
+
+      menuBtn.textContent =
+        navLinks.classList.contains("open")
+          ? "×"
+          : "☰";
+
     });
 
-    navbar.classList.add("scrolled");
+
+    document
+      .querySelectorAll(".nav-links a")
+      .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+          navLinks.classList.remove("open");
+
+          menuBtn.textContent = "☰";
+
+        });
+
+      });
+
+
+    window.addEventListener("scroll", () => {
+
+      navbar.classList.toggle(
+        "scrolled",
+        window.scrollY > 50
+      );
+
+    });
+
 
     /* =========================================================
-       NATIVE SCROLL CONTROLLER
-       Inspired by the clean single-page structure of
-       seunghyunshin.com: no page flip, no wheel hijacking.
-       Every section is part of one continuous portfolio.
+       PROJECT NAVIGATION
     ========================================================= */
 
-    const sections = Array.from(
-      document.querySelectorAll("#hero, #about, #work, #pagesContainer > section, #contact")
+    function goToProject(id) {
+
+      const element =
+        document.getElementById(id);
+
+      if (!element) return;
+
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
+
+
+    /* =========================================================
+       REVEAL
+    ========================================================= */
+
+    const revealObserver =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add(
+                "visible"
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: .08
+        }
+      );
+
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(element => {
+
+        revealObserver.observe(element);
+
+      });
+
+
+    /* =========================================================
+       ACTIVE NAV
+    ========================================================= */
+
+    const sections =
+      document.querySelectorAll(
+        "main > section"
+      );
+
+
+    const navObserver =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (!entry.isIntersecting)
+              return;
+
+
+            const id =
+              entry.target.id;
+
+
+            document
+              .querySelectorAll(".nav-links a")
+              .forEach(link => {
+
+                link.classList.toggle(
+                  "active",
+                  link.dataset.nav === id
+                );
+
+              });
+
+
+            if (
+              id.startsWith("project-")
+            ) {
+
+              document
+                .querySelectorAll(".nav-links a")
+                .forEach(link => {
+
+                  link.classList.toggle(
+                    "active",
+                    link.dataset.nav === "work"
+                  );
+
+                });
+
+            }
+
+          });
+
+        },
+        {
+          rootMargin:
+            "-35% 0px -55% 0px"
+        }
+      );
+
+
+    sections.forEach(section => {
+
+      navObserver.observe(section);
+
+    });
+
+
+    /* =========================================================
+       PAGE COUNTER
+    ========================================================= */
+
+    const currentPage =
+      document.getElementById(
+        "currentPage"
+      );
+
+    const totalPage =
+      document.getElementById(
+        "totalPage"
+      );
+
+
+    const countedSections =
+      document.querySelectorAll(
+        "main > section"
+      );
+
+
+    totalPage.textContent =
+      String(countedSections.length)
+        .padStart(2, "0");
+
+
+    const counterObserver =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (
+              entry.isIntersecting
+            ) {
+
+              const index =
+                Array.from(
+                  countedSections
+                ).indexOf(
+                  entry.target
+                );
+
+
+              currentPage.textContent =
+                String(index)
+                  .padStart(2, "0");
+
+            }
+
+          });
+
+        },
+        {
+          rootMargin:
+            "-45% 0px -45% 0px"
+        }
+      );
+
+
+    countedSections.forEach(section => {
+
+      counterObserver.observe(section);
+
+    });
+
+
+    /* =========================================================
+       LIGHTBOX
+    ========================================================= */
+
+    const lightbox =
+      document.getElementById(
+        "lightbox"
+      );
+
+    const lightboxImage =
+      document.getElementById(
+        "lightboxImage"
+      );
+
+    const lightboxClose =
+      document.getElementById(
+        "lightboxClose"
+      );
+
+
+    document
+      .querySelectorAll(
+        ".drawing img, .render img, .project-cover img"
+      )
+      .forEach(img => {
+
+        img.addEventListener(
+          "click",
+          event => {
+
+            event.stopPropagation();
+
+            lightboxImage.src =
+              img.src;
+
+            lightboxImage.alt =
+              img.alt;
+
+            lightbox.classList.add(
+              "open"
+            );
+
+          }
+        );
+
+      });
+
+
+    function closeLightbox() {
+
+      lightbox.classList.remove(
+        "open"
+      );
+
+      lightboxImage.src = "";
+
+    }
+
+
+    lightboxClose.addEventListener(
+      "click",
+      closeLightbox
     );
 
-    function labelFor(section) {
-      if (!section) return "";
-      if (section.id === "hero") return "Home";
-      if (section.id === "about") return "About";
-      if (section.id === "work") return "Work";
-      if (section.id === "contact") return "Contact";
 
-      const m = section.id.match(/^project-(\d+)(?:-(\w+))?/);
-      if (m) {
-        const num = m[1];
-        const cat = m[2];
-        if (!cat) return `Project ${num}`;
-        const cleanCat = cat.replace(/-\d+$/, "");
-        const catLabel = categoryLabels[cleanCat] ||
-          cleanCat.charAt(0).toUpperCase() + cleanCat.slice(1);
-        return `Project ${num} — ${catLabel}`;
-      }
-      return "";
-    }
+    lightbox.addEventListener(
+      "click",
+      event => {
 
-    function navIdFor(section) {
-      if (!section) return "";
-      if (section.id === "hero") return "hero";
-      if (section.id === "about") return "about";
-      if (section.id === "contact") return "contact";
-      return "work";
-    }
+        if (
+          event.target === lightbox
+        ) {
 
-    function updateActiveSection(section) {
-      const activeNav = navIdFor(section);
+          closeLightbox();
 
-      document.querySelectorAll(".nav-links a").forEach(a => {
-        a.classList.toggle("active", a.dataset.nav === activeNav);
-      });
-
-      // Keep the URL useful without interrupting normal browser scrolling.
-      if (section && history.replaceState) {
-        const newHash = `#${section.id}`;
-        if (location.hash !== newHash) {
-          history.replaceState(null, "", newHash);
         }
-      }
-    }
 
-    // Reveal content as it enters the viewport.
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll(".reveal").forEach(el => {
-            el.classList.add("visible");
-          });
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          closeLightbox();
+
         }
-      });
-    }, { threshold: 0.12 });
 
-    sections.forEach(section => revealObserver.observe(section));
-
-    // Highlight the correct navigation item while scrolling.
-    const sectionObserver = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter(entry => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-      if (visible.length) updateActiveSection(visible[0].target);
-    }, {
-      rootMargin: "-25% 0px -55% 0px",
-      threshold: [0.05, 0.2, 0.5, 0.8]
-    });
-
-    sections.forEach(section => sectionObserver.observe(section));
-
-    // Navigation links use native smooth scrolling.
-    document.querySelectorAll(".nav-links a[data-nav]").forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        const id = link.getAttribute("href").slice(1);
-        const target = document.getElementById(id);
-        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    });
-
-    // Project cards also scroll naturally to their project section.
-    function goToId(id) {
-      const target = document.getElementById(id);
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-
-    // Initial state: deep links still work.
-    const initialId = location.hash ? location.hash.slice(1) : "hero";
-    const initialTarget = document.getElementById(initialId);
-    if (initialTarget) {
-      setTimeout(() => {
-        initialTarget.scrollIntoView({ behavior: "auto", block: "start" });
-      }, 0);
-    }
-
-    // Navbar becomes compact after the hero.
-    const navbarObserver = new IntersectionObserver(([entry]) => {
-      navbar.classList.toggle("scrolled", !entry.isIntersecting);
-    }, { threshold: 0.15 });
-
-    const heroSection = document.getElementById("hero");
-    if (heroSection) navbarObserver.observe(heroSection);
-
-    /* ========================= CUSTOM CURSOR ========================= */
-    const cursor = document.getElementById("cursor");
-    const cursorRing = document.getElementById("cursorRing");
-
-    if (window.matchMedia("(pointer:fine)").matches) {
-      body.classList.add("has-cursor");
-      let mx = 0, my = 0, rx = 0, ry = 0;
-
-      window.addEventListener("mousemove", e => {
-        mx = e.clientX; my = e.clientY;
-        cursor.style.left = `${mx}px`;
-        cursor.style.top = `${my}px`;
-      });
-
-      function animateCursor() {
-        rx += (mx - rx) * .16;
-        ry += (my - ry) * .16;
-        cursorRing.style.left = `${rx}px`;
-        cursorRing.style.top = `${ry}px`;
-        requestAnimationFrame(animateCursor);
       }
-      animateCursor();
+    );
 
-      document.querySelectorAll("a, button, .toc-item").forEach(el => {
-        el.addEventListener("mouseenter", () => {
-          cursorRing.style.width = "52px";
-          cursorRing.style.height = "52px";
-        });
-        el.addEventListener("mouseleave", () => {
-          cursorRing.style.width = "34px";
-          cursorRing.style.height = "34px";
-        });
-      });
-
-      window.addEventListener("mousemove", e => {
-        const x = (e.clientX / window.innerWidth - .5) * 2;
-        const y = (e.clientY / window.innerHeight - .5) * 2;
-        if (orb) orb.style.transform = `translate(${x * -18}px, ${y * -12}px)`;
-      });
-    }
 
   </script>
 
