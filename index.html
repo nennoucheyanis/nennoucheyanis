@@ -130,6 +130,12 @@
 
     #pagesContainer { position: static; }
 
+    /* The <section> itself only scrolls — it does NOT center content.
+       This is the key fix: overflow-y:auto + display:flex+justify-content:center
+       on the SAME element breaks scrolling to the top of overflowing content
+       on many mobile browsers (notably iOS Safari). Centering now happens
+       on the .page-inner wrapper instead, which is a normal-flow child that
+       can grow taller than the viewport and scroll freely. */
     main#book section {
       position: absolute;
       inset: 0;
@@ -138,12 +144,9 @@
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      overscroll-behavior: contain;
       padding: 130px clamp(22px, 7vw, 110px);
       display: none;
-      flex-direction: column;
-      justify-content: center;
-      max-width: 1700px;
-      margin: auto;
       backface-visibility: hidden;
       transform-origin: top center;
       will-change: transform, opacity;
@@ -151,8 +154,20 @@
 
     main#book section::-webkit-scrollbar { display: none; }
 
-    main#book section.slide-current { display: flex; z-index: 1; }
-    main#book section.slide-leaf { display: flex; z-index: 2; }
+    main#book section.slide-current { display: block; z-index: 1; }
+    main#book section.slide-leaf { display: block; z-index: 2; }
+
+    /* Wrapper that actually centers the content vertically when it's
+       shorter than the viewport, while still allowing the section to
+       scroll normally when the content is taller than the viewport. */
+    .page-inner {
+      min-height: 100%;
+      max-width: 1700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
     .eyebrow {
       display: inline-flex; align-items: center; gap: 10px; color: var(--accent);
@@ -171,7 +186,7 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ========================= HERO (COVER) ========================= */
-    #hero { min-height: 100svh; overflow: hidden; justify-content: center; }
+    #hero { overflow: hidden; }
     .hero-grid {
       position: absolute; inset: 0; opacity: .25;
       background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
@@ -229,7 +244,7 @@
     .scroll-note span { width: 42px; height: 1px; background: var(--muted); }
 
     /* ========================= ABOUT ========================= */
-    #about { background: var(--surface); align-items: stretch; }
+    #about { background: var(--surface); }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(50px, 7vw, 120px); align-items: start; }
     .about-statement { color: var(--muted); line-height: 1.9; max-width: 640px; }
     .about-statement strong { color: var(--text); font-weight: 500; }
@@ -265,7 +280,7 @@
     .stack-item:hover { color: var(--accent); padding-left: 8px; }
 
     /* ========================= CONTENTS / WORK ========================= */
-    #work { min-height: auto; padding-top: 150px; padding-bottom: 150px; }
+    #work { padding-top: 150px; padding-bottom: 150px; }
     .work-intro { display: flex; justify-content: space-between; gap: 30px; align-items: end; margin-bottom: 55px; }
     .work-intro p { max-width: 520px; color: var(--muted); line-height: 1.7; }
 
@@ -284,7 +299,6 @@
     .toc-typology { color: var(--muted); font-size: .78rem; line-height: 1.5; }
 
     /* ========================= PROJECT PAGES ========================= */
-    .proj-cover { align-items: center; }
     .proj-cover-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(40px, 6vw, 90px); align-items: center; width: 100%; }
     .proj-cover-media { border: 1px solid var(--line); background: var(--surface-2); aspect-ratio: 4/5; overflow: hidden; }
     .proj-cover-media img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); }
@@ -295,12 +309,14 @@
     .proj-meta-item span { display: block; color: var(--accent); font: 500 .65rem "Space Grotesk", sans-serif; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 6px; }
     .proj-text { color: var(--muted); line-height: 1.85; max-width: 560px; }
 
-    .page-single { align-items: center; text-align: center; }
+    .page-single { text-align: center; }
+    .page-single .page-inner { align-items: center; }
     .page-eyebrow-row { display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
     .media-frame {
       width: 100%; max-width: min(1150px, 92vw); max-height: 66vh;
       border: 1px solid var(--line); background: var(--surface-2);
       display: flex; align-items: center; justify-content: center; overflow: hidden;
+      margin: 0 auto;
     }
     .media-frame img { max-width: 100%; max-height: 66vh; object-fit: contain; cursor: zoom-in; transition: transform .4s ease; }
     .media-frame:hover img { transform: scale(1.01); }
@@ -338,16 +354,15 @@
     .lightbox .close-btn:hover { border-color: var(--accent); color: var(--accent); }
 
     /* ========================= CONTACT ========================= */
-    #contact { min-height: 75vh; text-align: center; align-items: center; overflow: hidden; }
+    #contact { text-align: center; overflow: hidden; }
+    #contact .page-inner { align-items: center; }
     .contact-title { font: 600 clamp(3rem, 8vw, 8rem) "Space Grotesk", sans-serif; letter-spacing: -.07em; line-height: .9; max-width: 1000px; }
     .contact-copy { color: var(--muted); max-width: 550px; line-height: 1.7; margin: 28px auto 35px; }
     .contact-links { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 
     .contact-footer {
-      position: absolute;
-      left: clamp(22px, 7vw, 110px);
-      right: clamp(22px, 7vw, 110px);
-      bottom: 28px;
+      width: 100%;
+      margin-top: 60px;
       padding-top: 18px;
       border-top: 1px solid var(--line);
       display: flex;
@@ -372,15 +387,15 @@
       .work-intro { display: block; }
       .work-intro p { margin-top: -25px; margin-bottom: 35px; }
       .proj-cover-grid { grid-template-columns: 1fr; }
-      .proj-cover-media { order: -1; max-width: 320px; }
+      .proj-cover-media { order: -1; max-width: 320px; margin: 0 auto; }
       .page-grid-renders { grid-template-columns: 1fr; }
       .stack { grid-template-columns: 1fr; }
       .page-indicator { display: none; }
-      .contact-footer { flex-direction: column; gap: 6px; position: static; margin-top: 40px; }
+      .contact-footer { flex-direction: column; gap: 6px; }
+      main#book section { padding: 110px 20px 60px; }
     }
 
     @media (max-width: 500px) {
-      section { padding-left: 20px; padding-right: 20px; }
       .hero-title { font-size: clamp(3.4rem, 17vw, 5rem); }
       .scroll-note { left: 20px; }
       .profile-card { width: 190px; }
@@ -388,7 +403,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; scroll-snap-type: none; }
+      html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
     }
   </style>
@@ -416,146 +431,152 @@
 
     <!-- ============ COVER ============ -->
     <section id="hero" class="page-strict">
-      <div class="hero-grid"></div>
-      <div class="orb" id="orb"></div>
+      <div class="page-inner">
+        <div class="hero-grid"></div>
+        <div class="orb" id="orb"></div>
 
-      <div class="hero-layout">
-        <div class="hero-content reveal">
-          <div class="eyebrow">Architecture · Computation · Environment</div>
-          <h1 class="hero-title">Yanis<br><span class="outline">Nennouche</span></h1>
-          <p class="hero-sub">
-            Architect exploring the intersection of architecture,
-            environmental performance and computational design.
-            I use geometry, data and simulation as tools for
-            developing more responsive architectural systems.
-          </p>
-          <div class="availability">Open to architectural collaborations &amp; opportunities</div>
-          <div class="hero-actions">
-            <a class="btn primary" href="#about">Enter portfolio ↓</a>
-            <a class="btn" href="./CV.pdf" target="_blank">View CV</a>
+        <div class="hero-layout">
+          <div class="hero-content reveal">
+            <div class="eyebrow">Architecture · Computation · Environment</div>
+            <h1 class="hero-title">Yanis<br><span class="outline">Nennouche</span></h1>
+            <p class="hero-sub">
+              Architect exploring the intersection of architecture,
+              environmental performance and computational design.
+              I use geometry, data and simulation as tools for
+              developing more responsive architectural systems.
+            </p>
+            <div class="availability">Open to architectural collaborations &amp; opportunities</div>
+            <div class="hero-actions">
+              <a class="btn primary" href="#about">Enter portfolio ↓</a>
+              <a class="btn" href="./CV.pdf" target="_blank">View CV</a>
+            </div>
+          </div>
+
+          <div class="profile-card reveal">
+            <!-- Add your portrait at: ./assets/profile.jpg.jpeg -->
+            <img class="profile-image" src="./assets/profile.jpg.jpeg" alt="Portrait of Yanis Nennouche">
+            <div class="profile-caption">
+              <span>Yanis Nennouche</span>
+              <span>Architect</span>
+            </div>
           </div>
         </div>
 
-        <div class="profile-card reveal">
-          <!-- Add your portrait at: ./assets/profile.jpg.jpeg -->
-          <img class="profile-image" src="./assets/profile.jpg.jpeg" alt="Portrait of Yanis Nennouche">
-          <div class="profile-caption">
-            <span>Yanis Nennouche</span>
-            <span>Architect</span>
-          </div>
-        </div>
+        <div class="scroll-note"><span></span>Scroll to turn the page</div>
       </div>
-
-      <div class="scroll-note"><span></span>Scroll to turn the page</div>
     </section>
 
     <!-- ============ ABOUT ============ -->
     <section id="about">
-      <div class="eyebrow reveal">Page 01 — About</div>
-      <div class="about-grid">
+      <div class="page-inner">
+        <div class="eyebrow reveal">Page 01 — About</div>
+        <div class="about-grid">
 
-        <div class="reveal">
-          <h2 class="section-title">Architecture<br>through computation.</h2>
-          <p class="about-statement">
-            I am an architect developing an approach at the intersection
-            of <strong>architecture, environmental performance and computational design</strong>.
-            My work explores how digital tools can help generate, analyse
-            and optimise architectural systems rather than simply represent them.
-            <br><br>
-            From parametric modelling to environmental simulation, I use
-            computation as an extension of the design process, with a focus
-            on climate, geometry and performance.
-          </p>
+          <div class="reveal">
+            <h2 class="section-title">Architecture<br>through computation.</h2>
+            <p class="about-statement">
+              I am an architect developing an approach at the intersection
+              of <strong>architecture, environmental performance and computational design</strong>.
+              My work explores how digital tools can help generate, analyse
+              and optimise architectural systems rather than simply represent them.
+              <br><br>
+              From parametric modelling to environmental simulation, I use
+              computation as an extension of the design process, with a focus
+              on climate, geometry and performance.
+            </p>
 
-          <div class="about-block">
-            <div class="eyebrow">Interests</div>
-            <!-- Edit these to match your real interests -->
-            <div class="chip-row">
-              <span class="tag-chip">Computational design</span>
-              <span class="tag-chip">Environmental performance</span>
-              <span class="tag-chip">Biomimicry</span>
-              <span class="tag-chip">Parametric geometry</span>
-              <span class="tag-chip">Climate simulation</span>
-              <span class="tag-chip">Generative art</span>
+            <div class="about-block">
+              <div class="eyebrow">Interests</div>
+              <!-- Edit these to match your real interests -->
+              <div class="chip-row">
+                <span class="tag-chip">Computational design</span>
+                <span class="tag-chip">Environmental performance</span>
+                <span class="tag-chip">Biomimicry</span>
+                <span class="tag-chip">Parametric geometry</span>
+                <span class="tag-chip">Climate simulation</span>
+                <span class="tag-chip">Generative art</span>
+              </div>
+            </div>
+
+            <div class="hero-actions" style="margin-top:34px;">
+              <a class="btn" href="./CV.pdf" target="_blank">View full CV ↗</a>
             </div>
           </div>
 
-          <div class="hero-actions" style="margin-top:34px;">
-            <a class="btn" href="./CV.pdf" target="_blank">View full CV ↗</a>
+          <div class="reveal">
+            <div class="eyebrow">Education &amp; Experience</div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-date">2026</div>
+                <div>
+                  <div class="timeline-title">M.Arch in Environmental &amp; Technological Architecture</div>
+                  <div class="timeline-meta">University of Algiers 1 · Master's Degree</div>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">—</div>
+                <div>
+                  <div class="timeline-title">Add relevant experience</div>
+                  <div class="timeline-meta">Practice / research / competition · Dates</div>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">Base</div>
+                <div>
+                  <div class="timeline-title">Algiers, Algeria</div>
+                  <div class="timeline-meta">Currently based here · open to relocation</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-block">
+              <div class="eyebrow">Languages</div>
+              <!-- Edit levels to match your real proficiency -->
+              <div class="lang-list">
+                <div class="lang-item"><span class="lang-name">Arabic</span><span class="lang-level">Native</span></div>
+                <div class="lang-item"><span class="lang-name">French</span><span class="lang-level">Fluent</span></div>
+                <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">Professional</span></div>
+              </div>
+            </div>
+
+            <div class="about-block">
+              <div class="eyebrow">Software &amp; Skills</div>
+              <div class="stack">
+                <div class="stack-item">Rhinoceros 3D</div>
+                <div class="stack-item">Grasshopper</div>
+                <div class="stack-item">Environmental Simulation</div>
+                <div class="stack-item">Parametric Design</div>
+                <div class="stack-item">Python</div>
+                <div class="stack-item">Revit</div>
+                <div class="stack-item">D5 Render</div>
+                <div class="stack-item">Ladybug Tools</div>
+                <div class="stack-item">AutoCAD</div>
+                <div class="stack-item">LaTeX</div>
+              </div>
+            </div>
           </div>
+
         </div>
-
-        <div class="reveal">
-          <div class="eyebrow">Education &amp; Experience</div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-date">2026</div>
-              <div>
-                <div class="timeline-title">M.Arch in Environmental &amp; Technological Architecture</div>
-                <div class="timeline-meta">University of Algiers 1 · Master's Degree</div>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-date">—</div>
-              <div>
-                <div class="timeline-title">Add relevant experience</div>
-                <div class="timeline-meta">Practice / research / competition · Dates</div>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-date">Base</div>
-              <div>
-                <div class="timeline-title">Algiers, Algeria</div>
-                <div class="timeline-meta">Currently based here · open to relocation</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="about-block">
-            <div class="eyebrow">Languages</div>
-            <!-- Edit levels to match your real proficiency -->
-            <div class="lang-list">
-              <div class="lang-item"><span class="lang-name">Arabic</span><span class="lang-level">Native</span></div>
-              <div class="lang-item"><span class="lang-name">French</span><span class="lang-level">Fluent</span></div>
-              <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">Professional</span></div>
-            </div>
-          </div>
-
-          <div class="about-block">
-            <div class="eyebrow">Software &amp; Skills</div>
-            <div class="stack">
-              <div class="stack-item">Rhinoceros 3D</div>
-              <div class="stack-item">Grasshopper</div>
-              <div class="stack-item">Environmental Simulation</div>
-              <div class="stack-item">Parametric Design</div>
-              <div class="stack-item">Python</div>
-              <div class="stack-item">Revit</div>
-              <div class="stack-item">D5 Render</div>
-              <div class="stack-item">Ladybug Tools</div>
-              <div class="stack-item">AutoCAD</div>
-              <div class="stack-item">LaTeX</div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
     <!-- ============ CONTENTS / WORK ============ -->
     <section id="work">
-      <div class="work-intro reveal">
-        <div>
-          <div class="eyebrow">Page 02 — Contents</div>
-          <h2 class="section-title">Selected Work</h2>
+      <div class="page-inner">
+        <div class="work-intro reveal">
+          <div>
+            <div class="eyebrow">Page 02 — Contents</div>
+            <h2 class="section-title">Selected Work</h2>
+          </div>
+          <p>
+            A curated selection of architectural studies, computational
+            explorations and environmental design work. Select a project
+            to jump straight in, or keep scrolling to turn through them page by page.
+          </p>
         </div>
-        <p>
-          A curated selection of architectural studies, computational
-          explorations and environmental design work. Select a project
-          to jump straight in, or keep scrolling to turn through them page by page.
-        </p>
-      </div>
 
-      <div class="toc-grid reveal" id="tocGrid"></div>
+        <div class="toc-grid reveal" id="tocGrid"></div>
+      </div>
     </section>
 
     <!-- Project pages are generated here by JS -->
@@ -563,21 +584,23 @@
 
     <!-- ============ CONTACT ============ -->
     <section id="contact">
-      <div class="eyebrow reveal">Get in touch</div>
-      <h2 class="contact-title reveal">Let's build<br><span class="outline">something.</span></h2>
-      <p class="contact-copy reveal">
-        Open to collaborations, computational architecture projects,
-        research, parametric modelling and environmental design.
-      </p>
-      <div class="contact-links reveal">
-        <a class="btn" href="https://www.linkedin.com/in/yanis-nennouche-b27040334/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a class="btn primary" href="mailto:nennoucheyaya@gmail.com">nennoucheyaya@gmail.com ↗</a>
-        <a class="btn" href="./CV.pdf" target="_blank">View / download CV</a>
-      </div>
+      <div class="page-inner">
+        <div class="eyebrow reveal">Get in touch</div>
+        <h2 class="contact-title reveal">Let's build<br><span class="outline">something.</span></h2>
+        <p class="contact-copy reveal">
+          Open to collaborations, computational architecture projects,
+          research, parametric modelling and environmental design.
+        </p>
+        <div class="contact-links reveal">
+          <a class="btn" href="https://www.linkedin.com/in/yanis-nennouche-b27040334/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn primary" href="mailto:nennoucheyaya@gmail.com">nennoucheyaya@gmail.com ↗</a>
+          <a class="btn" href="./CV.pdf" target="_blank">View / download CV</a>
+        </div>
 
-      <div class="contact-footer">
-        <span>YANIS NENNOUCHE / ARCHITECT</span>
-        <span>Architecture · Computation · Environment</span>
+        <div class="contact-footer">
+          <span>YANIS NENNOUCHE / ARCHITECT</span>
+          <span>Architecture · Computation · Environment</span>
+        </div>
       </div>
     </section>
 
@@ -741,6 +764,9 @@
 
     /* =========================================================
        BUILD PROJECT PAGES
+       Each generated <section> gets its own .page-inner wrapper
+       so vertical centering never fights with the section's own
+       overflow-y:auto scrolling on mobile.
     ========================================================= */
     const pagesContainer = document.getElementById("pagesContainer");
 
@@ -748,6 +774,9 @@
       const section = document.createElement("section");
       section.className = "page-single page-strict";
       section.id = `project-${id}-${sectionKey}${total > 1 ? "-" + (index + 1) : ""}`;
+
+      const inner = document.createElement("div");
+      inner.className = "page-inner";
 
       const label = categoryLabels[sectionKey];
       const m = mediaEntry(entry);
@@ -772,16 +801,17 @@
         frame.appendChild(ph);
       }
 
-      section.appendChild(eyebrowRow);
-      section.appendChild(frame);
+      inner.appendChild(eyebrowRow);
+      inner.appendChild(frame);
 
       if (m.caption) {
         const cap = document.createElement("div");
         cap.className = "page-caption reveal";
         cap.textContent = m.caption;
-        section.appendChild(cap);
+        inner.appendChild(cap);
       }
 
+      section.appendChild(inner);
       return section;
     }
 
@@ -790,10 +820,13 @@
       section.className = "page-single page-strict";
       section.id = `project-${id}-renders${total > 1 ? "-" + (index + 1) : ""}`;
 
+      const inner = document.createElement("div");
+      inner.className = "page-inner";
+
       const eyebrowRow = document.createElement("div");
       eyebrowRow.className = "page-eyebrow-row reveal";
       eyebrowRow.innerHTML = `<div class="eyebrow" style="margin-bottom:0;">Project ${id} — Renders${total > 1 ? ` (${index + 1}/${total})` : ""}</div>`;
-      section.appendChild(eyebrowRow);
+      inner.appendChild(eyebrowRow);
 
       const grid = document.createElement("div");
       grid.className = "page-grid-renders reveal";
@@ -810,7 +843,8 @@
         grid.appendChild(cell);
       });
 
-      section.appendChild(grid);
+      inner.appendChild(grid);
+      section.appendChild(inner);
       return section;
     }
 
@@ -818,6 +852,9 @@
       const section = document.createElement("section");
       section.className = "proj-cover page-strict";
       section.id = `project-${project.id}`;
+
+      const inner = document.createElement("div");
+      inner.className = "page-inner";
 
       const grid = document.createElement("div");
       grid.className = "proj-cover-grid";
@@ -856,7 +893,7 @@
 
       grid.appendChild(info);
       grid.appendChild(media);
-      section.appendChild(grid);
+      inner.appendChild(grid);
 
       const footlink = document.createElement("div");
       footlink.className = "page-footlink reveal";
@@ -869,8 +906,9 @@
         footlink.textContent = "Continue to contact ↓";
         footlink.addEventListener("click", () => goToId("contact"));
       }
-      section.appendChild(footlink);
+      inner.appendChild(footlink);
 
+      section.appendChild(inner);
       return section;
     }
 
@@ -897,6 +935,7 @@
       const hasMedia = project.plans.length || project.sections.length || project.facades.length || project.renders.length;
       if (hasMedia) {
         const lastSection = pagesContainer.lastElementChild;
+        const lastInner = lastSection.querySelector(".page-inner") || lastSection;
         const footlink = document.createElement("div");
         footlink.className = "page-footlink reveal";
         if (nextProject) {
@@ -906,7 +945,7 @@
           footlink.textContent = "Continue to contact ↓";
           footlink.addEventListener("click", () => goToId("contact"));
         }
-        lastSection.appendChild(footlink);
+        lastInner.appendChild(footlink);
       }
     });
 
