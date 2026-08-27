@@ -2775,6 +2775,31 @@ section{
 
 
 /* =========================================================
+   PROFESSIONAL WORK
+========================================================= */
+
+#professional-work{ background:var(--bg); color:var(--text); }
+.professional-heading{ display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:end; margin-bottom:100px; }
+.professional-intro{ max-width:560px; color:var(--muted); font-size:.88rem; line-height:1.85; }
+.professional-tagline{ margin-top:35px; font-family:var(--display); font-size:clamp(1.8rem,3.5vw,3.5rem); line-height:.95; letter-spacing:-.055em; }
+.professional-tagline span{ color:var(--red); }
+.professional-grid{ display:grid; grid-template-columns:1fr 1fr; gap:25px; }
+.professional-card{ position:relative; background:var(--bg-soft); border:1px solid var(--line); overflow:hidden; }
+.professional-card-image{ position:relative; aspect-ratio:4/3; overflow:hidden; background:#D8D7D2; }
+.professional-card-image img{ width:100%; height:100%; object-fit:cover; filter:grayscale(70%); transition:transform .8s ease,filter .5s ease; }
+.professional-card:hover .professional-card-image img{ transform:scale(1.035); filter:grayscale(0%); }
+.professional-card-image::after{ content:""; position:absolute; inset:13px; border:1px solid rgba(17,17,17,.18); transition:border-color .3s ease; pointer-events:none; }
+.professional-card:hover .professional-card-image::after{ border-color:var(--red); }
+.professional-card-label{ position:absolute; top:25px; left:25px; z-index:2; font-family:var(--mono); font-size:.58rem; letter-spacing:.1em; color:white; background:rgba(10,10,10,.6); padding:8px 11px; }
+.professional-card-info{ display:grid; grid-template-columns:55px 1fr; gap:15px; padding:20px; border-top:1px solid var(--line); }
+.professional-card-number{ font-family:var(--mono); font-size:.62rem; color:var(--red); }
+.professional-card-name{ font-family:var(--display); font-size:1.35rem; letter-spacing:-.03em; }
+.professional-card-type{ margin-top:7px; font-size:.68rem; line-height:1.6; color:var(--muted); }
+.professional-experience{ margin-top:100px; padding-top:30px; border-top:1px solid var(--line); display:grid; grid-template-columns:160px 1fr; gap:40px; }
+.professional-experience-label{ font-family:var(--mono); font-size:.58rem; text-transform:uppercase; letter-spacing:.1em; color:var(--red); }
+.professional-experience-text{ max-width:700px; font-family:var(--display); font-size:clamp(1.5rem,3vw,3rem); line-height:.98; letter-spacing:-.04em; }
+
+/* =========================================================
    CONTACT
 ========================================================= */
 
@@ -3337,6 +3362,20 @@ footer{
         margin-left:100px;
     }
 
+    .professional-heading{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .professional-grid{
+        grid-template-columns:1fr;
+    }
+
+    .professional-experience{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
     .research-grid{
 
         grid-template-columns:1fr;
@@ -3499,6 +3538,14 @@ footer{
     .cv-preview{
 
         height:450px;
+    }
+
+    .professional-tagline{
+        font-size:2rem;
+    }
+
+    .professional-card-info{
+        grid-template-columns:45px 1fr;
     }
 
     .research-title{
@@ -4025,6 +4072,10 @@ footer{
 
             <li>
                 <a href="#research" data-nav="research">Research</a>
+            </li>
+
+            <li>
+                <a href="#professional-work" data-nav="professional-work">Professional Work</a>
             </li>
 
             <li>
@@ -6369,6 +6420,74 @@ footer{
 
 
 <!-- =========================================================
+     PROFESSIONAL WORK
+========================================================= -->
+
+<section id="professional-work">
+    <div class="container">
+        <div class="professional-heading reveal">
+            <div>
+                <div class="eyebrow">Professional Work</div>
+                <h2 class="section-title">
+                    Practice.
+                    <br>
+                    <span class="red">Experience.</span>
+                </h2>
+                <div class="professional-tagline">
+                    Architecture
+                    <br>
+                    <span>beyond academia.</span>
+                </div>
+            </div>
+            <p class="professional-intro">
+                A selection of professional experiences developed
+                through construction-site and architectural office
+                work. This section documents the relationship between
+                design, technical development and the reality of
+                building.
+            </p>
+        </div>
+
+        <div class="professional-grid">
+            <article class="professional-card reveal">
+                <div class="professional-card-image">
+                    <div class="professional-card-label">01 / CONSTRUCTION</div>
+                    <img src="assets/professional-construction-01.jpg" alt="On-site construction experience">
+                </div>
+                <div class="professional-card-info">
+                    <div class="professional-card-number">01</div>
+                    <div>
+                        <div class="professional-card-name">On-site experience</div>
+                        <p class="professional-card-type">Construction site / Materials / Execution / Site observation and technical coordination</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="professional-card reveal">
+                <div class="professional-card-image">
+                    <div class="professional-card-label">02 / DESIGN &amp; DOCUMENTATION</div>
+                    <img src="assets/professional-office-01.jpg" alt="Architectural office experience">
+                </div>
+                <div class="professional-card-info">
+                    <div class="professional-card-number">02</div>
+                    <div>
+                        <div class="professional-card-name">Office experience</div>
+                        <p class="professional-card-type">Architectural design / Technical drawings / Modelling / Documentation and project development</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="professional-experience reveal">
+            <div class="professional-experience-label">Professional practice</div>
+            <div class="professional-experience-text">
+                From the <span class="red">drawing board</span> to the construction site — understanding how architecture is designed, developed and built.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================
      CONTACT
 ========================================================= -->
 
@@ -6495,6 +6614,10 @@ footer{
 
             <a href="#research">
                 Research
+            </a>
+
+            <a href="#professional-work">
+                Professional Work
             </a>
 
             <a href="#contact">
@@ -6625,7 +6748,7 @@ navbarObserver.observe(hero);
 
 const pageSections =
     document.querySelectorAll(
-        "#hero,#about,#work,#research,#contact"
+        "#hero,#about,#work,#research,#professional-work,#contact"
     );
 
 
