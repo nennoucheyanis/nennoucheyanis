@@ -3805,6 +3805,178 @@ footer{
     .portfolio-diaphragm-inline .pd-blade{animation:none}
 }
 
+
+/* =========================================================
+   BRISE-SOLEIL WIDGET — LOCAL STYLE ONLY
+========================================================= */
+
+.passive-drawing.pbs-card .passive-drawing-image{
+    height:auto;
+    background:#14140F;
+    display:block;
+}
+
+.pbs-widget{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    color:var(--white);
+}
+
+.pbs-header{
+    padding:22px 24px 18px;
+    border-bottom:1px solid rgba(255,255,255,.12);
+    text-align:center;
+}
+
+.pbs-header h4{
+    margin:0;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:1rem;
+}
+
+.pbs-header p{
+    margin:10px auto 0;
+    max-width:520px;
+    font-size:.72rem;
+    line-height:1.6;
+    color:#9C9C97;
+}
+
+.pbs-viz{
+    width:100%;
+    aspect-ratio:16/9;
+    overflow:hidden;
+}
+
+.pbs-viz svg{
+    width:100%;
+    height:100%;
+    display:block;
+}
+
+.pbs-controls{
+    padding:20px 24px 26px;
+    border-top:1px solid rgba(255,255,255,.12);
+}
+
+.pbs-controls label{
+    display:block;
+    margin-bottom:12px;
+    font-family:var(--mono);
+    font-size:.6rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--red);
+    text-align:center;
+}
+
+.pbs-slider-wrapper{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    margin-bottom:18px;
+}
+
+#pbs-sun-slider{
+    flex-grow:1;
+    max-width:320px;
+    cursor:pointer;
+    accent-color:var(--red);
+}
+
+.pbs-label-start,
+.pbs-label-end{
+    font-family:var(--mono);
+    font-size:.6rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:#8D8D88;
+    width:70px;
+    text-align:center;
+}
+
+.pbs-status{
+    max-width:480px;
+    margin:0 auto;
+    font-size:.72rem;
+    text-align:center;
+    color:#C9C9C4;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:4px;
+    padding:12px 14px;
+    background:rgba(255,255,255,.03);
+}
+
+.pbs-status p{
+    margin:4px 0;
+}
+
+.pbs-status strong{
+    color:var(--red);
+    font-weight:500;
+}
+
+.pbs-brise-soleil{
+    transition:transform .12s linear;
+}
+
+.pbs-shadow{
+    fill:none;
+    stroke:#3c1d0d;
+    stroke-width:22;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    opacity:.30;
+}
+
+.pbs-main{
+    fill:none;
+    stroke:url(#pbs-blade-grad);
+    stroke-width:17;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+.pbs-highlight{
+    fill:none;
+    stroke:#c77a46;
+    stroke-width:2.5;
+    stroke-linecap:round;
+    opacity:.55;
+}
+
+.pbs-pivot-outer{
+    fill:#4a2510;
+}
+
+.pbs-pivot-inner{
+    fill:#a45a34;
+    stroke:#4a2510;
+    stroke-width:2;
+}
+
+.pbs-dome-grid-line{
+    fill:none;
+    stroke:#8b4a28;
+    stroke-width:2;
+    opacity:.55;
+}
+
+@media(max-width:600px){
+
+    .pbs-header{padding:16px 18px 14px}
+    .pbs-header h4{font-size:.9rem}
+    .pbs-header p{display:none}
+    .pbs-controls{padding:16px 18px 20px}
+    .pbs-slider-wrapper{gap:8px}
+    .pbs-label-start,
+    .pbs-label-end{width:50px;font-size:.52rem}
+
+}
+
 </style>
 
 </head>
@@ -5513,17 +5685,130 @@ footer{
             </div>
 
 
-            <!-- CLIMATE CONDITIONS -->
+            <!-- BRISE-SOLEIL CINÉTIQUE -->
 
-            <div class="passive-drawing reveal">
+            <div class="passive-drawing passive-drawing-wide pbs-card reveal">
 
                 <div class="passive-drawing-image">
 
-                    <img
-                        src="assets/passive-climate-conditions.png"
-                        alt="Adaptive envelope according to climatic conditions"
-                        data-lightbox
-                    >
+                    <div class="pbs-widget">
+
+                        <div class="pbs-header">
+                            <h4>Système de brise-soleil cinétique du dôme</h4>
+                            <p>
+                                Ajuste le curseur pour simuler la course du soleil :
+                                les trois grandes lames courbes pivotent depuis leur
+                                point d'ancrage supérieur afin de protéger la façade vitrée.
+                            </p>
+                        </div>
+
+                        <div class="pbs-viz">
+
+                            <svg
+                                id="pbs-dome-svg"
+                                viewBox="0 0 1000 560"
+                                preserveAspectRatio="xMidYMid meet"
+                            >
+
+                                <defs>
+
+                                    <linearGradient id="pbs-sky-grad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#bcd9ec"/>
+                                        <stop offset="100%" stop-color="#eef0e6"/>
+                                    </linearGradient>
+
+                                    <linearGradient id="pbs-ground-grad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#8a9b6e"/>
+                                        <stop offset="100%" stop-color="#5f7048"/>
+                                    </linearGradient>
+
+                                    <linearGradient id="pbs-blade-grad" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#d99456"/>
+                                        <stop offset="45%" stop-color="#a65a31"/>
+                                        <stop offset="100%" stop-color="#6f351c"/>
+                                    </linearGradient>
+
+                                    <linearGradient id="pbs-dome-grad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#a45a34"/>
+                                        <stop offset="100%" stop-color="#6f3a20"/>
+                                    </linearGradient>
+
+                                    <linearGradient id="pbs-glass-grad" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#d3e5e8"/>
+                                        <stop offset="100%" stop-color="#7898a1"/>
+                                    </linearGradient>
+
+                                </defs>
+
+                                <rect x="0" y="0" width="1000" height="560" fill="url(#pbs-sky-grad)"/>
+                                <rect x="0" y="470" width="1000" height="90" fill="url(#pbs-ground-grad)"/>
+
+                                <ellipse cx="500" cy="472" rx="480" ry="14" fill="#3f4a2c" opacity=".4"/>
+
+                                <circle id="pbs-sun-glow" cx="150" cy="120" r="34" fill="#f2c879" opacity=".22"/>
+                                <circle id="pbs-sun-icon" cx="150" cy="120" r="22" fill="#f2c879"/>
+
+                                <rect id="pbs-glass-facade" x="270" y="150" width="460" height="320" fill="url(#pbs-glass-grad)" opacity=".48"/>
+
+                                <g id="pbs-glass-grid" stroke="#7c9cab" stroke-width="1" opacity=".6"></g>
+
+                                <path
+                                    d="M 90,470 A 410,360 0 0 1 910,470"
+                                    fill="none"
+                                    stroke="url(#pbs-dome-grad)"
+                                    stroke-width="26"
+                                    stroke-linecap="round"
+                                />
+
+                                <path
+                                    d="M 90,470 A 410,360 0 0 1 910,470"
+                                    fill="none"
+                                    stroke="#4a2510"
+                                    stroke-width="2"
+                                />
+
+                                <g id="pbs-dome-grid"></g>
+
+                                <g id="pbs-brise-soleil-group"></g>
+
+                            </svg>
+
+                        </div>
+
+                        <div class="pbs-controls">
+
+                            <label for="pbs-sun-slider">
+                                Ajuster la position du soleil
+                            </label>
+
+                            <div class="pbs-slider-wrapper">
+
+                                <span class="pbs-label-start">Aube (0%)</span>
+
+                                <input type="range" id="pbs-sun-slider" min="0" max="100" value="50">
+
+                                <span class="pbs-label-end">Crépuscule (100%)</span>
+
+                            </div>
+
+                            <div class="pbs-status">
+
+                                <p>
+                                    <strong>Position du soleil :</strong>
+                                    <span id="pbs-sun-position-text">Midi</span>
+                                    <span id="pbs-sun-angle-text">(90°)</span>
+                                </p>
+
+                                <p>
+                                    <strong>État des lames :</strong>
+                                    <span id="pbs-blades-status-text">Entièrement déployées</span>
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -5533,16 +5818,15 @@ footer{
                     <div>
 
                         <div class="passive-drawing-title">
-                            04 / Climatic conditions
+                            04 / Brise-soleil cinétique
                         </div>
 
                         <p class="passive-drawing-description">
-
-                            Comparative diagrams illustrating the
-                            different opening and closing configurations
-                            according to temperature, humidity and
-                            environmental conditions.
-
+                            Simulation interactive du système de brise-soleil cinétique
+                            protégeant la façade vitrée du dôme : trois grandes lames
+                            courbes pivotent autour d'un point d'ancrage fixe pour
+                            s'adapter en continu à la course du soleil, de l'aube au
+                            crépuscule.
                         </p>
 
                     </div>
@@ -5550,50 +5834,6 @@ footer{
 
                     <div class="passive-drawing-number">
                         PASSIVE / 04
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ENVELOPE OPERATION -->
-
-            <div class="passive-drawing passive-drawing-wide reveal">
-
-                <div class="passive-drawing-image">
-
-                    <img
-                        src="assets/passive-envelope-system.png"
-                        alt="Adaptive envelope system of the Eco Dôme"
-                        data-lightbox
-                    >
-
-                </div>
-
-
-                <div class="passive-drawing-info">
-
-                    <div>
-
-                        <div class="passive-drawing-title">
-                            05 / Envelope response
-                        </div>
-
-                        <p class="passive-drawing-description">
-
-                            Sequence explaining the operation of the
-                            adaptive envelope and its role in regulating
-                            the interior environment of the dome.
-
-                        </p>
-
-                    </div>
-
-
-                    <div class="passive-drawing-number">
-                        PASSIVE / 05
                     </div>
 
                 </div>
@@ -6726,6 +6966,164 @@ if(
     }
 })();
 </script>
+
+
+<script>
+(function(){
+
+    const svg = document.getElementById('pbs-dome-svg');
+    if(!svg) return;
+
+    const ns = "http://www.w3.org/2000/svg";
+
+    const slider = document.getElementById("pbs-sun-slider");
+    const sunPositionText = document.getElementById("pbs-sun-position-text");
+    const sunAngleText = document.getElementById("pbs-sun-angle-text");
+    const bladesStatusText = document.getElementById("pbs-blades-status-text");
+    const sunIcon = document.getElementById("pbs-sun-icon");
+    const sunGlow = document.getElementById("pbs-sun-glow");
+    const glassGrid = document.getElementById("pbs-glass-grid");
+    const domeGrid = document.getElementById("pbs-dome-grid");
+    const briseSoleilGroup = document.getElementById("pbs-brise-soleil-group");
+
+    const arcCx = 500, arcCy = 470, arcRx = 410, arcRy = 360;
+    const glassX = 270, glassY = 150, glassW = 460, glassH = 320;
+
+    for(let gx = glassX+40; gx < glassX+glassW; gx += 46){
+        const line = document.createElementNS(ns,"line");
+        line.setAttribute("x1", gx); line.setAttribute("y1", glassY);
+        line.setAttribute("x2", gx); line.setAttribute("y2", glassY+glassH);
+        glassGrid.appendChild(line);
+    }
+
+    for(let gy = glassY+40; gy < glassY+glassH; gy += 42){
+        const line = document.createElementNS(ns,"line");
+        line.setAttribute("x1", glassX); line.setAttribute("y1", gy);
+        line.setAttribute("x2", glassX+glassW); line.setAttribute("y2", gy);
+        glassGrid.appendChild(line);
+    }
+
+    const domeRibs = 17;
+
+    for(let i=0;i<=domeRibs;i++){
+        const t = i/domeRibs;
+        const theta = Math.PI - t*Math.PI;
+        const baseX = arcCx + arcRx*Math.cos(theta);
+        const baseY = arcCy - arcRy*Math.sin(theta);
+        const topX = arcCx + (arcRx-15)*Math.cos(theta);
+        const topY = arcCy - (arcRy-15)*Math.sin(theta);
+
+        const path = document.createElementNS(ns,"path");
+        path.setAttribute("d", `M ${baseX} ${baseY} Q ${arcCx} ${arcCy-250} ${topX} ${topY}`);
+        path.setAttribute("class","pbs-dome-grid-line");
+        domeGrid.appendChild(path);
+    }
+
+    const pivotPositions = [
+        {x:610,y:145},
+        {x:665,y:140},
+        {x:720,y:145}
+    ];
+
+    const shades = [];
+
+    pivotPositions.forEach(function(pivot){
+
+        const group = document.createElementNS(ns,"g");
+        group.setAttribute("class","pbs-brise-soleil");
+
+        const curve = "M 0 0 C 55 70, 75 180, 20 330";
+
+        const shadow = document.createElementNS(ns,"path");
+        shadow.setAttribute("d", curve);
+        shadow.setAttribute("class","pbs-shadow");
+        group.appendChild(shadow);
+
+        const main = document.createElementNS(ns,"path");
+        main.setAttribute("d", curve);
+        main.setAttribute("class","pbs-main");
+        group.appendChild(main);
+
+        const highlight = document.createElementNS(ns,"path");
+        highlight.setAttribute("d", curve);
+        highlight.setAttribute("class","pbs-highlight");
+        group.appendChild(highlight);
+
+        const pivotOuter = document.createElementNS(ns,"circle");
+        pivotOuter.setAttribute("cx",0);
+        pivotOuter.setAttribute("cy",0);
+        pivotOuter.setAttribute("r",9);
+        pivotOuter.setAttribute("class","pbs-pivot-outer");
+        group.appendChild(pivotOuter);
+
+        const pivotInner = document.createElementNS(ns,"circle");
+        pivotInner.setAttribute("cx",0);
+        pivotInner.setAttribute("cy",0);
+        pivotInner.setAttribute("r",4);
+        pivotInner.setAttribute("class","pbs-pivot-inner");
+        group.appendChild(pivotInner);
+
+        group.setAttribute("transform", `translate(${pivot.x} ${pivot.y})`);
+        briseSoleilGroup.appendChild(group);
+
+        shades.push({element:group, x:pivot.x, y:pivot.y});
+
+    });
+
+    function update(){
+
+        const sliderValue = parseInt(slider.value,10);
+        const sunAngleDeg = sliderValue * (180/100);
+        const sunAngleRad = sunAngleDeg * Math.PI/180;
+
+        let deployment = Math.sin(sunAngleRad);
+        deployment = Math.max(0, Math.min(1, deployment));
+
+        let timeOfDay = "Matin";
+        if(sliderValue <= 2) timeOfDay = "Aube";
+        else if(sliderValue >= 98) timeOfDay = "Crépuscule";
+        else if(sliderValue > 40 && sliderValue < 60) timeOfDay = "Midi";
+        else if(sliderValue >= 60) timeOfDay = "Après-midi";
+
+        sunPositionText.textContent = timeOfDay;
+        sunAngleText.textContent = "(" + Math.round(sunAngleDeg) + "°)";
+
+        const protection = Math.round(deployment*100);
+
+        if(deployment < .08){
+            bladesStatusText.textContent = "Entièrement rentrées — ouverture maximale";
+        } else if(deployment < .92){
+            bladesStatusText.textContent = "Partiellement déployées — protection " + protection + "%";
+        } else {
+            bladesStatusText.textContent = "Entièrement déployées — protection maximale";
+        }
+
+        const sunX = 150 + sliderValue*7;
+        const sunY = 470 - Math.sin(sunAngleRad)*380 - 20;
+
+        sunIcon.setAttribute("cx", sunX);
+        sunIcon.setAttribute("cy", sunY);
+        sunGlow.setAttribute("cx", sunX);
+        sunGlow.setAttribute("cy", sunY);
+
+        shades.forEach(function(shade){
+            const retractedAngle = 25;
+            const deployedAngle = -18;
+            const angle = retractedAngle + (deployedAngle - retractedAngle) * deployment;
+            shade.element.setAttribute(
+                "transform",
+                `translate(${shade.x} ${shade.y}) rotate(${angle})`
+            );
+        });
+
+    }
+
+    slider.addEventListener("input", update);
+    update();
+
+})();
+</script>
+
 </body>
 
 </html>
