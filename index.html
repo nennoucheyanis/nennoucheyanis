@@ -2003,8 +2003,6 @@ section{
 }
 
 
-/* IMPORTANT FIX */
-
 .perspective-image img{
 
     display:block;
@@ -2093,10 +2091,142 @@ section{
 
 
 /* =========================================================
-   07 — ENVIRONMENTAL STRATEGIES
+   07 — MATERIALS
 ========================================================= */
 
-.environment{
+.materials-section{
+
+    width:100%;
+}
+
+.materials-intro{
+
+    max-width:700px;
+
+    margin-left:160px;
+
+    margin-bottom:55px;
+
+    font-size:.9rem;
+
+    line-height:1.9;
+
+    color:var(--muted);
+}
+
+.materials-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:22px;
+}
+
+.material-card{
+
+    background:var(--bg-soft);
+
+    border:1px solid var(--line);
+
+    overflow:hidden;
+}
+
+.material-card-wide{
+
+    grid-column:1 / -1;
+}
+
+.material-image{
+
+    background:#E8E7E2;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.material-card-wide .material-image{
+
+    height:min(55vh,650px);
+}
+
+.material-card:not(.material-card-wide) .material-image{
+
+    height:min(40vh,450px);
+}
+
+.material-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    transition:transform .6s ease;
+}
+
+.material-card:hover .material-image img{
+
+    transform:scale(1.015);
+}
+
+.material-info{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr auto;
+
+    gap:25px;
+
+    padding:20px;
+
+    border-top:1px solid var(--line);
+}
+
+.material-title{
+
+    font-family:var(--display);
+
+    font-size:1.1rem;
+}
+
+.material-description{
+
+    margin-top:9px;
+
+    max-width:550px;
+
+    font-size:.72rem;
+
+    line-height:1.7;
+
+    color:var(--muted);
+}
+
+.material-number{
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    color:var(--red);
+
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   08 — PASSIVE ENVIRONMENTAL STRATEGIES
+========================================================= */
+
+.passive-environment{
 
     background:var(--dark);
 
@@ -2107,7 +2237,7 @@ section{
         clamp(25px,6vw,100px);
 }
 
-.environment-intro{
+.passive-intro{
 
     display:grid;
 
@@ -2121,7 +2251,7 @@ section{
     margin-bottom:80px;
 }
 
-.environment h3{
+.passive-intro h3{
 
     font-family:var(--display);
 
@@ -2135,7 +2265,7 @@ section{
     margin-top:20px;
 }
 
-.environment p{
+.passive-intro p{
 
     max-width:560px;
 
@@ -2148,14 +2278,14 @@ section{
     line-height:1.8;
 }
 
-.environment-note{
+.passive-note{
 
     border-left:1px solid var(--red);
 
     padding-left:30px;
 }
 
-.environment-note-label{
+.passive-note-label{
 
     font-family:var(--mono);
 
@@ -2170,19 +2300,19 @@ section{
     margin-bottom:15px;
 }
 
-.environment-note-text{
+.passive-note p{
 
-    margin-top:0!important;
+    margin-top:0;
 
-    max-width:500px!important;
+    max-width:500px;
 }
 
 
 /* =========================================================
-   ENVIRONMENTAL DRAWINGS
+   PASSIVE DRAWINGS
 ========================================================= */
 
-.environment-drawings{
+.passive-drawings{
 
     display:grid;
 
@@ -2192,9 +2322,7 @@ section{
     gap:22px;
 }
 
-.environment-drawing{
-
-    position:relative;
+.passive-drawing{
 
     background:#181816;
 
@@ -2203,49 +2331,50 @@ section{
     overflow:hidden;
 }
 
-.environment-drawing-wide{
+.passive-drawing-wide{
 
     grid-column:1 / -1;
 }
 
-.environment-drawing-image{
-
-    position:relative;
+.passive-drawing-image{
 
     background:#E8E7E2;
 
     overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 }
 
-.environment-drawing img{
+.passive-drawing-wide .passive-drawing-image{
+
+    height:min(65vh,720px);
+}
+
+.passive-drawing:not(.passive-drawing-wide) .passive-drawing-image{
+
+    height:min(45vh,500px);
+}
+
+.passive-drawing-image img{
 
     width:100%;
     height:100%;
 
     object-fit:contain;
 
-    transition:
-        transform .7s cubic-bezier(.2,.7,.2,1);
+    transition:transform .7s cubic-bezier(.2,.7,.2,1);
 }
 
-.environment-drawing:hover img{
+.passive-drawing:hover img{
 
     transform:scale(1.018);
 }
 
-
-.environment-drawing-wide .environment-drawing-image{
-
-    height:min(65vh,720px);
-}
-
-.environment-drawing:not(.environment-drawing-wide) .environment-drawing-image{
-
-    height:min(42vh,480px);
-}
-
-
-.environment-drawing-info{
+.passive-drawing-info{
 
     display:flex;
 
@@ -2261,7 +2390,7 @@ section{
     border-top:1px solid rgba(255,255,255,.14);
 }
 
-.environment-drawing-title{
+.passive-drawing-title{
 
     font-family:var(--display);
 
@@ -2270,20 +2399,20 @@ section{
     color:var(--white);
 }
 
-.environment-drawing-description{
+.passive-drawing-description{
 
-    max-width:430px;
+    max-width:500px;
 
-    margin:0!important;
+    margin-top:8px;
 
-    font-size:.68rem!important;
+    font-size:.68rem;
 
-    line-height:1.6!important;
+    line-height:1.6;
 
-    color:#8D8D88!important;
+    color:#8D8D88;
 }
 
-.environment-drawing-number{
+.passive-drawing-number{
 
     font-family:var(--mono);
 
@@ -2296,7 +2425,189 @@ section{
 
 
 /* =========================================================
-   08 — FINAL RENDERS
+   09 — HYGROTHERMAL SIMULATION
+========================================================= */
+
+.simulation-section{
+
+    width:100%;
+}
+
+.simulation-intro{
+
+    max-width:700px;
+
+    margin-left:160px;
+
+    margin-bottom:55px;
+
+    font-size:.9rem;
+
+    line-height:1.9;
+
+    color:var(--muted);
+}
+
+.simulation-results{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:22px;
+}
+
+.simulation-card{
+
+    background:var(--bg-soft);
+
+    border:1px solid var(--line);
+
+    overflow:hidden;
+}
+
+.simulation-card-wide{
+
+    grid-column:1 / -1;
+}
+
+.simulation-image{
+
+    background:#E8E7E2;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.simulation-card-wide .simulation-image{
+
+    height:min(65vh,720px);
+}
+
+.simulation-card:not(.simulation-card-wide) .simulation-image{
+
+    height:min(45vh,500px);
+}
+
+.simulation-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    transition:transform .6s ease;
+}
+
+.simulation-card:hover .simulation-image img{
+
+    transform:scale(1.015);
+}
+
+.simulation-info{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr auto;
+
+    gap:25px;
+
+    padding:20px;
+
+    border-top:1px solid var(--line);
+}
+
+.simulation-title{
+
+    font-family:var(--display);
+
+    font-size:1.1rem;
+}
+
+.simulation-description{
+
+    margin-top:9px;
+
+    max-width:600px;
+
+    font-size:.72rem;
+
+    line-height:1.7;
+
+    color:var(--muted);
+}
+
+.simulation-number{
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    color:var(--red);
+
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   SIMULATION CONCLUSION
+========================================================= */
+
+.simulation-conclusion{
+
+    margin-top:45px;
+
+    padding:30px;
+
+    border-top:1px solid var(--line);
+
+    border-bottom:1px solid var(--line);
+
+    display:grid;
+
+    grid-template-columns:
+        160px 1fr;
+
+    gap:40px;
+}
+
+.simulation-conclusion-label{
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:.1em;
+
+    color:var(--red);
+}
+
+.simulation-conclusion-text{
+
+    max-width:700px;
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(1.5rem,3vw,3rem);
+
+    line-height:.98;
+
+    letter-spacing:-.04em;
+}
+
+
+/* =========================================================
+   10 — FINAL RENDERS
 ========================================================= */
 
 .final-renders-section{
@@ -2902,6 +3213,7 @@ footer{
         margin-left:100px;
     }
 
+
     /* =====================================================
        MOBILE — CONCEPT
     ===================================================== */
@@ -2918,6 +3230,100 @@ footer{
         margin-left:0;
     }
 
+
+    /* =====================================================
+       MOBILE — MATERIALS
+    ===================================================== */
+
+    .materials-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .material-card-wide{
+
+        grid-column:auto;
+    }
+
+    .materials-intro{
+
+        margin-left:100px;
+    }
+
+
+    /* =====================================================
+       MOBILE — PASSIVE
+    ===================================================== */
+
+    .passive-intro{
+
+        grid-template-columns:1fr;
+
+        gap:40px;
+    }
+
+    .passive-drawings{
+
+        grid-template-columns:1fr;
+    }
+
+    .passive-drawing-wide{
+
+        grid-column:auto;
+    }
+
+    .passive-drawing-wide .passive-drawing-image{
+
+        height:500px;
+    }
+
+    .passive-drawing:not(.passive-drawing-wide) .passive-drawing-image{
+
+        height:400px;
+    }
+
+
+    /* =====================================================
+       MOBILE — SIMULATION
+    ===================================================== */
+
+    .simulation-results{
+
+        grid-template-columns:1fr;
+    }
+
+    .simulation-card-wide{
+
+        grid-column:auto;
+    }
+
+    .simulation-card-wide .simulation-image{
+
+        height:500px;
+    }
+
+    .simulation-card:not(.simulation-card-wide) .simulation-image{
+
+        height:400px;
+    }
+
+    .simulation-intro{
+
+        margin-left:100px;
+    }
+
+    .simulation-conclusion{
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+    }
+
+
+    /* =====================================================
+       MOBILE — ENVIRONMENT
+    ===================================================== */
+
     .environment-intro{
 
         grid-template-columns:1fr;
@@ -2925,25 +3331,6 @@ footer{
         gap:40px;
     }
 
-    .environment-drawings{
-
-        grid-template-columns:1fr;
-    }
-
-    .environment-drawing-wide{
-
-        grid-column:auto;
-    }
-
-    .environment-drawing-wide .environment-drawing-image{
-
-        height:500px;
-    }
-
-    .environment-drawing:not(.environment-drawing-wide) .environment-drawing-image{
-
-        height:400px;
-    }
 
     .final-renders-intro{
 
@@ -3131,6 +3518,31 @@ footer{
 
 
     /* =====================================================
+       MOBILE — MATERIALS
+    ===================================================== */
+
+    .materials-intro{
+
+        margin-left:0;
+    }
+
+    .material-card-wide .material-image{
+
+        height:350px;
+    }
+
+    .material-card:not(.material-card-wide) .material-image{
+
+        height:300px;
+    }
+
+    .material-info{
+
+        grid-template-columns:1fr;
+    }
+
+
+    /* =====================================================
        MOBILE — SITE PLAN
     ===================================================== */
 
@@ -3163,6 +3575,69 @@ footer{
 
 
     /* =====================================================
+       MOBILE — PASSIVE
+    ===================================================== */
+
+    .passive-environment{
+
+        padding:
+            70px 20px;
+    }
+
+    .passive-drawing-wide .passive-drawing-image{
+
+        height:350px;
+    }
+
+    .passive-drawing:not(.passive-drawing-wide) .passive-drawing-image{
+
+        height:300px;
+    }
+
+    .passive-drawing-info{
+
+        flex-direction:column;
+
+        gap:10px;
+    }
+
+
+    /* =====================================================
+       MOBILE — SIMULATION
+    ===================================================== */
+
+    .simulation-intro{
+
+        margin-left:0;
+    }
+
+    .simulation-card-wide .simulation-image{
+
+        height:350px;
+    }
+
+    .simulation-card:not(.simulation-card-wide) .simulation-image{
+
+        height:300px;
+    }
+
+    .simulation-info{
+
+        grid-template-columns:1fr;
+    }
+
+
+    /* =====================================================
+       MOBILE — FINAL RENDERS
+    ===================================================== */
+
+    .final-renders-intro{
+
+        margin-left:0;
+    }
+
+
+    /* =====================================================
        MOBILE — ENVIRONMENT
     ===================================================== */
 
@@ -3170,33 +3645,6 @@ footer{
 
         padding:
             70px 20px;
-    }
-
-    .environment-drawing-wide .environment-drawing-image{
-
-        height:350px;
-    }
-
-    .environment-drawing:not(.environment-drawing-wide) .environment-drawing-image{
-
-        height:300px;
-    }
-
-    .environment-drawing-info{
-
-        flex-direction:column;
-
-        gap:10px;
-    }
-
-    .environment-drawing-description{
-
-        max-width:none;
-    }
-
-    .final-renders-intro{
-
-        margin-left:0;
     }
 
 
@@ -3339,7 +3787,7 @@ footer{
             >
 
                 <svg viewBox="0 0 24 24">
-                    <path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8.2.6.1 2.9.7.8 1.1 1.8 1.8 1.8 3 0 4.3-2.6 5.3-5.3.4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/>
+                    <path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8.2.6.1 2.9.7.8 1.1 1.8 1.8 1.8 3 0 4.3-2.6 5.3-5.3 0 .4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/>
                 </svg>
 
             </a>
@@ -4171,7 +4619,6 @@ footer{
 
     <div
         class="site-plan-media reveal"
-        data-site-plan-lightbox
     >
 
         <div class="site-plan-rotation">
@@ -4468,10 +4915,7 @@ footer{
     <div class="perspective-layout reveal">
 
 
-        <div
-            class="perspective-image"
-            data-perspective-lightbox
-        >
+        <div class="perspective-image">
 
             <img
                 src="assets/Perspective.png"
@@ -4524,10 +4968,10 @@ footer{
 
 
 <!-- =========================================================
-     07 ENVIRONMENT
+     07 MATERIALS
 ========================================================= -->
 
-<div class="story-block">
+<div class="story-block materials-section">
 
 
     <div class="story-heading reveal">
@@ -4537,8 +4981,182 @@ footer{
         </div>
 
         <h3 class="story-title">
+            Materials
+        </h3>
 
-            Environmental
+    </div>
+
+
+    <p class="materials-intro reveal">
+
+        Material selection is considered as part of the
+        environmental performance of the Eco Dôme.
+
+        The envelope and construction materials are selected
+        according to their thermal behaviour, transparency,
+        adaptability and relationship with the controlled
+        ecosystems inside the dome.
+
+    </p>
+
+
+    <div class="materials-grid">
+
+
+        <!-- MATERIAL 01 -->
+
+        <div class="material-card material-card-wide reveal">
+
+            <div class="material-image">
+
+                <img
+                    src="assets/materials-01.png"
+                    alt="ETFE envelope material"
+                    data-lightbox
+                >
+
+            </div>
+
+
+            <div class="material-info">
+
+                <div>
+
+                    <div class="material-title">
+                        01 / ETFE envelope
+                    </div>
+
+                    <p class="material-description">
+
+                        Lightweight and highly transparent envelope
+                        used to create the climatic interface of the
+                        dome while allowing controlled solar
+                        transmission and natural daylight.
+
+                    </p>
+
+                </div>
+
+
+                <div class="material-number">
+                    MAT / 01
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MATERIAL 02 -->
+
+        <div class="material-card reveal">
+
+            <div class="material-image">
+
+                <img
+                    src="assets/materials-02.png"
+                    alt="Wood structural material"
+                    data-lightbox
+                >
+
+            </div>
+
+
+            <div class="material-info">
+
+                <div>
+
+                    <div class="material-title">
+                        02 / Timber
+                    </div>
+
+                    <p class="material-description">
+
+                        Structural and architectural material
+                        contributing to the lightweight character
+                        of the interior system.
+
+                    </p>
+
+                </div>
+
+
+                <div class="material-number">
+                    MAT / 02
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MATERIAL 03 -->
+
+        <div class="material-card reveal">
+
+            <div class="material-image">
+
+                <img
+                    src="assets/materials-03.png"
+                    alt="Terracotta shading material"
+                    data-lightbox
+                >
+
+            </div>
+
+
+            <div class="material-info">
+
+                <div>
+
+                    <div class="material-title">
+                        03 / Terracotta
+                    </div>
+
+                    <p class="material-description">
+
+                        Passive shading element used to reduce
+                        solar exposure while contributing to the
+                        architectural expression of the envelope.
+
+                    </p>
+
+                </div>
+
+
+                <div class="material-number">
+                    MAT / 03
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     08 PASSIVE ENVIRONMENTAL STRATEGIES
+========================================================= -->
+
+<div class="story-block">
+
+
+    <div class="story-heading reveal">
+
+        <div class="story-index">
+            08
+        </div>
+
+        <h3 class="story-title">
+
+            Passive
             <br>
             strategies
 
@@ -4547,10 +5165,10 @@ footer{
     </div>
 
 
-    <div class="environment">
+    <div class="passive-environment">
 
 
-        <div class="environment-intro reveal">
+        <div class="passive-intro reveal">
 
 
             <div>
@@ -4562,10 +5180,10 @@ footer{
 
                 <h3>
 
-                    Designing
+                    Architecture
                     <br>
 
-                    with
+                    responding to
                     <span class="red">
                         climate.
                     </span>
@@ -4575,31 +5193,30 @@ footer{
 
                 <p>
 
-                    Environmental performance is not presented
-                    as a list of isolated strategies, but as part
-                    of the architectural design process.
+                    The environmental behaviour of the Eco Dôme
+                    is explained through the movement of air and
+                    the adaptive behaviour of the envelope.
 
-                    The following studies document the way
-                    climate, envelope, vegetation, solar exposure
-                    and water systems informed the project.
+                    Instead of presenting isolated strategies,
+                    these diagrams show how the dome responds
+                    to changing climatic conditions.
 
                 </p>
 
             </div>
 
 
-            <div class="environment-note">
+            <div class="passive-note">
 
-                <div class="environment-note-label">
-                    Design process
+                <div class="passive-note-label">
+                    Passive system
                 </div>
 
-                <p class="environment-note-text">
+                <p>
 
-                    A series of analytical drawings and
-                    environmental studies developed to explain
-                    the relationship between the architectural
-                    system and its surrounding climate.
+                    Wind circulation, controlled openings and
+                    adaptive envelope components work together
+                    to regulate the interior climate.
 
                 </p>
 
@@ -4610,43 +5227,46 @@ footer{
 
 
 
-        <div class="environment-drawings">
+        <div class="passive-drawings">
 
 
-            <div class="environment-drawing environment-drawing-wide reveal">
+            <!-- WIND PLAN -->
 
-                <div class="environment-drawing-image">
+            <div class="passive-drawing passive-drawing-wide reveal">
+
+                <div class="passive-drawing-image">
 
                     <img
-                        src="assets/environmental-01.png"
-                        alt="Environmental strategy diagram — climate and solar response"
+                        src="assets/passive-wind-plan.png"
+                        alt="Wind circulation through the Eco Dôme in plan"
                         data-lightbox
                     >
 
                 </div>
 
 
-                <div class="environment-drawing-info">
+                <div class="passive-drawing-info">
 
                     <div>
 
-                        <div class="environment-drawing-title">
-                            01 / Climate &amp; solar response
+                        <div class="passive-drawing-title">
+                            01 / Wind circulation — Plan
                         </div>
 
-                        <p class="environment-drawing-description">
+                        <p class="passive-drawing-description">
 
-                            Diagram explaining the relationship between
-                            the building geometry, solar exposure and
-                            environmental response.
+                            Diagram showing the movement of air through
+                            the dome in plan and the relationship between
+                            the prevailing winds, internal circulation
+                            and climatic zones.
 
                         </p>
 
                     </div>
 
 
-                    <div class="environment-drawing-number">
-                        ENV / 01
+                    <div class="passive-drawing-number">
+                        PASSIVE / 01
                     </div>
 
                 </div>
@@ -4655,40 +5275,43 @@ footer{
 
 
 
-            <div class="environment-drawing reveal">
+            <!-- WIND SECTION -->
 
-                <div class="environment-drawing-image">
+            <div class="passive-drawing passive-drawing-wide reveal">
+
+                <div class="passive-drawing-image">
 
                     <img
-                        src="assets/environmental-02.png"
-                        alt="Environmental strategy diagram — ETFE envelope"
+                        src="assets/passive-wind-section.png"
+                        alt="Vertical wind circulation through the Eco Dôme"
                         data-lightbox
                     >
 
                 </div>
 
 
-                <div class="environment-drawing-info">
+                <div class="passive-drawing-info">
 
                     <div>
 
-                        <div class="environment-drawing-title">
-                            02 / Envelope
+                        <div class="passive-drawing-title">
+                            02 / Air movement — Section
                         </div>
 
-                        <p class="environment-drawing-description">
+                        <p class="passive-drawing-description">
 
-                            Study of the envelope as an environmental
-                            interface between the interior ecosystems
-                            and the exterior climate.
+                            Sectional diagram explaining the vertical
+                            movement of air, thermal stratification and
+                            the evacuation of accumulated warm air
+                            through the upper part of the dome.
 
                         </p>
 
                     </div>
 
 
-                    <div class="environment-drawing-number">
-                        ENV / 02
+                    <div class="passive-drawing-number">
+                        PASSIVE / 02
                     </div>
 
                 </div>
@@ -4697,40 +5320,42 @@ footer{
 
 
 
-            <div class="environment-drawing reveal">
+            <!-- OPENING DIAGRAM -->
 
-                <div class="environment-drawing-image">
+            <div class="passive-drawing reveal">
+
+                <div class="passive-drawing-image">
 
                     <img
-                        src="assets/environmental-03.png"
-                        alt="Environmental strategy diagram — natural ecosystems"
+                        src="assets/passive-opening.png"
+                        alt="Adaptive openings of the Eco Dôme"
                         data-lightbox
                     >
 
                 </div>
 
 
-                <div class="environment-drawing-info">
+                <div class="passive-drawing-info">
 
                     <div>
 
-                        <div class="environment-drawing-title">
-                            03 / Living systems
+                        <div class="passive-drawing-title">
+                            03 / Adaptive openings
                         </div>
 
-                        <p class="environment-drawing-description">
+                        <p class="passive-drawing-description">
 
-                            Study illustrating the relationship between
-                            vegetation, ecosystems and the architectural
-                            organisation of the dome.
+                            Diagram showing how the openings of the
+                            envelope respond to different interior
+                            climatic conditions.
 
                         </p>
 
                     </div>
 
 
-                    <div class="environment-drawing-number">
-                        ENV / 03
+                    <div class="passive-drawing-number">
+                        PASSIVE / 03
                     </div>
 
                 </div>
@@ -4739,40 +5364,43 @@ footer{
 
 
 
-            <div class="environment-drawing reveal">
+            <!-- CLIMATE CONDITIONS -->
 
-                <div class="environment-drawing-image">
+            <div class="passive-drawing reveal">
+
+                <div class="passive-drawing-image">
 
                     <img
-                        src="assets/environmental-04.png"
-                        alt="Environmental strategy diagram — passive environmental design"
+                        src="assets/passive-climate-conditions.png"
+                        alt="Adaptive envelope according to climatic conditions"
                         data-lightbox
                     >
 
                 </div>
 
 
-                <div class="environment-drawing-info">
+                <div class="passive-drawing-info">
 
                     <div>
 
-                        <div class="environment-drawing-title">
-                            04 / Passive design
+                        <div class="passive-drawing-title">
+                            04 / Climatic conditions
                         </div>
 
-                        <p class="environment-drawing-description">
+                        <p class="passive-drawing-description">
 
-                            Environmental principles developed through
-                            the geometry, orientation and spatial
-                            configuration of the project.
+                            Comparative diagrams illustrating the
+                            different opening and closing configurations
+                            according to temperature, humidity and
+                            environmental conditions.
 
                         </p>
 
                     </div>
 
 
-                    <div class="environment-drawing-number">
-                        ENV / 04
+                    <div class="passive-drawing-number">
+                        PASSIVE / 04
                     </div>
 
                 </div>
@@ -4781,40 +5409,42 @@ footer{
 
 
 
-            <div class="environment-drawing environment-drawing-wide reveal">
+            <!-- ENVELOPE OPERATION -->
 
-                <div class="environment-drawing-image">
+            <div class="passive-drawing passive-drawing-wide reveal">
+
+                <div class="passive-drawing-image">
 
                     <img
-                        src="assets/environmental-05.png"
-                        alt="Environmental strategy diagram — water management"
+                        src="assets/passive-envelope-system.png"
+                        alt="Adaptive envelope system of the Eco Dôme"
                         data-lightbox
                     >
 
                 </div>
 
 
-                <div class="environment-drawing-info">
+                <div class="passive-drawing-info">
 
                     <div>
 
-                        <div class="environment-drawing-title">
-                            05 / Water system
+                        <div class="passive-drawing-title">
+                            05 / Envelope response
                         </div>
 
-                        <p class="environment-drawing-description">
+                        <p class="passive-drawing-description">
 
-                            Study of water collection, management and
-                            its relationship with the landscape and
-                            ecological systems of the project.
+                            Sequence explaining the operation of the
+                            adaptive envelope and its role in regulating
+                            the interior environment of the dome.
 
                         </p>
 
                     </div>
 
 
-                    <div class="environment-drawing-number">
-                        ENV / 05
+                    <div class="passive-drawing-number">
+                        PASSIVE / 05
                     </div>
 
                 </div>
@@ -4831,7 +5461,248 @@ footer{
 
 
 <!-- =========================================================
-     08 FINAL RENDERS
+     09 HYGROTHERMAL SIMULATION
+========================================================= -->
+
+<div class="story-block simulation-section">
+
+
+    <div class="story-heading reveal">
+
+        <div class="story-index">
+            09
+        </div>
+
+        <h3 class="story-title">
+
+            Hygrothermal
+            <br>
+            simulation
+
+        </h3>
+
+    </div>
+
+
+    <p class="simulation-intro reveal">
+
+        The environmental strategies are finally tested through
+        hygrothermal simulation.
+
+        The simulations evaluate the interaction between the
+        selected materials, the envelope and the interior
+        climatic conditions in order to assess the environmental
+        behaviour of the proposed system.
+
+    </p>
+
+
+    <div class="simulation-results">
+
+
+        <!-- MAIN RESULT -->
+
+        <div class="simulation-card simulation-card-wide reveal">
+
+            <div class="simulation-image">
+
+                <img
+                    src="assets/hygrothermal-01.png"
+                    alt="Hygrothermal simulation results"
+                    data-lightbox
+                >
+
+            </div>
+
+
+            <div class="simulation-info">
+
+                <div>
+
+                    <div class="simulation-title">
+                        01 / Hygrothermal performance
+                    </div>
+
+                    <p class="simulation-description">
+
+                        Simulation result showing the evolution of
+                        temperature and humidity conditions inside
+                        the dome and the performance of the proposed
+                        envelope system.
+
+                    </p>
+
+                </div>
+
+
+                <div class="simulation-number">
+                    SIM / 01
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TEMPERATURE -->
+
+        <div class="simulation-card reveal">
+
+            <div class="simulation-image">
+
+                <img
+                    src="assets/hygrothermal-02.png"
+                    alt="Temperature simulation results"
+                    data-lightbox
+                >
+
+            </div>
+
+
+            <div class="simulation-info">
+
+                <div>
+
+                    <div class="simulation-title">
+                        02 / Temperature
+                    </div>
+
+                    <p class="simulation-description">
+
+                        Temperature distribution and evolution
+                        under the simulated environmental
+                        conditions.
+
+                    </p>
+
+                </div>
+
+
+                <div class="simulation-number">
+                    SIM / 02
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HUMIDITY -->
+
+        <div class="simulation-card reveal">
+
+            <div class="simulation-image">
+
+                <img
+                    src="assets/hygrothermal-03.png"
+                    alt="Humidity simulation results"
+                    data-lightbox
+                >
+
+            </div>
+
+
+            <div class="simulation-info">
+
+                <div>
+
+                    <div class="simulation-title">
+                        03 / Relative humidity
+                    </div>
+
+                    <p class="simulation-description">
+
+                        Relative humidity results used to assess
+                        the ability of the envelope and material
+                        configuration to maintain the required
+                        interior environmental conditions.
+
+                    </p>
+
+                </div>
+
+
+                <div class="simulation-number">
+                    SIM / 03
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MATERIAL PERFORMANCE -->
+
+        <div class="simulation-card simulation-card-wide reveal">
+
+            <div class="simulation-image">
+
+                <img
+                    src="assets/hygrothermal-04.png"
+                    alt="Material performance in hygrothermal simulation"
+                    data-lightbox
+                >
+
+            </div>
+
+
+            <div class="simulation-info">
+
+                <div>
+
+                    <div class="simulation-title">
+                        04 / Material performance
+                    </div>
+
+                    <p class="simulation-description">
+
+                        Comparative result highlighting the behaviour
+                        of the selected material assembly and its
+                        contribution to the required interior
+                        hygrothermal conditions.
+
+                    </p>
+
+                </div>
+
+
+                <div class="simulation-number">
+                    SIM / 04
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="simulation-conclusion reveal">
+
+        <div class="simulation-conclusion-label">
+            09 / Conclusion
+        </div>
+
+        <div class="simulation-conclusion-text">
+
+            Material selection is not only a formal decision —
+            it is validated through environmental performance.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     10 FINAL RENDERS
 ========================================================= -->
 
 <div class="story-block final-renders-section">
@@ -4840,7 +5711,7 @@ footer{
     <div class="story-heading reveal">
 
         <div class="story-index">
-            08
+            10
         </div>
 
         <h3 class="story-title">
@@ -5459,6 +6330,7 @@ function openLightbox(image){
 
     lightboxImage.alt =
         image.alt;
+
 
     lightboxCaption.textContent =
         image.alt;
