@@ -3692,102 +3692,117 @@ footer{
 
 
 /* =========================================================
-   INTERACTIVE DIAPHRAGM / ADAPTIVE OPENING
+   DIAPHRAGM — LOCAL STYLE ONLY
+   The original project/card position is unchanged.
 ========================================================= */
 
-.diaphragm-interactive{
-    width:100%;
-    min-height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#1a1a1a;
-    overflow:hidden;
+.passive-diaphragm-image{
     position:relative;
 }
 
-.diaphragm-interactive::before{
-    content:"DIAPHRAGM / LIVE SYSTEM";
-    position:absolute;
-    top:18px;
-    left:18px;
-    z-index:2;
-    font-family:var(--mono);
-    font-size:.55rem;
-    letter-spacing:.1em;
-    color:#8E8E89;
-}
-
-.diaphragm-interactive::after{
-    content:"OPEN / CLOSE / ROTATE";
-    position:absolute;
-    right:18px;
-    bottom:18px;
-    z-index:2;
-    font-family:var(--mono);
-    font-size:.5rem;
-    letter-spacing:.1em;
-    color:#8E8E89;
-}
-
-.diaphragm-canvas{
-    width:min(90%,520px);
-    max-width:520px;
-    aspect-ratio:1;
-}
-
-.diaphragm-canvas svg{
+.portfolio-diaphragm-inline{
+    position:relative;
     width:100%;
     height:100%;
+    min-height:300px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.portfolio-diaphragm-svg{
     display:block;
+    width:min(82%,520px);
+    height:auto;
+    overflow:visible;
 }
 
-.diaphragm-blade-inner{
-    transform-origin:0px 0px;
-    animation:diaphragmBladeCycle 7.5s ease-in-out infinite;
-    fill:#1D9E75;
-    stroke:#085041;
+.portfolio-diaphragm-inline .pd-frame{
+    fill:none;
+    stroke:#555;
+    stroke-width:1;
 }
 
-.diaphragm-ring{
+.portfolio-diaphragm-inline .pd-guide{
+    fill:none;
+    stroke:#555;
+    stroke-width:.5;
+}
+
+.portfolio-diaphragm-inline .pd-guide-inner{
+    stroke-dasharray:3 4;
+    opacity:.65;
+}
+
+.portfolio-diaphragm-inline .pd-ring{
     transform-box:fill-box;
     transform-origin:50% 50%;
-    animation:diaphragmRingSpin 7.5s ease-in-out infinite;
+    animation:portfolioPdRingSpin 7.5s ease-in-out infinite;
 }
 
-@keyframes diaphragmBladeCycle{
-    0%   { transform:rotate(0deg); }
-    18%  { transform:rotate(0deg); }
-    38%  { transform:rotate(-72deg); }
-    68%  { transform:rotate(-72deg); }
-    86%  { transform:rotate(0deg); }
-    100% { transform:rotate(0deg); }
+.portfolio-diaphragm-inline .pd-blade{
+    transform-origin:0 0;
+    animation:portfolioPdBladeCycle 7.5s ease-in-out infinite;
+    stroke:#3D3D3A;
+    stroke-width:.5;
+    fill:#C7C6C0;
+    fill-opacity:.9;
 }
 
-@keyframes diaphragmRingSpin{
-    0%   { transform:rotate(0deg); }
-    38%  { transform:rotate(0deg); }
-    68%  { transform:rotate(360deg); }
-    100% { transform:rotate(360deg); }
+
+
+.portfolio-diaphragm-inline .pd-pivot{
+    fill:#555;
 }
 
-@media (prefers-reduced-motion:reduce){
-    .diaphragm-blade-inner,
-    .diaphragm-ring{
-        animation:none;
-    }
+.portfolio-diaphragm-inline .pd-center{
+    fill:#888;
+    stroke:#555;
+    stroke-width:1;
 }
 
-@media (max-width:700px){
-    .diaphragm-interactive::before{
-        top:12px;
-        left:12px;
-    }
+.portfolio-diaphragm-inline .pd-caption{
+    position:absolute;
+    left:18px;
+    right:18px;
+    bottom:14px;
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    font-family:var(--mono);
+    font-size:.5rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#8D8D88;
+    pointer-events:none;
+}
 
-    .diaphragm-interactive::after{
-        right:12px;
-        bottom:12px;
-    }
+@keyframes portfolioPdBladeCycle{
+    0%{transform:rotate(0deg)}
+    18%{transform:rotate(0deg)}
+    38%{transform:rotate(-72deg)}
+    68%{transform:rotate(-72deg)}
+    86%{transform:rotate(0deg)}
+    100%{transform:rotate(0deg)}
+}
+
+@keyframes portfolioPdRingSpin{
+    0%{transform:rotate(0deg)}
+    38%{transform:rotate(0deg)}
+    68%{transform:rotate(360deg)}
+    100%{transform:rotate(360deg)}
+}
+
+@media(max-width:600px){
+    .portfolio-diaphragm-inline{min-height:250px}
+    .portfolio-diaphragm-svg{width:88%}
+    .portfolio-diaphragm-inline .pd-caption{font-size:.45rem}
+}
+
+@media(prefers-reduced-motion:reduce){
+    .portfolio-diaphragm-inline .pd-ring,
+    .portfolio-diaphragm-inline .pd-blade{animation:none}
 }
 
 </style>
@@ -5425,20 +5440,45 @@ footer{
 
             <div class="passive-drawing reveal">
 
-                <div class="passive-drawing-image diaphragm-interactive" aria-label="Interactive architectural ventilation diaphragm">
+                <div class="passive-drawing-image passive-diaphragm-image">
 
-                    <div class="diaphragm-canvas">
-                        <svg viewBox="0 0 400 400" role="img" aria-labelledby="diaphragmTitle diaphragmDesc">
-                            <title id="diaphragmTitle">Animated architectural ventilation diaphragm</title>
-                            <desc id="diaphragmDesc">An iris-like diaphragm whose blades close and open while the assembly rotates.</desc>
+                    <div class="portfolio-diaphragm-inline">
 
-                            <rect x="30" y="30" width="340" height="340" rx="16" fill="none" stroke="#555" stroke-width="1"/>
-                            <circle cx="200" cy="200" r="150" fill="#888" fill-opacity="0.12" stroke="#555" stroke-width="0.5"/>
+                        <svg class="portfolio-diaphragm-svg"
+                             viewBox="0 0 400 400"
+                             role="img"
+                             aria-labelledby="pdTitle pdDesc">
 
-                            <g class="diaphragm-ring">
-                                <g class="diaphragm-blades"></g>
+                            <title id="pdTitle">Adaptive diaphragm opening</title>
+
+                            <desc id="pdDesc">
+                                Nine overlapping grey blades pivot around eccentric points
+                                to progressively open and close a circular ventilation aperture.
+                            </desc>
+
+                            <rect class="pd-frame"
+                                  x="30" y="30" width="340" height="340" rx="16"/>
+
+                            <circle class="pd-guide"
+                                    cx="200" cy="200" r="150"/>
+
+                            <circle class="pd-guide pd-guide-inner"
+                                    cx="200" cy="200" r="68"/>
+
+                            <g class="pd-ring">
+                                <g id="portfolioDiaphragmBlades"></g>
                             </g>
+
+                            <circle class="pd-center"
+                                    cx="200" cy="200" r="3"/>
+
                         </svg>
+
+                        <div class="pd-caption">
+                            <span>Variable aperture</span>
+                            <span>9 blades / kinetic system</span>
+                        </div>
+
                     </div>
 
                 </div>
@@ -5449,15 +5489,16 @@ footer{
                     <div>
 
                         <div class="passive-drawing-title">
-                            03 / Adaptive openings
+                            03 / Diaphragm Opening
                         </div>
 
                         <p class="passive-drawing-description">
-
-                            Diagram showing how the openings of the
-                            envelope respond to different interior
-                            climatic conditions.
-
+                            A kinetic ventilation opening inspired by the mechanical
+                            logic of an iris diaphragm. Nine overlapping blades pivot
+                            around eccentric points to continuously modify the central
+                            aperture. When the system opens, the increased free area
+                            facilitates air movement; when it closes, the aperture is
+                            reduced to limit direct exposure and airflow.
                         </p>
 
                     </div>
@@ -5470,7 +5511,6 @@ footer{
                 </div>
 
             </div>
-
 
 
             <!-- CLIMATE CONDITIONS -->
@@ -6645,65 +6685,47 @@ if(
 
 }
 
+</script>
 
 
-/* =========================================================
-   DIAPHRAGM GENERATOR
-========================================================= */
+<script>
 (function(){
-    var ns="http://www.w3.org/2000/svg";
-    var group=document.querySelector(".diaphragm-blades");
-
+    const group=document.getElementById('portfolioDiaphragmBlades');
     if(!group) return;
+    const ns='http://www.w3.org/2000/svg';
+    const cx=200, cy=200;
+    const n=9;
+    const pivotR=68;
+    const len=96;
+    const halfW=18;
+    const tipHalfW=6;
 
-    var cx=200, cy=200;
+    for(let i=0;i<n;i++){
+        const angle=(360/n)*i;
+        const rad=angle*Math.PI/180;
+        const px=cx+pivotR*Math.cos(rad);
+        const py=cy+pivotR*Math.sin(rad);
 
-    // Parameters preserved from the original diaphragm animation.
-    var n=9;
-    var pivotR=68;
-    var len=96;
-    var halfW=18;
-    var tipHalfW=6;
+        const outer=document.createElementNS(ns,'g');
+        outer.setAttribute('transform',`translate(${px} ${py}) rotate(${angle})`);
 
-    for(var i=0;i<n;i++){
-        var baseAngle=(360/n)*i;
-        var rad=baseAngle*Math.PI/180;
-        var px=cx+pivotR*Math.cos(rad);
-        var py=cy+pivotR*Math.sin(rad);
+        const blade=document.createElementNS(ns,'g');
+        blade.setAttribute('class','pd-blade');
 
-        var outer=document.createElementNS(ns,"g");
-        outer.setAttribute(
-            "transform",
-            "translate("+px+" "+py+") rotate("+baseAngle+")"
-        );
+        const path=document.createElementNS(ns,'path');
+        path.setAttribute('d',`M 0 ${-halfW} L ${-len} ${-tipHalfW} L ${-len} ${tipHalfW} L 0 ${halfW} Z`);
 
-        var inner=document.createElementNS(ns,"g");
-        inner.setAttribute("class","diaphragm-blade-inner");
+        const pivot=document.createElementNS(ns,'circle');
+        pivot.setAttribute('class','pd-pivot');
+        pivot.setAttribute('r','2.5');
 
-        var d=
-            "M 0 "+(-halfW)+
-            " L "+(-len)+" "+(-tipHalfW)+
-            " L "+(-len)+" "+tipHalfW+
-            " L 0 "+halfW+" Z";
-
-        var path=document.createElementNS(ns,"path");
-        path.setAttribute("d",d);
-        path.setAttribute("stroke-width","0.5");
-        path.setAttribute("fill-opacity","0.92");
-
-        var pivotDot=document.createElementNS(ns,"circle");
-        pivotDot.setAttribute("r","2.5");
-        pivotDot.setAttribute("fill","#555");
-
-        inner.appendChild(path);
-        outer.appendChild(inner);
-        outer.appendChild(pivotDot);
+        blade.appendChild(path);
+        outer.appendChild(blade);
+        outer.appendChild(pivot);
         group.appendChild(outer);
     }
 })();
-
 </script>
-
 </body>
 
 </html>
