@@ -680,6 +680,7 @@ section{
 .scroll-indicator span{
 
     width:45px;
+
     height:1px;
 
     background:var(--red);
@@ -1028,6 +1029,7 @@ section{
 .cv-preview iframe{
 
     width:100%;
+
     height:100%;
 
     border:0;
@@ -1586,6 +1588,67 @@ section{
     line-height:1.9;
 
     color:var(--muted);
+}
+
+
+/* =========================================================
+   CONCEPT
+========================================================= */
+
+.concept-content{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:50px;
+
+    align-items:start;
+
+    margin-top:0;
+}
+
+.concept-content .story-text{
+
+    margin-left:0;
+
+    max-width:none;
+
+    align-self:center;
+}
+
+.concept-image{
+
+    position:relative;
+
+    width:100%;
+
+    overflow:hidden;
+
+    background:var(--bg-soft);
+
+    border:1px solid var(--line);
+
+    cursor:zoom-in;
+}
+
+.concept-image img{
+
+    width:100%;
+
+    aspect-ratio:4/3;
+
+    object-fit:contain;
+
+    display:block;
+
+    transition:transform .5s ease;
+}
+
+.concept-image:hover img{
+
+    transform:scale(1.015);
 }
 
 
@@ -2170,8 +2233,6 @@ section{
     transform:scale(1.018);
 }
 
-
-/* FIXED SELECTORS */
 
 .environment-drawing-wide .environment-drawing-image{
 
@@ -2841,6 +2902,22 @@ footer{
         margin-left:100px;
     }
 
+    /* =====================================================
+       MOBILE — CONCEPT
+    ===================================================== */
+
+    .concept-content{
+
+        grid-template-columns:1fr;
+
+        gap:30px;
+    }
+
+    .concept-content .story-text{
+
+        margin-left:0;
+    }
+
     .environment-intro{
 
         grid-template-columns:1fr;
@@ -3232,9 +3309,7 @@ footer{
             >
 
                 <svg viewBox="0 0 24 24">
-
                     <path d="M5.2 3.5A2.7 2.7 0 1 1 5.2 8.9 2.7 2.7 0 0 1 5.2 3.5ZM2.8 10.7h4.8V21H2.8V10.7ZM10.2 10.7h4.6v1.4h.1c.6-1 1.8-2 4-2 4.3 0 5.1 2.8 5.1 6.4V21h-4.8v-4.1c0-1 0-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.2V21h-4.8V10.7Z"/>
-
                 </svg>
 
             </a>
@@ -3249,9 +3324,7 @@ footer{
             >
 
                 <svg viewBox="0 0 24 24">
-
                     <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 12 16.5 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 12 14.5 2.5 2.5 0 0 0 12 9.5Zm5.2-2.7a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/>
-
                 </svg>
 
             </a>
@@ -3266,9 +3339,7 @@ footer{
             >
 
                 <svg viewBox="0 0 24 24">
-
-                    <path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8.2.6.1 2.9.7.8 1.1 1.8 1.8 3 0 4.3-2.6 5.3-5.3.4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/>
-
+                    <path d="M12 .8a11.2 11.2 0 0 0-3.5 21.8c.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.5 1.2 3.1.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8.2.6.1 2.9.7.8 1.1 1.8 1.8 1.8 3 0 4.3-2.6 5.3-5.3.4.3.7 1 .7 2v2.9c0 .3.2.7.8.6A11.2 11.2 0 0 0 12 .8Z"/>
                 </svg>
 
             </a>
@@ -3281,9 +3352,7 @@ footer{
             >
 
                 <svg viewBox="0 0 24 24">
-
                     <path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.5-.5a.5.5 0 0 0-.3.1L12 11.2l7.8-6.1a.5.5 0 0 0-.3-.1h-15ZM20 7.1l-7.4 5.8a1 1 0 0 1-1.2 0L4 7.1v11.4c0 .3.2.5.5.5h15a.5.5 0 0 0 .5-.5V7.1Z"/>
-
                 </svg>
 
             </a>
@@ -3975,21 +4044,35 @@ footer{
     </div>
 
 
-    <p class="story-text reveal">
+    <div class="concept-content">
 
-        The architectural concept is derived from
-        the spiral geometry of a snail shell.
+        <p class="story-text reveal">
 
-        The shell becomes both a formal and
-        environmental strategy, generating a
-        continuous circulation sequence while
-        creating controlled climatic conditions
-        for different ecosystems.
+            The architectural concept is derived from
+            the spiral geometry of a snail shell.
 
-    </p>
+            The shell becomes both a formal and
+            environmental strategy, generating a
+            continuous circulation sequence while
+            creating controlled climatic conditions
+            for different ecosystems.
+
+        </p>
+
+
+        <div class="concept-image reveal">
+
+            <img
+                src="assets/concept.jpg"
+                alt="Architectural concept"
+                data-lightbox
+            >
+
+        </div>
+
+    </div>
 
 </div>
-
 
 
 <!-- =========================================================
@@ -4385,8 +4468,6 @@ footer{
     <div class="perspective-layout reveal">
 
 
-        <!-- PERSPECTIVE IMAGE -->
-
         <div
             class="perspective-image"
             data-perspective-lightbox
@@ -4400,8 +4481,6 @@ footer{
 
         </div>
 
-
-        <!-- TEXT -->
 
         <div class="perspective-empty">
 
@@ -5384,11 +5463,6 @@ function openLightbox(image){
     lightboxCaption.textContent =
         image.alt;
 
-
-    /*
-       Site plan keeps the same
-       -90deg rotation in lightbox.
-    */
 
     if(image.dataset.rotated === "true"){
 
