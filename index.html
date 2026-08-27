@@ -5694,11 +5694,11 @@ footer{
                     <div class="pbs-widget">
 
                         <div class="pbs-header">
-                            <h4>Système de brise-soleil cinétique du dôme</h4>
+                            <h4>Kinetic Brise-Soleil System</h4>
                             <p>
-                                Ajuste le curseur pour simuler la course du soleil :
-                                les trois grandes lames courbes pivotent depuis leur
-                                point d'ancrage supérieur afin de protéger la façade vitrée.
+                                Drag the slider to simulate the sun's path: the three
+                                large curved blades pivot from their upper anchor point
+                                to shield the glazed façade.
                             </p>
                         </div>
 
@@ -5778,30 +5778,30 @@ footer{
                         <div class="pbs-controls">
 
                             <label for="pbs-sun-slider">
-                                Ajuster la position du soleil
+                                Adjust sun position
                             </label>
 
                             <div class="pbs-slider-wrapper">
 
-                                <span class="pbs-label-start">Aube (0%)</span>
+                                <span class="pbs-label-start">Dawn (0%)</span>
 
                                 <input type="range" id="pbs-sun-slider" min="0" max="100" value="50">
 
-                                <span class="pbs-label-end">Crépuscule (100%)</span>
+                                <span class="pbs-label-end">Dusk (100%)</span>
 
                             </div>
 
                             <div class="pbs-status">
 
                                 <p>
-                                    <strong>Position du soleil :</strong>
-                                    <span id="pbs-sun-position-text">Midi</span>
+                                    <strong>Sun position:</strong>
+                                    <span id="pbs-sun-position-text">Noon</span>
                                     <span id="pbs-sun-angle-text">(90°)</span>
                                 </p>
 
                                 <p>
-                                    <strong>État des lames :</strong>
-                                    <span id="pbs-blades-status-text">Entièrement déployées</span>
+                                    <strong>Blade status:</strong>
+                                    <span id="pbs-blades-status-text">Fully deployed</span>
                                 </p>
 
                             </div>
@@ -5818,15 +5818,14 @@ footer{
                     <div>
 
                         <div class="passive-drawing-title">
-                            04 / Brise-soleil cinétique
+                            04 / Kinetic Brise-Soleil
                         </div>
 
                         <p class="passive-drawing-description">
-                            Simulation interactive du système de brise-soleil cinétique
-                            protégeant la façade vitrée du dôme : trois grandes lames
-                            courbes pivotent autour d'un point d'ancrage fixe pour
-                            s'adapter en continu à la course du soleil, de l'aube au
-                            crépuscule.
+                            Interactive simulation of the kinetic brise-soleil system
+                            protecting the dome's glazed façade: three large curved
+                            blades pivot around a fixed anchor point, continuously
+                            adapting to the sun's path from dawn to dusk.
                         </p>
 
                     </div>
@@ -7079,11 +7078,11 @@ if(
         let deployment = Math.sin(sunAngleRad);
         deployment = Math.max(0, Math.min(1, deployment));
 
-        let timeOfDay = "Matin";
-        if(sliderValue <= 2) timeOfDay = "Aube";
-        else if(sliderValue >= 98) timeOfDay = "Crépuscule";
-        else if(sliderValue > 40 && sliderValue < 60) timeOfDay = "Midi";
-        else if(sliderValue >= 60) timeOfDay = "Après-midi";
+        let timeOfDay = "Morning";
+        if(sliderValue <= 2) timeOfDay = "Dawn";
+        else if(sliderValue >= 98) timeOfDay = "Dusk";
+        else if(sliderValue > 40 && sliderValue < 60) timeOfDay = "Noon";
+        else if(sliderValue >= 60) timeOfDay = "Afternoon";
 
         sunPositionText.textContent = timeOfDay;
         sunAngleText.textContent = "(" + Math.round(sunAngleDeg) + "°)";
@@ -7091,11 +7090,11 @@ if(
         const protection = Math.round(deployment*100);
 
         if(deployment < .08){
-            bladesStatusText.textContent = "Entièrement rentrées — ouverture maximale";
+            bladesStatusText.textContent = "Fully retracted — maximum opening";
         } else if(deployment < .92){
-            bladesStatusText.textContent = "Partiellement déployées — protection " + protection + "%";
+            bladesStatusText.textContent = "Partially deployed — " + protection + "% shading";
         } else {
-            bladesStatusText.textContent = "Entièrement déployées — protection maximale";
+            bladesStatusText.textContent = "Fully deployed — maximum shading";
         }
 
         const sunX = 150 + sliderValue*7;
