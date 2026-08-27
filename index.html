@@ -3689,6 +3689,107 @@ footer{
 
 }
 
+
+
+/* =========================================================
+   INTERACTIVE DIAPHRAGM / ADAPTIVE OPENING
+========================================================= */
+
+.diaphragm-interactive{
+    width:100%;
+    min-height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#1a1a1a;
+    overflow:hidden;
+    position:relative;
+}
+
+.diaphragm-interactive::before{
+    content:"DIAPHRAGM / LIVE SYSTEM";
+    position:absolute;
+    top:18px;
+    left:18px;
+    z-index:2;
+    font-family:var(--mono);
+    font-size:.55rem;
+    letter-spacing:.1em;
+    color:#8E8E89;
+}
+
+.diaphragm-interactive::after{
+    content:"OPEN / CLOSE / ROTATE";
+    position:absolute;
+    right:18px;
+    bottom:18px;
+    z-index:2;
+    font-family:var(--mono);
+    font-size:.5rem;
+    letter-spacing:.1em;
+    color:#8E8E89;
+}
+
+.diaphragm-canvas{
+    width:min(90%,520px);
+    max-width:520px;
+    aspect-ratio:1;
+}
+
+.diaphragm-canvas svg{
+    width:100%;
+    height:100%;
+    display:block;
+}
+
+.diaphragm-blade-inner{
+    transform-origin:0px 0px;
+    animation:diaphragmBladeCycle 7.5s ease-in-out infinite;
+    fill:#1D9E75;
+    stroke:#085041;
+}
+
+.diaphragm-ring{
+    transform-box:fill-box;
+    transform-origin:50% 50%;
+    animation:diaphragmRingSpin 7.5s ease-in-out infinite;
+}
+
+@keyframes diaphragmBladeCycle{
+    0%   { transform:rotate(0deg); }
+    18%  { transform:rotate(0deg); }
+    38%  { transform:rotate(-72deg); }
+    68%  { transform:rotate(-72deg); }
+    86%  { transform:rotate(0deg); }
+    100% { transform:rotate(0deg); }
+}
+
+@keyframes diaphragmRingSpin{
+    0%   { transform:rotate(0deg); }
+    38%  { transform:rotate(0deg); }
+    68%  { transform:rotate(360deg); }
+    100% { transform:rotate(360deg); }
+}
+
+@media (prefers-reduced-motion:reduce){
+    .diaphragm-blade-inner,
+    .diaphragm-ring{
+        animation:none;
+    }
+}
+
+@media (max-width:700px){
+    .diaphragm-interactive::before{
+        top:12px;
+        left:12px;
+    }
+
+    .diaphragm-interactive::after{
+        right:12px;
+        bottom:12px;
+    }
+}
+
 </style>
 
 </head>
@@ -5324,13 +5425,21 @@ footer{
 
             <div class="passive-drawing reveal">
 
-                <div class="passive-drawing-image">
+                <div class="passive-drawing-image diaphragm-interactive" aria-label="Interactive architectural ventilation diaphragm">
 
-                    <img
-                        src="assets/passive-opening.png"
-                        alt="Adaptive openings of the Eco Dôme"
-                        data-lightbox
-                    >
+                    <div class="diaphragm-canvas">
+                        <svg viewBox="0 0 400 400" role="img" aria-labelledby="diaphragmTitle diaphragmDesc">
+                            <title id="diaphragmTitle">Animated architectural ventilation diaphragm</title>
+                            <desc id="diaphragmDesc">An iris-like diaphragm whose blades close and open while the assembly rotates.</desc>
+
+                            <rect x="30" y="30" width="340" height="340" rx="16" fill="none" stroke="#555" stroke-width="1"/>
+                            <circle cx="200" cy="200" r="150" fill="#888" fill-opacity="0.12" stroke="#555" stroke-width="0.5"/>
+
+                            <g class="diaphragm-ring">
+                                <g class="diaphragm-blades"></g>
+                            </g>
+                        </svg>
+                    </div>
 
                 </div>
 
@@ -6535,6 +6644,63 @@ if(
         });
 
 }
+
+
+
+/* =========================================================
+   DIAPHRAGM GENERATOR
+========================================================= */
+(function(){
+    var ns="http://www.w3.org/2000/svg";
+    var group=document.querySelector(".diaphragm-blades");
+
+    if(!group) return;
+
+    var cx=200, cy=200;
+
+    // Parameters preserved from the original diaphragm animation.
+    var n=9;
+    var pivotR=68;
+    var len=96;
+    var halfW=18;
+    var tipHalfW=6;
+
+    for(var i=0;i<n;i++){
+        var baseAngle=(360/n)*i;
+        var rad=baseAngle*Math.PI/180;
+        var px=cx+pivotR*Math.cos(rad);
+        var py=cy+pivotR*Math.sin(rad);
+
+        var outer=document.createElementNS(ns,"g");
+        outer.setAttribute(
+            "transform",
+            "translate("+px+" "+py+") rotate("+baseAngle+")"
+        );
+
+        var inner=document.createElementNS(ns,"g");
+        inner.setAttribute("class","diaphragm-blade-inner");
+
+        var d=
+            "M 0 "+(-halfW)+
+            " L "+(-len)+" "+(-tipHalfW)+
+            " L "+(-len)+" "+tipHalfW+
+            " L 0 "+halfW+" Z";
+
+        var path=document.createElementNS(ns,"path");
+        path.setAttribute("d",d);
+        path.setAttribute("stroke-width","0.5");
+        path.setAttribute("fill-opacity","0.92");
+
+        var pivotDot=document.createElementNS(ns,"circle");
+        pivotDot.setAttribute("r","2.5");
+        pivotDot.setAttribute("fill","#555");
+
+        inner.appendChild(path);
+        outer.appendChild(inner);
+        outer.appendChild(pivotDot);
+        group.appendChild(outer);
+    }
+})();
 
 </script>
 
