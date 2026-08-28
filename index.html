@@ -2115,50 +2115,35 @@ section{
 }
 
 .materials-grid{
-
     display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
+    grid-template-columns:1fr 1fr;
     gap:22px;
 }
 
 .material-card{
-
     background:var(--bg-soft);
-
     border:1px solid var(--line);
-
     overflow:hidden;
-}
-
-.material-card-wide{
-
-    grid-column:1 / -1;
 }
 
 .material-image{
-
     background:#E8E7E2;
-
     overflow:hidden;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-}
-
-.material-card-wide .material-image{
-
-    height:min(55vh,650px);
-}
-
-.material-card:not(.material-card-wide) .material-image{
-
     height:min(40vh,450px);
+}
+
+.material-image img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    transition:transform .6s ease;
+}
+
+.material-card:hover .material-image img{
+    transform:scale(1.015);
 }
 
 .material-image img{
@@ -5469,54 +5454,6 @@ footer{
 
         </div>
 
-
-
-        <!-- MATERIAL 03 -->
-
-        <div class="material-card reveal">
-
-            <div class="material-image">
-
-                <img
-                    src="assets/materials-03.png"
-                    alt="Terracotta shading material"
-                    data-lightbox
-                >
-
-            </div>
-
-
-            <div class="material-info">
-
-                <div>
-
-                    <div class="material-title">
-                        03 / Terracotta
-                    </div>
-
-                    <p class="material-description">
-
-                        Passive shading element used to reduce
-                        solar exposure while contributing to the
-                        architectural expression of the envelope.
-
-                    </p>
-
-                </div>
-
-
-                <div class="material-number">
-                    MAT / 03
-                </div>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-</div>
 
 
 
