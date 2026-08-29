@@ -4968,6 +4968,23 @@ footer{
     display: block;
     width: 100%;
     height: auto;
-    max-height: 80vh;
-    object-fit: cover;
+}
+
+/* =========================================================
+   MOBILE — PROJECT VIDEO
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .project-video {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+
+    .project-video video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
 }
