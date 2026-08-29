@@ -4687,3 +4687,270 @@ footer{
     }
 
 }
+
+/* =========================================================
+   PROJECT 02 — URBAN PROJECT
+========================================================= */
+
+.urban-project-detail{
+    background:var(--bg);
+}
+
+
+/* =========================================================
+   OBJECTIVES
+========================================================= */
+
+.urban-objectives{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:0;
+
+    border-top:1px solid var(--line);
+
+    border-left:1px solid var(--line);
+
+}
+
+
+.urban-objective{
+
+    padding:35px;
+
+    border-right:1px solid var(--line);
+
+    border-bottom:1px solid var(--line);
+
+}
+
+
+.urban-objective-number{
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    color:var(--red);
+
+    margin-bottom:35px;
+
+}
+
+
+.urban-objective h4{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(1.6rem,3vw,3rem);
+
+    font-weight:500;
+
+    letter-spacing:-.045em;
+
+    margin-bottom:15px;
+
+}
+
+
+.urban-objective p{
+
+    max-width:430px;
+
+    font-size:.75rem;
+
+    line-height:1.8;
+
+    color:var(--muted);
+
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.urban-actions{
+
+    border-top:1px solid var(--line);
+
+}
+
+
+.urban-action{
+
+    display:grid;
+
+    grid-template-columns:
+        100px 1fr;
+
+    gap:40px;
+
+    align-items:center;
+
+    padding:25px 0;
+
+    border-bottom:1px solid var(--line);
+
+}
+
+
+.urban-action span{
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    color:var(--red);
+
+}
+
+
+.urban-action p{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(1.1rem,2vw,1.8rem);
+
+    letter-spacing:-.025em;
+
+}
+
+
+/* =========================================================
+   MASTERPLAN
+========================================================= */
+
+.urban-masterplan .large-media{
+
+    background:#E8E7E2;
+
+}
+
+
+/* =========================================================
+   PROGRAMMING
+========================================================= */
+
+.urban-programming-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    border-top:1px solid var(--line);
+
+    border-left:1px solid var(--line);
+
+}
+
+
+.urban-programming-item{
+
+    display:grid;
+
+    grid-template-columns:
+        70px 1fr;
+
+    gap:20px;
+
+    padding:22px 20px;
+
+    border-right:1px solid var(--line);
+
+    border-bottom:1px solid var(--line);
+
+}
+
+
+.urban-code{
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    color:var(--red);
+
+}
+
+
+.urban-programme{
+
+    font-family:var(--display);
+
+    font-size:.95rem;
+
+}
+
+
+/* =========================================================
+   URBAN RENDERS
+========================================================= */
+
+.urban-renders .large-media{
+
+    margin-top:45px;
+
+}
+
+
+.urban-renders .split-media{
+
+    margin-top:0;
+
+}
+
+
+/* =========================================================
+   PROJECT 02 RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    .urban-objectives{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .urban-programming-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    .urban-action{
+
+        grid-template-columns:1fr;
+
+        gap:10px;
+
+    }
+
+    .urban-objective{
+
+        padding:25px;
+
+    }
+
+    .urban-programming-item{
+
+        grid-template-columns:
+            55px 1fr;
+
+        padding:18px 15px;
+
+    }
+
+}
