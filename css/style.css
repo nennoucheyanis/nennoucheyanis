@@ -4990,28 +4990,111 @@ footer{
 }
 
 /* =========================================================
-   PROJECT 01 — SECTIONS
+   PROJECT 01 — SECTIONS + FACADE
    2 × 2 GRID
 ========================================================= */
 
 .project01-sections-grid{
+
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:30px;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    column-gap:30px;
+    row-gap:70px;
+
     width:100%;
+
 }
+
+
+/* =========================================================
+   EACH CELL
+========================================================= */
 
 .project01-section{
+
     width:100%;
     min-width:0;
+
 }
 
-.project01-section img{
-    display:block;
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.project01-section .project-section-label{
+
+    margin-bottom:18px;
+
+}
+
+
+/* =========================================================
+   MEDIA
+========================================================= */
+
+.project01-section .media{
+
     width:100%;
+
+    overflow:hidden;
+
+}
+
+
+.project01-section .media img{
+
+    display:block;
+
+    width:100%;
+
     height:auto;
+
     max-width:100%;
+
     object-fit:contain;
+
+    cursor:zoom-in;
+
+}
+
+
+/* =========================================================
+   FACADE TITLE
+========================================================= */
+
+.project01-facade-heading{
+
+    display:grid;
+
+    grid-template-columns:
+        55px 1fr;
+
+    align-items:start;
+
+    margin-bottom:25px;
+
+}
+
+
+/* On garde le style du titre 05,
+   mais sans prendre toute la largeur */
+
+.project01-facade-heading .story-index{
+
+    margin:0;
+
+}
+
+
+.project01-facade-heading .story-title{
+
+    margin:0;
+
 }
 
 
@@ -5022,8 +5105,18 @@ footer{
 @media(max-width:600px){
 
     .project01-sections-grid{
+
         grid-template-columns:1fr;
-        gap:35px;
+
+        row-gap:50px;
+
+    }
+
+    .project01-facade-heading{
+
+        grid-template-columns:
+            45px 1fr;
+
     }
 
 }
