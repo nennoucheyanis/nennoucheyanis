@@ -3248,27 +3248,81 @@ section{
     object-fit:contain;
 }
 
-/* =========================================================
-   PROJECT 03 — SECTION
-========================================================= */
+<!-- =========================================================
+     03 SECTION
+========================================================= -->
 
-.project03-section{
-    width:100%;
-    margin-top:80px;
-}
+<div class="project03-section">
 
-.project03-section .media{
-    width:100%;
-    overflow:hidden;
-}
+    <div class="story-heading reveal">
 
-.project03-section .media img{
-    display:block;
-    width:100%;
-    height:auto;
-    max-width:100%;
-    object-fit:contain;
-}
+        <div class="story-index">
+            03
+        </div>
+
+        <h3 class="story-title">
+            Sections
+        </h3>
+
+    </div>
+
+
+    <div class="project-section-label">
+        03.01 / Architectural sections
+    </div>
+
+
+    <div class="project03-sections-grid reveal">
+
+
+        <!-- COUPE 1 -->
+        <div class="project03-section-drawing">
+
+            <div class="media">
+
+                <img
+                    src="assets/Coupe1.png"
+                    alt="Architectural section 01"
+                    data-lightbox
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- COUPE 2 -->
+        <div class="project03-section-drawing">
+
+            <div class="media">
+
+                <img
+                    src="assets/Coupe2.png"
+                    alt="Architectural section 02"
+                    data-lightbox
+                >
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="caption">
+
+        <span>
+            Architectural sections
+        </span>
+
+        <span>
+            Section studies
+        </span>
+
+    </div>
+
+</div>
 
 /* =========================================================
    PROJECT 03 — RENDERS
