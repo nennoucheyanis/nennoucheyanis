@@ -3164,181 +3164,65 @@ PROJECT 03 — INDIVIDUAL HOUSING
 L2 ARCHITECTURAL PROJECT
 ========================================================= */
 
-/* =========================================================
-PROJECT 03 — GENERAL
-========================================================= */
-
 .project03{
 width:100%;
+background:var(--bg);
 }
 
 /* =========================================================
-PROJECT 03 — SITE
+PROJECT 03 — INTRO / HEADER
 ========================================================= */
 
-.project03-site{
-width:100%;
-margin-top:40px;
-}
-
-.project03-site .media{
-width:100%;
-overflow:hidden;
-}
-
-.project03-site .media img{
-display:block;
-width:100%;
-height:auto;
-max-width:100%;
-object-fit:contain;
-}
-
-/* =========================================================
-PROJECT 03 — PLANS
-========================================================= */
-
-.project03-plans{
+.project03-header{
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:30px;
-width:100%;
-margin-top:40px;
+grid-template-columns:120px 1fr;
+gap:40px;
+padding:35px 0 45px;
+border-top:1px solid var(--line);
+border-bottom:1px solid var(--line);
 }
 
-/* =========================================================
-PROJECT 03 — PLAN 01 & PLAN 02
-========================================================= */
-
-.project03-plan{
-width:100%;
-min-width:0;
+.project03-index{
+font-family:var(--mono);
+font-size:.58rem;
+color:var(--red);
+padding-top:8px;
 }
 
-.project03-plan .media{
-width:100%;
-overflow:hidden;
+.project03-title{
+font-family:var(--display);
+font-size:clamp(2.5rem,6vw,6rem);
+font-weight:500;
+letter-spacing:-.055em;
+line-height:.95;
+margin:0;
 }
 
-.project03-plan .media img{
-display:block;
-width:100%;
-height:auto;
-max-width:100%;
-object-fit:contain;
-}
-
-/* =========================================================
-PROJECT 03 — PLAN 03
-========================================================= */
-
-.project03-plan-third{
-grid-column:1 / -1;
-width:100%;
-}
-
-.project03-plan-third .media{
-width:100%;
-overflow:hidden;
-}
-
-.project03-plan-third .media img{
-display:block;
-width:100%;
-height:auto;
-max-width:100%;
-object-fit:contain;
-}
-
-/* =========================================================
-PROJECT 03 — SECTIONS
-========================================================= */
-
-.project03-sections{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:30px;
-width:100%;
-margin-top:80px;
-}
-
-/* =========================================================
-PROJECT 03 — SECTION 01 & SECTION 02
-========================================================= */
-
-.project03-section{
-width:100%;
-min-width:0;
-}
-
-.project03-section .media{
-width:100%;
-overflow:hidden;
-}
-
-.project03-section .media img{
-display:block;
-width:100%;
-height:auto;
-max-width:100%;
-object-fit:contain;
-}
-
-/* =========================================================
-PROJECT 03 — RENDERS
-========================================================= */
-
-.project03-renders{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:30px;
-width:100%;
-margin-top:40px;
-}
-
-.project03-render{
-width:100%;
-min-width:0;
-}
-
-.project03-render .media{
-width:100%;
-overflow:hidden;
-}
-
-.project03-render .media img{
-display:block;
-width:100%;
-height:auto;
-max-width:100%;
-object-fit:cover;
-}
-
-/* =========================================================
-PROJECT 03 — LABELS
-========================================================= */
-
-.project03 .project-section-label{
-margin-bottom:18px;
-}
-
-/* =========================================================
-PROJECT 03 — CAPTIONS
-========================================================= */
-
-.project03 .caption{
+.project03-meta{
+grid-column:2;
 margin-top:15px;
+font-family:var(--mono);
+font-size:.58rem;
+text-transform:uppercase;
+letter-spacing:.08em;
+color:var(--muted);
 }
 
 /* =========================================================
-PROJECT 03 — HOVER
+PROJECT 03 — GENERAL MEDIA
 ========================================================= */
 
 .project03 .media{
-cursor:zoom-in;
+width:100%;
+overflow:hidden;
 }
 
 .project03 .media img{
+display:block;
+width:100%;
+max-width:100%;
+height:auto;
+object-fit:contain;
 transition:transform .6s ease;
 }
 
@@ -3347,32 +3231,266 @@ transform:scale(1.01);
 }
 
 /* =========================================================
+PROJECT 03 — SECTION LABEL
+========================================================= */
+
+.project03 .project-section-label{
+display:flex;
+align-items:center;
+gap:15px;
+
+
+margin-bottom:18px;
+
+font-family:var(--mono);
+font-size:.58rem;
+text-transform:uppercase;
+letter-spacing:.08em;
+
+color:var(--muted);
+
+
+}
+
+.project03 .project-section-label::before{
+content:"";
+width:28px;
+height:1px;
+background:var(--red);
+}
+
+/* =========================================================
+PROJECT 03 — CAPTION
+========================================================= */
+
+.project03 .caption{
+margin:15px 0 0;
+
+
+font-family:var(--mono);
+font-size:.55rem;
+text-transform:uppercase;
+letter-spacing:.06em;
+
+color:var(--muted);
+
+
+}
+
+/* =========================================================
+PROJECT 03 — SITE
+========================================================= */
+
+.project03-site{
+padding-top:70px;
+}
+
+.project03-site .media{
+border-top:1px solid var(--line);
+border-bottom:1px solid var(--line);
+background:#E8E7E2;
+}
+
+/* =========================================================
+PROJECT 03 — PLANS
+========================================================= */
+
+.project03-plans{
+display:grid;
+grid-template-columns:
+repeat(2,minmax(0,1fr));
+
+
+gap:0;
+
+margin-top:80px;
+
+border-top:1px solid var(--line);
+border-left:1px solid var(--line);
+
+
+}
+
+/* =========================================================
+PROJECT 03 — PLAN 01 / PLAN 02
+========================================================= */
+
+.project03-plan{
+width:100%;
+min-width:0;
+
+
+padding:25px;
+
+border-right:1px solid var(--line);
+border-bottom:1px solid var(--line);
+
+
+}
+
+.project03-plan .media{
+margin-top:25px;
+}
+
+/* =========================================================
+PROJECT 03 — PLAN 03
+========================================================= */
+
+.project03-plan-third{
+grid-column:1 / -1;
+
+
+width:100%;
+
+padding:25px;
+
+border-right:1px solid var(--line);
+border-bottom:1px solid var(--line);
+
+
+}
+
+.project03-plan-third .media{
+margin-top:25px;
+}
+
+/* =========================================================
+PROJECT 03 — SECTIONS
+========================================================= */
+
+.project03-sections{
+display:grid;
+grid-template-columns:
+repeat(2,minmax(0,1fr));
+
+
+gap:0;
+
+margin-top:80px;
+
+border-top:1px solid var(--line);
+border-left:1px solid var(--line);
+
+
+}
+
+/* =========================================================
+PROJECT 03 — SECTION 01 / SECTION 02
+========================================================= */
+
+.project03-section{
+width:100%;
+min-width:0;
+
+
+padding:25px;
+
+border-right:1px solid var(--line);
+border-bottom:1px solid var(--line);
+
+
+}
+
+.project03-section .media{
+margin-top:25px;
+}
+
+/* =========================================================
+PROJECT 03 — RENDERS
+========================================================= */
+
+.project03-renders{
+display:grid;
+grid-template-columns:
+repeat(2,minmax(0,1fr));
+
+
+gap:30px;
+
+margin-top:80px;
+
+
+}
+
+.project03-render{
+width:100%;
+min-width:0;
+}
+
+.project03-render .media{
+margin-top:25px;
+background:#E8E7E2;
+}
+
+.project03-render .media img{
+object-fit:cover;
+}
+
+/* =========================================================
+PROJECT 03 — RENDER LABEL
+========================================================= */
+
+.project03-render .project-section-label{
+margin-bottom:0;
+}
+
+/* =========================================================
+PROJECT 03 — IMAGE HOVER
+========================================================= */
+
+.project03 .media{
+cursor:zoom-in;
+}
+
+/* =========================================================
 PROJECT 03 — TABLET
 ========================================================= */
 
 @media(max-width:900px){
 
-```
+
+/* HEADER */
+
+.project03-header{
+    grid-template-columns:80px 1fr;
+    gap:25px;
+}
+
+
+/* SITE */
+
+.project03-site{
+    padding-top:55px;
+}
+
+
 /* PLANS */
 
 .project03-plans{
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+    margin-top:60px;
+}
+
+.project03-plan,
+.project03-plan-third{
+    padding:20px;
 }
 
 
 /* SECTIONS */
 
 .project03-sections{
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+    margin-top:60px;
+}
+
+.project03-section{
+    padding:20px;
 }
 
 
 /* RENDERS */
 
 .project03-renders{
-    grid-template-columns:1fr 1fr;
+    margin-top:60px;
     gap:20px;
 }
 
@@ -3385,12 +3503,44 @@ PROJECT 03 — MOBILE
 
 @media(max-width:600px){
 
-```
+
+/* HEADER */
+
+.project03-header{
+    display:block;
+    padding:25px 0 35px;
+}
+
+.project03-index{
+    margin-bottom:20px;
+}
+
+.project03-title{
+    font-size:clamp(2.5rem,12vw,4rem);
+}
+
+.project03-meta{
+    margin-top:20px;
+}
+
+
+/* SITE */
+
+.project03-site{
+    padding-top:45px;
+}
+
+
 /* PLANS */
 
 .project03-plans{
     grid-template-columns:1fr;
-    gap:35px;
+    margin-top:50px;
+}
+
+.project03-plan,
+.project03-plan-third{
+    padding:20px;
 }
 
 .project03-plan-third{
@@ -3402,8 +3552,11 @@ PROJECT 03 — MOBILE
 
 .project03-sections{
     grid-template-columns:1fr;
-    gap:35px;
-    margin-top:60px;
+    margin-top:50px;
+}
+
+.project03-section{
+    padding:20px;
 }
 
 
@@ -3411,7 +3564,8 @@ PROJECT 03 — MOBILE
 
 .project03-renders{
     grid-template-columns:1fr;
-    gap:35px;
+    gap:45px;
+    margin-top:50px;
 }
 
 
