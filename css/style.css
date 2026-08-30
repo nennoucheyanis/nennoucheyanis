@@ -28,7 +28,6 @@
     --max-width:1500px;
 }
 
-
 /* =========================================================
    RESET
 ========================================================= */
@@ -65,7 +64,6 @@ button{
     font-family:inherit;
 }
 
-
 /* =========================================================
    GRAIN
 ========================================================= */
@@ -89,7 +87,6 @@ body::before{
     );
 }
 
-
 /* =========================================================
    SCROLLBAR
 ========================================================= */
@@ -109,7 +106,6 @@ body::before{
 ::-webkit-scrollbar-thumb:hover{
     background:var(--red);
 }
-
 
 /* =========================================================
    CURSOR
@@ -153,16 +149,6 @@ body::before{
         height .25s ease,
         background .25s ease;
 }
-
-@media(pointer:fine){
-
-    body.has-cursor .cursor,
-    body.has-cursor .cursor-ring{
-        opacity:1;
-    }
-
-}
-
 
 /* =========================================================
    NAVIGATION
@@ -292,7 +278,6 @@ nav.scrolled{
     width:100%;
 }
 
-
 /* =========================================================
    SOCIAL ICONS
 ========================================================= */
@@ -343,7 +328,6 @@ nav.scrolled{
     transform:translateY(-3px);
 }
 
-
 /* =========================================================
    MENU
 ========================================================= */
@@ -360,7 +344,6 @@ nav.scrolled{
 
     cursor:pointer;
 }
-
 
 /* =========================================================
    GLOBAL
@@ -385,7 +368,6 @@ section{
 
     margin:auto;
 }
-
 
 /* =========================================================
    TYPOGRAPHY
@@ -447,7 +429,6 @@ section{
     -webkit-text-stroke:
         1px rgba(17,17,17,.45);
 }
-
 
 /* =========================================================
    HERO
@@ -561,7 +542,6 @@ section{
     font-weight:500;
 }
 
-
 /* =========================================================
    HERO INFO
 ========================================================= */
@@ -661,7 +641,6 @@ section{
     background:var(--red);
 }
 
-
 /* =========================================================
    ABOUT
 ========================================================= */
@@ -704,7 +683,6 @@ section{
 
     align-items:start;
 }
-
 
 /* =========================================================
    ABOUT PHOTO
@@ -801,7 +779,6 @@ section{
     color:var(--muted);
 }
 
-
 /* =========================================================
    ABOUT TEXT
 ========================================================= */
@@ -840,7 +817,6 @@ section{
 
     line-height:1.9;
 }
-
 
 /* =========================================================
    PROFILE INFO
@@ -891,7 +867,6 @@ section{
     line-height:1.7;
 }
 
-
 /* =========================================================
    SKILLS
 ========================================================= */
@@ -941,7 +916,6 @@ section{
 
     padding-left:8px;
 }
-
 
 /* =========================================================
    CV
@@ -1012,7 +986,6 @@ section{
     background:#FFFFFF;
 }
 
-
 /* =========================================================
    BUTTON
 ========================================================= */
@@ -1078,7 +1051,6 @@ section{
     margin-top:15px;
 }
 
-
 /* =========================================================
    ACADEMICAL WORKS
 ========================================================= */
@@ -1122,7 +1094,6 @@ section{
 
     line-height:1.85;
 }
-
 
 /* =========================================================
    FEATURED PROJECT
@@ -1295,7 +1266,6 @@ section{
     text-align:right;
 }
 
-
 /* =========================================================
    OTHER PROJECTS
 ========================================================= */
@@ -1399,7 +1369,6 @@ section{
     text-align:right;
 }
 
-
 /* =========================================================
    PROJECT DETAIL
 ========================================================= */
@@ -1457,7 +1426,6 @@ section{
     color:var(--muted);
 }
 
-
 /* =========================================================
    PROJECT META
 ========================================================= */
@@ -1508,7 +1476,6 @@ section{
 
     line-height:1.5;
 }
-
 
 /* =========================================================
    STORY BLOCK
@@ -1564,7 +1531,6 @@ section{
 
     color:var(--muted);
 }
-
 
 /* =========================================================
    CONCEPT
@@ -1626,105 +1592,34 @@ section{
     transform:scale(1.015);
 }
 
-
 /* =========================================================
    MEDIA
 ========================================================= */
 
-.large-media{
+.project01-section .media{
 
     width:100%;
-
-    max-height:78vh;
 
     overflow:hidden;
 
-    background:var(--bg-soft);
-
-    border:1px solid var(--line);
-
-    cursor:zoom-in;
 }
 
-.large-media img{
+
+.project01-section .media img{
+
+    display:block;
 
     width:100%;
 
-    max-height:78vh;
+    height:auto;
+
+    max-width:100%;
 
     object-fit:contain;
-
-    transition:transform .6s ease;
-}
-
-.large-media:hover img{
-
-    transform:scale(1.012);
-}
-
-.split-media{
-
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:20px;
-}
-
-.split-media .media{
-
-    background:var(--bg-soft);
-
-    border:1px solid var(--line);
-
-    overflow:hidden;
 
     cursor:zoom-in;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    min-height:300px;
 }
-
-.split-media img{
-
-    width:100%;
-    height:100%;
-
-    object-fit:contain;
-
-    transition:transform .5s ease;
-}
-
-.split-media .media:hover img{
-
-    transform:scale(1.015);
-}
-
-.caption{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    margin-top:12px;
-
-    font-family:var(--mono);
-
-    font-size:.58rem;
-
-    text-transform:uppercase;
-
-    letter-spacing:.08em;
-
-    color:var(--muted);
-}
-
 
 /* =========================================================
    PROJECT SECTION LABEL
@@ -1745,7 +1640,6 @@ section{
     color:var(--red);
 }
 
-
 /* =========================================================
    03 — PLANS
 ========================================================= */
@@ -1754,7 +1648,6 @@ section{
 
     width:100%;
 }
-
 
 /* =========================================================
    SITE PLAN — ROTATED
@@ -1829,7 +1722,6 @@ section{
     transform:scale(1.012);
 }
 
-
 /* =========================================================
    NORTH ARROW
 ========================================================= */
@@ -1902,7 +1794,6 @@ section{
     border-right:9px solid var(--text);
 }
 
-
 /* =========================================================
    04 — SECTIONS
 ========================================================= */
@@ -1911,7 +1802,6 @@ section{
 
     width:100%;
 }
-
 
 /* =========================================================
    05 — FACADES
@@ -1922,7 +1812,6 @@ section{
     width:100%;
 }
 
-
 /* =========================================================
    06 — PERSPECTIVE
 ========================================================= */
@@ -1931,7 +1820,6 @@ section{
 
     width:100%;
 }
-
 
 /* =========================================================
    PERSPECTIVE LAYOUT
@@ -1948,7 +1836,6 @@ section{
 
     align-items:stretch;
 }
-
 
 /* =========================================================
    PERSPECTIVE IMAGE
@@ -2007,7 +1894,6 @@ section{
     transform:scale(1.015);
 }
 
-
 /* =========================================================
    PERSPECTIVE TEXT
 ========================================================= */
@@ -2063,7 +1949,6 @@ section{
 
     line-height:1.85;
 }
-
 
 /* =========================================================
    07 — MATERIALS
@@ -2166,7 +2051,6 @@ section{
     white-space:nowrap;
 }
 
-
 /* =========================================================
    08 — PASSIVE ENVIRONMENTAL STRATEGIES
 ========================================================= */
@@ -2251,7 +2135,6 @@ section{
 
     max-width:500px;
 }
-
 
 /* =========================================================
    PASSIVE DRAWINGS
@@ -2368,7 +2251,6 @@ section{
     white-space:nowrap;
 }
 
-
 /* =========================================================
    09 — HYGROTHERMAL SIMULATION
 ========================================================= */
@@ -2377,7 +2259,6 @@ section{
 
     width:100%;
 }
-
 
 /* =========================================================
    INTRODUCTION
@@ -2397,7 +2278,6 @@ section{
 
     color:var(--muted);
 }
-
 
 /* =========================================================
    METHOD HEADING
@@ -2451,7 +2331,6 @@ section{
     color:var(--muted);
 }
 
-
 /* =========================================================
    WUFI — THREE MATERIAL COLUMNS
 ========================================================= */
@@ -2473,7 +2352,6 @@ section{
 
     margin-bottom:0;
 }
-
 
 /* =========================================================
    MATERIAL COLUMN
@@ -2499,7 +2377,6 @@ section{
 
     border-right:none;
 }
-
 
 /* =========================================================
    MATERIAL HEADER
@@ -2546,7 +2423,6 @@ section{
 
     margin:22px 0 35px;
 }
-
 
 /* =========================================================
    WUFI GRAPH
@@ -2622,7 +2498,6 @@ section{
     text-align:right;
 }
 
-
 /* =========================================================
    TRANSITION
 ========================================================= */
@@ -2664,7 +2539,6 @@ section{
     color:var(--muted);
 }
 
-
 /* =========================================================
    FULL ENVELOPE
 ========================================================= */
@@ -2673,7 +2547,6 @@ section{
 
     width:100%;
 }
-
 
 /* =========================================================
    AI METHODOLOGY NOTE
@@ -2720,7 +2593,6 @@ section{
 
     color:var(--muted);
 }
-
 
 /* =========================================================
    FULL-WIDTH GRAPH
@@ -2780,7 +2652,6 @@ section{
 
     color:var(--muted);
 }
-
 
 /* =========================================================
    FULL-ENVELOPE IMAGES — 50 / 50
@@ -2862,7 +2733,6 @@ section{
     transform:scale(1.01);
 }
 
-
 /* =========================================================
    FULL GRAPH CAPTION
 ========================================================= */
@@ -2883,7 +2753,6 @@ section{
 
     letter-spacing:.05em;
 }
-
 
 /* =========================================================
    CONCLUSION
@@ -2934,260 +2803,6 @@ section{
     letter-spacing:-.04em;
 }
 
-
-/* =========================================================
-   RESPONSIVE — TABLET
-========================================================= */
-
-@media (max-width:900px){
-
-    .simulation-intro{
-
-        margin-left:0;
-
-        max-width:650px;
-    }
-
-    .simulation-method-heading{
-
-        grid-template-columns:
-            100px 1fr;
-
-        gap:25px;
-    }
-
-    .simulation-material-grid{
-
-        grid-template-columns:
-            repeat(3,1fr);
-    }
-
-    .simulation-material-column{
-
-        padding-left:18px;
-
-        padding-right:18px;
-    }
-
-    .simulation-material-column:first-child{
-
-        padding-left:0;
-    }
-
-    .simulation-material-column:last-child{
-
-        padding-right:0;
-    }
-
-    .simulation-material-name{
-
-        font-size:1.1rem;
-    }
-
-    .simulation-graph-caption{
-
-        flex-direction:column;
-
-        gap:3px;
-    }
-
-    .simulation-graph-caption span:last-child{
-
-        text-align:left;
-    }
-
-    .simulation-ai-note{
-
-        width:100%;
-
-        margin-left:0;
-
-        grid-template-columns:
-            100px 1fr;
-
-        gap:25px;
-    }
-
-    .simulation-full-graph-heading{
-
-        grid-template-columns:
-            100px 1fr;
-
-        gap:25px;
-    }
-
-    .simulation-conclusion{
-
-        grid-template-columns:
-            100px 1fr;
-
-        gap:25px;
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE — SIMULATION
-========================================================= */
-
-@media(max-width:650px){
-
-    .simulation-intro{
-
-        margin-left:0;
-
-        margin-bottom:65px;
-
-        font-size:.82rem;
-    }
-
-    .simulation-method-heading{
-
-        grid-template-columns:1fr;
-
-        gap:15px;
-
-        margin-bottom:35px;
-    }
-
-    .simulation-method-title{
-
-        font-size:2rem;
-    }
-
-
-    /* MATERIALS */
-
-    .simulation-material-grid{
-
-        grid-template-columns:1fr;
-    }
-
-    .simulation-material-column,
-    .simulation-material-column:first-child,
-    .simulation-material-column:last-child{
-
-        padding:
-            40px 0;
-
-        border-right:none;
-
-        border-bottom:1px solid var(--line);
-    }
-
-    .simulation-material-column:last-child{
-
-        border-bottom:none;
-    }
-
-    .simulation-material-name{
-
-        font-size:1.4rem;
-    }
-
-    .simulation-graph{
-
-        margin-bottom:50px;
-    }
-
-    .simulation-graph-caption{
-
-        flex-direction:row;
-
-        align-items:flex-start;
-    }
-
-    .simulation-graph-caption span:last-child{
-
-        text-align:right;
-    }
-
-
-    /* TRANSITION */
-
-    .simulation-transition{
-
-        grid-template-columns:
-            1fr;
-
-        gap:20px;
-
-        margin:90px 0;
-    }
-
-    .simulation-transition-line{
-
-        width:100%;
-    }
-
-
-    /* AI NOTE */
-
-    .simulation-ai-note{
-
-        width:100%;
-
-        margin-left:0;
-
-        grid-template-columns:1fr;
-
-        gap:15px;
-
-        margin-bottom:80px;
-    }
-
-
-    /* =====================================================
-       FULL-ENVELOPE GRAPHS
-       MOBILE = 1 COLUMN
-    ===================================================== */
-
-    .simulation-full-graphs{
-
-        grid-template-columns:1fr;
-
-        gap:70px;
-
-        margin-bottom:90px;
-    }
-
-    .simulation-full-graphs .simulation-full-graph{
-
-        margin-bottom:0;
-    }
-
-
-    .simulation-full-graph-heading{
-
-        grid-template-columns:1fr;
-
-        gap:15px;
-    }
-
-    .simulation-full-graph-title{
-
-        font-size:2.5rem;
-    }
-
-
-    /* CONCLUSION */
-
-    .simulation-conclusion{
-
-        grid-template-columns:1fr;
-
-        gap:20px;
-    }
-
-    .simulation-conclusion-text{
-
-        font-size:2rem;
-    }
-
-}
-
-
 /* =========================================================
    10 — FINAL RENDERS
 ========================================================= */
@@ -3212,6 +2827,510 @@ section{
     color:var(--muted);
 }
 
+/* =========================================================
+   PROJECT 01 — SECTIONS + FACADE
+   2 × 2 GRID
+========================================================= */
+
+.project01-sections-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    column-gap:30px;
+    row-gap:70px;
+
+    width:100%;
+
+}
+
+/* =========================================================
+   EACH CELL
+========================================================= */
+
+.project01-section{
+
+    width:100%;
+    min-width:0;
+
+}
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.project01-section .project-section-label{
+
+    margin-bottom:18px;
+
+}
+
+/* =========================================================
+   MEDIA
+========================================================= */
+
+.project01-section .media{
+
+    width:100%;
+
+    overflow:hidden;
+
+}
+
+
+.project01-section .media img{
+
+    display:block;
+
+    width:100%;
+
+    height:auto;
+
+    max-width:100%;
+
+    object-fit:contain;
+
+    cursor:zoom-in;
+
+}
+
+/* =========================================================
+   FACADE TITLE
+========================================================= */
+
+.project01-facade-heading{
+
+    display:grid;
+
+    grid-template-columns:
+        55px 1fr;
+
+    align-items:start;
+
+    margin-bottom:25px;
+
+}
+
+
+/* On garde le style du titre 05,
+   mais sans prendre toute la largeur */
+
+.project01-facade-heading .story-index{
+
+    margin:0;
+
+}
+
+
+.project01-facade-heading .story-title{
+
+    margin:0;
+
+}
+
+/* =========================================================
+   PROJECT 02 — URBAN PROJECT
+========================================================= */
+
+.urban-project-detail{
+    background:var(--bg);
+}
+
+/* =========================================================
+   OBJECTIVES
+========================================================= */
+
+.urban-objectives{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:0;
+
+    border-top:1px solid var(--line);
+
+    border-left:1px solid var(--line);
+
+}
+
+
+.urban-objective{
+
+    padding:35px;
+
+    border-right:1px solid var(--line);
+
+    border-bottom:1px solid var(--line);
+
+}
+
+
+.urban-objective-number{
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    color:var(--red);
+
+    margin-bottom:35px;
+
+}
+
+
+.urban-objective h4{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(1.6rem,3vw,3rem);
+
+    font-weight:500;
+
+    letter-spacing:-.045em;
+
+    margin-bottom:15px;
+
+}
+
+
+.urban-objective p{
+
+    max-width:430px;
+
+    font-size:.75rem;
+
+    line-height:1.8;
+
+    color:var(--muted);
+
+}
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.urban-actions{
+
+    border-top:1px solid var(--line);
+
+}
+
+
+.urban-action{
+
+    display:grid;
+
+    grid-template-columns:
+        100px 1fr;
+
+    gap:40px;
+
+    align-items:center;
+
+    padding:25px 0;
+
+    border-bottom:1px solid var(--line);
+
+}
+
+
+.urban-action span{
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    color:var(--red);
+
+}
+
+
+.urban-action p{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(1.1rem,2vw,1.8rem);
+
+    letter-spacing:-.025em;
+
+}
+
+/* =========================================================
+   MASTERPLAN
+========================================================= */
+
+.urban-masterplan .large-media{
+
+    background:#E8E7E2;
+
+}
+
+/* =========================================================
+   PROGRAMMING
+========================================================= */
+
+.urban-programming-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    border-top:1px solid var(--line);
+
+    border-left:1px solid var(--line);
+
+}
+
+
+.urban-programming-item{
+
+    display:grid;
+
+    grid-template-columns:
+        70px 1fr;
+
+    gap:20px;
+
+    padding:22px 20px;
+
+    border-right:1px solid var(--line);
+
+    border-bottom:1px solid var(--line);
+
+}
+
+
+.urban-code{
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    color:var(--red);
+
+}
+
+
+.urban-programme{
+
+    font-family:var(--display);
+
+    font-size:.95rem;
+
+}
+
+/* =========================================================
+   URBAN RENDERS
+========================================================= */
+
+.urban-renders .large-media{
+
+    margin-top:45px;
+
+}
+
+
+.urban-renders .split-media{
+
+    margin-top:0;
+
+}
+
+/* =========================================================
+   PROJECT VIDEO
+========================================================= */
+
+.project-video {
+    width: 100%;
+    overflow: hidden;
+}
+
+.project-video video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* =========================================================
+   PROJECT 03 — INDIVIDUAL HOUSING
+   L2 ARCHITECTURAL PROJECT
+========================================================= */
+
+/* =========================================================
+   PROJECT 03 — GENERAL
+========================================================= */
+
+.project03{
+    width:100%;
+}
+
+/* =========================================================
+   PROJECT 03 — SITE
+========================================================= */
+
+.project03-site{
+    width:100%;
+    margin-top:40px;
+}
+
+.project03-site .media{
+    width:100%;
+    overflow:hidden;
+}
+
+.project03-site .media img{
+    display:block;
+    width:100%;
+    height:auto;
+    max-width:100%;
+    object-fit:contain;
+}
+
+/* =========================================================
+   PROJECT 03 — PLANS
+========================================================= */
+
+.project03-plans{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    width:100%;
+    margin-top:40px;
+}
+
+
+/* Premier et deuxième plans */
+
+.project03-plan{
+    width:100%;
+    min-width:0;
+}
+
+.project03-plan .media{
+    width:100%;
+    overflow:hidden;
+}
+
+.project03-plan .media img{
+    display:block;
+    width:100%;
+    height:auto;
+    max-width:100%;
+    object-fit:contain;
+}
+
+
+/* Troisième plan */
+
+.project03-plan-third{
+    grid-column:1 / -1;
+    width:100%;
+}
+
+.project03-plan-third .media{
+    width:100%;
+    overflow:hidden;
+}
+
+.project03-plan-third .media img{
+    display:block;
+    width:100%;
+    height:auto;
+    max-width:100%;
+    object-fit:contain;
+}
+
+/* =========================================================
+   PROJECT 03 — SECTION
+========================================================= */
+
+.project03-section{
+    width:100%;
+    margin-top:80px;
+}
+
+.project03-section .media{
+    width:100%;
+    overflow:hidden;
+}
+
+.project03-section .media img{
+    display:block;
+    width:100%;
+    height:auto;
+    max-width:100%;
+    object-fit:contain;
+}
+
+/* =========================================================
+   PROJECT 03 — RENDERS
+========================================================= */
+
+.project03-renders{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    width:100%;
+    margin-top:40px;
+}
+
+.project03-render{
+    width:100%;
+    min-width:0;
+}
+
+.project03-render .media{
+    width:100%;
+    overflow:hidden;
+}
+
+.project03-render .media img{
+    display:block;
+    width:100%;
+    height:auto;
+    max-width:100%;
+    object-fit:cover;
+}
+
+/* =========================================================
+   PROJECT 03 — LABELS
+========================================================= */
+
+.project03 .project-section-label{
+    margin-bottom:18px;
+}
+
+/* =========================================================
+   PROJECT 03 — CAPTIONS
+========================================================= */
+
+.project03 .caption{
+    margin-top:15px;
+}
+
+/* =========================================================
+   PROJECT 03 — HOVER
+========================================================= */
+
+.project03 .media{
+    cursor:zoom-in;
+}
+
+.project03 .media img{
+    transition:transform .6s ease;
+}
+
+.project03 .media:hover img{
+    transform:scale(1.01);
+}
 
 /* =========================================================
    RESEARCH
@@ -3354,7 +3473,6 @@ section{
 
     color:var(--muted);
 }
-
 
 /* =========================================================
    PROFESSIONAL WORK
@@ -3503,7 +3621,6 @@ section{
     letter-spacing:-.04em;
 }
 
-
 /* =========================================================
    CONTACT
 ========================================================= */
@@ -3597,7 +3714,6 @@ section{
     color:white;
 }
 
-
 /* =========================================================
    FOOTER
 ========================================================= */
@@ -3654,7 +3770,6 @@ footer{
 
     color:var(--red);
 }
-
 
 /* =========================================================
    LIGHTBOX
@@ -3754,7 +3869,6 @@ footer{
     color:#999;
 }
 
-
 /* =========================================================
    LIGHTBOX ROTATION
 ========================================================= */
@@ -3767,7 +3881,6 @@ footer{
 
     max-height:94vw!important;
 }
-
 
 /* =========================================================
    REVEAL
@@ -3790,501 +3903,6 @@ footer{
 
     transform:translateY(0);
 }
-
-
-/* =========================================================
-   MOBILE — 900px
-========================================================= */
-
-@media(max-width:900px){
-
-    nav{
-        padding:20px;
-    }
-
-    .nav-right{
-        gap:15px;
-    }
-
-    .nav-links{
-
-        position:fixed;
-
-        top:70px;
-
-        left:20px;
-        right:20px;
-
-        display:none;
-
-        flex-direction:column;
-
-        padding:25px;
-
-        background:var(--bg);
-
-        border:1px solid var(--line);
-
-        gap:22px;
-    }
-
-    .nav-links.open{
-        display:flex;
-    }
-
-    .menu-btn{
-        display:block;
-    }
-
-    .hero-title{
-        font-size:
-            clamp(4rem,18vw,8rem);
-    }
-
-    .hero-title .last{
-        margin-left:5vw;
-    }
-
-    .hero-subtitle{
-        grid-template-columns:1fr;
-        margin-top:50px;
-    }
-
-    .hero-info{
-        flex-wrap:wrap;
-        gap:25px;
-    }
-
-    .about-top{
-        display:block;
-    }
-
-    .about-top-copy{
-        margin-top:25px;
-    }
-
-    .about-grid{
-        grid-template-columns:1fr;
-        gap:60px;
-    }
-
-    .about-photo{
-        position:relative;
-        top:auto;
-        max-width:450px;
-    }
-
-    .project-header{
-        grid-template-columns:1fr;
-        gap:25px;
-    }
-
-    .project-meta{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .meta-item:nth-child(2){
-        border-right:0;
-    }
-
-    .work-heading{
-        grid-template-columns:1fr;
-        gap:30px;
-    }
-
-    .featured-info{
-        grid-template-columns:
-            55px 1fr;
-    }
-
-    .featured-type{
-        display:none;
-    }
-
-    .other-projects{
-        grid-template-columns:1fr;
-    }
-
-    .story-heading{
-        grid-template-columns:
-            60px 1fr;
-    }
-
-    .story-text{
-        margin-left:100px;
-    }
-
-    .concept-content{
-        grid-template-columns:1fr;
-        gap:30px;
-    }
-
-    .concept-content .story-text{
-        margin-left:0;
-    }
-
-    .materials-grid{
-        grid-template-columns:1fr;
-    }
-
-    .material-card-wide{
-        grid-column:auto;
-    }
-
-    .materials-intro{
-        margin-left:100px;
-    }
-
-    .passive-intro{
-        grid-template-columns:1fr;
-        gap:40px;
-    }
-
-    .passive-drawings{
-        grid-template-columns:1fr;
-    }
-
-    .passive-drawing-wide{
-        grid-column:auto;
-    }
-
-    .passive-drawing-wide .passive-drawing-image{
-        height:500px;
-    }
-
-    .passive-drawing:not(.passive-drawing-wide) .passive-drawing-image{
-        height:400px;
-    }
-
-    .simulation-results{
-        grid-template-columns:1fr;
-    }
-
-    .simulation-card-wide{
-        grid-column:auto;
-    }
-
-    .simulation-card-wide .simulation-image{
-        height:500px;
-    }
-
-    .simulation-card:not(.simulation-card-wide) .simulation-image{
-        height:400px;
-    }
-
-    .simulation-intro{
-        margin-left:100px;
-    }
-
-    .simulation-conclusion{
-        grid-template-columns:1fr;
-        gap:15px;
-    }
-
-    .environment-intro{
-        grid-template-columns:1fr;
-        gap:40px;
-    }
-
-    .final-renders-intro{
-        margin-left:100px;
-    }
-
-    .professional-heading{
-        grid-template-columns:1fr;
-        gap:30px;
-    }
-
-    .professional-grid{
-        grid-template-columns:1fr;
-    }
-
-    .professional-experience{
-        grid-template-columns:1fr;
-        gap:15px;
-    }
-
-    .research-grid{
-        grid-template-columns:1fr;
-        gap:60px;
-    }
-
-    .cv-preview{
-        height:550px;
-    }
-
-    .site-plan-media{
-        height:600px;
-    }
-
-    .site-plan-rotation{
-        transform:
-            rotate(-90deg)
-            scale(1.45);
-    }
-
-    .north-arrow{
-        top:20px;
-        right:22px;
-    }
-
-    .perspective-layout{
-        grid-template-columns:1fr;
-    }
-
-    .perspective-empty{
-        min-height:250px;
-        padding:30px;
-    }
-
-
-    /* =====================================================
-       TABLET — FULL ENVELOPE
-       Les deux graphiques restent côte à côte
-    ===================================================== */
-
-    .simulation-full-graphs{
-
-        grid-template-columns:
-            1fr 1fr;
-
-        gap:15px;
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE — 600px
-========================================================= */
-
-@media(max-width:600px){
-
-    section{
-        padding:
-            100px 20px;
-    }
-
-    .socials{
-        display:none;
-    }
-
-    .hero-top{
-        margin-bottom:40px;
-    }
-
-    .hero-subtitle{
-        margin-top:45px;
-    }
-
-    .hero-info{
-        display:grid;
-        grid-template-columns:
-            1fr 1fr;
-    }
-
-    .hero-red-line{
-        display:none;
-    }
-
-    .scroll-indicator{
-        display:none;
-    }
-
-    .project-meta{
-        grid-template-columns:
-            1fr 1fr;
-    }
-
-    .split-media{
-        grid-template-columns:1fr;
-    }
-
-    .story-heading{
-        grid-template-columns:1fr;
-    }
-
-    .story-text{
-        margin-left:0;
-    }
-
-    .skills{
-        grid-template-columns:1fr;
-    }
-
-    .profile-row{
-        grid-template-columns:1fr;
-        gap:8px;
-    }
-
-    .featured-image{
-        aspect-ratio:4/3;
-    }
-
-    .featured-project-arrow{
-        display:none;
-    }
-
-    .footer-inner{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .contact-title{
-        font-size:
-            clamp(4rem,20vw,7rem);
-    }
-
-    .cv-preview{
-        height:450px;
-    }
-
-    .professional-tagline{
-        font-size:2rem;
-    }
-
-    .professional-card-info{
-        grid-template-columns:45px 1fr;
-    }
-
-    .research-title{
-        font-size:
-            clamp(3.5rem,18vw,6rem);
-    }
-
-    .research-status{
-        align-items:flex-start;
-        gap:15px;
-        flex-direction:column;
-    }
-
-    .materials-intro{
-        margin-left:0;
-    }
-
-    .material-card-wide .material-image{
-        height:350px;
-    }
-
-    .material-card:not(.material-card-wide) .material-image{
-        height:300px;
-    }
-
-    .material-info{
-        grid-template-columns:1fr;
-    }
-
-    .site-plan-media{
-        height:500px;
-    }
-
-    .site-plan-rotation{
-        width:100%;
-        height:100%;
-        transform:
-            rotate(-90deg)
-            scale(1.35);
-    }
-
-    .north-arrow{
-        top:15px;
-        right:18px;
-        transform:scale(.85);
-        transform-origin:top right;
-    }
-
-    .passive-environment{
-        padding:
-            70px 20px;
-    }
-
-    .passive-drawing-wide .passive-drawing-image{
-        height:350px;
-    }
-
-    .passive-drawing:not(.passive-drawing-wide) .passive-drawing-image{
-        height:300px;
-    }
-
-    .passive-drawing-info{
-        flex-direction:column;
-        gap:10px;
-    }
-
-    .simulation-intro{
-        margin-left:0;
-    }
-
-    .simulation-card-wide .simulation-image{
-        height:350px;
-    }
-
-    .simulation-card:not(.simulation-card-wide) .simulation-image{
-        height:300px;
-    }
-
-    .simulation-info{
-        grid-template-columns:1fr;
-    }
-
-    /* =====================================================
-       MOBILE — FULL ENVELOPE
-       Les images passent l'une sous l'autre
-    ===================================================== */
-
-    .simulation-full-graphs{
-
-        grid-template-columns:1fr;
-
-        gap:70px;
-
-        margin-bottom:90px;
-    }
-
-    .final-renders-intro{
-        margin-left:0;
-    }
-
-    .environment{
-        padding:
-            70px 20px;
-    }
-
-    .perspective-empty{
-        min-height:220px;
-        padding:25px;
-    }
-
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media(prefers-reduced-motion:reduce){
-
-    *,
-    *::before,
-    *::after{
-
-        animation:none!important;
-
-        transition:none!important;
-
-        scroll-behavior:auto!important;
-    }
-
-    .reveal{
-
-        opacity:1;
-
-        transform:none;
-    }
-
-}
-
 
 /* =========================================================
    DIAPHRAGM — LOCAL STYLE ONLY
@@ -4385,32 +4003,6 @@ footer{
     68%{transform:rotate(360deg)}
     100%{transform:rotate(360deg)}
 }
-
-@media(max-width:600px){
-
-    .portfolio-diaphragm-inline{
-        min-height:250px
-    }
-
-    .portfolio-diaphragm-svg{
-        width:88%
-    }
-
-    .portfolio-diaphragm-inline .pd-caption{
-        font-size:.45rem
-    }
-
-}
-
-@media(prefers-reduced-motion:reduce){
-
-    .portfolio-diaphragm-inline .pd-ring,
-    .portfolio-diaphragm-inline .pd-blade{
-        animation:none
-    }
-
-}
-
 
 /* =========================================================
    BRISE-SOLEIL WIDGET — LOCAL STYLE ONLY
@@ -4658,6 +4250,805 @@ footer{
     opacity:.55;
 }
 
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+/* =========================================================
+   MOBILE — SIMULATION
+========================================================= */
+
+/* =====================================================
+       FULL-ENVELOPE GRAPHS
+       MOBILE = 1 COLUMN
+    ===================================================== */
+
+    .simulation-full-graphs{
+
+        grid-template-columns:1fr;
+
+        gap:70px;
+
+        margin-bottom:90px;
+    }
+
+    .simulation-full-graphs .simulation-full-graph{
+
+        margin-bottom:0;
+    }
+
+
+    .simulation-full-graph-heading{
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+    }
+
+    .simulation-full-graph-title{
+
+        font-size:2.5rem;
+    }
+
+
+    /* CONCLUSION */
+
+    .simulation-conclusion{
+
+        grid-template-columns:1fr;
+
+        gap:20px;
+    }
+
+    .simulation-conclusion-text{
+
+        font-size:2rem;
+    }
+
+}
+
+/* =========================================================
+   MOBILE — 900px
+========================================================= */
+
+/* =====================================================
+       TABLET — FULL ENVELOPE
+       Les deux graphiques restent côte à côte
+    ===================================================== */
+
+    .simulation-full-graphs{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:15px;
+    }
+
+}
+
+/* =========================================================
+   MOBILE — 600px
+========================================================= */
+
+/* =====================================================
+       MOBILE — FULL ENVELOPE
+       Les images passent l'une sous l'autre
+    ===================================================== */
+
+    .simulation-full-graphs{
+
+        grid-template-columns:1fr;
+
+        gap:70px;
+
+        margin-bottom:90px;
+    }
+
+    .final-renders-intro{
+        margin-left:0;
+    }
+
+    .environment{
+        padding:
+            70px 20px;
+    }
+
+    .perspective-empty{
+        min-height:220px;
+        padding:25px;
+    }
+
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+/* =========================================================
+   PROJECT 02 RESPONSIVE
+========================================================= */
+
+/* =========================================================
+   MOBILE — PROJECT VIDEO
+========================================================= */
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+/* =========================================================
+   PROJECT 03 — TABLET
+========================================================= */
+
+/* =========================================================
+   PROJECT 03 — MOBILE
+========================================================= */
+
+/* =========================================================
+   RESPONSIVE / ADAPTIVE RULES
+   Centralized at the end of the stylesheet
+========================================================= */
+
+@media(pointer:fine){
+
+    body.has-cursor .cursor,
+    body.has-cursor .cursor-ring{
+        opacity:1;
+    }
+
+}
+
+@media (max-width:900px){
+
+    .simulation-intro{
+
+        margin-left:0;
+
+        max-width:650px;
+    }
+
+    .simulation-method-heading{
+
+        grid-template-columns:
+            100px 1fr;
+
+        gap:25px;
+    }
+
+    .simulation-material-grid{
+
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+    .simulation-material-column{
+
+        padding-left:18px;
+
+        padding-right:18px;
+    }
+
+    .simulation-material-column:first-child{
+
+        padding-left:0;
+    }
+
+    .simulation-material-column:last-child{
+
+        padding-right:0;
+    }
+
+    .simulation-material-name{
+
+        font-size:1.1rem;
+    }
+
+    .simulation-graph-caption{
+
+        flex-direction:column;
+
+        gap:3px;
+    }
+
+    .simulation-graph-caption span:last-child{
+
+        text-align:left;
+    }
+
+    .simulation-ai-note{
+
+        width:100%;
+
+        margin-left:0;
+
+        grid-template-columns:
+            100px 1fr;
+
+        gap:25px;
+    }
+
+    .simulation-full-graph-heading{
+
+        grid-template-columns:
+            100px 1fr;
+
+        gap:25px;
+    }
+
+    .simulation-conclusion{
+
+        grid-template-columns:
+            100px 1fr;
+
+        gap:25px;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .simulation-intro{
+
+        margin-left:0;
+
+        margin-bottom:65px;
+
+        font-size:.82rem;
+    }
+
+    .simulation-method-heading{
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+
+        margin-bottom:35px;
+    }
+
+    .simulation-method-title{
+
+        font-size:2rem;
+    }
+
+
+    /* MATERIALS */
+
+    .simulation-material-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .simulation-material-column,
+    .simulation-material-column:first-child,
+    .simulation-material-column:last-child{
+
+        padding:
+            40px 0;
+
+        border-right:none;
+
+        border-bottom:1px solid var(--line);
+    }
+
+    .simulation-material-column:last-child{
+
+        border-bottom:none;
+    }
+
+    .simulation-material-name{
+
+        font-size:1.4rem;
+    }
+
+    .simulation-graph{
+
+        margin-bottom:50px;
+    }
+
+    .simulation-graph-caption{
+
+        flex-direction:row;
+
+        align-items:flex-start;
+    }
+
+    .simulation-graph-caption span:last-child{
+
+        text-align:right;
+    }
+
+
+    /* TRANSITION */
+
+    .simulation-transition{
+
+        grid-template-columns:
+            1fr;
+
+        gap:20px;
+
+        margin:90px 0;
+    }
+
+    .simulation-transition-line{
+
+        width:100%;
+    }
+
+
+    /* AI NOTE */
+
+    .simulation-ai-note{
+
+        width:100%;
+
+        margin-left:0;
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+
+        margin-bottom:80px;
+    }
+
+@media(max-width:900px){
+
+    nav{
+        padding:20px;
+    }
+
+    .nav-right{
+        gap:15px;
+    }
+
+    .nav-links{
+
+        position:fixed;
+
+        top:70px;
+
+        left:20px;
+        right:20px;
+
+        display:none;
+
+        flex-direction:column;
+
+        padding:25px;
+
+        background:var(--bg);
+
+        border:1px solid var(--line);
+
+        gap:22px;
+    }
+
+    .nav-links.open{
+        display:flex;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .hero-title{
+        font-size:
+            clamp(4rem,18vw,8rem);
+    }
+
+    .hero-title .last{
+        margin-left:5vw;
+    }
+
+    .hero-subtitle{
+        grid-template-columns:1fr;
+        margin-top:50px;
+    }
+
+    .hero-info{
+        flex-wrap:wrap;
+        gap:25px;
+    }
+
+    .about-top{
+        display:block;
+    }
+
+    .about-top-copy{
+        margin-top:25px;
+    }
+
+    .about-grid{
+        grid-template-columns:1fr;
+        gap:60px;
+    }
+
+    .about-photo{
+        position:relative;
+        top:auto;
+        max-width:450px;
+    }
+
+    .project-header{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+
+    .project-meta{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .meta-item:nth-child(2){
+        border-right:0;
+    }
+
+    .work-heading{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .featured-info{
+        grid-template-columns:
+            55px 1fr;
+    }
+
+    .featured-type{
+        display:none;
+    }
+
+    .other-projects{
+        grid-template-columns:1fr;
+    }
+
+    .story-heading{
+        grid-template-columns:
+            60px 1fr;
+    }
+
+    .story-text{
+        margin-left:100px;
+    }
+
+    .concept-content{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .concept-content .story-text{
+        margin-left:0;
+    }
+
+    .materials-grid{
+        grid-template-columns:1fr;
+    }
+
+    .material-card-wide{
+        grid-column:auto;
+    }
+
+    .materials-intro{
+        margin-left:100px;
+    }
+
+    .passive-intro{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+    .passive-drawings{
+        grid-template-columns:1fr;
+    }
+
+    .passive-drawing-wide{
+        grid-column:auto;
+    }
+
+    .passive-drawing-wide .passive-drawing-image{
+        height:500px;
+    }
+
+    .passive-drawing:not(.passive-drawing-wide) .passive-drawing-image{
+        height:400px;
+    }
+
+    .simulation-results{
+        grid-template-columns:1fr;
+    }
+
+    .simulation-card-wide{
+        grid-column:auto;
+    }
+
+    .simulation-card-wide .simulation-image{
+        height:500px;
+    }
+
+    .simulation-card:not(.simulation-card-wide) .simulation-image{
+        height:400px;
+    }
+
+    .simulation-intro{
+        margin-left:100px;
+    }
+
+    .simulation-conclusion{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .environment-intro{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+    .final-renders-intro{
+        margin-left:100px;
+    }
+
+    .professional-heading{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .professional-grid{
+        grid-template-columns:1fr;
+    }
+
+    .professional-experience{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .research-grid{
+        grid-template-columns:1fr;
+        gap:60px;
+    }
+
+    .cv-preview{
+        height:550px;
+    }
+
+    .site-plan-media{
+        height:600px;
+    }
+
+    .site-plan-rotation{
+        transform:
+            rotate(-90deg)
+            scale(1.45);
+    }
+
+    .north-arrow{
+        top:20px;
+        right:22px;
+    }
+
+    .perspective-layout{
+        grid-template-columns:1fr;
+    }
+
+    .perspective-empty{
+        min-height:250px;
+        padding:30px;
+    }
+
+@media(max-width:600px){
+
+    section{
+        padding:
+            100px 20px;
+    }
+
+    .socials{
+        display:none;
+    }
+
+    .hero-top{
+        margin-bottom:40px;
+    }
+
+    .hero-subtitle{
+        margin-top:45px;
+    }
+
+    .hero-info{
+        display:grid;
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .hero-red-line{
+        display:none;
+    }
+
+    .scroll-indicator{
+        display:none;
+    }
+
+    .project-meta{
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .split-media{
+        grid-template-columns:1fr;
+    }
+
+    .story-heading{
+        grid-template-columns:1fr;
+    }
+
+    .story-text{
+        margin-left:0;
+    }
+
+    .skills{
+        grid-template-columns:1fr;
+    }
+
+    .profile-row{
+        grid-template-columns:1fr;
+        gap:8px;
+    }
+
+    .featured-image{
+        aspect-ratio:4/3;
+    }
+
+    .featured-project-arrow{
+        display:none;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .contact-title{
+        font-size:
+            clamp(4rem,20vw,7rem);
+    }
+
+    .cv-preview{
+        height:450px;
+    }
+
+    .professional-tagline{
+        font-size:2rem;
+    }
+
+    .professional-card-info{
+        grid-template-columns:45px 1fr;
+    }
+
+    .research-title{
+        font-size:
+            clamp(3.5rem,18vw,6rem);
+    }
+
+    .research-status{
+        align-items:flex-start;
+        gap:15px;
+        flex-direction:column;
+    }
+
+    .materials-intro{
+        margin-left:0;
+    }
+
+    .material-card-wide .material-image{
+        height:350px;
+    }
+
+    .material-card:not(.material-card-wide) .material-image{
+        height:300px;
+    }
+
+    .material-info{
+        grid-template-columns:1fr;
+    }
+
+    .site-plan-media{
+        height:500px;
+    }
+
+    .site-plan-rotation{
+        width:100%;
+        height:100%;
+        transform:
+            rotate(-90deg)
+            scale(1.35);
+    }
+
+    .north-arrow{
+        top:15px;
+        right:18px;
+        transform:scale(.85);
+        transform-origin:top right;
+    }
+
+    .passive-environment{
+        padding:
+            70px 20px;
+    }
+
+    .passive-drawing-wide .passive-drawing-image{
+        height:350px;
+    }
+
+    .passive-drawing:not(.passive-drawing-wide) .passive-drawing-image{
+        height:300px;
+    }
+
+    .passive-drawing-info{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .simulation-intro{
+        margin-left:0;
+    }
+
+    .simulation-card-wide .simulation-image{
+        height:350px;
+    }
+
+    .simulation-card:not(.simulation-card-wide) .simulation-image{
+        height:300px;
+    }
+
+    .simulation-info{
+        grid-template-columns:1fr;
+    }
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation:none!important;
+
+        transition:none!important;
+
+        scroll-behavior:auto!important;
+    }
+
+    .reveal{
+
+        opacity:1;
+
+        transform:none;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .portfolio-diaphragm-inline{
+        min-height:250px
+    }
+
+    .portfolio-diaphragm-svg{
+        width:88%
+    }
+
+    .portfolio-diaphragm-inline .pd-caption{
+        font-size:.45rem
+    }
+
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    .portfolio-diaphragm-inline .pd-ring,
+    .portfolio-diaphragm-inline .pd-blade{
+        animation:none
+    }
+
+}
+
 @media(max-width:600px){
 
     .pbs-header{
@@ -4688,229 +5079,6 @@ footer{
 
 }
 
-/* =========================================================
-   PROJECT 02 — URBAN PROJECT
-========================================================= */
-
-.urban-project-detail{
-    background:var(--bg);
-}
-
-
-/* =========================================================
-   OBJECTIVES
-========================================================= */
-
-.urban-objectives{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,minmax(0,1fr));
-
-    gap:0;
-
-    border-top:1px solid var(--line);
-
-    border-left:1px solid var(--line);
-
-}
-
-
-.urban-objective{
-
-    padding:35px;
-
-    border-right:1px solid var(--line);
-
-    border-bottom:1px solid var(--line);
-
-}
-
-
-.urban-objective-number{
-
-    font-family:var(--mono);
-
-    font-size:.58rem;
-
-    color:var(--red);
-
-    margin-bottom:35px;
-
-}
-
-
-.urban-objective h4{
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(1.6rem,3vw,3rem);
-
-    font-weight:500;
-
-    letter-spacing:-.045em;
-
-    margin-bottom:15px;
-
-}
-
-
-.urban-objective p{
-
-    max-width:430px;
-
-    font-size:.75rem;
-
-    line-height:1.8;
-
-    color:var(--muted);
-
-}
-
-
-/* =========================================================
-   ACTIONS
-========================================================= */
-
-.urban-actions{
-
-    border-top:1px solid var(--line);
-
-}
-
-
-.urban-action{
-
-    display:grid;
-
-    grid-template-columns:
-        100px 1fr;
-
-    gap:40px;
-
-    align-items:center;
-
-    padding:25px 0;
-
-    border-bottom:1px solid var(--line);
-
-}
-
-
-.urban-action span{
-
-    font-family:var(--mono);
-
-    font-size:.58rem;
-
-    color:var(--red);
-
-}
-
-
-.urban-action p{
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(1.1rem,2vw,1.8rem);
-
-    letter-spacing:-.025em;
-
-}
-
-
-/* =========================================================
-   MASTERPLAN
-========================================================= */
-
-.urban-masterplan .large-media{
-
-    background:#E8E7E2;
-
-}
-
-
-/* =========================================================
-   PROGRAMMING
-========================================================= */
-
-.urban-programming-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,minmax(0,1fr));
-
-    border-top:1px solid var(--line);
-
-    border-left:1px solid var(--line);
-
-}
-
-
-.urban-programming-item{
-
-    display:grid;
-
-    grid-template-columns:
-        70px 1fr;
-
-    gap:20px;
-
-    padding:22px 20px;
-
-    border-right:1px solid var(--line);
-
-    border-bottom:1px solid var(--line);
-
-}
-
-
-.urban-code{
-
-    font-family:var(--mono);
-
-    font-size:.58rem;
-
-    color:var(--red);
-
-}
-
-
-.urban-programme{
-
-    font-family:var(--display);
-
-    font-size:.95rem;
-
-}
-
-
-/* =========================================================
-   URBAN RENDERS
-========================================================= */
-
-.urban-renders .large-media{
-
-    margin-top:45px;
-
-}
-
-
-.urban-renders .split-media{
-
-    margin-top:0;
-
-}
-
-
-/* =========================================================
-   PROJECT 02 RESPONSIVE
-========================================================= */
-
 @media(max-width:900px){
 
     .urban-objectives{
@@ -4926,7 +5094,6 @@ footer{
     }
 
 }
-
 
 @media(max-width:650px){
 
@@ -4955,25 +5122,6 @@ footer{
 
 }
 
-/* =========================================================
-   PROJECT VIDEO
-========================================================= */
-
-.project-video {
-    width: 100%;
-    overflow: hidden;
-}
-
-.project-video video {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-/* =========================================================
-   MOBILE — PROJECT VIDEO
-========================================================= */
-
 @media (max-width: 768px) {
 
     .project-video {
@@ -4988,119 +5136,6 @@ footer{
     }
 
 }
-
-/* =========================================================
-   PROJECT 01 — SECTIONS + FACADE
-   2 × 2 GRID
-========================================================= */
-
-.project01-sections-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1fr);
-
-    column-gap:30px;
-    row-gap:70px;
-
-    width:100%;
-
-}
-
-
-/* =========================================================
-   EACH CELL
-========================================================= */
-
-.project01-section{
-
-    width:100%;
-    min-width:0;
-
-}
-
-
-/* =========================================================
-   LABEL
-========================================================= */
-
-.project01-section .project-section-label{
-
-    margin-bottom:18px;
-
-}
-
-
-/* =========================================================
-   MEDIA
-========================================================= */
-
-.project01-section .media{
-
-    width:100%;
-
-    overflow:hidden;
-
-}
-
-
-.project01-section .media img{
-
-    display:block;
-
-    width:100%;
-
-    height:auto;
-
-    max-width:100%;
-
-    object-fit:contain;
-
-    cursor:zoom-in;
-
-}
-
-
-/* =========================================================
-   FACADE TITLE
-========================================================= */
-
-.project01-facade-heading{
-
-    display:grid;
-
-    grid-template-columns:
-        55px 1fr;
-
-    align-items:start;
-
-    margin-bottom:25px;
-
-}
-
-
-/* On garde le style du titre 05,
-   mais sans prendre toute la largeur */
-
-.project01-facade-heading .story-index{
-
-    margin:0;
-
-}
-
-
-.project01-facade-heading .story-title{
-
-    margin:0;
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
 
 @media(max-width:600px){
 
@@ -5120,3 +5155,40 @@ footer{
     }
 
 }
+
+@media(max-width:900px){
+
+    .project03-plans{
+        grid-template-columns:1fr 1fr;
+        gap:20px;
+    }
+
+    .project03-renders{
+        grid-template-columns:1fr 1fr;
+        gap:20px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .project03-plans{
+        grid-template-columns:1fr;
+        gap:35px;
+    }
+
+    .project03-plan-third{
+        grid-column:auto;
+    }
+
+    .project03-renders{
+        grid-template-columns:1fr;
+        gap:35px;
+    }
+
+    .project03-section{
+        margin-top:60px;
+    }
+
+}
+
