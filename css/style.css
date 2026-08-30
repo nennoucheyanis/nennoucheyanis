@@ -3160,231 +3160,263 @@ section{
 }
 
 /* =========================================================
-   PROJECT 03 — INDIVIDUAL HOUSING
-   L2 ARCHITECTURAL PROJECT
+PROJECT 03 — INDIVIDUAL HOUSING
+L2 ARCHITECTURAL PROJECT
 ========================================================= */
 
 /* =========================================================
-   PROJECT 03 — GENERAL
+PROJECT 03 — GENERAL
 ========================================================= */
 
 .project03{
-    width:100%;
+width:100%;
 }
 
 /* =========================================================
-   PROJECT 03 — SITE
+PROJECT 03 — SITE
 ========================================================= */
 
 .project03-site{
-    width:100%;
-    margin-top:40px;
+width:100%;
+margin-top:40px;
 }
 
 .project03-site .media{
-    width:100%;
-    overflow:hidden;
+width:100%;
+overflow:hidden;
 }
 
 .project03-site .media img{
-    display:block;
-    width:100%;
-    height:auto;
-    max-width:100%;
-    object-fit:contain;
+display:block;
+width:100%;
+height:auto;
+max-width:100%;
+object-fit:contain;
 }
 
 /* =========================================================
-   PROJECT 03 — PLANS
+PROJECT 03 — PLANS
 ========================================================= */
 
 .project03-plans{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:30px;
-    width:100%;
-    margin-top:40px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+width:100%;
+margin-top:40px;
 }
 
-
-/* Premier et deuxième plans */
+/* =========================================================
+PROJECT 03 — PLAN 01 & PLAN 02
+========================================================= */
 
 .project03-plan{
-    width:100%;
-    min-width:0;
+width:100%;
+min-width:0;
 }
 
 .project03-plan .media{
-    width:100%;
-    overflow:hidden;
+width:100%;
+overflow:hidden;
 }
 
 .project03-plan .media img{
-    display:block;
-    width:100%;
-    height:auto;
-    max-width:100%;
-    object-fit:contain;
+display:block;
+width:100%;
+height:auto;
+max-width:100%;
+object-fit:contain;
 }
 
-
-/* Troisième plan */
+/* =========================================================
+PROJECT 03 — PLAN 03
+========================================================= */
 
 .project03-plan-third{
-    grid-column:1 / -1;
-    width:100%;
+grid-column:1 / -1;
+width:100%;
 }
 
 .project03-plan-third .media{
-    width:100%;
-    overflow:hidden;
+width:100%;
+overflow:hidden;
 }
 
 .project03-plan-third .media img{
-    display:block;
-    width:100%;
-    height:auto;
-    max-width:100%;
-    object-fit:contain;
+display:block;
+width:100%;
+height:auto;
+max-width:100%;
+object-fit:contain;
 }
 
-<!-- =========================================================
-     03 SECTION
-========================================================= -->
+/* =========================================================
+PROJECT 03 — SECTIONS
+========================================================= */
 
-<div class="project03-section">
-
-    <div class="story-heading reveal">
-
-        <div class="story-index">
-            03
-        </div>
-
-        <h3 class="story-title">
-            Sections
-        </h3>
-
-    </div>
-
-
-    <div class="project-section-label">
-        03.01 / Architectural sections
-    </div>
-
-
-    <div class="project03-sections-grid reveal">
-
-
-        <!-- COUPE 1 -->
-        <div class="project03-section-drawing">
-
-            <div class="media">
-
-                <img
-                    src="assets/Coupe1.png"
-                    alt="Architectural section 01"
-                    data-lightbox
-                >
-
-            </div>
-
-        </div>
-
-
-        <!-- COUPE 2 -->
-        <div class="project03-section-drawing">
-
-            <div class="media">
-
-                <img
-                    src="assets/Coupe2.png"
-                    alt="Architectural section 02"
-                    data-lightbox
-                >
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <div class="caption">
-
-        <span>
-            Architectural sections
-        </span>
-
-        <span>
-            Section studies
-        </span>
-
-    </div>
-
-</div>
+.project03-sections{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+width:100%;
+margin-top:80px;
+}
 
 /* =========================================================
-   PROJECT 03 — RENDERS
+PROJECT 03 — SECTION 01 & SECTION 02
+========================================================= */
+
+.project03-section{
+width:100%;
+min-width:0;
+}
+
+.project03-section .media{
+width:100%;
+overflow:hidden;
+}
+
+.project03-section .media img{
+display:block;
+width:100%;
+height:auto;
+max-width:100%;
+object-fit:contain;
+}
+
+/* =========================================================
+PROJECT 03 — RENDERS
 ========================================================= */
 
 .project03-renders{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:30px;
-    width:100%;
-    margin-top:40px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+width:100%;
+margin-top:40px;
 }
 
 .project03-render{
-    width:100%;
-    min-width:0;
+width:100%;
+min-width:0;
 }
 
 .project03-render .media{
-    width:100%;
-    overflow:hidden;
+width:100%;
+overflow:hidden;
 }
 
 .project03-render .media img{
-    display:block;
-    width:100%;
-    height:auto;
-    max-width:100%;
-    object-fit:cover;
+display:block;
+width:100%;
+height:auto;
+max-width:100%;
+object-fit:cover;
 }
 
 /* =========================================================
-   PROJECT 03 — LABELS
+PROJECT 03 — LABELS
 ========================================================= */
 
 .project03 .project-section-label{
-    margin-bottom:18px;
+margin-bottom:18px;
 }
 
 /* =========================================================
-   PROJECT 03 — CAPTIONS
+PROJECT 03 — CAPTIONS
 ========================================================= */
 
 .project03 .caption{
-    margin-top:15px;
+margin-top:15px;
 }
 
 /* =========================================================
-   PROJECT 03 — HOVER
+PROJECT 03 — HOVER
 ========================================================= */
 
 .project03 .media{
-    cursor:zoom-in;
+cursor:zoom-in;
 }
 
 .project03 .media img{
-    transition:transform .6s ease;
+transition:transform .6s ease;
 }
 
 .project03 .media:hover img{
-    transform:scale(1.01);
+transform:scale(1.01);
 }
+
+/* =========================================================
+PROJECT 03 — TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+```
+/* PLANS */
+
+.project03-plans{
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+
+/* SECTIONS */
+
+.project03-sections{
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+
+/* RENDERS */
+
+.project03-renders{
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+
+}
+
+/* =========================================================
+PROJECT 03 — MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+```
+/* PLANS */
+
+.project03-plans{
+    grid-template-columns:1fr;
+    gap:35px;
+}
+
+.project03-plan-third{
+    grid-column:auto;
+}
+
+
+/* SECTIONS */
+
+.project03-sections{
+    grid-template-columns:1fr;
+    gap:35px;
+    margin-top:60px;
+}
+
+
+/* RENDERS */
+
+.project03-renders{
+    grid-template-columns:1fr;
+    gap:35px;
+}
+
+
+}
+
 
 /* =========================================================
    RESEARCH
