@@ -4988,3 +4988,42 @@ footer{
     }
 
 }
+
+/* =========================================================
+   PROJECT 01 — SECTIONS
+   2 × 2 GRID
+========================================================= */
+
+.project01-sections-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    width:100%;
+}
+
+.project01-section{
+    width:100%;
+    min-width:0;
+}
+
+.project01-section img{
+    display:block;
+    width:100%;
+    height:auto;
+    max-width:100%;
+    object-fit:contain;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .project01-sections-grid{
+        grid-template-columns:1fr;
+        gap:35px;
+    }
+
+}
