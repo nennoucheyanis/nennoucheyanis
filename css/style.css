@@ -3356,22 +3356,23 @@ PROJECT 03 — SITE
 
 
 /* =========================================================
-   PLAN 01 — COMPACT
+   PLAN 01 — FULL WIDTH / COMPACT
 ========================================================= */
 
 .project03-plan-01 .media{
-    aspect-ratio:18 / 7;
+    aspect-ratio:24 / 7;
 }
 
 
 /* =========================================================
-   PLAN 02 + PLAN 03 — TALLER
+   PLAN 02 + PLAN 03 — TALL
 ========================================================= */
 
 .project03-plan-02 .media,
 .project03-plan-03 .media{
     aspect-ratio:4 / 5;
 }
+
 
 /* =========================================================
    PLAN IMAGES
@@ -3385,9 +3386,8 @@ PROJECT 03 — SITE
 
     display:block;
 
-    transform:rotate(-90deg);
+    transform:rotate(-90deg) scale(1.18);
 }
-
 
 /* =========================================================
    CAPTION
