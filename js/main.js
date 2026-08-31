@@ -116,26 +116,35 @@ pageSections.forEach(
 
 
 /* =========================================================
-   ECO DÔME NAVIGATION
+   PROJECT NAVIGATION (generic — works for all projects)
 ========================================================= */
 
-const featuredProject =
-    document.querySelector(".featured-project");
+document
+    .querySelectorAll(".featured-project,.project-card")
+    .forEach(card=>{
 
+        const targetId =
+            card.dataset.target;
 
-if(featuredProject){
+        if(!targetId)
+            return;
 
-    featuredProject.addEventListener("click",()=>{
+        card.addEventListener("click",()=>{
 
-        document
-            .getElementById("eco-project")
-            .scrollIntoView({
-                behavior:"smooth"
-            });
+            const target =
+                document.getElementById(targetId);
+
+            if(target){
+
+                target.scrollIntoView({
+                    behavior:"smooth"
+                });
+
+            }
+
+        });
 
     });
-
-}
 
 
 /* =========================================================
@@ -594,4 +603,3 @@ if(
     update();
 
 })();
-
