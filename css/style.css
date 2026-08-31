@@ -3269,19 +3269,109 @@ PROJECT 03 — SITE
 }
 
 /* =========================================================
-PROJECT 03 — PLANS
+   PROJECT 03 — PLANS
 ========================================================= */
-
-.project03-plans-block{
-    margin-top:80px;
-}
 
 .project03-plans{
     display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
     gap:0;
+
     border-top:1px solid var(--line);
     border-left:1px solid var(--line);
+}
+
+
+/* =========================================================
+   PLAN 01 — FULL WIDTH
+========================================================= */
+
+.project03-plan-01{
+    grid-column:1 / -1;
+}
+
+
+/* =========================================================
+   ALL PLANS
+========================================================= */
+
+.project03-plan{
+    min-width:0;
+    padding:25px;
+
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
+
+
+/* =========================================================
+   PLAN MEDIA
+========================================================= */
+
+.project03-plan .media{
+    position:relative;
+
+    margin-top:25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#E8E7E2;
+
+    overflow:hidden;
+}
+
+
+/* PLAN 01 */
+
+.project03-plan-01 .media{
+    aspect-ratio:16/9;
+}
+
+
+/* PLAN 02 + PLAN 03 */
+
+.project03-plan-02 .media,
+.project03-plan-03 .media{
+    aspect-ratio:4/3;
+}
+
+
+/* =========================================================
+   PLAN IMAGES — ROTATION -90°
+========================================================= */
+
+.project03-plan .media img{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    transform:rotate(-90deg);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+    .project03-plans{
+        grid-template-columns:1fr;
+    }
+
+    .project03-plan-01{
+        grid-column:auto;
+    }
+
+    .project03-plan-01 .media,
+    .project03-plan-02 .media,
+    .project03-plan-03 .media{
+        aspect-ratio:4/3;
+    }
+
 }
 
 /* =========================================================
