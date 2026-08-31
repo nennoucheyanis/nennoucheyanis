@@ -3235,28 +3235,7 @@ PROJECT 03 — SECTION LABEL
 ========================================================= */
 
 .project03 .project-section-label{
-display:flex;
-align-items:center;
-gap:15px;
-
-
 margin-bottom:18px;
-
-font-family:var(--mono);
-font-size:.58rem;
-text-transform:uppercase;
-letter-spacing:.08em;
-
-color:var(--muted);
-
-
-}
-
-.project03 .project-section-label::before{
-content:"";
-width:28px;
-height:1px;
-background:var(--red);
 }
 
 /* =========================================================
@@ -3330,6 +3309,17 @@ border-bottom:1px solid var(--line);
 
 .project03-plan .media{
 margin-top:25px;
+aspect-ratio:4/3;
+background:#E8E7E2;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.project03-plan .media img{
+width:100%;
+height:100%;
+object-fit:contain;
 }
 
 /* =========================================================
@@ -3352,6 +3342,17 @@ border-bottom:1px solid var(--line);
 
 .project03-plan-third .media{
 margin-top:25px;
+aspect-ratio:16/9;
+background:#E8E7E2;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.project03-plan-third .media img{
+width:100%;
+height:100%;
+object-fit:contain;
 }
 
 /* =========================================================
@@ -3424,6 +3425,13 @@ background:#E8E7E2;
 
 .project03-render .media img{
 object-fit:cover;
+filter:grayscale(70%);
+transition:transform .8s ease,filter .5s ease;
+}
+
+.project03-render:hover .media img{
+transform:scale(1.035);
+filter:grayscale(0%);
 }
 
 /* =========================================================
@@ -4491,17 +4499,25 @@ footer{
 }
 
 /* =========================================================
-   RESPONSIVE — TABLET
+   RESPONSIVE / ADAPTIVE RULES
+   Centralized at the end of the stylesheet
 ========================================================= */
 
-/* =========================================================
-   MOBILE — SIMULATION
-========================================================= */
+@media(pointer:fine){
+
+    body.has-cursor .cursor,
+    body.has-cursor .cursor-ring{
+        opacity:1;
+    }
+
+}
 
 /* =====================================================
        FULL-ENVELOPE GRAPHS
        MOBILE = 1 COLUMN
     ===================================================== */
+
+@media(max-width:600px){
 
     .simulation-full-graphs{
 
@@ -4547,14 +4563,12 @@ footer{
 
 }
 
-/* =========================================================
-   MOBILE — 900px
-========================================================= */
-
 /* =====================================================
        TABLET — FULL ENVELOPE
        Les deux graphiques restent côte à côte
     ===================================================== */
+
+@media(max-width:900px){
 
     .simulation-full-graphs{
 
@@ -4566,14 +4580,12 @@ footer{
 
 }
 
-/* =========================================================
-   MOBILE — 600px
-========================================================= */
-
 /* =====================================================
        MOBILE — FULL ENVELOPE
        Les images passent l'une sous l'autre
     ===================================================== */
+
+@media(max-width:600px){
 
     .simulation-full-graphs{
 
@@ -4596,44 +4608,6 @@ footer{
     .perspective-empty{
         min-height:220px;
         padding:25px;
-    }
-
-}
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-/* =========================================================
-   PROJECT 02 RESPONSIVE
-========================================================= */
-
-/* =========================================================
-   MOBILE — PROJECT VIDEO
-========================================================= */
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-/* =========================================================
-   PROJECT 03 — TABLET
-========================================================= */
-
-/* =========================================================
-   PROJECT 03 — MOBILE
-========================================================= */
-
-/* =========================================================
-   RESPONSIVE / ADAPTIVE RULES
-   Centralized at the end of the stylesheet
-========================================================= */
-
-@media(pointer:fine){
-
-    body.has-cursor .cursor,
-    body.has-cursor .cursor-ring{
-        opacity:1;
     }
 
 }
@@ -4830,6 +4804,8 @@ footer{
 
         margin-bottom:80px;
     }
+
+}
 
 @media(max-width:900px){
 
@@ -5073,6 +5049,8 @@ footer{
         padding:30px;
     }
 
+}
+
 @media(max-width:600px){
 
     section{
@@ -5241,6 +5219,8 @@ footer{
     .simulation-info{
         grid-template-columns:1fr;
     }
+
+}
 
 @media(prefers-reduced-motion:reduce){
 
@@ -5431,4 +5411,3 @@ footer{
     }
 
 }
-
