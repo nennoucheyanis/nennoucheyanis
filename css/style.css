@@ -3209,33 +3209,6 @@ PROJECT 03 — INTRO / HEADER
 }
 
 /* =========================================================
-PROJECT 03 — BLOCK HEADING (Site / Plans / Sections / Renders)
-Même logique que .story-heading + .story-title ailleurs
-sur le site : gros titre en gras au-dessus de chaque bloc.
-========================================================= */
-
-.project03-block-heading{
-    display:grid;
-    grid-template-columns:120px 1fr;
-    gap:40px;
-    margin-bottom:35px;
-}
-
-.project03-block-index{
-    font-family:var(--mono);
-    font-size:.63rem;
-    color:var(--red);
-}
-
-.project03-block-title{
-    font-family:var(--display);
-    font-weight:500;
-    font-size:clamp(1.8rem,3.5vw,3.5rem);
-    line-height:.95;
-    letter-spacing:-.04em;
-}
-
-/* =========================================================
 PROJECT 03 — GENERAL MEDIA
 ========================================================= */
 
@@ -3432,6 +3405,147 @@ PROJECT 03 — RENDERS
     filter:grayscale(0%);
 }
 
+/* =========================================================
+PROJECT 03 — RENDER LABEL
+========================================================= */
+
+.project03-render .project-section-label{
+    margin-bottom:0;
+}
+
+/* =========================================================
+PROJECT 03 — TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+    /* HEADER */
+
+    .project03-header{
+        grid-template-columns:80px 1fr;
+        gap:25px;
+    }
+
+    /* SITE */
+
+    .project03-site{
+        padding-top:55px;
+    }
+
+    /* PLANS */
+
+    .project03-plans-block{
+        margin-top:60px;
+    }
+
+    .project03-plan,
+    .project03-plan-third{
+        padding:20px;
+    }
+
+    /* SECTIONS */
+
+    .project03-sections-block{
+        margin-top:60px;
+    }
+
+    .project03-section{
+        padding:20px;
+    }
+
+    /* RENDERS */
+
+    .project03-renders-block{
+        margin-top:60px;
+    }
+
+    .project03-renders{
+        gap:20px;
+    }
+
+    .project03-plans,
+    .project03-renders{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+/* =========================================================
+PROJECT 03 — MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    /* HEADER */
+
+    .project03-header{
+        display:block;
+        padding:25px 0 35px;
+    }
+
+    .project03-index{
+        margin-bottom:20px;
+    }
+
+    .project03-title{
+        font-size:clamp(2.5rem,12vw,4rem);
+    }
+
+    .project03-meta{
+        grid-column:auto;
+        margin-top:20px;
+    }
+
+    /* SITE */
+
+    .project03-site{
+        padding-top:45px;
+    }
+
+    /* PLANS */
+
+    .project03-plans-block{
+        margin-top:50px;
+    }
+
+    .project03-plans{
+        grid-template-columns:1fr;
+    }
+
+    .project03-plan,
+    .project03-plan-third{
+        padding:20px;
+    }
+
+    .project03-plan-third{
+        grid-column:auto;
+    }
+
+    /* SECTIONS */
+
+    .project03-sections-block{
+        margin-top:50px;
+    }
+
+    .project03-sections{
+        grid-template-columns:1fr;
+    }
+
+    .project03-section{
+        padding:20px;
+        margin-top:60px;
+    }
+
+    /* RENDERS */
+
+    .project03-renders-block{
+        margin-top:50px;
+    }
+
+    .project03-renders{
+        grid-template-columns:1fr;
+        gap:45px;
+    }
+}
 /* =========================================================
 PROJECT 03 — RENDER LABEL
 ========================================================= */
