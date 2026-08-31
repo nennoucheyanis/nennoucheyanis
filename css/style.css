@@ -3165,8 +3165,8 @@ L2 ARCHITECTURAL PROJECT
 ========================================================= */
 
 .project03{
-width:100%;
-background:var(--bg);
+    width:100%;
+    background:var(--bg);
 }
 
 /* =========================================================
@@ -3174,38 +3174,65 @@ PROJECT 03 — INTRO / HEADER
 ========================================================= */
 
 .project03-header{
-display:grid;
-grid-template-columns:120px 1fr;
-gap:40px;
-padding:35px 0 45px;
-border-top:1px solid var(--line);
-border-bottom:1px solid var(--line);
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:40px;
+    padding:35px 0 45px;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
 }
 
 .project03-index{
-font-family:var(--mono);
-font-size:.58rem;
-color:var(--red);
-padding-top:8px;
+    font-family:var(--mono);
+    font-size:.58rem;
+    color:var(--red);
+    padding-top:8px;
 }
 
 .project03-title{
-font-family:var(--display);
-font-size:clamp(2.5rem,6vw,6rem);
-font-weight:500;
-letter-spacing:-.055em;
-line-height:.95;
-margin:0;
+    font-family:var(--display);
+    font-size:clamp(2.5rem,6vw,6rem);
+    font-weight:500;
+    letter-spacing:-.055em;
+    line-height:.95;
+    margin:0;
 }
 
 .project03-meta{
-grid-column:2;
-margin-top:15px;
-font-family:var(--mono);
-font-size:.58rem;
-text-transform:uppercase;
-letter-spacing:.08em;
-color:var(--muted);
+    grid-column:2;
+    margin-top:15px;
+    font-family:var(--mono);
+    font-size:.58rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+}
+
+/* =========================================================
+PROJECT 03 — BLOCK HEADING (Site / Plans / Sections / Renders)
+Même logique que .story-heading + .story-title ailleurs
+sur le site : gros titre en gras au-dessus de chaque bloc.
+========================================================= */
+
+.project03-block-heading{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:40px;
+    margin-bottom:35px;
+}
+
+.project03-block-index{
+    font-family:var(--mono);
+    font-size:.63rem;
+    color:var(--red);
+}
+
+.project03-block-title{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(1.8rem,3.5vw,3.5rem);
+    line-height:.95;
+    letter-spacing:-.04em;
 }
 
 /* =========================================================
@@ -3213,29 +3240,32 @@ PROJECT 03 — GENERAL MEDIA
 ========================================================= */
 
 .project03 .media{
-width:100%;
-overflow:hidden;
+    width:100%;
+    overflow:hidden;
+    cursor:zoom-in;
 }
 
 .project03 .media img{
-display:block;
-width:100%;
-max-width:100%;
-height:auto;
-object-fit:contain;
-transition:transform .6s ease;
+    display:block;
+    width:100%;
+    max-width:100%;
+    height:auto;
+    object-fit:contain;
+    transition:transform .6s ease;
 }
 
 .project03 .media:hover img{
-transform:scale(1.01);
+    transform:scale(1.01);
 }
 
 /* =========================================================
 PROJECT 03 — SECTION LABEL
+(hérite du style de base .project-section-label : rouge,
+mono, sans icône — cohérent avec le reste du site)
 ========================================================= */
 
 .project03 .project-section-label{
-margin-bottom:18px;
+    margin-bottom:18px;
 }
 
 /* =========================================================
@@ -3243,17 +3273,12 @@ PROJECT 03 — CAPTION
 ========================================================= */
 
 .project03 .caption{
-margin:15px 0 0;
-
-
-font-family:var(--mono);
-font-size:.55rem;
-text-transform:uppercase;
-letter-spacing:.06em;
-
-color:var(--muted);
-
-
+    margin:15px 0 0;
+    font-family:var(--mono);
+    font-size:.55rem;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--muted);
 }
 
 /* =========================================================
@@ -3261,33 +3286,29 @@ PROJECT 03 — SITE
 ========================================================= */
 
 .project03-site{
-padding-top:70px;
+    padding-top:70px;
 }
 
 .project03-site .media{
-border-top:1px solid var(--line);
-border-bottom:1px solid var(--line);
-background:#E8E7E2;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:#E8E7E2;
 }
 
 /* =========================================================
 PROJECT 03 — PLANS
 ========================================================= */
 
+.project03-plans-block{
+    margin-top:80px;
+}
+
 .project03-plans{
-display:grid;
-grid-template-columns:
-repeat(2,minmax(0,1fr));
-
-
-gap:0;
-
-margin-top:80px;
-
-border-top:1px solid var(--line);
-border-left:1px solid var(--line);
-
-
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0;
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
 }
 
 /* =========================================================
@@ -3295,84 +3316,69 @@ PROJECT 03 — PLAN 01 / PLAN 02
 ========================================================= */
 
 .project03-plan{
-width:100%;
-min-width:0;
-
-
-padding:25px;
-
-border-right:1px solid var(--line);
-border-bottom:1px solid var(--line);
-
-
+    width:100%;
+    min-width:0;
+    padding:25px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
 }
 
 .project03-plan .media{
-margin-top:25px;
-aspect-ratio:4/3;
-background:#E8E7E2;
-display:flex;
-align-items:center;
-justify-content:center;
+    margin-top:25px;
+    aspect-ratio:4/3;
+    background:#E8E7E2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .project03-plan .media img{
-width:100%;
-height:100%;
-object-fit:contain;
+    width:100%;
+    height:100%;
+    object-fit:contain;
 }
 
 /* =========================================================
-PROJECT 03 — PLAN 03
+PROJECT 03 — PLAN 03 (FULL WIDTH)
 ========================================================= */
 
 .project03-plan-third{
-grid-column:1 / -1;
-
-
-width:100%;
-
-padding:25px;
-
-border-right:1px solid var(--line);
-border-bottom:1px solid var(--line);
-
-
+    grid-column:1 / -1;
+    width:100%;
+    padding:25px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
 }
 
 .project03-plan-third .media{
-margin-top:25px;
-aspect-ratio:16/9;
-background:#E8E7E2;
-display:flex;
-align-items:center;
-justify-content:center;
+    margin-top:25px;
+    aspect-ratio:16/9;
+    background:#E8E7E2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .project03-plan-third .media img{
-width:100%;
-height:100%;
-object-fit:contain;
+    width:100%;
+    height:100%;
+    object-fit:contain;
 }
 
 /* =========================================================
 PROJECT 03 — SECTIONS
 ========================================================= */
 
+.project03-sections-block{
+    margin-top:80px;
+}
+
 .project03-sections{
-display:grid;
-grid-template-columns:
-repeat(2,minmax(0,1fr));
-
-
-gap:0;
-
-margin-top:80px;
-
-border-top:1px solid var(--line);
-border-left:1px solid var(--line);
-
-
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0;
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
 }
 
 /* =========================================================
@@ -3380,58 +3386,50 @@ PROJECT 03 — SECTION 01 / SECTION 02
 ========================================================= */
 
 .project03-section{
-width:100%;
-min-width:0;
-
-
-padding:25px;
-
-border-right:1px solid var(--line);
-border-bottom:1px solid var(--line);
-
-
+    width:100%;
+    min-width:0;
+    padding:25px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
 }
 
 .project03-section .media{
-margin-top:25px;
+    margin-top:25px;
 }
 
 /* =========================================================
 PROJECT 03 — RENDERS
 ========================================================= */
 
+.project03-renders-block{
+    margin-top:80px;
+}
+
 .project03-renders{
-display:grid;
-grid-template-columns:
-repeat(2,minmax(0,1fr));
-
-
-gap:30px;
-
-margin-top:80px;
-
-
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:30px;
 }
 
 .project03-render{
-width:100%;
-min-width:0;
+    width:100%;
+    min-width:0;
 }
 
 .project03-render .media{
-margin-top:25px;
-background:#E8E7E2;
+    margin-top:25px;
+    background:#E8E7E2;
 }
 
 .project03-render .media img{
-object-fit:cover;
-filter:grayscale(70%);
-transition:transform .8s ease,filter .5s ease;
+    object-fit:cover;
+    filter:grayscale(70%);
+    transition:transform .8s ease,filter .5s ease;
 }
 
 .project03-render:hover .media img{
-transform:scale(1.035);
-filter:grayscale(0%);
+    transform:scale(1.035);
+    filter:grayscale(0%);
 }
 
 /* =========================================================
@@ -3439,15 +3437,7 @@ PROJECT 03 — RENDER LABEL
 ========================================================= */
 
 .project03-render .project-section-label{
-margin-bottom:0;
-}
-
-/* =========================================================
-PROJECT 03 — IMAGE HOVER
-========================================================= */
-
-.project03 .media{
-cursor:zoom-in;
+    margin-bottom:0;
 }
 
 /* =========================================================
@@ -3456,53 +3446,61 @@ PROJECT 03 — TABLET
 
 @media(max-width:900px){
 
+    /* HEADER */
 
-/* HEADER */
+    .project03-header{
+        grid-template-columns:80px 1fr;
+        gap:25px;
+    }
 
-.project03-header{
-    grid-template-columns:80px 1fr;
-    gap:25px;
-}
+    /* BLOCK HEADING */
 
+    .project03-block-heading{
+        grid-template-columns:80px 1fr;
+        gap:25px;
+    }
 
-/* SITE */
+    /* SITE */
 
-.project03-site{
-    padding-top:55px;
-}
+    .project03-site{
+        padding-top:55px;
+    }
 
+    /* PLANS */
 
-/* PLANS */
+    .project03-plans-block{
+        margin-top:60px;
+    }
 
-.project03-plans{
-    margin-top:60px;
-}
+    .project03-plan,
+    .project03-plan-third{
+        padding:20px;
+    }
 
-.project03-plan,
-.project03-plan-third{
-    padding:20px;
-}
+    /* SECTIONS */
 
+    .project03-sections-block{
+        margin-top:60px;
+    }
 
-/* SECTIONS */
+    .project03-section{
+        padding:20px;
+    }
 
-.project03-sections{
-    margin-top:60px;
-}
+    /* RENDERS */
 
-.project03-section{
-    padding:20px;
-}
+    .project03-renders-block{
+        margin-top:60px;
+    }
 
+    .project03-renders{
+        gap:20px;
+    }
 
-/* RENDERS */
-
-.project03-renders{
-    margin-top:60px;
-    gap:20px;
-}
-
-
+    .project03-plans,
+    .project03-renders{
+        grid-template-columns:1fr 1fr;
+    }
 }
 
 /* =========================================================
@@ -3511,72 +3509,83 @@ PROJECT 03 — MOBILE
 
 @media(max-width:600px){
 
+    /* HEADER */
 
-/* HEADER */
+    .project03-header{
+        display:block;
+        padding:25px 0 35px;
+    }
 
-.project03-header{
-    display:block;
-    padding:25px 0 35px;
-}
+    .project03-index{
+        margin-bottom:20px;
+    }
 
-.project03-index{
-    margin-bottom:20px;
-}
+    .project03-title{
+        font-size:clamp(2.5rem,12vw,4rem);
+    }
 
-.project03-title{
-    font-size:clamp(2.5rem,12vw,4rem);
-}
+    .project03-meta{
+        grid-column:auto;
+        margin-top:20px;
+    }
 
-.project03-meta{
-    margin-top:20px;
-}
+    /* BLOCK HEADING */
 
+    .project03-block-heading{
+        grid-template-columns:60px 1fr;
+        gap:15px;
+    }
 
-/* SITE */
+    /* SITE */
 
-.project03-site{
-    padding-top:45px;
-}
+    .project03-site{
+        padding-top:45px;
+    }
 
+    /* PLANS */
 
-/* PLANS */
+    .project03-plans-block{
+        margin-top:50px;
+    }
 
-.project03-plans{
-    grid-template-columns:1fr;
-    margin-top:50px;
-}
+    .project03-plans{
+        grid-template-columns:1fr;
+    }
 
-.project03-plan,
-.project03-plan-third{
-    padding:20px;
-}
+    .project03-plan,
+    .project03-plan-third{
+        padding:20px;
+    }
 
-.project03-plan-third{
-    grid-column:auto;
-}
+    .project03-plan-third{
+        grid-column:auto;
+    }
 
+    /* SECTIONS */
 
-/* SECTIONS */
+    .project03-sections-block{
+        margin-top:50px;
+    }
 
-.project03-sections{
-    grid-template-columns:1fr;
-    margin-top:50px;
-}
+    .project03-sections{
+        grid-template-columns:1fr;
+    }
 
-.project03-section{
-    padding:20px;
-}
+    .project03-section{
+        padding:20px;
+        margin-top:60px;
+    }
 
+    /* RENDERS */
 
-/* RENDERS */
+    .project03-renders-block{
+        margin-top:50px;
+    }
 
-.project03-renders{
-    grid-template-columns:1fr;
-    gap:45px;
-    margin-top:50px;
-}
-
-
+    .project03-renders{
+        grid-template-columns:1fr;
+        gap:45px;
+    }
 }
 
 
