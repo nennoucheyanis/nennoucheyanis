@@ -3356,39 +3356,42 @@ PROJECT 03 — SITE
 
 
 /* =========================================================
-   PLAN 01 — FULL WIDTH / COMPACT
+   PLAN 01 — FULL WIDTH
 ========================================================= */
 
 .project03-plan-01 .media{
     aspect-ratio:24 / 7;
 }
 
+.project03-plan-01 .media img{
+    transform:rotate(-90deg) scale(1.50);
+}
+
 
 /* =========================================================
-   PLAN 02 + PLAN 03 — TALL
+   PLAN 02 — LEFT / HALF WIDTH
 ========================================================= */
 
-.project03-plan-02 .media,
+.project03-plan-02 .media{
+    aspect-ratio:4 / 5;
+}
+
+.project03-plan-02 .media img{
+    transform:rotate(-90deg) scale(1.20);
+}
+
+
+/* =========================================================
+   PLAN 03 — RIGHT / HALF WIDTH
+========================================================= */
+
 .project03-plan-03 .media{
     aspect-ratio:4 / 5;
 }
 
-
-/* =========================================================
-   PLAN IMAGES
-========================================================= */
-
-.project03-plan .media img{
-    width:100%;
-    height:100%;
-
-    object-fit:contain;
-
-    display:block;
-
-    transform:rotate(-90deg) scale(1.30);
+.project03-plan-03 .media img{
+    transform:rotate(-90deg) scale(1.25);
 }
-
 /* =========================================================
    CAPTION
 ========================================================= */
