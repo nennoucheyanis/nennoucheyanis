@@ -157,6 +157,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     /* =====================================================
        SHOW ACADEMICAL VIEW
+       (aligned on PROFESSIONAL WORK behavior:
+        scroll to the section itself, not window top)
     ===================================================== */
 
     function showAcademicView(viewName){
@@ -182,15 +184,24 @@ document.addEventListener("DOMContentLoaded",()=>{
         target.hidden = false;
 
 
-        /* Go to the top of the page */
+        /* Scroll to the section containing this view,
+           same pattern as showProfessionalView() */
 
-        window.scrollTo({
+        const section =
+            target.closest("section") ||
+            academicIndex.closest("section");
 
-            top:0,
+        if(section){
 
-            behavior:"smooth"
+            section.scrollIntoView({
 
-        });
+                behavior:"smooth",
+
+                block:"start"
+
+            });
+
+        }
 
     }
 
@@ -224,6 +235,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     /* =====================================================
        BACK TO ACADEMICAL WORKS
+       (now reads the target from the button, same
+        flexibility as PROFESSIONAL WORK back buttons —
+        falls back to "index" if not specified)
     ===================================================== */
 
     document
@@ -236,8 +250,12 @@ document.addEventListener("DOMContentLoaded",()=>{
                 "click",
                 ()=>{
 
+                    const target =
+                        button.dataset
+                            .academicBack || "index";
+
                     showAcademicView(
-                        "index"
+                        target
                     );
 
                 }
