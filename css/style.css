@@ -3958,7 +3958,7 @@ PROJECT 03 — MOBILE
 }
 
 /* =========================================================
-   PROFESSIONAL WORK
+   PROFESSIONAL WORK — INDEX
 ========================================================= */
 
 #professional-work{
@@ -3966,12 +3966,17 @@ PROJECT 03 — MOBILE
     color:var(--text);
 }
 
+
+/* =========================================================
+   PROFESSIONAL — INTRODUCTION
+========================================================= */
+
 .professional-heading{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:80px;
     align-items:end;
-    margin-bottom:100px;
+    margin-bottom:110px;
 }
 
 .professional-intro{
@@ -3993,96 +3998,138 @@ PROJECT 03 — MOBILE
     color:var(--red);
 }
 
-.professional-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:25px;
-}
 
-.professional-card{
-    position:relative;
-    background:var(--bg-soft);
-    border:1px solid var(--line);
-    overflow:hidden;
-}
+/* =========================================================
+   PROFESSIONAL — EXPERIENCE INDEX
+========================================================= */
 
-.professional-card-image{
-    position:relative;
-    aspect-ratio:4/3;
-    overflow:hidden;
-    background:#D8D7D2;
-}
-
-.professional-card-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    filter:grayscale(70%);
-    transition:transform .8s ease,filter .5s ease;
-}
-
-.professional-card:hover .professional-card-image img{
-    transform:scale(1.035);
-    filter:grayscale(0%);
-}
-
-.professional-card-image::after{
-    content:"";
-    position:absolute;
-    inset:13px;
-    border:1px solid rgba(17,17,17,.18);
-    transition:border-color .3s ease;
-    pointer-events:none;
-}
-
-.professional-card:hover .professional-card-image::after{
-    border-color:var(--red);
-}
-
-.professional-card-label{
-    position:absolute;
-    top:25px;
-    left:25px;
-    z-index:2;
-    font-family:var(--mono);
-    font-size:.58rem;
-    letter-spacing:.1em;
-    color:white;
-    background:rgba(10,10,10,.6);
-    padding:8px 11px;
-}
-
-.professional-card-info{
-    display:grid;
-    grid-template-columns:55px 1fr;
-    gap:15px;
-    padding:20px;
+.professional-index{
     border-top:1px solid var(--line);
 }
 
-.professional-card-number{
+
+/* =========================================================
+   EXPERIENCE ENTRY
+========================================================= */
+
+.professional-entry{
+    position:relative;
+
+    display:grid;
+    grid-template-columns:90px 1fr 60px;
+    gap:30px;
+    align-items:start;
+
+    padding:45px 0;
+
+    border-bottom:1px solid var(--line);
+
+    color:var(--text);
+    text-decoration:none;
+
+    transition:
+        padding-left .4s ease,
+        background .4s ease;
+}
+
+
+/* NUMBER */
+
+.professional-entry-number{
     font-family:var(--mono);
     font-size:.62rem;
     color:var(--red);
+    padding-top:7px;
 }
 
-.professional-card-name{
-    font-family:var(--display);
-    font-size:1.35rem;
-    letter-spacing:-.03em;
+
+/* MAIN CONTENT */
+
+.professional-entry-main{
+    max-width:720px;
 }
 
-.professional-card-type{
-    margin-top:7px;
-    font-size:.68rem;
-    line-height:1.6;
+.professional-entry-label{
+    margin-bottom:14px;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+
     color:var(--muted);
 }
 
+
+.professional-entry-name{
+    margin:0;
+
+    font-family:var(--display);
+    font-size:clamp(2rem,4vw,4rem);
+    line-height:.95;
+    letter-spacing:-.055em;
+
+    font-weight:500;
+
+    transition:color .3s ease;
+}
+
+
+.professional-entry-description{
+    max-width:600px;
+
+    margin:22px 0 0;
+
+    font-size:.78rem;
+    line-height:1.8;
+
+    color:var(--muted);
+}
+
+
+/* ARROW */
+
+.professional-entry-arrow{
+    justify-self:end;
+
+    font-family:var(--mono);
+    font-size:1.1rem;
+
+    color:var(--text);
+
+    transition:
+        transform .4s ease,
+        color .3s ease;
+}
+
+
+/* HOVER */
+
+.professional-entry:hover{
+    padding-left:20px;
+}
+
+.professional-entry:hover .professional-entry-name{
+    color:var(--red);
+}
+
+.professional-entry:hover .professional-entry-arrow{
+    transform:translate(5px,-5px);
+    color:var(--red);
+}
+
+
+/* =========================================================
+   PROFESSIONAL — CLOSING STATEMENT
+========================================================= */
+
 .professional-experience{
-    margin-top:100px;
+    margin-top:110px;
+
     padding-top:30px;
+
     border-top:1px solid var(--line);
+
     display:grid;
     grid-template-columns:160px 1fr;
     gap:40px;
@@ -4093,17 +4140,530 @@ PROJECT 03 — MOBILE
     font-size:.58rem;
     text-transform:uppercase;
     letter-spacing:.1em;
+
     color:var(--red);
 }
 
 .professional-experience-text{
     max-width:700px;
+
     font-family:var(--display);
     font-size:clamp(1.5rem,3vw,3rem);
     line-height:.98;
     letter-spacing:-.04em;
 }
 
+
+/* =========================================================
+   PROFESSIONAL DETAIL PAGES
+   ENTITY / EXPERIENCE
+========================================================= */
+
+.professional-detail{
+    background:var(--bg);
+    color:var(--text);
+}
+
+.professional-detail-header{
+    padding-bottom:100px;
+}
+
+
+.back-link{
+    display:inline-block;
+
+    margin-bottom:70px;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+
+    color:var(--muted);
+    text-decoration:none;
+
+    transition:color .3s ease;
+}
+
+.back-link:hover{
+    color:var(--red);
+}
+
+
+.professional-detail-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px 35px;
+
+    margin-top:30px;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+
+    color:var(--muted);
+}
+
+
+.professional-detail-intro{
+    max-width:700px;
+
+    margin-top:55px;
+
+    font-size:.85rem;
+    line-height:1.9;
+
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   PROFESSIONAL — PROJECT INDEX
+========================================================= */
+
+.professional-project-index{
+    border-top:1px solid var(--line);
+}
+
+
+.professional-project-entry{
+    display:grid;
+    grid-template-columns:90px 1fr 60px;
+    gap:30px;
+    align-items:start;
+
+    padding:50px 0;
+
+    border-bottom:1px solid var(--line);
+
+    color:var(--text);
+    text-decoration:none;
+
+    transition:padding-left .4s ease;
+}
+
+
+.professional-project-number{
+    font-family:var(--mono);
+    font-size:.62rem;
+
+    color:var(--red);
+
+    padding-top:8px;
+}
+
+
+.professional-project-content{
+    max-width:720px;
+}
+
+
+.professional-project-label{
+    margin-bottom:15px;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+
+    color:var(--muted);
+}
+
+
+.professional-project-content h2{
+    margin:0;
+
+    font-family:var(--display);
+    font-size:clamp(1.8rem,3.5vw,3.5rem);
+    line-height:.95;
+    letter-spacing:-.05em;
+
+    font-weight:500;
+
+    transition:color .3s ease;
+}
+
+
+.professional-project-content p{
+    max-width:600px;
+
+    margin:20px 0 0;
+
+    font-size:.76rem;
+    line-height:1.8;
+
+    color:var(--muted);
+}
+
+
+.professional-project-arrow{
+    justify-self:end;
+
+    font-family:var(--mono);
+    font-size:1rem;
+
+    transition:
+        transform .4s ease,
+        color .3s ease;
+}
+
+
+.professional-project-entry:hover{
+    padding-left:20px;
+}
+
+.professional-project-entry:hover
+.professional-project-content h2{
+    color:var(--red);
+}
+
+.professional-project-entry:hover
+.professional-project-arrow{
+    transform:translate(5px,-5px);
+    color:var(--red);
+}
+
+
+/* =========================================================
+   PROFESSIONAL — PROJECT DETAIL
+========================================================= */
+
+.professional-project-detail{
+    background:var(--bg);
+    color:var(--text);
+}
+
+
+.project-detail-header{
+    padding-bottom:100px;
+}
+
+
+.project-detail-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px 35px;
+
+    margin-top:30px;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   PROJECT INTRODUCTION
+========================================================= */
+
+.professional-project-introduction{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:40px;
+
+    padding:35px 0 100px;
+
+    border-top:1px solid var(--line);
+}
+
+
+.professional-project-introduction .eyebrow{
+    color:var(--red);
+}
+
+
+.professional-project-introduction p{
+    max-width:700px;
+
+    margin:0 0 25px;
+
+    font-size:.85rem;
+    line-height:1.9;
+
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   PROJECT MEDIA
+========================================================= */
+
+.professional-project-media{
+    margin-bottom:100px;
+}
+
+
+.professional-media-label{
+    margin-bottom:15px;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+
+    color:var(--red);
+}
+
+
+.professional-media{
+    width:100%;
+
+    background:var(--bg-soft);
+
+    border:1px solid var(--line);
+
+    overflow:hidden;
+}
+
+
+.professional-media img{
+    display:block;
+
+    width:100%;
+    height:auto;
+
+    object-fit:contain;
+
+    transition:transform .8s ease;
+}
+
+
+.professional-media:hover img{
+    transform:scale(1.01);
+}
+
+
+/* =========================================================
+   PROJECT NAVIGATION
+========================================================= */
+
+.professional-project-navigation{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:30px;
+
+    padding:30px 0 80px;
+
+    border-top:1px solid var(--line);
+}
+
+
+.professional-project-navigation a{
+    font-family:var(--mono);
+    font-size:.58rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+
+    color:var(--text);
+    text-decoration:none;
+
+    transition:color .3s ease;
+}
+
+
+.professional-project-navigation a:hover{
+    color:var(--red);
+}
+
+
+/* =========================================================
+   PROFESSIONAL WORK — TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+    .professional-heading{
+        grid-template-columns:1fr;
+        gap:45px;
+        margin-bottom:80px;
+    }
+
+    .professional-entry{
+        grid-template-columns:60px 1fr 40px;
+        gap:20px;
+        padding:35px 0;
+    }
+
+    .professional-project-entry{
+        grid-template-columns:60px 1fr 40px;
+        gap:20px;
+    }
+
+    .professional-experience{
+        grid-template-columns:120px 1fr;
+        gap:25px;
+    }
+
+    .professional-project-introduction{
+        grid-template-columns:120px 1fr;
+        gap:25px;
+    }
+
+}
+
+
+/* =========================================================
+   PROFESSIONAL WORK — MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .professional-heading{
+        gap:35px;
+        margin-bottom:65px;
+    }
+
+
+    .professional-intro{
+        font-size:.78rem;
+        line-height:1.8;
+    }
+
+
+    .professional-tagline{
+        margin-top:25px;
+        font-size:clamp(1.8rem,9vw,2.8rem);
+    }
+
+
+    .professional-entry{
+        grid-template-columns:35px 1fr 25px;
+        gap:15px;
+
+        padding:30px 0;
+    }
+
+
+    .professional-entry:hover{
+        padding-left:8px;
+    }
+
+
+    .professional-entry-name{
+        font-size:clamp(1.7rem,8vw,2.5rem);
+    }
+
+
+    .professional-entry-description{
+        margin-top:16px;
+        font-size:.7rem;
+        line-height:1.75;
+    }
+
+
+    .professional-entry-arrow{
+        font-size:.9rem;
+    }
+
+
+    .professional-experience{
+        grid-template-columns:1fr;
+        gap:25px;
+
+        margin-top:75px;
+    }
+
+
+    .professional-experience-text{
+        font-size:clamp(1.5rem,7vw,2.3rem);
+    }
+
+
+    /* DETAIL */
+
+    .professional-detail-header,
+    .project-detail-header{
+        padding-bottom:70px;
+    }
+
+
+    .back-link{
+        margin-bottom:50px;
+    }
+
+
+    .professional-detail-meta,
+    .project-detail-meta{
+        flex-direction:column;
+        gap:10px;
+    }
+
+
+    .professional-detail-intro{
+        margin-top:40px;
+        font-size:.78rem;
+    }
+
+
+    .professional-project-entry{
+        grid-template-columns:35px 1fr 25px;
+        gap:15px;
+
+        padding:35px 0;
+    }
+
+
+    .professional-project-entry:hover{
+        padding-left:8px;
+    }
+
+
+    .professional-project-content h2{
+        font-size:clamp(1.7rem,8vw,2.5rem);
+    }
+
+
+    .professional-project-content p{
+        font-size:.7rem;
+        line-height:1.75;
+    }
+
+
+    /* PROJECT INTRO */
+
+    .professional-project-introduction{
+        grid-template-columns:1fr;
+        gap:25px;
+
+        padding-bottom:70px;
+    }
+
+
+    .professional-project-introduction p{
+        font-size:.78rem;
+        line-height:1.8;
+    }
+
+
+    /* MEDIA */
+
+    .professional-project-media{
+        margin-bottom:65px;
+    }
+
+
+    .professional-media-label{
+        font-size:.55rem;
+    }
+
+
+    /* NAVIGATION */
+
+    .professional-project-navigation{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+
+        padding-bottom:60px;
+    }
+
+}
 /* =========================================================
    CONTACT
 ========================================================= */
