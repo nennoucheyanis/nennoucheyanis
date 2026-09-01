@@ -7121,3 +7121,49 @@ footer{
     }
 
 }
+
+/* =========================================================
+   PROJECT 03 → PROJECT 01 LOOP
+========================================================= */
+
+.academic-project-transition-loop{
+
+    margin-top:
+        clamp(110px,14vw,220px);
+
+}
+
+
+/* Petite différence éditoriale :
+   le retour vers Project 01 est présenté
+   comme une boucle du portfolio. */
+
+.academic-project-transition-loop
+.academic-transition-label{
+
+    color:var(--red);
+
+}
+
+
+/* Survol */
+
+.academic-project-transition-loop:hover
+.academic-transition-label{
+
+    transform:translateX(6px);
+
+}
+
+
+/* Mobile */
+
+@media(max-width:700px){
+
+    .academic-project-transition-loop{
+
+        margin-top:90px;
+
+    }
+
+}
