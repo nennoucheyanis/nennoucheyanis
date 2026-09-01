@@ -265,24 +265,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 });
 
-document.addEventListener("keydown", event => {
-
-    if(event.key === "Escape"){
-
-        const anyOpen =
-            Object.entries(academicViews)
-                .some(([name, view]) =>
-                    view && name !== "index" && !view.hidden
-                );
-
-        if(anyOpen){
-            showAcademicView("index");
-        }
-
-    }
-
-});
-
 
 /* =========================================================
    PROJECT NAVIGATION (generic — works for all projects)
