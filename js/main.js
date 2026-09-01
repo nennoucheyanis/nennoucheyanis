@@ -161,50 +161,111 @@ document.addEventListener("DOMContentLoaded",()=>{
         scroll to the section itself, not window top)
     ===================================================== */
 
-    function showAcademicView(viewName){
+ function showAcademicView(viewName){
 
-        Object.values(academicViews)
-            .forEach(view=>{
+    /* =====================================================
+       FLOATING BACK BUTTON
+    ===================================================== */
 
-                if(!view)
-                    return;
-
-                view.hidden = true;
-
-            });
-
-
-        const target =
-            academicViews[viewName];
-
-        if(!target)
-            return;
+    const academicBackFloating =
+        document.getElementById(
+            "academicBackFloating"
+        );
 
 
-        target.hidden = false;
+    if(academicBackFloating){
 
+        if(viewName === "index"){
 
-        /* Scroll to the section containing this view,
-           same pattern as showProfessionalView() */
+            academicBackFloating
+                .classList
+                .remove("visible");
 
-        const section =
-            target.closest("section") ||
-            academicIndex.closest("section");
+        }else{
 
-        if(section){
-
-            section.scrollIntoView({
-
-                behavior:"smooth",
-
-                block:"start"
-
-            });
+            academicBackFloating
+                .classList
+                .add("visible");
 
         }
 
     }
 
+
+    /* =====================================================
+       HIDE ALL ACADEMICAL VIEWS
+    ===================================================== */
+
+    Object.values(academicViews)
+        .forEach(view=>{
+
+            if(!view)
+                return;
+
+            view.hidden = true;
+
+        });
+
+
+    /* =====================================================
+       SHOW TARGET VIEW
+    ===================================================== */
+
+    const target =
+        academicViews[viewName];
+
+    if(!target)
+        return;
+
+
+    target.hidden = false;
+
+
+    /* =====================================================
+       SCROLL TO ACADEMICAL WORKS
+    ===================================================== */
+
+    const section =
+        target.closest("section") ||
+        academicIndex.closest("section");
+
+
+    if(section){
+
+        section.scrollIntoView({
+
+            behavior:"smooth",
+
+            block:"start"
+
+        });
+
+    }
+
+}
+   
+/* =====================================================
+   FLOATING BACK BUTTON — CLICK
+===================================================== */
+
+const academicBackFloating =
+    document.getElementById(
+        "academicBackFloating"
+    );
+
+
+if(academicBackFloating){
+
+    academicBackFloating.addEventListener(
+        "click",
+        ()=>{
+
+            showAcademicView("index");
+
+        }
+    );
+
+}
 
     /* =====================================================
        OPEN ACADEMICAL PROJECT
