@@ -6586,3 +6586,87 @@ footer{
     }
 
 }
+
+/* =========================================================
+   ACADEMICAL WORKS — FLOATING BACK BUTTON
+========================================================= */
+
+.academic-back-floating{
+
+    position:fixed;
+
+    left:24px;
+    bottom:24px;
+
+    z-index:9999;
+
+    padding:12px 18px;
+
+    background:var(--dark);
+    color:var(--bg);
+
+    border:1px solid var(--dark);
+
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.08em;
+
+    cursor:pointer;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(10px);
+
+    transition:
+        opacity:.25s ease,
+        visibility:.25s ease,
+        transform:.25s ease;
+
+}
+
+
+/* =========================================================
+   ACTIVE STATE
+========================================================= */
+
+.academic-back-floating.visible{
+
+    opacity:1;
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.academic-back-floating:hover{
+
+    background:var(--bg);
+    color:var(--dark);
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    .academic-back-floating{
+
+        left:16px;
+        bottom:16px;
+
+        padding:11px 15px;
+
+        font-size:10px;
+
+    }
+
+}
