@@ -293,38 +293,6 @@ if(academicBackFloating){
 
         });
 
-
-    /* =====================================================
-       BACK TO ACADEMICAL WORKS
-       (now reads the target from the button, same
-        flexibility as PROFESSIONAL WORK back buttons —
-        falls back to "index" if not specified)
-    ===================================================== */
-
-       document
-        .querySelectorAll(
-            "[data-academic-back]"
-        )
-        .forEach(button=>{
-
-            button.addEventListener(
-                "click",
-                ()=>{
-
-                    const target =
-                        button.dataset
-                            .academicBack || "index";
-
-                    showAcademicView(
-                        target
-                    );
-
-                }
-            );
-
-        });
-
-
     /* =====================================================
        ESCAPE — BACK TO ACADEMICAL WORKS
     ===================================================== */
