@@ -6670,3 +6670,73 @@ footer{
     }
 
 }
+
+/* =========================================================
+   FLOATING BACK BUTTON — ACADEMIC WORKS
+========================================================= */
+
+.project-back{
+    position: fixed;
+    top: 24px;
+    left: 24px;
+
+    z-index: 9999;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 11px 16px;
+
+    background: rgba(243,242,238,0.92);
+    border: 1px solid var(--line);
+
+    color: var(--dark);
+    text-decoration: none;
+
+    font-family: var(--mono, "DM Mono", monospace);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.project-back span:first-child{
+    font-size: 16px;
+    line-height: 1;
+}
+
+.project-back:hover{
+    background: var(--dark);
+    color: var(--bg);
+    transform: translateX(-3px);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px){
+
+    .project-back{
+        top: 14px;
+        left: 14px;
+
+        padding: 10px 13px;
+
+        font-size: 10px;
+    }
+
+    .project-back span:first-child{
+        font-size: 14px;
+    }
+
+}
