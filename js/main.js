@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         falls back to "index" if not specified)
     ===================================================== */
 
-    document
+       document
         .querySelectorAll(
             "[data-academic-back]"
         )
@@ -262,6 +262,31 @@ document.addEventListener("DOMContentLoaded",()=>{
             );
 
         });
+
+
+    /* =====================================================
+       ESCAPE — BACK TO ACADEMICAL WORKS
+    ===================================================== */
+
+    document.addEventListener("keydown", event => {
+
+        if(event.key === "Escape"){
+
+            const anyOpen =
+                Object.entries(academicViews)
+                    .some(([name, view]) =>
+                        view &&
+                        name !== "index" &&
+                        !view.hidden
+                    );
+
+            if(anyOpen){
+                showAcademicView("index");
+            }
+
+        }
+
+    });
 
 });
 
