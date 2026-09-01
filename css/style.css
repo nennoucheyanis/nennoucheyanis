@@ -3958,7 +3958,7 @@ PROJECT 03 — MOBILE
 }
 
 /* =========================================================
-   PROFESSIONAL WORK — INDEX
+   PROFESSIONAL WORK
 ========================================================= */
 
 #professional-work{
@@ -4013,7 +4013,10 @@ PROJECT 03 — MOBILE
 ========================================================= */
 
 .professional-entry{
+
     position:relative;
+
+    width:100%;
 
     display:grid;
     grid-template-columns:90px 1fr 60px;
@@ -4022,10 +4025,16 @@ PROJECT 03 — MOBILE
 
     padding:45px 0;
 
+    border:0;
     border-bottom:1px solid var(--line);
 
+    background:transparent;
+
     color:var(--text);
-    text-decoration:none;
+    text-align:left;
+    font:inherit;
+
+    cursor:pointer;
 
     transition:
         padding-left .4s ease,
@@ -4033,49 +4042,79 @@ PROJECT 03 — MOBILE
 }
 
 
-/* NUMBER */
+/* Remove browser button styles */
 
-.professional-entry-number{
-    font-family:var(--mono);
-    font-size:.62rem;
-    color:var(--red);
-    padding-top:7px;
+.professional-entry:focus{
+    outline:none;
+}
+
+.professional-entry:focus-visible{
+    outline:1px solid var(--red);
+    outline-offset:4px;
 }
 
 
-/* MAIN CONTENT */
+/* =========================================================
+   EXPERIENCE NUMBER
+========================================================= */
+
+.professional-entry-number{
+
+    font-family:var(--mono);
+    font-size:.62rem;
+
+    color:var(--red);
+
+    padding-top:7px;
+
+}
+
+
+/* =========================================================
+   EXPERIENCE CONTENT
+========================================================= */
 
 .professional-entry-main{
     max-width:720px;
 }
 
+
 .professional-entry-label{
+
     margin-bottom:14px;
 
     font-family:var(--mono);
     font-size:.58rem;
+
     text-transform:uppercase;
     letter-spacing:.1em;
 
     color:var(--muted);
+
 }
 
 
 .professional-entry-name{
+
     margin:0;
 
     font-family:var(--display);
     font-size:clamp(2rem,4vw,4rem);
+
     line-height:.95;
     letter-spacing:-.055em;
 
     font-weight:500;
 
+    color:var(--text);
+
     transition:color .3s ease;
+
 }
 
 
 .professional-entry-description{
+
     max-width:600px;
 
     margin:22px 0 0;
@@ -4084,12 +4123,16 @@ PROJECT 03 — MOBILE
     line-height:1.8;
 
     color:var(--muted);
+
 }
 
 
-/* ARROW */
+/* =========================================================
+   EXPERIENCE ARROW
+========================================================= */
 
 .professional-entry-arrow{
+
     justify-self:end;
 
     font-family:var(--mono);
@@ -4100,22 +4143,36 @@ PROJECT 03 — MOBILE
     transition:
         transform .4s ease,
         color .3s ease;
+
 }
 
 
-/* HOVER */
+/* =========================================================
+   EXPERIENCE HOVER
+========================================================= */
 
 .professional-entry:hover{
+
     padding-left:20px;
+
 }
 
-.professional-entry:hover .professional-entry-name{
+
+.professional-entry:hover
+.professional-entry-name{
+
     color:var(--red);
+
 }
 
-.professional-entry:hover .professional-entry-arrow{
+
+.professional-entry:hover
+.professional-entry-arrow{
+
     transform:translate(5px,-5px);
+
     color:var(--red);
+
 }
 
 
@@ -4124,6 +4181,7 @@ PROJECT 03 — MOBILE
 ========================================================= */
 
 .professional-experience{
+
     margin-top:110px;
 
     padding-top:30px;
@@ -4133,80 +4191,137 @@ PROJECT 03 — MOBILE
     display:grid;
     grid-template-columns:160px 1fr;
     gap:40px;
+
 }
 
+
 .professional-experience-label{
+
     font-family:var(--mono);
     font-size:.58rem;
+
     text-transform:uppercase;
     letter-spacing:.1em;
 
     color:var(--red);
+
 }
 
+
 .professional-experience-text{
+
     max-width:700px;
 
     font-family:var(--display);
+
     font-size:clamp(1.5rem,3vw,3rem);
+
     line-height:.98;
     letter-spacing:-.04em;
+
 }
 
 
 /* =========================================================
-   PROFESSIONAL DETAIL PAGES
-   ENTITY / EXPERIENCE
+   PROFESSIONAL — DETAIL VIEW
 ========================================================= */
 
 .professional-detail{
+
     background:var(--bg);
     color:var(--text);
+
 }
+
 
 .professional-detail-header{
+
     padding-bottom:100px;
+
 }
 
 
+/* =========================================================
+   BACK LINK
+========================================================= */
+
 .back-link{
+
     display:inline-block;
 
     margin-bottom:70px;
 
+    padding:0;
+
+    border:0;
+
+    background:transparent;
+
     font-family:var(--mono);
     font-size:.58rem;
+
     text-transform:uppercase;
     letter-spacing:.1em;
 
     color:var(--muted);
+
     text-decoration:none;
 
+    cursor:pointer;
+
     transition:color .3s ease;
+
 }
+
 
 .back-link:hover{
+
     color:var(--red);
+
 }
 
 
+.back-link:focus{
+
+    outline:none;
+
+}
+
+
+.back-link:focus-visible{
+
+    outline:1px solid var(--red);
+    outline-offset:5px;
+
+}
+
+
+/* =========================================================
+   DETAIL META
+========================================================= */
+
 .professional-detail-meta{
+
     display:flex;
     flex-wrap:wrap;
+
     gap:12px 35px;
 
     margin-top:30px;
 
     font-family:var(--mono);
     font-size:.58rem;
+
     text-transform:uppercase;
     letter-spacing:.08em;
 
     color:var(--muted);
+
 }
 
 
 .professional-detail-intro{
+
     max-width:700px;
 
     margin-top:55px;
@@ -4215,6 +4330,7 @@ PROJECT 03 — MOBILE
     line-height:1.9;
 
     color:var(--muted);
+
 }
 
 
@@ -4223,69 +4339,152 @@ PROJECT 03 — MOBILE
 ========================================================= */
 
 .professional-project-index{
+
     border-top:1px solid var(--line);
+
 }
 
 
+/* =========================================================
+   PROJECT ENTRY
+========================================================= */
+
 .professional-project-entry{
+
+    width:100%;
+
     display:grid;
     grid-template-columns:90px 1fr 60px;
+
     gap:30px;
+
     align-items:start;
 
     padding:50px 0;
 
+    border:0;
     border-bottom:1px solid var(--line);
 
-    color:var(--text);
-    text-decoration:none;
+    background:transparent;
 
-    transition:padding-left .4s ease;
+    color:var(--text);
+
+    text-align:left;
+    font:inherit;
+
+    cursor:pointer;
+
+    transition:
+        padding-left .4s ease,
+        background .4s ease;
+
 }
 
 
+.professional-project-entry:focus{
+
+    outline:none;
+
+}
+
+
+.professional-project-entry:focus-visible{
+
+    outline:1px solid var(--red);
+    outline-offset:4px;
+
+}
+
+
+/* Disabled projects */
+
+.professional-project-entry:disabled{
+
+    cursor:default;
+    opacity:.55;
+
+}
+
+
+.professional-project-entry:disabled:hover{
+
+    padding-left:0;
+
+}
+
+
+.professional-project-entry:disabled
+.professional-project-arrow{
+
+    color:var(--muted);
+
+}
+
+
+/* =========================================================
+   PROJECT NUMBER
+========================================================= */
+
 .professional-project-number{
+
     font-family:var(--mono);
     font-size:.62rem;
 
     color:var(--red);
 
     padding-top:8px;
+
 }
 
 
+/* =========================================================
+   PROJECT CONTENT
+========================================================= */
+
 .professional-project-content{
+
     max-width:720px;
+
 }
 
 
 .professional-project-label{
+
     margin-bottom:15px;
 
     font-family:var(--mono);
     font-size:.58rem;
+
     text-transform:uppercase;
     letter-spacing:.1em;
 
     color:var(--muted);
+
 }
 
 
 .professional-project-content h2{
+
     margin:0;
 
     font-family:var(--display);
+
     font-size:clamp(1.8rem,3.5vw,3.5rem);
+
     line-height:.95;
     letter-spacing:-.05em;
 
     font-weight:500;
 
+    color:var(--text);
+
     transition:color .3s ease;
+
 }
 
 
 .professional-project-content p{
+
     max-width:600px;
 
     margin:20px 0 0;
@@ -4294,65 +4493,95 @@ PROJECT 03 — MOBILE
     line-height:1.8;
 
     color:var(--muted);
+
 }
 
 
+/* =========================================================
+   PROJECT ARROW
+========================================================= */
+
 .professional-project-arrow{
+
     justify-self:end;
 
     font-family:var(--mono);
     font-size:1rem;
 
+    color:var(--text);
+
     transition:
         transform .4s ease,
         color .3s ease;
-}
 
-
-.professional-project-entry:hover{
-    padding-left:20px;
-}
-
-.professional-project-entry:hover
-.professional-project-content h2{
-    color:var(--red);
-}
-
-.professional-project-entry:hover
-.professional-project-arrow{
-    transform:translate(5px,-5px);
-    color:var(--red);
 }
 
 
 /* =========================================================
-   PROFESSIONAL — PROJECT DETAIL
+   PROJECT HOVER
+========================================================= */
+
+.professional-project-entry:not(:disabled):hover{
+
+    padding-left:20px;
+
+}
+
+
+.professional-project-entry:not(:disabled):hover
+.professional-project-content h2{
+
+    color:var(--red);
+
+}
+
+
+.professional-project-entry:not(:disabled):hover
+.professional-project-arrow{
+
+    transform:translate(5px,-5px);
+
+    color:var(--red);
+
+}
+
+
+/* =========================================================
+   PROFESSIONAL PROJECT DETAIL
 ========================================================= */
 
 .professional-project-detail{
+
     background:var(--bg);
     color:var(--text);
+
 }
 
 
 .project-detail-header{
+
     padding-bottom:100px;
+
 }
 
 
 .project-detail-meta{
+
     display:flex;
     flex-wrap:wrap;
+
     gap:12px 35px;
 
     margin-top:30px;
 
     font-family:var(--mono);
     font-size:.58rem;
+
     text-transform:uppercase;
     letter-spacing:.08em;
 
     color:var(--muted);
+
 }
 
 
@@ -4361,22 +4590,29 @@ PROJECT 03 — MOBILE
 ========================================================= */
 
 .professional-project-introduction{
+
     display:grid;
+
     grid-template-columns:160px 1fr;
+
     gap:40px;
 
     padding:35px 0 100px;
 
     border-top:1px solid var(--line);
+
 }
 
 
 .professional-project-introduction .eyebrow{
+
     color:var(--red);
+
 }
 
 
 .professional-project-introduction p{
+
     max-width:700px;
 
     margin:0 0 25px;
@@ -4385,6 +4621,7 @@ PROJECT 03 — MOBILE
     line-height:1.9;
 
     color:var(--muted);
+
 }
 
 
@@ -4393,23 +4630,29 @@ PROJECT 03 — MOBILE
 ========================================================= */
 
 .professional-project-media{
+
     margin-bottom:100px;
+
 }
 
 
 .professional-media-label{
+
     margin-bottom:15px;
 
     font-family:var(--mono);
     font-size:.58rem;
+
     text-transform:uppercase;
     letter-spacing:.1em;
 
     color:var(--red);
+
 }
 
 
 .professional-media{
+
     width:100%;
 
     background:var(--bg-soft);
@@ -4417,10 +4660,12 @@ PROJECT 03 — MOBILE
     border:1px solid var(--line);
 
     overflow:hidden;
+
 }
 
 
 .professional-media img{
+
     display:block;
 
     width:100%;
@@ -4429,11 +4674,14 @@ PROJECT 03 — MOBILE
     object-fit:contain;
 
     transition:transform .8s ease;
+
 }
 
 
 .professional-media:hover img{
+
     transform:scale(1.01);
+
 }
 
 
@@ -4442,7 +4690,9 @@ PROJECT 03 — MOBILE
 ========================================================= */
 
 .professional-project-navigation{
+
     display:flex;
+
     justify-content:space-between;
     align-items:center;
 
@@ -4451,219 +4701,349 @@ PROJECT 03 — MOBILE
     padding:30px 0 80px;
 
     border-top:1px solid var(--line);
+
 }
 
 
-.professional-project-navigation a{
+.professional-project-navigation button{
+
+    padding:0;
+
+    border:0;
+
+    background:transparent;
+
     font-family:var(--mono);
     font-size:.58rem;
+
     text-transform:uppercase;
     letter-spacing:.1em;
 
     color:var(--text);
-    text-decoration:none;
+
+    cursor:pointer;
 
     transition:color .3s ease;
+
 }
 
 
-.professional-project-navigation a:hover{
+.professional-project-navigation button:hover{
+
     color:var(--red);
+
+}
+
+
+.professional-project-navigation button:focus{
+
+    outline:none;
+
+}
+
+
+.professional-project-navigation button:focus-visible{
+
+    outline:1px solid var(--red);
+    outline-offset:5px;
+
 }
 
 
 /* =========================================================
-   PROFESSIONAL WORK — TABLET
+   HIDDEN VIEWS
+========================================================= */
+
+#professional-work [hidden]{
+
+    display:none !important;
+
+}
+
+
+/* =========================================================
+   TABLET
 ========================================================= */
 
 @media(max-width:900px){
 
     .professional-heading{
+
         grid-template-columns:1fr;
+
         gap:45px;
+
         margin-bottom:80px;
+
     }
+
 
     .professional-entry{
+
         grid-template-columns:60px 1fr 40px;
+
         gap:20px;
+
         padding:35px 0;
+
     }
+
 
     .professional-project-entry{
+
         grid-template-columns:60px 1fr 40px;
+
         gap:20px;
+
     }
+
 
     .professional-experience{
+
         grid-template-columns:120px 1fr;
+
         gap:25px;
+
     }
 
+
     .professional-project-introduction{
+
         grid-template-columns:120px 1fr;
+
         gap:25px;
+
     }
 
 }
 
 
 /* =========================================================
-   PROFESSIONAL WORK — MOBILE
+   MOBILE
 ========================================================= */
 
 @media(max-width:600px){
 
     .professional-heading{
+
         gap:35px;
+
         margin-bottom:65px;
+
     }
 
 
     .professional-intro{
+
         font-size:.78rem;
+
         line-height:1.8;
+
     }
 
 
     .professional-tagline{
+
         margin-top:25px;
+
         font-size:clamp(1.8rem,9vw,2.8rem);
+
     }
 
 
     .professional-entry{
+
         grid-template-columns:35px 1fr 25px;
+
         gap:15px;
 
         padding:30px 0;
+
     }
 
 
     .professional-entry:hover{
+
         padding-left:8px;
+
     }
 
 
     .professional-entry-name{
+
         font-size:clamp(1.7rem,8vw,2.5rem);
+
     }
 
 
     .professional-entry-description{
+
         margin-top:16px;
+
         font-size:.7rem;
+
         line-height:1.75;
+
     }
 
 
     .professional-entry-arrow{
+
         font-size:.9rem;
+
     }
 
 
     .professional-experience{
+
         grid-template-columns:1fr;
+
         gap:25px;
 
         margin-top:75px;
+
     }
 
 
     .professional-experience-text{
+
         font-size:clamp(1.5rem,7vw,2.3rem);
+
     }
 
 
-    /* DETAIL */
+    /* =============================================
+       DETAIL
+    ============================================== */
 
     .professional-detail-header,
     .project-detail-header{
+
         padding-bottom:70px;
+
     }
 
 
     .back-link{
+
         margin-bottom:50px;
+
     }
 
 
     .professional-detail-meta,
     .project-detail-meta{
+
         flex-direction:column;
+
         gap:10px;
+
     }
 
 
     .professional-detail-intro{
+
         margin-top:40px;
+
         font-size:.78rem;
+
     }
 
 
     .professional-project-entry{
+
         grid-template-columns:35px 1fr 25px;
+
         gap:15px;
 
         padding:35px 0;
+
     }
 
 
-    .professional-project-entry:hover{
+    .professional-project-entry:not(:disabled):hover{
+
         padding-left:8px;
+
     }
 
 
     .professional-project-content h2{
+
         font-size:clamp(1.7rem,8vw,2.5rem);
+
     }
 
 
     .professional-project-content p{
+
         font-size:.7rem;
+
         line-height:1.75;
+
     }
 
 
-    /* PROJECT INTRO */
+    /* =============================================
+       PROJECT INTRO
+    ============================================== */
 
     .professional-project-introduction{
+
         grid-template-columns:1fr;
+
         gap:25px;
 
         padding-bottom:70px;
+
     }
 
 
     .professional-project-introduction p{
+
         font-size:.78rem;
+
         line-height:1.8;
+
     }
 
 
-    /* MEDIA */
+    /* =============================================
+       MEDIA
+    ============================================== */
 
     .professional-project-media{
+
         margin-bottom:65px;
+
     }
 
 
     .professional-media-label{
+
         font-size:.55rem;
+
     }
 
 
-    /* NAVIGATION */
+    /* =============================================
+       NAVIGATION
+    ============================================== */
 
     .professional-project-navigation{
+
         flex-direction:column;
+
         align-items:flex-start;
+
         gap:20px;
 
         padding-bottom:60px;
+
     }
 
 }
+
 /* =========================================================
    CONTACT
 ========================================================= */
