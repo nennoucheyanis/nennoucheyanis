@@ -6685,3 +6685,439 @@ footer{
     }
 
 }
+
+/* =========================================================
+   ACADEMICAL WORKS — EDITORIAL PROJECT TRANSITION
+========================================================= */
+
+.academic-project-transition{
+
+    position:relative;
+
+    width:100%;
+
+    margin-top:clamp(100px,14vw,220px);
+    padding:clamp(55px,8vw,110px) 0;
+
+    border:0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+
+    background:transparent;
+
+    color:var(--text);
+
+    text-align:left;
+
+    cursor:pointer;
+
+    font:inherit;
+
+    display:block;
+
+    transition:
+        padding .45s ease,
+        border-color .35s ease;
+
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.academic-transition-label{
+
+    display:block;
+
+    margin-bottom:35px;
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    line-height:1;
+
+    text-transform:uppercase;
+
+    letter-spacing:.12em;
+
+    color:var(--red);
+
+}
+
+
+/* =========================================================
+   MAIN ROW
+========================================================= */
+
+.academic-transition-main{
+
+    display:grid;
+
+    grid-template-columns:
+        100px
+        1fr
+        80px;
+
+    align-items:end;
+
+    gap:30px;
+
+}
+
+
+/* =========================================================
+   PROJECT NUMBER
+========================================================= */
+
+.academic-transition-number{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(3rem,7vw,7rem);
+
+    line-height:.8;
+
+    letter-spacing:-.07em;
+
+    color:var(--text);
+
+    transition:
+        color .35s ease,
+        transform .45s ease;
+
+}
+
+
+/* =========================================================
+   PROJECT NAME
+========================================================= */
+
+.academic-transition-name{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(2.5rem,6vw,6rem);
+
+    line-height:.85;
+
+    letter-spacing:-.07em;
+
+    transition:
+        color .35s ease,
+        transform .45s ease;
+
+}
+
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.academic-transition-arrow{
+
+    justify-self:end;
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(2rem,4vw,4rem);
+
+    line-height:1;
+
+    color:var(--text);
+
+    transition:
+        color .35s ease,
+        transform .45s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.academic-project-transition:hover{
+
+    padding-left:18px;
+    padding-right:18px;
+
+    border-color:var(--red);
+
+}
+
+
+.academic-project-transition:hover
+.academic-transition-number{
+
+    color:var(--red);
+
+    transform:translateX(4px);
+
+}
+
+
+.academic-project-transition:hover
+.academic-transition-name{
+
+    color:var(--red);
+
+    transform:translateX(4px);
+
+}
+
+
+.academic-project-transition:hover
+.academic-transition-arrow{
+
+    color:var(--red);
+
+    transform:translateX(12px);
+
+}
+
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.academic-project-transition:focus{
+
+    outline:none;
+
+}
+
+
+.academic-project-transition:focus-visible{
+
+    outline:1px solid var(--red);
+
+    outline-offset:6px;
+
+}
+
+
+/* =========================================================
+   END OF ACADEMIC WORKS
+========================================================= */
+
+.academic-project-end{
+
+    margin-top:clamp(100px,14vw,220px);
+
+    padding:
+        clamp(55px,8vw,110px)
+        0
+        clamp(70px,10vw,130px);
+
+    border-top:1px solid var(--line);
+
+    border-bottom:1px solid var(--line);
+
+}
+
+
+/* =========================================================
+   END LABEL
+========================================================= */
+
+.academic-project-end
+.academic-transition-label{
+
+    margin-bottom:45px;
+
+    color:var(--muted);
+
+}
+
+
+/* =========================================================
+   BACK LINK
+========================================================= */
+
+.academic-end-back{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:0;
+
+    border:0;
+
+    background:transparent;
+
+    color:var(--text);
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(2rem,4vw,4rem);
+
+    line-height:.9;
+
+    letter-spacing:-.06em;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    transition:
+        color .35s ease,
+        transform .4s ease;
+
+}
+
+
+.academic-end-arrow{
+
+    color:var(--red);
+
+    transition:
+        transform .4s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+.academic-end-back:hover{
+
+    color:var(--red);
+
+    transform:translateX(8px);
+
+}
+
+
+.academic-end-back:hover
+.academic-end-arrow{
+
+    transform:translateX(-6px);
+
+}
+
+
+.academic-end-back:focus{
+
+    outline:none;
+
+}
+
+
+.academic-end-back:focus-visible{
+
+    outline:1px solid var(--red);
+
+    outline-offset:6px;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    .academic-project-transition{
+
+        margin-top:90px;
+
+        padding:
+            55px
+            0
+            65px;
+
+    }
+
+
+    .academic-transition-label{
+
+        margin-bottom:30px;
+
+        font-size:.55rem;
+
+    }
+
+
+    .academic-transition-main{
+
+        grid-template-columns:
+            55px
+            1fr
+            35px;
+
+        gap:15px;
+
+        align-items:end;
+
+    }
+
+
+    .academic-transition-number{
+
+        font-size:3rem;
+
+    }
+
+
+    .academic-transition-name{
+
+        font-size:
+            clamp(2rem,10vw,3.5rem);
+
+        line-height:.88;
+
+    }
+
+
+    .academic-transition-arrow{
+
+        font-size:2rem;
+
+    }
+
+
+    .academic-project-transition:hover{
+
+        padding-left:8px;
+        padding-right:8px;
+
+    }
+
+
+    .academic-project-end{
+
+        margin-top:90px;
+
+        padding:
+            55px
+            0
+            75px;
+
+    }
+
+
+    .academic-project-end
+    .academic-transition-label{
+
+        margin-bottom:35px;
+
+    }
+
+
+    .academic-end-back{
+
+        gap:12px;
+
+        font-size:
+            clamp(1.8rem,9vw,3rem);
+
+    }
+
+}
