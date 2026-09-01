@@ -7167,3 +7167,622 @@ footer{
     }
 
 }
+
+/* =========================================================
+   ACADEMIC WORKS — TWO PROJECT NAVIGATION
+   ========================================================= */
+
+.academic-project-navigation{
+    width:100%;
+    margin-top:clamp(100px,14vw,220px);
+    padding-bottom:clamp(70px,10vw,130px);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.academic-project-navigation-header{
+    padding:
+        0
+        0
+        clamp(35px,5vw,65px);
+
+    border-top:1px solid var(--line);
+    padding-top:clamp(45px,6vw,80px);
+}
+
+
+.academic-navigation-eyebrow{
+    display:block;
+
+    margin-bottom:18px;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+    line-height:1;
+
+    letter-spacing:.12em;
+    text-transform:uppercase;
+
+    color:var(--red);
+}
+
+
+.academic-navigation-title{
+    margin:0;
+
+    font-family:var(--display);
+    font-size:
+        clamp(2rem,4vw,4.5rem);
+
+    line-height:.9;
+    letter-spacing:-.06em;
+
+    color:var(--text);
+}
+
+
+/* =========================================================
+   TWO PROJECT GRID
+   ========================================================= */
+
+.academic-project-navigation-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    width:100%;
+
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
+
+
+/* =========================================================
+   PROJECT CARD
+   ========================================================= */
+
+.academic-project-card{
+    position:relative;
+
+    width:100%;
+    min-width:0;
+
+    padding:0;
+
+    border:0;
+    border-right:1px solid var(--line);
+
+    background:transparent;
+
+    color:var(--text);
+
+    text-align:left;
+
+    cursor:pointer;
+
+    font:inherit;
+
+    overflow:hidden;
+
+    transition:
+        background .35s ease;
+}
+
+
+/* Remove border from second card */
+
+.academic-project-card:last-child{
+    border-right:0;
+}
+
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
+.academic-project-card-image{
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:16 / 10;
+
+    overflow:hidden;
+
+    background:var(--bg-soft);
+}
+
+
+.academic-project-card-image img{
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    transition:
+        transform .7s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+   IMAGE OVERLAY
+   ========================================================= */
+
+.academic-project-card-overlay{
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.45),
+            rgba(0,0,0,0) 55%
+        );
+
+    opacity:.55;
+
+    transition:
+        opacity .4s ease;
+}
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.academic-project-card-arrow{
+    position:absolute;
+
+    top:24px;
+    right:24px;
+
+    width:46px;
+    height:46px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.65);
+
+    background:rgba(0,0,0,.18);
+
+    color:#fff;
+
+    font-family:var(--display);
+
+    font-size:1.5rem;
+
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+
+    transition:
+        background .35s ease,
+        border-color .35s ease,
+        transform .45s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+   CARD INFO
+   ========================================================= */
+
+.academic-project-card-info{
+    display:grid;
+
+    grid-template-columns:
+        70px
+        1fr;
+
+    gap:25px;
+
+    padding:
+        28px
+        30px
+        32px;
+}
+
+
+.academic-project-card-number{
+    font-family:var(--mono);
+
+    font-size:.65rem;
+
+    letter-spacing:.1em;
+
+    color:var(--muted);
+}
+
+
+.academic-project-card-content{
+    min-width:0;
+}
+
+
+.academic-project-card-name{
+    font-family:var(--display);
+
+    font-size:
+        clamp(1.8rem,3.2vw,3.8rem);
+
+    line-height:.9;
+
+    letter-spacing:-.06em;
+
+    color:var(--text);
+
+    transition:
+        color .35s ease;
+}
+
+
+.academic-project-card-type{
+    margin-top:14px;
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    line-height:1.4;
+
+    letter-spacing:.08em;
+
+    text-transform:uppercase;
+
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   PROJECT CARD HOVER
+   ========================================================= */
+
+.academic-project-card:hover
+.academic-project-card-image img{
+
+    transform:scale(1.045);
+}
+
+
+.academic-project-card:hover
+.academic-project-card-overlay{
+
+    opacity:.8;
+}
+
+
+.academic-project-card:hover
+.academic-project-card-arrow{
+
+    background:var(--red);
+
+    border-color:var(--red);
+
+    transform:translate(4px,-4px);
+}
+
+
+.academic-project-card:hover
+.academic-project-card-name{
+
+    color:var(--red);
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.academic-project-card:focus{
+    outline:none;
+}
+
+
+.academic-project-card:focus-visible{
+    outline:1px solid var(--red);
+    outline-offset:-1px;
+}
+
+
+/* =========================================================
+   CONTINUE TO SITE
+   ========================================================= */
+
+.academic-continue-site{
+
+    position:relative;
+
+    width:100%;
+
+    margin-top:clamp(45px,6vw,80px);
+
+    padding:
+        clamp(28px,4vw,45px)
+        0;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        auto
+        auto;
+
+    align-items:center;
+
+    column-gap:30px;
+
+    border:0;
+
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+
+    background:transparent;
+
+    color:var(--text);
+
+    text-align:left;
+
+    cursor:pointer;
+
+    font:inherit;
+
+    transition:
+        color .35s ease,
+        padding .4s ease,
+        border-color .35s ease;
+}
+
+
+/* =========================================================
+   CONTINUE LABEL
+   ========================================================= */
+
+.academic-continue-label{
+
+    font-family:var(--mono);
+
+    font-size:.65rem;
+
+    line-height:1;
+
+    letter-spacing:.12em;
+
+    text-transform:uppercase;
+
+    color:var(--muted);
+
+    transition:
+        color .35s ease;
+}
+
+
+.academic-continue-destination{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(1.5rem,3vw,3rem);
+
+    line-height:.9;
+
+    letter-spacing:-.05em;
+
+    color:var(--text);
+
+    transition:
+        color .35s ease,
+        transform .4s ease;
+}
+
+
+.academic-continue-arrow{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(1.8rem,3vw,3rem);
+
+    line-height:1;
+
+    color:var(--red);
+
+    transition:
+        transform .45s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* =========================================================
+   CONTINUE HOVER
+   ========================================================= */
+
+.academic-continue-site:hover{
+
+    padding-left:12px;
+    padding-right:12px;
+
+    border-color:var(--red);
+}
+
+
+.academic-continue-site:hover
+.academic-continue-label{
+
+    color:var(--red);
+}
+
+
+.academic-continue-site:hover
+.academic-continue-destination{
+
+    color:var(--red);
+
+    transform:translateX(5px);
+}
+
+
+.academic-continue-site:hover
+.academic-continue-arrow{
+
+    transform:translateX(10px);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:700px){
+
+    .academic-project-navigation{
+
+        margin-top:90px;
+
+        padding-bottom:75px;
+    }
+
+
+    .academic-project-navigation-header{
+
+        padding-top:45px;
+        padding-bottom:30px;
+    }
+
+
+    .academic-navigation-title{
+
+        font-size:
+            clamp(2rem,9vw,3.2rem);
+    }
+
+
+    .academic-project-navigation-grid{
+
+        grid-template-columns:1fr;
+    }
+
+
+    .academic-project-card{
+
+        border-right:0;
+
+        border-bottom:1px solid var(--line);
+    }
+
+
+    .academic-project-card:last-child{
+
+        border-bottom:0;
+    }
+
+
+    .academic-project-card-image{
+
+        aspect-ratio:16 / 10;
+    }
+
+
+    .academic-project-card-info{
+
+        grid-template-columns:
+            50px
+            1fr;
+
+        gap:18px;
+
+        padding:
+            22px
+            20px
+            26px;
+    }
+
+
+    .academic-project-card-name{
+
+        font-size:
+            clamp(1.8rem,8vw,3rem);
+    }
+
+
+    .academic-project-card-arrow{
+
+        top:16px;
+        right:16px;
+
+        width:40px;
+        height:40px;
+
+        font-size:1.25rem;
+    }
+
+
+    .academic-continue-site{
+
+        grid-template-columns:
+            1fr
+            auto;
+
+        row-gap:12px;
+
+        column-gap:20px;
+
+        padding:
+            28px
+            0;
+    }
+
+
+    .academic-continue-label{
+
+        grid-column:1 / -1;
+    }
+
+
+    .academic-continue-destination{
+
+        font-size:
+            clamp(1.8rem,8vw,2.8rem);
+    }
+
+
+    .academic-continue-arrow{
+
+        font-size:2rem;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media(max-width:420px){
+
+    .academic-project-card-image{
+
+        aspect-ratio:4 / 3;
+    }
+
+
+    .academic-project-card-info{
+
+        padding-left:16px;
+        padding-right:16px;
+    }
+
+
+    .academic-continue-site:hover{
+
+        padding-left:6px;
+        padding-right:6px;
+    }
+
+}
