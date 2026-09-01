@@ -603,3 +603,129 @@ if(
     update();
 
 })();
+
+/* =========================================================
+   PROFESSIONAL WORK — INTERNAL NAVIGATION
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const professionalIndex =
+        document.getElementById("professional-index-view");
+
+    const cnicView =
+        document.getElementById("professional-cnic-view");
+
+    const militaryMessView =
+        document.getElementById("professional-military-mess-view");
+
+    const rehabilitationView =
+        document.getElementById("professional-rehabilitation-view");
+
+
+    const views = {
+        index: professionalIndex,
+        cnic: cnicView,
+        military: militaryMessView,
+        rehabilitation: rehabilitationView
+    };
+
+
+    function showProfessionalView(viewName) {
+
+        Object.values(views).forEach(view => {
+
+            if (!view) return;
+
+            view.hidden = true;
+
+        });
+
+
+        const target = views[viewName];
+
+        if (!target) return;
+
+        target.hidden = false;
+
+
+        const section =
+            document.getElementById("professional-work");
+
+        if (section) {
+
+            section.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+    }
+
+
+    /* =====================================================
+       OPEN EXPERIENCE
+    ===================================================== */
+
+    document.querySelectorAll(
+        "[data-professional-open]"
+    ).forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const target =
+                button.dataset.professionalOpen;
+
+            showProfessionalView(target);
+
+        });
+
+    });
+
+
+    /* =====================================================
+       OPEN PROJECT
+    ===================================================== */
+
+    document.querySelectorAll(
+        "[data-professional-project-open]"
+    ).forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const target =
+                button.dataset.professionalProjectOpen;
+
+            if (target === "military-mess") {
+
+                showProfessionalView("military");
+
+            }
+
+        });
+
+    });
+
+
+    /* =====================================================
+       BACK BUTTONS
+    ===================================================== */
+
+    document.querySelectorAll(
+        "[data-professional-back]"
+    ).forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const target =
+                button.dataset.professionalBack;
+
+            showProfessionalView(target);
+
+        });
+
+    });
+
+
+});
