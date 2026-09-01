@@ -293,6 +293,83 @@ if(academicBackFloating){
 
         });
 
+   /* =====================================================
+   CONTINUE TO SITE — RESEARCH
+===================================================== */
+
+document
+    .querySelectorAll(
+        "[data-academic-continue]"
+    )
+    .forEach(button=>{
+
+        button.addEventListener(
+            "click",
+            ()=>{
+
+                /* Hide all academic views */
+                Object.values(academicViews)
+                    .forEach(view=>{
+
+                        if(!view)
+                            return;
+
+                        view.hidden = true;
+
+                    });
+
+
+                /* Restore Academic Works index */
+                if(academicViews.index){
+
+                    academicViews.index.hidden = false;
+
+                }
+
+
+                /* Hide floating Academic back button */
+                const academicBackFloating =
+                    document.getElementById(
+                        "academicBackFloating"
+                    );
+
+                if(academicBackFloating){
+
+                    academicBackFloating
+                        .classList
+                        .remove("visible");
+
+                }
+
+
+                /* Go to Research */
+                const research =
+                    document.getElementById(
+                        "research"
+                    );
+
+                if(research){
+
+                    setTimeout(()=>{
+
+                        research.scrollIntoView({
+
+                            behavior:"smooth",
+
+                            block:"start"
+
+                        });
+
+                    },50);
+
+                }
+
+            }
+        );
+
+    });
+
+   
     /* =====================================================
        ESCAPE — BACK TO ACADEMICAL WORKS
     ===================================================== */
