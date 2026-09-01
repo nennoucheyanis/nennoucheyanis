@@ -1372,6 +1372,10 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
+        /* =====================================================
+           VIEWS
+        ===================================================== */
+
         const professionalIndex =
             document.getElementById(
                 "professional-index-view"
@@ -1387,11 +1391,25 @@ document.addEventListener(
                 "professional-military-mess-view"
             );
 
+        const cnicProject02View =
+            document.getElementById(
+                "professional-cnic-project-02-view"
+            );
+
         const rehabilitationView =
             document.getElementById(
                 "professional-rehabilitation-view"
             );
 
+        const professionalBackFloating =
+            document.getElementById(
+                "professionalBackFloating"
+            );
+
+
+        /* =====================================================
+           VIEW MAP
+        ===================================================== */
 
         const views = {
 
@@ -1404,18 +1422,34 @@ document.addEventListener(
             military:
                 militaryMessView,
 
+            "cnic-project-02":
+                cnicProject02View,
+
             rehabilitation:
                 rehabilitationView
 
         };
 
 
+        /* =====================================================
+           CURRENT VIEW
+        ===================================================== */
+
+        let currentView = "index";
+
+
+        /* =====================================================
+           SHOW PROFESSIONAL VIEW
+        ===================================================== */
+
         function showProfessionalView(
             viewName
         ){
 
+            /* Hide every Professional Work view */
+
             Object.values(views)
-                .forEach(view=>{
+                .forEach(view => {
 
                     if(!view)
                         return;
@@ -1425,15 +1459,56 @@ document.addEventListener(
                 });
 
 
+            /* Find requested view */
+
             const target =
                 views[viewName];
+
 
             if(!target)
                 return;
 
 
+            /* Show requested view */
+
             target.hidden = false;
 
+
+            /* Store current view */
+
+            currentView = viewName;
+
+
+            /* =================================================
+               FLOATING BACK BUTTON
+            ================================================= */
+
+            if(
+                professionalBackFloating
+            ){
+
+                if(
+                    viewName === "index"
+                ){
+
+                    professionalBackFloating.classList.remove(
+                        "visible"
+                    );
+
+                }else{
+
+                    professionalBackFloating.classList.add(
+                        "visible"
+                    );
+
+                }
+
+            }
+
+
+            /* =================================================
+               SCROLL TO PROFESSIONAL WORK
+            ================================================= */
 
             const section =
                 document.getElementById(
@@ -1457,20 +1532,21 @@ document.addEventListener(
 
 
         /* =====================================================
-           OPEN EXPERIENCE
+           OPEN PROFESSIONAL EXPERIENCE
         ===================================================== */
 
         document.querySelectorAll(
             "[data-professional-open]"
-        ).forEach(button=>{
+        ).forEach(button => {
 
             button.addEventListener(
                 "click",
-                ()=>{
+                () => {
 
                     const target =
                         button.dataset
                             .professionalOpen;
+
 
                     showProfessionalView(
                         target
@@ -1483,29 +1559,43 @@ document.addEventListener(
 
 
         /* =====================================================
-           OPEN PROJECT
+           OPEN PROFESSIONAL PROJECT
         ===================================================== */
 
         document.querySelectorAll(
             "[data-professional-project-open]"
-        ).forEach(button=>{
+        ).forEach(button => {
 
             button.addEventListener(
                 "click",
-                ()=>{
+                () => {
 
                     const target =
                         button.dataset
                             .professionalProjectOpen;
 
 
+                    /* Military Mess */
+
                     if(
-                        target ===
-                        "military-mess"
+                        target === "military-mess"
                     ){
 
                         showProfessionalView(
                             "military"
+                        );
+
+                    }
+
+
+                    /* CNIC Project 02 */
+
+                    else if(
+                        target === "cnic-project-02"
+                    ){
+
+                        showProfessionalView(
+                            "cnic-project-02"
                         );
 
                     }
@@ -1517,29 +1607,450 @@ document.addEventListener(
 
 
         /* =====================================================
-           BACK BUTTONS
+           PROFESSIONAL BACK BUTTONS
+           
+           Kept for compatibility with existing HTML.
+           The floating button is now the main navigation.
         ===================================================== */
 
         document.querySelectorAll(
             "[data-professional-back]"
-        ).forEach(button=>{
+        ).forEach(button => {
 
             button.addEventListener(
                 "click",
-                ()=>{
+                () => {
 
                     const target =
                         button.dataset
                             .professionalBack;
 
-                    showProfessionalView(
-                        target
-                    );
+
+                    if(target){
+
+                        showProfessionalView(
+                            target
+                        );
+
+                    }
 
                 }
             );
 
         });
+
+
+        /* =====================================================
+           FLOATING BACK BUTTON
+           
+           Hierarchy:
+           
+           Military Mess
+                ↓
+             CNIC
+           
+           CNIC Project 02
+                ↓
+             CNIC
+           
+           CNIC
+                ↓
+        Professional Work
+           
+           Rehabilitation
+                ↓
+        Professional Work
+        ===================================================== */
+
+        if(
+            professionalBackFloating
+        ){
+
+            professionalBackFloating.addEventListener(
+                "click",
+                () => {
+
+                    switch(
+                        currentView
+                    ){
+
+                        case "military":
+
+                            showProfessionalView(
+                                "cnic"
+                            );
+
+                            break;
+
+
+                        case "cnic-project-02":
+
+                            showProfessionalView(
+                                "cnic"
+                            );
+
+                            break;
+
+
+                        case "cnic":
+
+                            showProfessionalView(
+                                "index"
+                            );
+
+                            break;
+
+
+                        case "rehabilitation":
+
+                            showProfessionalView(
+                                "index"
+                            );
+
+                            break;
+
+
+                        default:
+
+                            showProfessionalView(
+                                "index"
+                            );
+
+                            break;
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           CONTINUE EXPLORING
+        ===================================================== */
+
+        document.querySelectorAll(
+            "[data-professional-continue]"
+        ).forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const target =
+                        button.dataset
+                            .professionalContinue;
+
+
+                    if(
+                        target &&
+                        views[target]
+                    ){
+
+                        showProfessionalView(
+                            target
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+
+
+        /* =====================================================
+           EXIT PROFESSIONAL WORK
+        ===================================================== */
+
+        document.querySelectorAll(
+            "[data-professional-exit]"
+        ).forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    /* Hide all Professional views */
+
+                    Object.values(views)
+                        .forEach(view => {
+
+                            if(!view)
+                                return;
+
+                            view.hidden = true;
+
+                        });
+
+
+                    /* Hide floating button */
+
+                    if(
+                        professionalBackFloating
+                    ){
+
+                        professionalBackFloating.classList.remove(
+                            "visible"
+                        );
+
+                    }
+
+
+                    /* Reset current view */
+
+                    currentView = "index";
+
+
+                    /* Scroll back to the Professional
+                       Work section / page position */
+
+                    const section =
+                        document.getElementById(
+                            "professional-work"
+                        );
+
+
+                    if(section){
+
+                        section.scrollIntoView({
+
+                            behavior:"smooth",
+
+                            block:"start"
+
+                        });
+
+                    }
+
+                }
+            );
+
+        });
+
+
+        /* =====================================================
+           ESCAPE KEY NAVIGATION
+           
+           Hierarchy:
+           
+           Military Mess
+                ESC
+                 ↓
+               CNIC
+           
+           Project 02
+                ESC
+                 ↓
+               CNIC
+           
+           CNIC
+                ESC
+                 ↓
+         Professional Work
+           
+           Rehabilitation
+                ESC
+                 ↓
+         Professional Work
+           
+           Professional Work
+                ESC
+                 ↓
+             EXIT
+        ===================================================== */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if(
+                    event.key !== "Escape"
+                )
+                    return;
+
+
+                switch(
+                    currentView
+                ){
+
+                    /* -----------------------------------------
+                       MILITARY MESS → CNIC
+                    ----------------------------------------- */
+
+                    case "military":
+
+                        showProfessionalView(
+                            "cnic"
+                        );
+
+                        break;
+
+
+                    /* -----------------------------------------
+                       PROJECT 02 → CNIC
+                    ----------------------------------------- */
+
+                    case "cnic-project-02":
+
+                        showProfessionalView(
+                            "cnic"
+                        );
+
+                        break;
+
+
+                    /* -----------------------------------------
+                       CNIC → PROFESSIONAL WORK
+                    ----------------------------------------- */
+
+                    case "cnic":
+
+                        showProfessionalView(
+                            "index"
+                        );
+
+                        break;
+
+
+                    /* -----------------------------------------
+                       REHABILITATION → PROFESSIONAL WORK
+                    ----------------------------------------- */
+
+                    case "rehabilitation":
+
+                        showProfessionalView(
+                            "index"
+                        );
+
+                        break;
+
+
+                    /* -----------------------------------------
+                       PROFESSIONAL WORK → EXIT
+                    ----------------------------------------- */
+
+                    case "index":
+
+                        /*
+
+                           IMPORTANT:
+                           Do NOT hide the entire
+                           Professional Work section here.
+
+                           The existing page structure remains
+                           untouched.
+
+                           Instead, return to the normal page
+                           position before Professional Work.
+
+                        */
+
+                        if(
+                            professionalIndex
+                        ){
+
+                            professionalIndex.hidden =
+                                false;
+
+                        }
+
+
+                        if(
+                            professionalBackFloating
+                        ){
+
+                            professionalBackFloating.classList.remove(
+                                "visible"
+                            );
+
+                        }
+
+
+                        /*
+                           If Professional Work is inside
+                           the normal page flow, move to the
+                           section before it.
+                        */
+
+                        const section =
+                            document.getElementById(
+                                "professional-work"
+                            );
+
+
+                        if(section){
+
+                            const previousSection =
+                                section.previousElementSibling;
+
+
+                            if(
+                                previousSection
+                            ){
+
+                                previousSection.scrollIntoView({
+
+                                    behavior:"smooth",
+
+                                    block:"start"
+
+                                });
+
+                            }
+
+                        }
+
+                        break;
+
+                }
+
+            }
+
+        );
+
+
+        /* =====================================================
+           INITIAL STATE
+        ===================================================== */
+
+        Object.entries(views)
+            .forEach(
+                ([name, view]) => {
+
+                    if(!view)
+                        return;
+
+
+                    if(
+                        name === "index"
+                    ){
+
+                        view.hidden = false;
+
+                    }else{
+
+                        view.hidden = true;
+
+                    }
+
+                }
+            );
+
+
+        currentView = "index";
+
+
+        if(
+            professionalBackFloating
+        ){
+
+            professionalBackFloating.classList.remove(
+                "visible"
+            );
+
+        }
 
     }
 );
