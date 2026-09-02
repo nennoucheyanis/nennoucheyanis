@@ -8090,50 +8090,6 @@ footer{
 
 
 /* =========================================================
-   FLOATING BACK BUTTON
-========================================================= */
-
-#professionalBackFloating {
-    position: fixed;
-    left: 24px;
-    bottom: 24px;
-    z-index: 9999;
-
-    padding: 12px 18px;
-    border: 1px solid var(--red);
-    background: var(--red);
-    color: #fff;
-
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.04em;
-
-    cursor: pointer;
-
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-
-    transition:
-        opacity 0.25s ease,
-        visibility 0.25s ease,
-        transform 0.25s ease,
-        background-color 0.25s ease;
-}
-
-#professionalBackFloating.is-visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-#professionalBackFloating:hover {
-    background: var(--dark);
-    border-color: var(--dark);
-}
-
-
-/* =========================================================
    MOBILE
 ========================================================= */
 
@@ -8146,10 +8102,5 @@ footer{
 
     .professional-continue {
         margin-top: 70px;
-    }
-
-    #professionalBackFloating {
-        left: 16px;
-        bottom: 16px;
     }
 }
