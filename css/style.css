@@ -6132,6 +6132,10 @@ footer{
         grid-template-columns:1fr;
     }
 
+    .professional-project-grid{
+        grid-template-columns:1fr;
+    }
+
     .story-heading{
         grid-template-columns:
             60px 1fr;
@@ -6703,6 +6707,94 @@ footer{
     color:#fff;
 
     border-color:var(--dark);
+
+}
+
+
+/* =========================================================
+   PROFESSIONAL WORK — FLOATING BACK BUTTON
+========================================================= */
+
+.professional-back-floating{
+
+    position:fixed;
+
+    top:90px;
+    left:24px;
+
+    z-index:9999;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:11px 16px;
+
+    background:var(--red);
+    color:#fff;
+
+    border:1px solid var(--red);
+
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    box-shadow:0 4px 20px rgba(0,0,0,.06);
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(-8px);
+
+    transition:
+        opacity:.25s ease,
+        visibility:.25s ease,
+        transform:.25s ease,
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease;
+
+}
+
+
+.professional-back-floating.visible{
+
+    opacity:1;
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+
+.professional-back-floating:hover{
+
+    background:var(--dark);
+    color:#fff;
+
+    border-color:var(--dark);
+
+}
+
+
+@media(max-width:700px){
+
+    .professional-back-floating{
+
+        top:75px;
+        left:16px;
+
+        padding:10px 13px;
+
+        font-size:10px;
+
+    }
 
 }
 
@@ -7836,6 +7928,12 @@ footer{
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0;
     width: 100%;
+}
+
+.professional-project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
 }
 
 .professional-project-card {
