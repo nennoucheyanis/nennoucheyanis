@@ -1670,55 +1670,14 @@ document.addEventListener(
                 "click",
                 () => {
 
-                    switch(
-                        currentView
-                    ){
+                    /* Always exit straight to the
+                       Professional Work homepage,
+                       no matter which sub-level
+                       is currently open. */
 
-                        case "military":
-
-                            showProfessionalView(
-                                "cnic"
-                            );
-
-                            break;
-
-
-                        case "cnic-project-02":
-
-                            showProfessionalView(
-                                "cnic"
-                            );
-
-                            break;
-
-
-                        case "cnic":
-
-                            showProfessionalView(
-                                "index"
-                            );
-
-                            break;
-
-
-                        case "rehabilitation":
-
-                            showProfessionalView(
-                                "index"
-                            );
-
-                            break;
-
-
-                        default:
-
-                            showProfessionalView(
-                                "index"
-                            );
-
-                            break;
-
-                    }
+                    showProfessionalView(
+                        "index"
+                    );
 
                 }
             );
