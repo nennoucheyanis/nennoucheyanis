@@ -4664,6 +4664,15 @@ PROJECT 03 — MOBILE
 }
 
 
+.professional-media-split{
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+
+}
+
+
 .professional-media img{
 
     display:block;
@@ -6133,6 +6142,10 @@ footer{
     }
 
     .professional-project-grid{
+        grid-template-columns:1fr;
+    }
+
+    .professional-media-split{
         grid-template-columns:1fr;
     }
 
