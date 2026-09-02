@@ -4749,6 +4749,46 @@ PROJECT 03 — MOBILE
 
 }
 
+/* =========================================================
+   PROFESSIONAL WORK — INTERNAL STORY HEADINGS
+   Same visual language as ACADEMICAL WORKS
+========================================================= */
+
+.professional-section-heading{
+
+    display:grid;
+
+    grid-template-columns:
+        120px 1fr;
+
+    gap:40px;
+
+    margin-bottom:45px;
+}
+
+.professional-section-index{
+
+    font-family:var(--mono);
+
+    font-size:.63rem;
+
+    color:var(--red);
+}
+
+.professional-section-title{
+
+    margin:0;
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(2.3rem,4.5vw,5rem);
+
+    line-height:.9;
+
+    letter-spacing:-.06em;
+}
+
 
 /* =========================================================
    HIDDEN VIEWS
