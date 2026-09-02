@@ -16,10 +16,10 @@ menuBtn.addEventListener("click",()=>{
 
     navLinks.classList.toggle("open");
 
-    menuBtn.textContent =
-        navLinks.classList.contains("open")
-            ? "×"
-            : "☰";
+    const isOpen = navLinks.classList.contains("open");
+
+    menuBtn.textContent = isOpen ? "×" : "☰";
+    menuBtn.setAttribute("aria-expanded", isOpen);
 
 });
 
@@ -32,12 +32,12 @@ document
 
             navLinks.classList.remove("open");
 
-            menuBtn.textContent="☰";
+            menuBtn.textContent = "☰";
+            menuBtn.setAttribute("aria-expanded", "false");
 
         });
 
     });
-
 
 /* =========================================================
    NAVBAR SCROLL
