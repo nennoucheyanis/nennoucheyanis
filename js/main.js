@@ -113,6 +113,95 @@ pageSections.forEach(
     section =>
         sectionObserver.observe(section)
 );
+/* =========================================================
+   SCROLL LOCK
+   (shared between Professional Work and Academical Works)
+
+   While inside either section — any view other than its own
+   selection / index screen — scrolling is capped at the
+   bottom of that section. The page cannot continue into
+   whatever comes after it (Research, Let's Build...) until
+   the section's Exit / Continue action is used.
+========================================================= */
+
+let scrollLockActive = false;
+let scrollLockSectionId = null;
+
+
+function activateScrollLock(sectionId){
+
+    scrollLockActive = true;
+    scrollLockSectionId = sectionId;
+
+}
+
+
+function deactivateScrollLock(){
+
+    scrollLockActive = false;
+    scrollLockSectionId = null;
+
+}
+
+
+function getMaxLockedScroll(){
+
+    if(!scrollLockSectionId)
+        return Infinity;
+
+    const section =
+        document.getElementById(
+            scrollLockSectionId
+        );
+
+    if(!section)
+        return Infinity;
+
+    const rect =
+        section.getBoundingClientRect();
+
+    return (
+        window.scrollY +
+        rect.bottom -
+        window.innerHeight
+    );
+
+}
+
+
+function clampLockedScroll(){
+
+    if(!scrollLockActive)
+        return;
+
+    const maxScroll =
+        getMaxLockedScroll();
+
+    if(
+        window.scrollY > maxScroll
+    ){
+
+        window.scrollTo(
+            0,
+            Math.max(maxScroll, 0)
+        );
+
+    }
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        window.requestAnimationFrame(
+            clampLockedScroll
+        );
+
+    },
+    { passive:true }
+);
 
 
 /* =========================================================
@@ -188,6 +277,21 @@ document.addEventListener("DOMContentLoaded",()=>{
                 .add("visible");
 
         }
+
+    }
+
+
+    /* =====================================================
+       SCROLL LOCK
+    ===================================================== */
+
+    if(viewName === "index"){
+
+        deactivateScrollLock();
+
+    }else{
+
+        activateScrollLock("work");
 
     }
 
@@ -345,6 +449,13 @@ document
                     .remove("visible");
 
             }
+
+
+            /* ---------------------------------------------
+               SCROLL LOCK — RELEASE
+            --------------------------------------------- */
+
+            deactivateScrollLock();
 
 
             /* ---------------------------------------------
@@ -1504,6 +1615,23 @@ document.addEventListener(
 
 
             /* =================================================
+               SCROLL LOCK
+            ================================================= */
+
+            if(viewName === "index"){
+
+                deactivateScrollLock();
+
+            }else{
+
+                activateScrollLock(
+                    "professional-work"
+                );
+
+            }
+
+
+            /* =================================================
                FLOATING BACK BUTTON
             ================================================= */
 
@@ -1786,6 +1914,11 @@ document.addEventListener(
                     /* Reset current view */
 
                     currentView = "index";
+
+
+                    /* Scroll lock — release */
+
+                    deactivateScrollLock();
 
 
                     /* Scroll back to the Professional
