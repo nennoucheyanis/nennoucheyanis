@@ -282,23 +282,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
     /* =====================================================
-       SCROLL LOCK
-    ===================================================== */
-
-    if(viewName === "index"){
-
-        deactivateScrollLock();
-       document.body.classList.remove("academic-locked"); // AJOUT : Rétablit le reste du site
-
-    }else{
-
-        activateScrollLock("work");
-       document.body.classList.add("academic-locked"); // AJOUT : Cache les sections suivantes
-
-    }
-
-
-    /* =====================================================
        HIDE ALL ACADEMICAL VIEWS
     ===================================================== */
 
@@ -325,6 +308,29 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
     target.hidden = false;
+
+
+    /* =====================================================
+       SCROLL LOCK
+       Lock to the visible project section (eco / urban /
+       housing live outside #work), not the index.
+    ===================================================== */
+
+    if(viewName === "index"){
+
+        deactivateScrollLock();
+        document.body.classList.remove("academic-locked");
+
+    }else{
+
+        const lockId =
+            target.id ||
+            "work";
+
+        activateScrollLock(lockId);
+        document.body.classList.add("academic-locked");
+
+    }
 
 
     /* =====================================================
@@ -1891,63 +1897,7 @@ document.addEventListener(
                 "click",
                 () => {
 
-                    /* Hide all Professional views */
-
-                    Object.values(views)
-                        .forEach(view => {
-
-                            if(!view)
-                                return;
-
-                            view.hidden = true;
-
-                        });
-
-
-                    /* Hide floating button */
-
-                    if(
-                        professionalBackFloating
-                    ){
-
-                        professionalBackFloating.classList.remove(
-                            "visible"
-                        );
-
-                    }
-
-
-                    /* Reset current view */
-
-                    currentView = "index";
-
-
-                    /* Scroll lock — release */
-
-                    deactivateScrollLock();
-                    document.body.classList.remove("professional-locked");
-
-
-                    /* Scroll back to the Professional
-                       Work section / page position */
-
-                    const section =
-                        document.getElementById(
-                            "professional-work"
-                        );
-
-
-                    if(section){
-
-                        section.scrollIntoView({
-
-                            behavior:"smooth",
-
-                            block:"start"
-
-                        });
-
-                    }
+                    showProfessionalView("index");
 
                 }
             );
@@ -2100,6 +2050,16 @@ document.addEventListener(
                                 false;
 
                         }
+
+
+                        currentView = "index";
+
+                        deactivateScrollLock();
+
+                        document.body.classList.remove(
+                            "professional-locked",
+                            "professional-subspace"
+                        );
 
 
                         if(
