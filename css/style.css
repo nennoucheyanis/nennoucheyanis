@@ -1533,6 +1533,42 @@ section{
 }
 
 /* =========================================================
+   STORY LIST (used inside .story-text for step lists)
+========================================================= */
+
+ul.story-text{
+
+    list-style:none;
+
+}
+
+ul.story-text li{
+
+    position:relative;
+    padding-left:22px;
+    margin-bottom:14px;
+
+}
+
+ul.story-text li:last-child{
+
+    margin-bottom:0;
+
+}
+
+ul.story-text li::before{
+
+    content:"";
+    position:absolute;
+    left:0;
+    top:.75em;
+    width:10px;
+    height:1px;
+    background:var(--red);
+
+}
+
+/* =========================================================
    CONCEPT
 ========================================================= */
 
