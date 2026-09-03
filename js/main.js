@@ -1401,6 +1401,21 @@ document.addEventListener(
                 "professional-rehabilitation-view"
             );
 
+        const rehabStairsView =
+            document.getElementById(
+                "professional-rehab-stairs-view"
+            );
+
+        const rehabMetalFloorView =
+            document.getElementById(
+                "professional-rehab-metal-floor-view"
+            );
+
+        const rehabWoodFloorView =
+            document.getElementById(
+                "professional-rehab-wood-floor-view"
+            );
+
         const professionalBackFloating =
             document.getElementById(
                 "professionalBackFloating"
@@ -1426,7 +1441,16 @@ document.addEventListener(
                 cnicProject02View,
 
             rehabilitation:
-                rehabilitationView
+                rehabilitationView,
+
+            "rehab-stairs":
+                rehabStairsView,
+
+            "rehab-metal-floor":
+                rehabMetalFloorView,
+
+            "rehab-wood-floor":
+                rehabWoodFloorView
 
         };
 
@@ -1560,6 +1584,15 @@ document.addEventListener(
 
         /* =====================================================
            OPEN PROFESSIONAL PROJECT
+
+           Generic lookup against the "views" map.
+           Handles Military Mess, CNIC Project 02, and all
+           Rehabilitation project views without hardcoding
+           each one individually.
+
+           "military-mess" is mapped to the "military" key
+           to stay compatible with the existing HTML attribute
+           (data-professional-project-open="military-mess").
         ===================================================== */
 
         document.querySelectorAll(
@@ -1574,28 +1607,17 @@ document.addEventListener(
                         button.dataset
                             .professionalProjectOpen;
 
-
-                    /* Military Mess */
+                    const key =
+                        target === "military-mess"
+                            ? "military"
+                            : target;
 
                     if(
-                        target === "military-mess"
+                        views[key]
                     ){
 
                         showProfessionalView(
-                            "military"
-                        );
-
-                    }
-
-
-                    /* CNIC Project 02 */
-
-                    else if(
-                        target === "cnic-project-02"
-                    ){
-
-                        showProfessionalView(
-                            "cnic-project-02"
+                            key
                         );
 
                     }
@@ -1660,6 +1682,10 @@ document.addEventListener(
            Rehabilitation
                 ↓
         Professional Work
+
+           Rehab Stairs / Metal Floor / Wood Floor
+                ↓
+           Rehabilitation
         ===================================================== */
 
         if(
@@ -1813,6 +1839,11 @@ document.addEventListener(
                 ESC
                  ↓
          Professional Work
+
+           Rehab Stairs / Metal Floor / Wood Floor
+                ESC
+                 ↓
+           Rehabilitation
            
            Professional Work
                 ESC
@@ -1881,6 +1912,21 @@ document.addEventListener(
 
                         showProfessionalView(
                             "index"
+                        );
+
+                        break;
+
+
+                    /* -----------------------------------------
+                       REHAB PROJECTS → REHABILITATION
+                    ----------------------------------------- */
+
+                    case "rehab-stairs":
+                    case "rehab-metal-floor":
+                    case "rehab-wood-floor":
+
+                        showProfessionalView(
+                            "rehabilitation"
                         );
 
                         break;
