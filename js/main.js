@@ -164,6 +164,7 @@ function getMaxLockedScroll(){
         window.scrollY +
         rect.bottom -
         window.innerHeight
+       40   // marge visuelle avant la section suivante
     );
 
 }
