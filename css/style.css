@@ -8154,3 +8154,35 @@ footer{
         margin-top: 70px;
     }
 }
+
+/* ========================================================= 
+   PATCH : ACADEMICAL & PROFESSIONAL WORKS ISOLATION 
+========================================================= */
+
+/* 1 & 5. Masquer les sections suivantes pour bloquer le scroll à la fin des travaux académiques */
+body.academic-locked #research,
+body.academic-locked #professional-work,
+body.academic-locked #contact {
+    display: none !important;
+}
+
+/* 2 & 5. Masquer "Let's Build" (contact) pour bloquer le scroll à la fin de Professional Work */
+body.professional-locked #contact {
+    display: none !important;
+}
+
+/* 4. Visibilité conditionnelle du bouton EXIT PROFESSIONAL WORK */
+/* (Remplace #btn-exit-pw par l'ID ou la classe exacte de ton bouton de sortie) */
+#btn-exit-pw {
+    display: none !important; /* Invisible sur l'écran principal de PW */
+}
+
+body.professional-locked #btn-exit-pw {
+    display: inline-flex !important; /* Visible uniquement dans les niveaux internes */
+}
+
+/* Sécurité (Point 3) : Au cas où une flèche serait générée en JS dans PW */
+#professional-work .scroll-indicator,
+#professional-work .arrow-down {
+    display: none !important; 
+}
