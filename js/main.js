@@ -1,6 +1,34 @@
 /* =========================================================
-   NAVIGATION
+   YANIS NENNOUCHE — PORTFOLIO
+   MAIN.JS
+
+   ORGANISATION DU FICHIER
+
+   01 — VARIABLES GÉNÉRALES
+   02 — NAVIGATION PRINCIPALE
+   03 — NAVBAR AU SCROLL
+   04 — NAVIGATION ACTIVE
+   05 — SCROLL LOCK
+   06 — ACADEMICAL WORKS
+   07 — PROFESSIONAL WORK
+   08 — TOUCHE ESC
+   09 — LIGHTBOX
+   10 — REVEAL ANIMATIONS
+   11 — CUSTOM CURSOR
+   12 — PORTFOLIO DIAPHRAGM
+   13 — PARAMETRIC BRISE-SOLEIL
 ========================================================= */
+
+
+/* =========================================================
+   01 — VARIABLES GÉNÉRALES
+========================================================= */
+
+/*
+   On récupère les éléments principaux du site.
+*/
+
+const body = document.body;
 
 const navbar =
     document.getElementById("navbar");
@@ -11,68 +39,96 @@ const navLinks =
 const menuBtn =
     document.getElementById("menuBtn");
 
+const hero =
+    document.getElementById("hero");
 
-if(menuBtn && navLinks){
 
-    menuBtn.addEventListener("click",()=>{
+/* =========================================================
+   02 — NAVIGATION PRINCIPALE
+========================================================= */
 
-        navLinks.classList.toggle("open");
 
-        const isOpen =
-            navLinks.classList.contains("open");
+/*
+   OUVRIR / FERMER LE MENU MOBILE
+*/
 
-        menuBtn.textContent =
-            isOpen ? "×" : "☰";
+if (menuBtn && navLinks) {
 
-        menuBtn.setAttribute(
-            "aria-expanded",
-            isOpen
-        );
+    menuBtn.addEventListener(
+        "click",
+        () => {
 
-    });
+            navLinks.classList.toggle("open");
+
+            const isOpen =
+                navLinks.classList.contains("open");
+
+            menuBtn.textContent =
+                isOpen ? "×" : "☰";
+
+            menuBtn.setAttribute(
+                "aria-expanded",
+                isOpen
+            );
+
+        }
+    );
 
 }
 
 
+/*
+   FERMER LE MENU APRÈS UN CLIC
+*/
+
 document
     .querySelectorAll(".nav-links a")
-    .forEach(link=>{
+    .forEach(link => {
 
-        link.addEventListener("click",()=>{
+        link.addEventListener(
+            "click",
+            () => {
 
-            if(navLinks){
-                navLinks.classList.remove("open");
+                if (navLinks) {
+
+                    navLinks.classList.remove(
+                        "open"
+                    );
+
+                }
+
+                if (menuBtn) {
+
+                    menuBtn.textContent =
+                        "☰";
+
+                    menuBtn.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+
             }
-
-            if(menuBtn){
-
-                menuBtn.textContent = "☰";
-
-                menuBtn.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            }
-
-        });
+        );
 
     });
 
 
 /* =========================================================
-   NAVBAR SCROLL
+   03 — NAVBAR AU SCROLL
 ========================================================= */
 
-const hero =
-    document.getElementById("hero");
+/*
+   La navbar reçoit la classe "scrolled"
+   lorsqu'on quitte le Hero.
+*/
 
-
-if(navbar && hero){
+if (navbar && hero) {
 
     const navbarObserver =
         new IntersectionObserver(
-            ([entry])=>{
+            ([entry]) => {
 
                 navbar.classList.toggle(
                     "scrolled",
@@ -81,10 +137,9 @@ if(navbar && hero){
 
             },
             {
-                threshold:.15
+                threshold: 0.15
             }
         );
-
 
     navbarObserver.observe(hero);
 
@@ -92,8 +147,12 @@ if(navbar && hero){
 
 
 /* =========================================================
-   ACTIVE NAV
+   04 — NAVIGATION ACTIVE
 ========================================================= */
+
+/*
+   Les grandes sections du portfolio.
+*/
 
 const pageSections =
     document.querySelectorAll(
@@ -101,28 +160,35 @@ const pageSections =
     );
 
 
-if(pageSections.length){
+/*
+   Détecter quelle section est visible.
+*/
+
+if (pageSections.length) {
 
     const sectionObserver =
         new IntersectionObserver(
-            entries=>{
+            entries => {
 
-                entries.forEach(entry=>{
+                entries.forEach(entry => {
 
-                    if(!entry.isIntersecting)
+                    if (!entry.isIntersecting) {
                         return;
+                    }
 
                     const id =
                         entry.target.id;
 
 
                     document
-                        .querySelectorAll(".nav-links a")
-                        .forEach(link=>{
+                        .querySelectorAll(
+                            ".nav-links a"
+                        )
+                        .forEach(link => {
 
                             link.classList.toggle(
                                 "active",
-                                link.dataset.nav===id
+                                link.dataset.nav === id
                             );
 
                         });
@@ -131,34 +197,51 @@ if(pageSections.length){
 
             },
             {
-                rootMargin:"-35% 0px -55% 0px"
+                rootMargin:
+                    "-35% 0px -55% 0px"
             }
         );
 
 
-    pageSections.forEach(
-        section =>
-            sectionObserver.observe(section)
-    );
+    pageSections.forEach(section => {
+
+        sectionObserver.observe(
+            section
+        );
+
+    });
 
 }
 
 
 /* =========================================================
-   SCROLL LOCK
-   Shared between Professional Work and Academical Works
-
-   The lock prevents the user from continuing into the
-   next website section while still allowing normal
-   scrolling through the COMPLETE active view.
+   05 — SCROLL LOCK
 ========================================================= */
 
+/*
+   Le Scroll Lock sert à empêcher le visiteur
+   de sortir d'un projet avant d'avoir atteint
+   sa vraie fin.
+
+   IMPORTANT :
+
+   Le verrouillage utilise la section actuellement
+   ouverte et NON toute la page.
+*/
+
+
 let scrollLockActive = false;
+
 let scrollLockSectionId = null;
+
 let scrollLockFrame = null;
 
 
-function activateScrollLock(sectionId){
+/*
+   ACTIVER LE SCROLL LOCK
+*/
+
+function activateScrollLock(sectionId) {
 
     scrollLockActive = true;
 
@@ -170,13 +253,18 @@ function activateScrollLock(sectionId){
 }
 
 
-function deactivateScrollLock(){
+/*
+   DÉSACTIVER LE SCROLL LOCK
+*/
+
+function deactivateScrollLock() {
 
     scrollLockActive = false;
 
     scrollLockSectionId = null;
 
-    if(scrollLockFrame){
+
+    if (scrollLockFrame) {
 
         cancelAnimationFrame(
             scrollLockFrame
@@ -189,19 +277,17 @@ function deactivateScrollLock(){
 }
 
 
-/* =========================================================
-   GET MAXIMUM SCROLL POSITION
-   Uses the REAL bottom of the active section.
+/*
+   TROUVER LA POSITION MAXIMALE
+*/
 
-   This is important because Academic project views
-   (#eco-project / #urban-project / #housing-project)
-   are outside #work.
-========================================================= */
+function getMaxLockedScroll() {
 
-function getMaxLockedScroll(){
+    if (!scrollLockActive) {
 
-    if(!scrollLockActive)
         return Infinity;
+
+    }
 
 
     const lockedSection =
@@ -210,10 +296,15 @@ function getMaxLockedScroll(){
         );
 
 
-    if(
+    /*
+       Si la section n'existe pas
+       ou est cachée, ne rien bloquer.
+    */
+
+    if (
         !lockedSection ||
         lockedSection.hidden
-    ){
+    ) {
 
         return Infinity;
 
@@ -234,6 +325,12 @@ function getMaxLockedScroll(){
         window.scrollY;
 
 
+    /*
+       Le maximum correspond au moment
+       où le bas de la section arrive
+       au bas de l'écran.
+    */
+
     return Math.max(
         sectionTop,
         sectionBottom -
@@ -243,24 +340,27 @@ function getMaxLockedScroll(){
 }
 
 
-/* =========================================================
-   CLAMP SCROLL
-========================================================= */
+/*
+   BLOQUER LE SCROLL AU-DELÀ DE LA FIN
+*/
 
-function clampLockedScroll(){
+function clampLockedScroll() {
 
-    if(!scrollLockActive)
+    if (!scrollLockActive) {
+
         return;
+
+    }
 
 
     const maxScroll =
         getMaxLockedScroll();
 
 
-    if(
+    if (
         window.scrollY >
         maxScroll
-    ){
+    ) {
 
         window.scrollTo(
             0,
@@ -272,41 +372,50 @@ function clampLockedScroll(){
 }
 
 
-/* =========================================================
-   REQUEST SCROLL CLAMP
-   Prevents excessive requestAnimationFrame calls.
-========================================================= */
+/*
+   DEMANDER UNE VÉRIFICATION
+*/
 
-function requestScrollClamp(){
+function requestScrollClamp() {
 
-    if(!scrollLockActive)
+    if (!scrollLockActive) {
+
         return;
 
+    }
 
-    if(scrollLockFrame)
+
+    if (scrollLockFrame) {
+
         return;
+
+    }
 
 
     scrollLockFrame =
-        requestAnimationFrame(()=>{
+        requestAnimationFrame(
+            () => {
 
-            scrollLockFrame = null;
+                scrollLockFrame = null;
 
-            clampLockedScroll();
+                clampLockedScroll();
 
-        });
+            }
+        );
 
 }
 
 
-/* =========================================================
-   GLOBAL SCROLL / RESIZE / LOAD
-========================================================= */
+/*
+   Vérifier le scroll lorsque la fenêtre change.
+*/
 
 window.addEventListener(
     "scroll",
     requestScrollClamp,
-    { passive:true }
+    {
+        passive: true
+    }
 );
 
 
@@ -323,19 +432,18 @@ window.addEventListener(
 
 
 /*
-   Recalculate the lock when images finish loading.
-   This prevents the bottom limit from being calculated
-   before large project images have their final height.
+   Les images peuvent changer la hauteur
+   d'un projet après son chargement.
 */
 
 document.addEventListener(
     "load",
-    event=>{
+    event => {
 
-        if(
+        if (
             event.target instanceof
             HTMLImageElement
-        ){
+        ) {
 
             requestScrollClamp();
 
@@ -347,12 +455,40 @@ document.addEventListener(
 
 
 /* =========================================================
-   ACADEMICAL WORKS — INTERNAL NAVIGATION
+   06 — ACADEMICAL WORKS
 ========================================================= */
+
+/*
+   STRUCTURE :
+
+   ACADEMICAL WORKS
+        ↓
+   INDEX
+        ↓
+   PROJECT 01
+   PROJECT 02
+   PROJECT 03
+
+   Le système permet de passer directement
+   d'un projet à un autre.
+
+   IMPORTANT :
+
+   Quand on change de projet, le scroll est
+   d'abord débloqué afin de permettre au navigateur
+   de remonter au début du nouveau projet.
+
+   Ensuite le Scroll Lock est réactivé.
+*/
+
 
 document.addEventListener(
     "DOMContentLoaded",
-    ()=>{
+    () => {
+
+        /* -------------------------------------------------
+           6.1 — RÉCUPÉRER LES ÉLÉMENTS
+        ------------------------------------------------- */
 
         const academicIndex =
             document.getElementById(
@@ -390,6 +526,10 @@ document.addEventListener(
             );
 
 
+        /* -------------------------------------------------
+           6.2 — LISTE DES VUES
+        ------------------------------------------------- */
+
         const academicViews = {
 
             index:
@@ -407,133 +547,303 @@ document.addEventListener(
         };
 
 
-        /* =====================================================
-           SHOW ACADEMICAL VIEW
-        ===================================================== */
+        /* -------------------------------------------------
+           6.3 — FONCTION POUR ALLER AU DÉBUT
+                  D'UNE NOUVELLE VUE
+        ------------------------------------------------- */
+
+        function scrollToAcademicView(
+            target,
+            shouldLock
+        ) {
+
+            if (!target) {
+
+                return;
+
+            }
+
+
+            /*
+               IMPORTANT :
+
+               On désactive temporairement le Scroll Lock.
+
+               Pourquoi ?
+
+               Exemple :
+
+               Project 01
+               ↓
+               ↓
+               ↓
+               bas du projet
+
+               Si on clique sur Project 02,
+               le navigateur doit pouvoir remonter.
+
+               Si le lock reste actif pendant ce mouvement,
+               il peut considérer l'ancienne position comme
+               une position déjà trop basse et empêcher
+               le déplacement.
+            */
+
+            deactivateScrollLock();
+
+
+            /*
+               On enlève également la classe
+               pendant le déplacement.
+            */
+
+            body.classList.remove(
+                "academic-locked"
+            );
+
+
+            /*
+               Aller au début du nouveau projet.
+            */
+
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+
+            /*
+               Une fois le déplacement terminé,
+               on réactive le Scroll Lock.
+
+               "scrollend" est utilisé quand disponible.
+
+               Le setTimeout sert de sécurité
+               pour les navigateurs qui ne déclenchent
+               pas cet événement.
+            */
+
+            if (shouldLock) {
+
+                let lockActivated =
+                    false;
+
+
+                function activateAfterScroll() {
+
+                    if (lockActivated) {
+
+                        return;
+
+                    }
+
+                    lockActivated = true;
+
+
+                    window.removeEventListener(
+                        "scrollend",
+                        activateAfterScroll
+                    );
+
+
+                    activateScrollLock(
+                        target.id
+                    );
+
+
+                    body.classList.add(
+                        "academic-locked"
+                    );
+
+                }
+
+
+                /*
+                   Navigateur moderne.
+                */
+
+                window.addEventListener(
+                    "scrollend",
+                    activateAfterScroll,
+                    {
+                        once: true
+                    }
+                );
+
+
+                /*
+                   Sécurité.
+
+                   Si le navigateur ne gère pas
+                   "scrollend", on réactive après
+                   un court délai.
+                */
+
+                setTimeout(
+                    activateAfterScroll,
+                    800
+                );
+
+            }
+
+        }
+
+
+        /* -------------------------------------------------
+           6.4 — AFFICHER UNE VUE ACADEMIC
+        ------------------------------------------------- */
 
         function showAcademicView(
             viewName
-        ){
+        ) {
 
             const target =
                 academicViews[viewName];
 
 
-            if(!target)
+            /*
+               Si la vue n'existe pas,
+               arrêter la fonction.
+            */
+
+            if (!target) {
+
                 return;
 
-
-            /* ---------------------------------------------
-               HIDE ALL ACADEMIC VIEWS
-            --------------------------------------------- */
-
-            Object.values(academicViews)
-                .forEach(view=>{
-
-                    if(!view)
-                        return;
-
-                    view.hidden = true;
-
-                });
+            }
 
 
-            /* ---------------------------------------------
-               SHOW TARGET
-            --------------------------------------------- */
+            /*
+               CACHER TOUTES LES VUES
+            */
+
+            Object.values(
+                academicViews
+            )
+            .forEach(view => {
+
+                if (!view) {
+
+                    return;
+
+                }
+
+                view.hidden = true;
+
+            });
+
+
+            /*
+               AFFICHER LA VUE DEMANDÉE
+            */
 
             target.hidden = false;
 
 
-            /* ---------------------------------------------
-               FLOATING BACK BUTTON
-            --------------------------------------------- */
+            /*
+               GÉRER LE BOUTON BACK
+            */
 
-            if(academicBackFloating){
+            if (
+                academicBackFloating
+            ) {
 
-                academicBackFloating.classList.toggle(
-                    "visible",
-                    viewName !== "index"
-                );
+                academicBackFloating
+                    .classList
+                    .toggle(
+                        "visible",
+                        viewName !== "index"
+                    );
 
             }
 
 
-            /* ---------------------------------------------
-               SCROLL LOCK
-            --------------------------------------------- */
+            /*
+               SI ON REVIENT À L'INDEX
+            */
 
-            if(viewName === "index"){
+            if (
+                viewName === "index"
+            ) {
 
                 deactivateScrollLock();
 
-                document.body.classList.remove(
+                body.classList.remove(
                     "academic-locked"
                 );
 
-            }else{
 
-                activateScrollLock(
-                    target.id || "work"
+                /*
+                   Revenir au début de l'index.
+                */
+
+                requestAnimationFrame(
+                    () => {
+
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+
+                    }
                 );
 
-                document.body.classList.add(
-                    "academic-locked"
-                );
+
+                return;
 
             }
 
 
-            /* ---------------------------------------------
-               SCROLL TO TARGET
-            --------------------------------------------- */
+            /*
+               SI ON OUVRE UN PROJET
 
-            requestAnimationFrame(()=>{
+               On utilise la fonction spéciale
+               qui règle le problème Project 01 → Project 02.
+            */
 
-                target.scrollIntoView({
-                    behavior:"smooth",
-                    block:"start"
-                });
-
-            });
-
-        }
-
-
-        /* =====================================================
-           FLOATING BACK BUTTON
-           SINGLE EVENT LISTENER ONLY
-        ===================================================== */
-
-        if(academicBackFloating){
-
-            academicBackFloating.addEventListener(
-                "click",
-                ()=>{
-
-                    showAcademicView(
-                        "index"
-                    );
-
-                }
+            scrollToAcademicView(
+                target,
+                true
             );
 
         }
 
 
-        /* =====================================================
-           OPEN ACADEMICAL PROJECT
-        ===================================================== */
+        /* -------------------------------------------------
+           6.5 — BOUTON BACK FLOTTANT
+        ------------------------------------------------- */
+
+        if (
+            academicBackFloating
+        ) {
+
+            academicBackFloating
+                .addEventListener(
+                    "click",
+                    () => {
+
+                        showAcademicView(
+                            "index"
+                        );
+
+                    }
+                );
+
+        }
+
+
+        /* -------------------------------------------------
+           6.6 — OUVRIR UN PROJET ACADEMIC
+        ------------------------------------------------- */
 
         document
             .querySelectorAll(
                 "[data-academic-project-open]"
             )
-            .forEach(button=>{
+            .forEach(button => {
 
                 button.addEventListener(
                     "click",
-                    ()=>{
+                    () => {
 
                         const target =
                             button.dataset
@@ -550,76 +860,92 @@ document.addEventListener(
             });
 
 
-        /* =====================================================
-           CONTINUE TO RESEARCH
-        ===================================================== */
+        /* -------------------------------------------------
+           6.7 — CONTINUE TO RESEARCH
+        ------------------------------------------------- */
 
         document
             .querySelectorAll(
                 "[data-academic-continue]"
             )
-            .forEach(button=>{
+            .forEach(button => {
 
                 button.addEventListener(
                     "click",
-                    ()=>{
+                    () => {
 
-                        /* -------------------------------------
-                           RESTORE ACADEMIC INDEX
-                        ------------------------------------- */
+                        /*
+                           Cacher tous les projets.
+                        */
 
-                        Object.values(academicViews)
-                            .forEach(view=>{
+                        Object.values(
+                            academicViews
+                        )
+                        .forEach(view => {
 
-                                if(!view)
-                                    return;
+                            if (!view) {
 
-                                view.hidden = true;
+                                return;
 
-                            });
+                            }
+
+                            view.hidden = true;
+
+                        });
 
 
-                        if(academicViews.index){
+                        /*
+                           Afficher l'index.
+                        */
 
-                            academicViews.index.hidden =
+                        if (
+                            academicIndex
+                        ) {
+
+                            academicIndex.hidden =
                                 false;
 
                         }
 
 
-                        /* -------------------------------------
-                           HIDE BACK BUTTON
-                        ------------------------------------- */
+                        /*
+                           Cacher le bouton Back.
+                        */
 
-                        if(academicBackFloating){
+                        if (
+                            academicBackFloating
+                        ) {
 
                             academicBackFloating
                                 .classList
-                                .remove("visible");
+                                .remove(
+                                    "visible"
+                                );
 
                         }
 
 
-                        /* -------------------------------------
-                           RELEASE LOCK
-                        ------------------------------------- */
+                        /*
+                           Débloquer le scroll.
+                        */
 
                         deactivateScrollLock();
 
-                        document.body.classList.remove(
+
+                        body.classList.remove(
                             "academic-locked"
                         );
 
 
-                        /* -------------------------------------
-                           GO TO RESEARCH
-                        ------------------------------------- */
+                        /*
+                           Aller vers Research.
+                        */
 
-                        if(research){
+                        if (research) {
 
                             research.scrollIntoView({
-                                behavior:"smooth",
-                                block:"start"
+                                behavior: "smooth",
+                                block: "start"
                             });
 
                         }
@@ -630,27 +956,42 @@ document.addEventListener(
             });
 
 
-        /* =====================================================
-           INITIAL ACADEMIC STATE
-        ===================================================== */
+        /* -------------------------------------------------
+           6.8 — ÉTAT INITIAL
+        ------------------------------------------------- */
 
-        Object.entries(academicViews)
-            .forEach(([name,view])=>{
+        Object.entries(
+            academicViews
+        )
+        .forEach(
+            ([name, view]) => {
 
-                if(!view)
+                if (!view) {
+
                     return;
+
+                }
+
+                /*
+                   Seul l'index est visible.
+                */
 
                 view.hidden =
                     name !== "index";
 
-            });
+            }
+        );
 
 
-        if(academicBackFloating){
+        if (
+            academicBackFloating
+        ) {
 
             academicBackFloating
                 .classList
-                .remove("visible");
+                .remove(
+                    "visible"
+                );
 
         }
 
@@ -659,35 +1000,44 @@ document.addEventListener(
 
 
 /* =========================================================
-   PROJECT NAVIGATION — GENERIC
+   07 — PROJECT NAVIGATION GENERIC
 ========================================================= */
 
 /*
-   Academic Works uses its dedicated navigation above.
+   Certains projets utilisent encore
+   data-target.
 
-   This generic navigation remains available for existing
-   project cards that use data-target.
+   On garde cette fonction pour ne pas
+   casser les éléments existants.
 */
 
 document
     .querySelectorAll(
         ".featured-project,.project-card"
     )
-    .forEach(card=>{
+    .forEach(card => {
 
         const targetId =
             card.dataset.target;
 
 
-        if(!targetId)
+        if (!targetId) {
+
             return;
 
+        }
 
-        if(
+
+        /*
+           Les projets Academic ont déjà
+           leur propre système.
+        */
+
+        if (
             card.hasAttribute(
                 "data-academic-project-open"
             )
-        ){
+        ) {
 
             return;
 
@@ -696,7 +1046,7 @@ document
 
         card.addEventListener(
             "click",
-            ()=>{
+            () => {
 
                 const target =
                     document.getElementById(
@@ -704,10 +1054,11 @@ document
                     );
 
 
-                if(target){
+                if (target) {
 
                     target.scrollIntoView({
-                        behavior:"smooth"
+                        behavior: "smooth",
+                        block: "start"
                     });
 
                 }
@@ -719,276 +1070,35 @@ document
 
 
 /* =========================================================
-   REVEAL
+   08 — PROFESSIONAL WORK
 ========================================================= */
 
-const revealObserver =
-    new IntersectionObserver(
-        entries=>{
+/*
+   HIÉRARCHIE :
+
+   PROFESSIONAL WORK
+          ↓
+       CNIC
+       ↙   ↘
+   Military  Project 02
+
+   PROFESSIONAL WORK
+          ↓
+   Rehabilitation
+       ↓
+   Stairs
+   Metal Floor
+   Wood Floor
+*/
 
-            entries.forEach(entry=>{
-
-                if(entry.isIntersecting){
-
-                    entry.target
-                        .classList
-                        .add("visible");
-
-                }
-
-            });
-
-        },
-        {
-            threshold:.12
-        }
-    );
-
-
-document
-    .querySelectorAll(".reveal")
-    .forEach(element=>
-        revealObserver.observe(element)
-);
-
-
-/* =========================================================
-   LIGHTBOX
-========================================================= */
-
-const lightbox =
-    document.getElementById("lightbox");
-
-
-const lightboxImage =
-    document.getElementById(
-        "lightboxImage"
-    );
-
-
-const lightboxCaption =
-    document.getElementById(
-        "lightboxCaption"
-    );
-
-
-const lightboxClose =
-    document.getElementById(
-        "lightboxClose"
-    );
-
-
-function openLightbox(image){
-
-    if(
-        !lightbox ||
-        !lightboxImage
-    ){
-
-        return;
-
-    }
-
-
-    /* ---------------------------------------------
-       Reset previous rotation first
-    --------------------------------------------- */
-
-    lightboxImage.classList.remove(
-        "lightbox-image-rotated"
-    );
-
-
-    /* ---------------------------------------------
-       Use currentSrc when available
-    --------------------------------------------- */
-
-    lightboxImage.src =
-        image.currentSrc ||
-        image.src;
-
-
-    lightboxImage.alt =
-        image.alt || "";
-
-
-    if(lightboxCaption){
-
-        lightboxCaption.textContent =
-            image.alt || "";
-
-    }
-
-
-    /* ---------------------------------------------
-       Preserve existing rotated image behavior
-    --------------------------------------------- */
-
-    if(
-        image.dataset.rotated === "true"
-    ){
-
-        lightboxImage.classList.add(
-            "lightbox-image-rotated"
-        );
-
-    }
-
-
-    /* ---------------------------------------------
-       OPEN
-    --------------------------------------------- */
-
-    lightbox.classList.add(
-        "open"
-    );
-
-
-    lightbox.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-
-    document.body.classList.add(
-        "lightbox-open"
-    );
-
-}
-
-
-function closeLightbox(){
-
-    if(!lightbox)
-        return;
-
-
-    lightbox.classList.remove(
-        "open"
-    );
-
-
-    lightbox.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-
-    if(lightboxImage){
-
-        lightboxImage.src = "";
-
-        lightboxImage.alt = "";
-
-        lightboxImage.classList.remove(
-            "lightbox-image-rotated"
-        );
-
-    }
-
-
-    if(lightboxCaption){
-
-        lightboxCaption.textContent = "";
-
-    }
-
-
-    document.body.classList.remove(
-        "lightbox-open"
-    );
-
-}
-
-
-/* =========================================================
-   GLOBAL LIGHTBOX — EVENT DELEGATION
-========================================================= */
-
-document.addEventListener(
-    "click",
-    event=>{
-
-        const image =
-            event.target.closest(
-                "[data-lightbox]"
-            );
-
-
-        if(!image)
-            return;
-
-
-        /* Ignore the image already inside the lightbox */
-
-        if(
-            image === lightboxImage
-        ){
-
-            return;
-
-        }
-
-
-        event.stopPropagation();
-
-
-        openLightbox(image);
-
-    }
-);
-
-
-/* =========================================================
-   LIGHTBOX CLOSE BUTTON
-========================================================= */
-
-if(lightboxClose){
-
-    lightboxClose.addEventListener(
-        "click",
-        closeLightbox
-    );
-
-}
-
-
-/* =========================================================
-   LIGHTBOX BACKGROUND CLICK
-========================================================= */
-
-if(lightbox){
-
-    lightbox.addEventListener(
-        "click",
-        event=>{
-
-            if(
-                event.target ===
-                lightbox
-            ){
-
-                closeLightbox();
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   PROFESSIONAL WORK — INTERNAL NAVIGATION
-========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
-    ()=>{
+    () => {
 
-        /* =====================================================
-           VIEWS
-        ===================================================== */
+        /* -------------------------------------------------
+           8.1 — RÉCUPÉRER LES VUES
+        ------------------------------------------------- */
 
         const professionalIndex =
             document.getElementById(
@@ -1044,11 +1154,11 @@ document.addEventListener(
             );
 
 
-        /* =====================================================
-           VIEW MAP
-        ===================================================== */
+        /* -------------------------------------------------
+           8.2 — TABLEAU DES VUES
+        ------------------------------------------------- */
 
-        const views = {
+        const professionalViews = {
 
             index:
                 professionalIndex,
@@ -1077,48 +1187,57 @@ document.addEventListener(
         };
 
 
-        /* =====================================================
-           CURRENT VIEW
-        ===================================================== */
+        /*
+           Vue actuellement ouverte.
+        */
 
-        let currentView =
+        let currentProfessionalView =
             "index";
 
 
-        /* =====================================================
-           PROFESSIONAL BACK HIERARCHY
-        ===================================================== */
+        /* -------------------------------------------------
+           8.3 — TROUVER LE NIVEAU PRÉCÉDENT
+        ------------------------------------------------- */
 
-        function getProfessionalBackTarget(){
+        function getProfessionalBackTarget() {
 
-            switch(currentView){
+            switch (
+                currentProfessionalView
+            ) {
 
-                /* -----------------------------------------
-                   CNIC PROJECTS → CNIC
-                ----------------------------------------- */
+                /*
+                   Military Mess → CNIC
+                   Project 02 → CNIC
+                */
 
                 case "military":
+
                 case "cnic-project-02":
 
                     return "cnic";
 
 
-                /* -----------------------------------------
-                   CNIC / REHABILITATION → INDEX
-                ----------------------------------------- */
+                /*
+                   CNIC → Professional Index
+                   Rehabilitation → Professional Index
+                */
 
                 case "cnic":
+
                 case "rehabilitation":
 
                     return "index";
 
 
-                /* -----------------------------------------
-                   REHABILITATION PROJECTS → REHABILITATION
-                ----------------------------------------- */
+                /*
+                   Sous-projets Rehabilitation
+                   → Rehabilitation
+                */
 
                 case "rehab-stairs":
+
                 case "rehab-metal-floor":
+
                 case "rehab-wood-floor":
 
                     return "rehabilitation";
@@ -1133,17 +1252,17 @@ document.addEventListener(
         }
 
 
-        /* =====================================================
-           PROFESSIONAL BACK
-        ===================================================== */
+        /* -------------------------------------------------
+           8.4 — REVENIR EN ARRIÈRE
+        ------------------------------------------------- */
 
-        function goProfessionalBack(){
+        function goProfessionalBack() {
 
             const target =
                 getProfessionalBackTarget();
 
 
-            if(target){
+            if (target) {
 
                 showProfessionalView(
                     target
@@ -1154,73 +1273,85 @@ document.addEventListener(
         }
 
 
-        /* =====================================================
-           SHOW PROFESSIONAL VIEW
-        ===================================================== */
+        /* -------------------------------------------------
+           8.5 — AFFICHER UNE VUE PROFESSIONAL
+        ------------------------------------------------- */
 
         function showProfessionalView(
             viewName
-        ){
+        ) {
 
             const target =
-                views[viewName];
+                professionalViews[viewName];
 
 
-            if(!target)
+            if (!target) {
+
                 return;
 
-
-            /* ---------------------------------------------
-               HIDE ALL PROFESSIONAL VIEWS
-            --------------------------------------------- */
-
-            Object.values(views)
-                .forEach(view=>{
-
-                    if(!view)
-                        return;
-
-                    view.hidden = true;
-
-                });
+            }
 
 
-            /* ---------------------------------------------
-               SHOW TARGET
-            --------------------------------------------- */
+            /*
+               CACHER TOUTES LES VUES
+            */
+
+            Object.values(
+                professionalViews
+            )
+            .forEach(view => {
+
+                if (!view) {
+
+                    return;
+
+                }
+
+                view.hidden = true;
+
+            });
+
+
+            /*
+               AFFICHER LA VUE DEMANDÉE
+            */
 
             target.hidden = false;
 
 
-            /* ---------------------------------------------
-               STORE CURRENT VIEW
-            --------------------------------------------- */
+            /*
+               Mémoriser la vue.
+            */
 
-            currentView =
+            currentProfessionalView =
                 viewName;
 
 
-            /* ---------------------------------------------
-               SCROLL LOCK
-            --------------------------------------------- */
+            /*
+               Gérer le Scroll Lock.
+            */
 
-            if(viewName === "index"){
+            if (
+                viewName === "index"
+            ) {
 
                 deactivateScrollLock();
 
-                document.body.classList.remove(
+
+                body.classList.remove(
                     "professional-locked",
                     "professional-subspace"
                 );
 
-            }else{
+            } else {
 
                 activateScrollLock(
                     target.id ||
                     "professional-work"
                 );
 
-                document.body.classList.add(
+
+                body.classList.add(
                     "professional-locked",
                     "professional-subspace"
                 );
@@ -1228,11 +1359,13 @@ document.addEventListener(
             }
 
 
-            /* ---------------------------------------------
-               FLOATING BACK BUTTON
-            --------------------------------------------- */
+            /*
+               Bouton Back flottant.
+            */
 
-            if(professionalBackFloating){
+            if (
+                professionalBackFloating
+            ) {
 
                 professionalBackFloating
                     .classList
@@ -1244,49 +1377,53 @@ document.addEventListener(
             }
 
 
-            /* ---------------------------------------------
-               SINGLE SCROLL
-               
-               IMPORTANT:
-               The old code had TWO scrollIntoView()
-               calls here. There is now only ONE.
-            --------------------------------------------- */
+            /*
+               UNE SEULE commande de scroll.
 
-            const section =
+               L'ancien code avait deux
+               scrollIntoView().
+            */
+
+            const professionalSection =
                 document.getElementById(
                     "professional-work"
                 );
 
 
-            if(section){
+            if (
+                professionalSection
+            ) {
 
-                requestAnimationFrame(()=>{
+                requestAnimationFrame(
+                    () => {
 
-                    section.scrollIntoView({
-                        behavior:"smooth",
-                        block:"start"
-                    });
+                        professionalSection
+                            .scrollIntoView({
+                                behavior: "smooth",
+                                block: "start"
+                            });
 
-                });
+                    }
+                );
 
             }
 
         }
 
 
-        /* =====================================================
-           OPEN PROFESSIONAL EXPERIENCE
-        ===================================================== */
+        /* -------------------------------------------------
+           8.6 — OUVRIR CNIC / REHABILITATION
+        ------------------------------------------------- */
 
         document
             .querySelectorAll(
                 "[data-professional-open]"
             )
-            .forEach(button=>{
+            .forEach(button => {
 
                 button.addEventListener(
                     "click",
-                    ()=>{
+                    () => {
 
                         const target =
                             button.dataset
@@ -1303,19 +1440,19 @@ document.addEventListener(
             });
 
 
-        /* =====================================================
-           OPEN PROFESSIONAL PROJECT
-        ===================================================== */
+        /* -------------------------------------------------
+           8.7 — OUVRIR UN PROJET PROFESSIONAL
+        ------------------------------------------------- */
 
         document
             .querySelectorAll(
                 "[data-professional-project-open]"
             )
-            .forEach(button=>{
+            .forEach(button => {
 
                 button.addEventListener(
                     "click",
-                    ()=>{
+                    () => {
 
                         const target =
                             button.dataset
@@ -1323,23 +1460,30 @@ document.addEventListener(
 
 
                         /*
-                           Existing HTML uses:
+                           Dans ton HTML :
+
                            military-mess
 
-                           Existing view map uses:
+                           devient :
+
                            military
                         */
 
-                        const key =
-                            target === "military-mess"
+                        const viewName =
+                            target ===
+                            "military-mess"
                                 ? "military"
                                 : target;
 
 
-                        if(views[key]){
+                        if (
+                            professionalViews[
+                                viewName
+                            ]
+                        ) {
 
                             showProfessionalView(
-                                key
+                                viewName
                             );
 
                         }
@@ -1350,24 +1494,19 @@ document.addEventListener(
             });
 
 
-        /* =====================================================
-           PROFESSIONAL BACK BUTTONS
-           
-           Existing HTML remains compatible.
-
-           The navigation is now centralized through
-           goProfessionalBack().
-        ===================================================== */
+        /* -------------------------------------------------
+           8.8 — BOUTONS BACK INTERNES
+        ------------------------------------------------- */
 
         document
             .querySelectorAll(
                 "[data-professional-back]"
             )
-            .forEach(button=>{
+            .forEach(button => {
 
                 button.addEventListener(
                     "click",
-                    ()=>{
+                    () => {
 
                         goProfessionalBack();
 
@@ -1377,52 +1516,52 @@ document.addEventListener(
             });
 
 
-        /* =====================================================
-           FLOATING PROFESSIONAL BACK BUTTON
-           
-           Now respects the hierarchy instead of always
-           returning directly to Professional Work.
-        ===================================================== */
+        /* -------------------------------------------------
+           8.9 — BOUTON BACK FLOTTANT
+        ------------------------------------------------- */
 
-        if(
+        if (
             professionalBackFloating
-        ){
+        ) {
 
-            professionalBackFloating.addEventListener(
-                "click",
-                ()=>{
+            professionalBackFloating
+                .addEventListener(
+                    "click",
+                    () => {
 
-                    goProfessionalBack();
+                        goProfessionalBack();
 
-                }
-            );
+                    }
+                );
 
         }
 
 
-        /* =====================================================
-           CONTINUE EXPLORING
-        ===================================================== */
+        /* -------------------------------------------------
+           8.10 — CONTINUE
+        ------------------------------------------------- */
 
         document
             .querySelectorAll(
                 "[data-professional-continue]"
             )
-            .forEach(button=>{
+            .forEach(button => {
 
                 button.addEventListener(
                     "click",
-                    ()=>{
+                    () => {
 
                         const target =
                             button.dataset
                                 .professionalContinue;
 
 
-                        if(
+                        if (
                             target &&
-                            views[target]
-                        ){
+                            professionalViews[
+                                target
+                            ]
+                        ) {
 
                             showProfessionalView(
                                 target
@@ -1436,19 +1575,19 @@ document.addEventListener(
             });
 
 
-        /* =====================================================
-           EXIT PROFESSIONAL WORK
-        ===================================================== */
+        /* -------------------------------------------------
+           8.11 — EXIT PROFESSIONAL
+        ------------------------------------------------- */
 
         document
             .querySelectorAll(
                 "[data-professional-exit]"
             )
-            .forEach(button=>{
+            .forEach(button => {
 
                 button.addEventListener(
                     "click",
-                    ()=>{
+                    () => {
 
                         showProfessionalView(
                             "index"
@@ -1460,60 +1599,71 @@ document.addEventListener(
             });
 
 
-        /* =====================================================
-           INITIAL PROFESSIONAL STATE
-        ===================================================== */
+        /* -------------------------------------------------
+           8.12 — ÉTAT INITIAL
+        ------------------------------------------------- */
 
-        Object.entries(views)
-            .forEach(
-                ([name,view])=>{
+        Object.entries(
+            professionalViews
+        )
+        .forEach(
+            ([name, view]) => {
 
-                    if(!view)
-                        return;
+                if (!view) {
 
-
-                    view.hidden =
-                        name !== "index";
+                    return;
 
                 }
-            );
+
+                view.hidden =
+                    name !== "index";
+
+            }
+        );
 
 
-        currentView =
+        currentProfessionalView =
             "index";
 
 
-        document.body.classList.remove(
+        body.classList.remove(
             "professional-locked",
             "professional-subspace"
         );
 
 
-        if(
+        if (
             professionalBackFloating
-        ){
+        ) {
 
             professionalBackFloating
                 .classList
-                .remove("visible");
+                .remove(
+                    "visible"
+                );
 
         }
 
 
-        /* =====================================================
-           STORE PROFESSIONAL STATE FOR GLOBAL ESC
-        ===================================================== */
+        /*
+           Petit pont permettant à la gestion ESC
+           d'utiliser la navigation Professional.
+        */
 
         window.__professionalNavigation = {
 
             getCurrentView:
-                ()=>currentView,
+                () =>
+                    currentProfessionalView,
 
             goBack:
                 goProfessionalBack,
 
             exit:
-                ()=>showProfessionalView("index")
+                () =>
+                    showProfessionalView(
+                        "index"
+                    )
 
         };
 
@@ -1522,37 +1672,55 @@ document.addEventListener(
 
 
 /* =========================================================
-   GLOBAL ESCAPE KEY
-   ONE SINGLE ESC HANDLER
-
-   Priority:
-   1. Lightbox → close it
-   2. Academic project → Academic index
-   3. Professional sub-project → previous hierarchy level
-   4. Professional index → exit Professional Work
+   09 — TOUCHE ESC
 ========================================================= */
+
+/*
+   UN SEUL système ESC pour tout le site.
+
+   ORDRE :
+
+   1 — Lightbox ouverte
+       ↓
+       fermer Lightbox
+
+   2 — Projet Academic ouvert
+       ↓
+       revenir à Academic Index
+
+   3 — Sous-projet Professional ouvert
+       ↓
+       niveau précédent
+
+   4 — Professional Index ouvert
+       ↓
+       quitter Professional Work
+*/
+
 
 document.addEventListener(
     "keydown",
-    event=>{
+    event => {
 
-        if(
+        if (
             event.key !== "Escape"
-        ){
+        ) {
 
             return;
 
         }
 
 
-        /* =====================================================
-           1. LIGHTBOX HAS ABSOLUTE PRIORITY
-        ===================================================== */
+        /* -------------------------------------------------
+           9.1 — LIGHTBOX
+        ------------------------------------------------- */
 
-        if(
+        if (
             lightbox &&
-            lightbox.classList.contains("open")
-        ){
+            lightbox.classList.contains(
+                "open"
+            )
+        ) {
 
             closeLightbox();
 
@@ -1561,9 +1729,9 @@ document.addEventListener(
         }
 
 
-        /* =====================================================
-           2. ACADEMICAL WORKS
-        ===================================================== */
+        /* -------------------------------------------------
+           9.2 — ACADEMIC PROJECT
+        ------------------------------------------------- */
 
         const academicProjectIds = [
 
@@ -1576,21 +1744,35 @@ document.addEventListener(
         ];
 
 
-        const academicProjectOpen =
-            academicProjectIds.some(id=>{
+        let openAcademicProject =
+            null;
 
-                const view =
-                    document.getElementById(id);
 
-                return (
-                    view &&
-                    !view.hidden
-                );
+        academicProjectIds
+            .forEach(id => {
+
+                const project =
+                    document.getElementById(
+                        id
+                    );
+
+
+                if (
+                    project &&
+                    !project.hidden
+                ) {
+
+                    openAcademicProject =
+                        project;
+
+                }
 
             });
 
 
-        if(academicProjectOpen){
+        if (
+            openAcademicProject
+        ) {
 
             const academicIndex =
                 document.getElementById(
@@ -1604,22 +1786,36 @@ document.addEventListener(
                 );
 
 
+            /*
+               Cacher tous les projets.
+            */
+
             academicProjectIds
-                .forEach(id=>{
+                .forEach(id => {
 
-                    const view =
-                        document.getElementById(id);
+                    const project =
+                        document.getElementById(
+                            id
+                        );
 
-                    if(view){
 
-                        view.hidden = true;
+                    if (project) {
+
+                        project.hidden =
+                            true;
 
                     }
 
                 });
 
 
-            if(academicIndex){
+            /*
+               Afficher l'index.
+            */
+
+            if (
+                academicIndex
+            ) {
 
                 academicIndex.hidden =
                     false;
@@ -1627,32 +1823,54 @@ document.addEventListener(
             }
 
 
-            if(academicBackFloating){
+            /*
+               Cacher le bouton Back.
+            */
+
+            if (
+                academicBackFloating
+            ) {
 
                 academicBackFloating
                     .classList
-                    .remove("visible");
+                    .remove(
+                        "visible"
+                    );
 
             }
 
 
+            /*
+               Débloquer le scroll.
+            */
+
             deactivateScrollLock();
 
-            document.body.classList.remove(
+
+            body.classList.remove(
                 "academic-locked"
             );
 
 
-            if(academicIndex){
+            /*
+               Revenir à l'index.
+            */
 
-                requestAnimationFrame(()=>{
+            if (
+                academicIndex
+            ) {
 
-                    academicIndex.scrollIntoView({
-                        behavior:"smooth",
-                        block:"start"
-                    });
+                requestAnimationFrame(
+                    () => {
 
-                });
+                        academicIndex
+                            .scrollIntoView({
+                                behavior: "smooth",
+                                block: "start"
+                            });
+
+                    }
+                );
 
             }
 
@@ -1662,26 +1880,31 @@ document.addEventListener(
         }
 
 
-        /* =====================================================
-           3. PROFESSIONAL WORK
-        ===================================================== */
+        /* -------------------------------------------------
+           9.3 — PROFESSIONAL WORK
+        ------------------------------------------------- */
 
-        if(
+        if (
             window.__professionalNavigation
-        ){
+        ) {
 
             const current =
-                window.__professionalNavigation
+                window
+                    .__professionalNavigation
                     .getCurrentView();
 
 
-            /* ---------------------------------------------
-               Professional sub-view → previous level
-            --------------------------------------------- */
+            /*
+               Si on est dans un sous-projet,
+               revenir au niveau précédent.
+            */
 
-            if(current !== "index"){
+            if (
+                current !== "index"
+            ) {
 
-                window.__professionalNavigation
+                window
+                    .__professionalNavigation
                     .goBack();
 
                 return;
@@ -1689,13 +1912,19 @@ document.addEventListener(
             }
 
 
-            /* ---------------------------------------------
-               Professional index → EXIT
-            --------------------------------------------- */
+            /*
+               Sinon quitter Professional Work.
+            */
 
-            window.__professionalNavigation
+            window
+                .__professionalNavigation
                 .exit();
 
+
+            /*
+               Revenir à la section située
+               avant Professional Work.
+            */
 
             const professionalSection =
                 document.getElementById(
@@ -1703,23 +1932,30 @@ document.addEventListener(
                 );
 
 
-            if(professionalSection){
+            if (
+                professionalSection
+            ) {
 
                 const previousSection =
                     professionalSection
                         .previousElementSibling;
 
 
-                if(previousSection){
+                if (
+                    previousSection
+                ) {
 
-                    requestAnimationFrame(()=>{
+                    requestAnimationFrame(
+                        () => {
 
-                        previousSection.scrollIntoView({
-                            behavior:"smooth",
-                            block:"start"
-                        });
+                            previousSection
+                                .scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start"
+                                });
 
-                    });
+                        }
+                    );
 
                 }
 
@@ -1732,8 +1968,349 @@ document.addEventListener(
 
 
 /* =========================================================
-   CUSTOM CURSOR
+   10 — LIGHTBOX
 ========================================================= */
+
+/*
+   Ce système permet de cliquer sur une image
+   pour l'afficher en grand.
+*/
+
+
+const lightbox =
+    document.getElementById(
+        "lightbox"
+    );
+
+
+const lightboxImage =
+    document.getElementById(
+        "lightboxImage"
+    );
+
+
+const lightboxCaption =
+    document.getElementById(
+        "lightboxCaption"
+    );
+
+
+const lightboxClose =
+    document.getElementById(
+        "lightboxClose"
+    );
+
+
+/*
+   OUVRIR LA LIGHTBOX
+*/
+
+function openLightbox(image) {
+
+    if (
+        !lightbox ||
+        !lightboxImage
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+       Nettoyer la rotation précédente.
+    */
+
+    lightboxImage
+        .classList
+        .remove(
+            "lightbox-image-rotated"
+        );
+
+
+    /*
+       Utiliser currentSrc si disponible.
+    */
+
+    lightboxImage.src =
+        image.currentSrc ||
+        image.src;
+
+
+    /*
+       Copier le ALT.
+    */
+
+    lightboxImage.alt =
+        image.alt || "";
+
+
+    if (
+        lightboxCaption
+    ) {
+
+        lightboxCaption.textContent =
+            image.alt || "";
+
+    }
+
+
+    /*
+       Certaines images ont besoin
+       d'une rotation.
+    */
+
+    if (
+        image.dataset.rotated ===
+        "true"
+    ) {
+
+        lightboxImage
+            .classList
+            .add(
+                "lightbox-image-rotated"
+            );
+
+    }
+
+
+    /*
+       Ouvrir.
+    */
+
+    lightbox.classList.add(
+        "open"
+    );
+
+
+    lightbox.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    /*
+       Empêcher le scroll de la page
+       pendant la Lightbox.
+    */
+
+    body.classList.add(
+        "lightbox-open"
+    );
+
+}
+
+
+/*
+   FERMER LA LIGHTBOX
+*/
+
+function closeLightbox() {
+
+    if (!lightbox) {
+
+        return;
+
+    }
+
+
+    lightbox.classList.remove(
+        "open"
+    );
+
+
+    lightbox.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    if (
+        lightboxImage
+    ) {
+
+        lightboxImage.src =
+            "";
+
+        lightboxImage.alt =
+            "";
+
+        lightboxImage
+            .classList
+            .remove(
+                "lightbox-image-rotated"
+            );
+
+    }
+
+
+    if (
+        lightboxCaption
+    ) {
+
+        lightboxCaption.textContent =
+            "";
+
+    }
+
+
+    body.classList.remove(
+        "lightbox-open"
+    );
+
+}
+
+
+/*
+   CLIQUER SUR UNE IMAGE
+*/
+
+document.addEventListener(
+    "click",
+    event => {
+
+        const image =
+            event.target.closest(
+                "[data-lightbox]"
+            );
+
+
+        if (!image) {
+
+            return;
+
+        }
+
+
+        /*
+           Ne pas réouvrir la Lightbox
+           si on clique sur son image interne.
+        */
+
+        if (
+            image ===
+            lightboxImage
+        ) {
+
+            return;
+
+        }
+
+
+        event.stopPropagation();
+
+
+        openLightbox(
+            image
+        );
+
+    }
+);
+
+
+/*
+   BOUTON X
+*/
+
+if (
+    lightboxClose
+) {
+
+    lightboxClose.addEventListener(
+        "click",
+        closeLightbox
+    );
+
+}
+
+
+/*
+   CLIQUER SUR LE FOND
+*/
+
+if (
+    lightbox
+) {
+
+    lightbox.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target ===
+                lightbox
+            ) {
+
+                closeLightbox();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   11 — REVEAL ANIMATIONS
+========================================================= */
+
+/*
+   Les éléments .reveal deviennent visibles
+   lorsqu'ils entrent dans l'écran.
+*/
+
+const revealObserver =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target
+                            .classList
+                            .add(
+                                "visible"
+                            );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+
+document
+    .querySelectorAll(
+        ".reveal"
+    )
+    .forEach(element => {
+
+        revealObserver.observe(
+            element
+        );
+
+    });
+
+
+/* =========================================================
+   12 — CUSTOM CURSOR
+========================================================= */
+
+/*
+   Le curseur personnalisé fonctionne
+   uniquement avec une souris / trackpad.
+*/
+
 
 const cursor =
     document.getElementById(
@@ -1747,29 +2324,48 @@ const cursorRing =
     );
 
 
-if(
+if (
     cursor &&
     cursorRing &&
     window.matchMedia(
         "(pointer:fine)"
     ).matches
-){
+) {
 
-    document.body
-        .classList
-        .add("has-cursor");
+    /*
+       Activer le curseur.
+    */
 
+    body.classList.add(
+        "has-cursor"
+    );
+
+
+    /*
+       Position de la souris.
+    */
 
     let mouseX = 0;
+
     let mouseY = 0;
 
+
+    /*
+       Position du cercle.
+    */
+
     let ringX = 0;
+
     let ringY = 0;
 
 
+    /*
+       SUIVRE LA SOURIS
+    */
+
     window.addEventListener(
         "mousemove",
-        event=>{
+        event => {
 
             mouseX =
                 event.clientX;
@@ -1781,7 +2377,6 @@ if(
             cursor.style.left =
                 `${mouseX}px`;
 
-
             cursor.style.top =
                 `${mouseY}px`;
 
@@ -1789,20 +2384,24 @@ if(
     );
 
 
-    function animateCursor(){
+    /*
+       ANIMER LE CERCLE
+    */
+
+    function animateCursor() {
 
         ringX +=
             (
                 mouseX -
                 ringX
-            ) * .15;
+            ) * 0.15;
 
 
         ringY +=
             (
                 mouseY -
                 ringY
-            ) * .15;
+            ) * 0.15;
 
 
         cursorRing.style.left =
@@ -1820,18 +2419,30 @@ if(
     }
 
 
+    /*
+       Démarrer l'animation.
+    */
+
     animateCursor();
 
+
+    /*
+       ÉLÉMENTS INTERACTIFS
+    */
 
     document
         .querySelectorAll(
             "a,button,.featured-project,.project-card,[data-lightbox]"
         )
-        .forEach(element=>{
+        .forEach(element => {
+
+            /*
+               Souris dessus.
+            */
 
             element.addEventListener(
                 "mouseenter",
-                ()=>{
+                () => {
 
                     cursorRing.style.width =
                         "48px";
@@ -1843,9 +2454,13 @@ if(
             );
 
 
+            /*
+               Souris sortie.
+            */
+
             element.addEventListener(
                 "mouseleave",
-                ()=>{
+                () => {
 
                     cursorRing.style.width =
                         "30px";
@@ -1862,10 +2477,14 @@ if(
 
 
 /* =========================================================
-   PORTFOLIO DIAPHRAGM BLADES
+   13 — PORTFOLIO DIAPHRAGM
 ========================================================= */
 
-(function(){
+/*
+   Création des 9 lames du diaphragme SVG.
+*/
+
+(function createPortfolioDiaphragm() {
 
     const group =
         document.getElementById(
@@ -1873,48 +2492,97 @@ if(
         );
 
 
-    if(!group)
+    /*
+       Si le SVG n'existe pas,
+       ne rien faire.
+    */
+
+    if (!group) {
+
         return;
+
+    }
 
 
     const ns =
         "http://www.w3.org/2000/svg";
 
 
-    const cx = 200,
-          cy = 200;
+    /*
+       CENTRE
+    */
 
+    const cx = 200;
+
+    const cy = 200;
+
+
+    /*
+       NOMBRE DE LAMES
+    */
 
     const n = 9;
 
 
+    /*
+       DISTANCE DES PIVOTS
+    */
+
     const pivotR = 68;
 
+
+    /*
+       LONGUEUR DES LAMES
+    */
 
     const len = 96;
 
 
+    /*
+       LARGEUR DES LAMES
+    */
+
     const halfW = 18;
 
+
+    /*
+       LARGEUR DE LA POINTE
+    */
 
     const tipHalfW = 6;
 
 
-    for(
+    /*
+       CRÉER LES 9 LAMES
+    */
+
+    for (
         let i = 0;
         i < n;
         i++
-    ){
+    ) {
+
+        /*
+           Angle de la lame.
+        */
 
         const angle =
             (360 / n) * i;
 
+
+        /*
+           Conversion degrés → radians.
+        */
 
         const rad =
             angle *
             Math.PI /
             180;
 
+
+        /*
+           Position du pivot.
+        */
 
         const px =
             cx +
@@ -1927,6 +2595,10 @@ if(
             pivotR *
             Math.sin(rad);
 
+
+        /*
+           Groupe externe.
+        */
 
         const outer =
             document.createElementNS(
@@ -1941,6 +2613,10 @@ if(
         );
 
 
+        /*
+           Groupe de la lame.
+        */
+
         const blade =
             document.createElementNS(
                 ns,
@@ -1954,6 +2630,10 @@ if(
         );
 
 
+        /*
+           Forme de la lame.
+        */
+
         const path =
             document.createElementNS(
                 ns,
@@ -1966,6 +2646,10 @@ if(
             `M 0 ${-halfW} L ${-len} ${-tipHalfW} L ${-len} ${tipHalfW} L 0 ${halfW} Z`
         );
 
+
+        /*
+           Pivot.
+        */
 
         const pivot =
             document.createElementNS(
@@ -1986,13 +2670,32 @@ if(
         );
 
 
-        blade.appendChild(path);
+        /*
+           Construire la lame.
+        */
 
-        outer.appendChild(blade);
+        blade.appendChild(
+            path
+        );
 
-        outer.appendChild(pivot);
 
-        group.appendChild(outer);
+        outer.appendChild(
+            blade
+        );
+
+
+        outer.appendChild(
+            pivot
+        );
+
+
+        /*
+           Ajouter au SVG.
+        */
+
+        group.appendChild(
+            outer
+        );
 
     }
 
@@ -2000,10 +2703,30 @@ if(
 
 
 /* =========================================================
-   PARAMETRIC BRISE-SOLEIL DOME
+   14 — PARAMETRIC BRISE-SOLEIL
 ========================================================= */
 
-(function(){
+/*
+   Cette partie contrôle le système interactif
+   du dôme et de ses brise-soleil.
+
+   Le slider contrôle la position du soleil.
+
+   Le système calcule ensuite :
+   - moment de la journée
+   - angle solaire
+   - déploiement
+   - protection solaire
+   - position du soleil
+   - rotation des brise-soleil
+*/
+
+
+(function createParametricBriseSoleil() {
+
+    /* -----------------------------------------------------
+       14.1 — ÉLÉMENTS HTML / SVG
+    ----------------------------------------------------- */
 
     const svg =
         document.getElementById(
@@ -2011,8 +2734,11 @@ if(
         );
 
 
-    if(!svg)
+    if (!svg) {
+
         return;
+
+    }
 
 
     const ns =
@@ -2073,7 +2799,11 @@ if(
         );
 
 
-    if(
+    /*
+       Vérifier que tout existe.
+    */
+
+    if (
         !slider ||
         !sunPositionText ||
         !sunAngleText ||
@@ -2083,34 +2813,52 @@ if(
         !glassGrid ||
         !domeGrid ||
         !briseSoleilGroup
-    ){
+    ) {
 
         return;
 
     }
 
 
-    const arcCx = 500,
-          arcCy = 470,
-          arcRx = 410,
-          arcRy = 360;
+    /* -----------------------------------------------------
+       14.2 — DIMENSIONS DU DÔME
+    ----------------------------------------------------- */
+
+    const arcCx = 500;
+
+    const arcCy = 470;
+
+    const arcRx = 410;
+
+    const arcRy = 360;
 
 
-    const glassX = 270,
-          glassY = 150,
-          glassW = 460,
-          glassH = 320;
+    /* -----------------------------------------------------
+       14.3 — DIMENSIONS DE LA VITRE
+    ----------------------------------------------------- */
+
+    const glassX = 270;
+
+    const glassY = 150;
+
+    const glassW = 460;
+
+    const glassH = 320;
 
 
-    /* =====================================================
-       GLASS GRID
-    ===================================================== */
+    /* -----------------------------------------------------
+       14.4 — GRILLE DE LA VITRE
+    ----------------------------------------------------- */
 
-    for(
+    /*
+       Lignes verticales.
+    */
+
+    for (
         let gx = glassX + 40;
         gx < glassX + glassW;
         gx += 46
-    ){
+    ) {
 
         const line =
             document.createElementNS(
@@ -2150,11 +2898,15 @@ if(
     }
 
 
-    for(
+    /*
+       Lignes horizontales.
+    */
+
+    for (
         let gy = glassY + 40;
         gy < glassY + glassH;
         gy += 42
-    ){
+    ) {
 
         const line =
             document.createElementNS(
@@ -2194,18 +2946,18 @@ if(
     }
 
 
-    /* =====================================================
-       DOME RIBS
-    ===================================================== */
+    /* -----------------------------------------------------
+       14.5 — NERVURES DU DÔME
+    ----------------------------------------------------- */
 
     const domeRibs = 17;
 
 
-    for(
+    for (
         let i = 0;
         i <= domeRibs;
         i++
-    ){
+    ) {
 
         const t =
             i / domeRibs;
@@ -2215,6 +2967,10 @@ if(
             Math.PI -
             t * Math.PI;
 
+
+        /*
+           Point inférieur.
+        */
 
         const baseX =
             arcCx +
@@ -2228,6 +2984,10 @@ if(
             Math.sin(theta);
 
 
+        /*
+           Point supérieur.
+        */
+
         const topX =
             arcCx +
             (arcRx - 15) *
@@ -2239,6 +2999,10 @@ if(
             (arcRy - 15) *
             Math.sin(theta);
 
+
+        /*
+           Créer la nervure.
+        */
 
         const path =
             document.createElementNS(
@@ -2266,26 +3030,47 @@ if(
     }
 
 
-    /* =====================================================
-       BRISE-SOLEIL
-    ===================================================== */
+    /* -----------------------------------------------------
+       14.6 — POSITIONS DES BRISE-SOLEIL
+    ----------------------------------------------------- */
 
     const pivotPositions = [
 
-        {x:610,y:145},
+        {
+            x: 610,
+            y: 145
+        },
 
-        {x:665,y:140},
+        {
+            x: 665,
+            y: 140
+        },
 
-        {x:720,y:145}
+        {
+            x: 720,
+            y: 145
+        }
 
     ];
 
 
+    /*
+       Tableau des brise-soleil.
+    */
+
     const shades = [];
 
 
+    /* -----------------------------------------------------
+       14.7 — CRÉER LES BRISE-SOLEIL
+    ----------------------------------------------------- */
+
     pivotPositions.forEach(
-        function(pivot){
+        function(pivot) {
+
+            /*
+               Groupe principal.
+            */
 
             const group =
                 document.createElementNS(
@@ -2300,9 +3085,17 @@ if(
             );
 
 
+            /*
+               Forme du brise-soleil.
+            */
+
             const curve =
                 "M 0 0 C 55 70, 75 180, 20 330";
 
+
+            /*
+               OMBRE
+            */
 
             const shadow =
                 document.createElementNS(
@@ -2328,6 +3121,10 @@ if(
             );
 
 
+            /*
+               FORME PRINCIPALE
+            */
+
             const main =
                 document.createElementNS(
                     ns,
@@ -2352,6 +3149,10 @@ if(
             );
 
 
+            /*
+               HIGHLIGHT
+            */
+
             const highlight =
                 document.createElementNS(
                     ns,
@@ -2375,6 +3176,10 @@ if(
                 highlight
             );
 
+
+            /*
+               PIVOT EXTERNE
+            */
 
             const pivotOuter =
                 document.createElementNS(
@@ -2412,6 +3217,10 @@ if(
             );
 
 
+            /*
+               PIVOT INTERNE
+            */
+
             const pivotInner =
                 document.createElementNS(
                     ns,
@@ -2448,24 +3257,40 @@ if(
             );
 
 
+            /*
+               Position initiale.
+            */
+
             group.setAttribute(
                 "transform",
                 `translate(${pivot.x} ${pivot.y})`
             );
 
 
+            /*
+               Ajouter au SVG.
+            */
+
             briseSoleilGroup.appendChild(
                 group
             );
 
 
+            /*
+               Sauvegarder les informations
+               pour l'animation.
+            */
+
             shades.push({
 
-                element:group,
+                element:
+                    group,
 
-                x:pivot.x,
+                x:
+                    pivot.x,
 
-                y:pivot.y
+                y:
+                    pivot.y
 
             });
 
@@ -2473,11 +3298,16 @@ if(
     );
 
 
-    /* =====================================================
-       BRISE-SOLEIL UPDATE
-    ===================================================== */
+    /* -----------------------------------------------------
+       14.8 — METTRE À JOUR LE SYSTÈME
+    ----------------------------------------------------- */
 
-    function update(){
+    function update() {
+
+        /*
+           Valeur du slider :
+           0 → 100
+        */
 
         const sliderValue =
             parseInt(
@@ -2486,10 +3316,19 @@ if(
             );
 
 
+        /*
+           Convertir en degrés :
+           0 → 180°
+        */
+
         const sunAngleDeg =
             sliderValue *
             (180 / 100);
 
+
+        /*
+           Convertir en radians.
+        */
 
         const sunAngleRad =
             sunAngleDeg *
@@ -2497,11 +3336,19 @@ if(
             180;
 
 
+        /*
+           CALCUL DU DÉPLOIEMENT
+        */
+
         let deployment =
             Math.sin(
                 sunAngleRad
             );
 
+
+        /*
+           Garder entre 0 et 1.
+        */
 
         deployment =
             Math.max(
@@ -2513,37 +3360,45 @@ if(
             );
 
 
+        /* -------------------------------------------------
+           MOMENT DE LA JOURNÉE
+        ------------------------------------------------- */
+
         let timeOfDay =
             "Morning";
 
 
-        if(sliderValue <= 2){
+        if (
+            sliderValue <= 2
+        ) {
 
             timeOfDay =
                 "Dawn";
 
         }
 
-        else if(sliderValue >= 98){
+        else if (
+            sliderValue >= 98
+        ) {
 
             timeOfDay =
                 "Dusk";
 
         }
 
-        else if(
+        else if (
             sliderValue > 40 &&
             sliderValue < 60
-        ){
+        ) {
 
             timeOfDay =
                 "Noon";
 
         }
 
-        else if(
+        else if (
             sliderValue >= 60
-        ){
+        ) {
 
             timeOfDay =
                 "Afternoon";
@@ -2551,9 +3406,17 @@ if(
         }
 
 
+        /*
+           Afficher le moment de la journée.
+        */
+
         sunPositionText.textContent =
             timeOfDay;
 
+
+        /*
+           Afficher l'angle.
+        */
 
         sunAngleText.textContent =
             "(" +
@@ -2563,20 +3426,32 @@ if(
             "°)";
 
 
+        /* -------------------------------------------------
+           PROTECTION SOLAIRE
+        ------------------------------------------------- */
+
         const protection =
             Math.round(
                 deployment * 100
             );
 
 
-        if(deployment < .08){
+        /*
+           Afficher le statut.
+        */
+
+        if (
+            deployment < 0.08
+        ) {
 
             bladesStatusText.textContent =
                 "Fully retracted — maximum opening";
 
         }
 
-        else if(deployment < .92){
+        else if (
+            deployment < 0.92
+        ) {
 
             bladesStatusText.textContent =
                 "Partially deployed — " +
@@ -2585,13 +3460,17 @@ if(
 
         }
 
-        else{
+        else {
 
             bladesStatusText.textContent =
                 "Fully deployed — maximum shading";
 
         }
 
+
+        /* -------------------------------------------------
+           POSITION DU SOLEIL
+        ------------------------------------------------- */
 
         const sunX =
             150 +
@@ -2606,6 +3485,10 @@ if(
             20;
 
 
+        /*
+           Déplacer le soleil.
+        */
+
         sunIcon.setAttribute(
             "cx",
             sunX
@@ -2618,6 +3501,10 @@ if(
         );
 
 
+        /*
+           Déplacer le glow.
+        */
+
         sunGlow.setAttribute(
             "cx",
             sunX
@@ -2629,17 +3516,33 @@ if(
             sunY
         );
 
+
+        /* -------------------------------------------------
+           ROTATION DES BRISE-SOLEIL
+        ------------------------------------------------- */
 
         shades.forEach(
-            function(shade){
+            function(shade) {
+
+                /*
+                   Angle fermé.
+                */
 
                 const retractedAngle =
                     25;
 
 
+                /*
+                   Angle ouvert.
+                */
+
                 const deployedAngle =
                     -18;
 
+
+                /*
+                   Interpolation.
+                */
 
                 const angle =
                     retractedAngle +
@@ -2649,6 +3552,10 @@ if(
                     ) *
                     deployment;
 
+
+                /*
+                   Appliquer la transformation.
+                */
 
                 shade.element.setAttribute(
                     "transform",
@@ -2661,11 +3568,19 @@ if(
     }
 
 
+    /* -----------------------------------------------------
+       14.9 — SLIDER
+    ----------------------------------------------------- */
+
     slider.addEventListener(
         "input",
         update
     );
 
+
+    /*
+       Afficher l'état initial.
+    */
 
     update();
 
