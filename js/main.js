@@ -1621,20 +1621,21 @@ document.addEventListener(
                 SCROLL LOCK & IMMERSIVE STATE
             ================================================= */
 
-            if(viewName === "index"){
+           if (viewName === "index") {
+    deactivateScrollLock();
 
-                deactivateScrollLock();
-                document.body.classList.remove("professional-locked");
+    document.body.classList.remove(
+        "professional-locked",
+        "professional-subspace"
+    );
+} else {
+    activateScrollLock("professional-work");
 
-            }else{
-
-                activateScrollLock(
-                    "professional-work"
-                );
-                document.body.classList.add("professional-locked");
-
-            }
-
+    document.body.classList.add(
+        "professional-locked",
+        "professional-subspace"
+    );
+}
 
             /* =================================================
                 FLOATING BACK BUTTON
