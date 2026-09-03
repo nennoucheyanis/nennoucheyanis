@@ -8159,23 +8159,19 @@ footer{
    PATCH : ACADEMICAL & PROFESSIONAL WORKS ISOLATION 
 ========================================================= */
 
-/* 4. Visibilité conditionnelle du bouton EXIT PROFESSIONAL WORK */
-/* (Remplace #btn-exit-pw par l'ID ou la classe exacte de ton bouton de sortie) */
 .professional-exit {
-    display: none !important; /* Invisible sur l'écran principal de PW */
+    display: none !important;
 }
 
 body.professional-locked .professional-exit {
-    display: inline-flex !important; /* Visible uniquement dans les niveaux internes */
+    display: inline-flex !important;
 }
 
-/* Sécurité (Point 3) : Au cas où une flèche serait générée en JS dans PW */
 #professional-work .scroll-indicator,
 #professional-work .arrow-down {
     display: none !important; 
 }
 
-/* Academic Work — défilement libre dans les projets ouverts */
 #work,
 #work .project-detail,
 #work .academic-project-detail {
@@ -8183,4 +8179,17 @@ body.professional-locked .professional-exit {
     min-height: 0;
     max-height: none;
     overflow: visible;
+}
+
+body.academic-locked #work,
+body.academic-locked #research,
+body.academic-locked #professional-work,
+body.academic-locked #contact,
+body.academic-locked footer {
+    display: none;
+}
+
+body.professional-locked #contact,
+body.professional-locked footer {
+    display: none;
 }
