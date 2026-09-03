@@ -12,16 +12,26 @@ const menuBtn =
     document.getElementById("menuBtn");
 
 
-menuBtn.addEventListener("click",()=>{
+if(menuBtn && navLinks){
 
-    navLinks.classList.toggle("open");
+    menuBtn.addEventListener("click",()=>{
 
-    const isOpen = navLinks.classList.contains("open");
+        navLinks.classList.toggle("open");
 
-    menuBtn.textContent = isOpen ? "×" : "☰";
-    menuBtn.setAttribute("aria-expanded", isOpen);
+        const isOpen =
+            navLinks.classList.contains("open");
 
-});
+        menuBtn.textContent =
+            isOpen ? "×" : "☰";
+
+        menuBtn.setAttribute(
+            "aria-expanded",
+            isOpen
+        );
+
+    });
+
+}
 
 
 document
@@ -30,14 +40,25 @@ document
 
         link.addEventListener("click",()=>{
 
-            navLinks.classList.remove("open");
+            if(navLinks){
+                navLinks.classList.remove("open");
+            }
 
-            menuBtn.textContent = "☰";
-            menuBtn.setAttribute("aria-expanded", "false");
+            if(menuBtn){
+
+                menuBtn.textContent = "☰";
+
+                menuBtn.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
 
         });
 
     });
+
 
 /* =========================================================
    NAVBAR SCROLL
@@ -47,23 +68,27 @@ const hero =
     document.getElementById("hero");
 
 
-const navbarObserver =
-    new IntersectionObserver(
-        ([entry])=>{
+if(navbar && hero){
 
-            navbar.classList.toggle(
-                "scrolled",
-                !entry.isIntersecting
-            );
+    const navbarObserver =
+        new IntersectionObserver(
+            ([entry])=>{
 
-        },
-        {
-            threshold:.15
-        }
-    );
+                navbar.classList.toggle(
+                    "scrolled",
+                    !entry.isIntersecting
+                );
+
+            },
+            {
+                threshold:.15
+            }
+        );
 
 
-navbarObserver.observe(hero);
+    navbarObserver.observe(hero);
+
+}
 
 
 /* =========================================================
@@ -76,43 +101,47 @@ const pageSections =
     );
 
 
-const sectionObserver =
-    new IntersectionObserver(
-        entries=>{
+if(pageSections.length){
 
-            entries.forEach(entry=>{
+    const sectionObserver =
+        new IntersectionObserver(
+            entries=>{
 
-                if(!entry.isIntersecting)
-                    return;
+                entries.forEach(entry=>{
 
-                const id =
-                    entry.target.id;
+                    if(!entry.isIntersecting)
+                        return;
+
+                    const id =
+                        entry.target.id;
 
 
-                document
-                    .querySelectorAll(".nav-links a")
-                    .forEach(link=>{
+                    document
+                        .querySelectorAll(".nav-links a")
+                        .forEach(link=>{
 
-                        link.classList.toggle(
-                            "active",
-                            link.dataset.nav===id
-                        );
+                            link.classList.toggle(
+                                "active",
+                                link.dataset.nav===id
+                            );
 
-                    });
+                        });
 
-            });
+                });
 
-        },
-        {
-            rootMargin:"-35% 0px -55% 0px"
-        }
+            },
+            {
+                rootMargin:"-35% 0px -55% 0px"
+            }
+        );
+
+
+    pageSections.forEach(
+        section =>
+            sectionObserver.observe(section)
     );
 
-
-pageSections.forEach(
-    section =>
-        sectionObserver.observe(section)
-);
+}
 
 
 /* =========================================================
@@ -120,34 +149,53 @@ pageSections.forEach(
    Shared between Professional Work and Academical Works
 
    The lock prevents the user from continuing into the
-   next website section, while still allowing normal
-   scrolling through the COMPLETE currently visible view.
+   next website section while still allowing normal
+   scrolling through the COMPLETE active view.
 ========================================================= */
 
 let scrollLockActive = false;
 let scrollLockSectionId = null;
+let scrollLockFrame = null;
 
 
 function activateScrollLock(sectionId){
+
     scrollLockActive = true;
-    scrollLockSectionId = sectionId;
+
+    scrollLockSectionId =
+        sectionId;
+
+    requestScrollClamp();
+
 }
 
 
 function deactivateScrollLock(){
+
     scrollLockActive = false;
+
     scrollLockSectionId = null;
+
+    if(scrollLockFrame){
+
+        cancelAnimationFrame(
+            scrollLockFrame
+        );
+
+        scrollLockFrame = null;
+
+    }
+
 }
 
 
 /* =========================================================
    GET MAXIMUM SCROLL POSITION
-   Use the actual document height.
+   Uses the REAL bottom of the active section.
 
-   This is important because academic project views such as
-   #eco-project / #urban-project / #housing-project are
-   outside #work, while Professional project views are
-   dynamically revealed inside #professional-work.
+   This is important because Academic project views
+   (#eco-project / #urban-project / #housing-project)
+   are outside #work.
 ========================================================= */
 
 function getMaxLockedScroll(){
@@ -155,27 +203,43 @@ function getMaxLockedScroll(){
     if(!scrollLockActive)
         return Infinity;
 
+
     const lockedSection =
         document.getElementById(
             scrollLockSectionId
         );
 
-    if(!lockedSection || lockedSection.hidden)
+
+    if(
+        !lockedSection ||
+        lockedSection.hidden
+    ){
+
         return Infinity;
+
+    }
+
 
     const rect =
         lockedSection.getBoundingClientRect();
 
+
     const sectionTop =
-        rect.top + window.scrollY;
+        rect.top +
+        window.scrollY;
+
 
     const sectionBottom =
-        rect.bottom + window.scrollY;
+        rect.bottom +
+        window.scrollY;
+
 
     return Math.max(
         sectionTop,
-        sectionBottom - window.innerHeight
+        sectionBottom -
+            window.innerHeight
     );
+
 }
 
 
@@ -188,10 +252,15 @@ function clampLockedScroll(){
     if(!scrollLockActive)
         return;
 
+
     const maxScroll =
         getMaxLockedScroll();
 
-    if(window.scrollY > maxScroll){
+
+    if(
+        window.scrollY >
+        maxScroll
+    ){
 
         window.scrollTo(
             0,
@@ -204,230 +273,162 @@ function clampLockedScroll(){
 
 
 /* =========================================================
-   SINGLE GLOBAL SCROLL LISTENER
+   REQUEST SCROLL CLAMP
+   Prevents excessive requestAnimationFrame calls.
+========================================================= */
+
+function requestScrollClamp(){
+
+    if(!scrollLockActive)
+        return;
+
+
+    if(scrollLockFrame)
+        return;
+
+
+    scrollLockFrame =
+        requestAnimationFrame(()=>{
+
+            scrollLockFrame = null;
+
+            clampLockedScroll();
+
+        });
+
+}
+
+
+/* =========================================================
+   GLOBAL SCROLL / RESIZE / LOAD
 ========================================================= */
 
 window.addEventListener(
     "scroll",
-    () => {
-
-        if(!scrollLockActive)
-            return;
-
-        window.requestAnimationFrame(
-            clampLockedScroll
-        );
-
-    },
+    requestScrollClamp,
     { passive:true }
 );
+
+
+window.addEventListener(
+    "resize",
+    requestScrollClamp
+);
+
+
+window.addEventListener(
+    "load",
+    requestScrollClamp
+);
+
+
+/*
+   Recalculate the lock when images finish loading.
+   This prevents the bottom limit from being calculated
+   before large project images have their final height.
+*/
+
+document.addEventListener(
+    "load",
+    event=>{
+
+        if(
+            event.target instanceof
+            HTMLImageElement
+        ){
+
+            requestScrollClamp();
+
+        }
+
+    },
+    true
+);
+
+
 /* =========================================================
    ACADEMICAL WORKS — INTERNAL NAVIGATION
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener(
+    "DOMContentLoaded",
+    ()=>{
 
-    const academicIndex =
-        document.getElementById(
-            "academic-index-view"
-        );
-
-    const ecoProject =
-        document.getElementById(
-            "eco-project"
-        );
-
-    const urbanProject =
-        document.getElementById(
-            "urban-project"
-        );
-
-    const housingProject =
-        document.getElementById(
-            "housing-project"
-        );
-
-
-    const academicViews = {
-
-        index: academicIndex,
-
-        eco: ecoProject,
-
-        urban: urbanProject,
-
-        housing: housingProject
-
-    };
-
-
-    /* =====================================================
-       SHOW ACADEMICAL VIEW
-       (aligned on PROFESSIONAL WORK behavior:
-        scroll to the section itself, not window top)
-    ===================================================== */
-
- function showAcademicView(viewName){
-
-    /* =====================================================
-       FLOATING BACK BUTTON
-    ===================================================== */
-
-    const academicBackFloating =
-        document.getElementById(
-            "academicBackFloating"
-        );
-
-
-    if(academicBackFloating){
-
-        if(viewName === "index"){
-
-            academicBackFloating
-                .classList
-                .remove("visible");
-
-        }else{
-
-            academicBackFloating
-                .classList
-                .add("visible");
-
-        }
-
-    }
-
-
-    /* =====================================================
-       HIDE ALL ACADEMICAL VIEWS
-    ===================================================== */
-
-    Object.values(academicViews)
-        .forEach(view=>{
-
-            if(!view)
-                return;
-
-            view.hidden = true;
-
-        });
-
-
-    /* =====================================================
-       SHOW TARGET VIEW
-    ===================================================== */
-
-    const target =
-        academicViews[viewName];
-
-    if(!target)
-        return;
-
-
-    target.hidden = false;
-
-
-    /* =====================================================
-       SCROLL LOCK
-       Lock to the visible project section (eco / urban /
-       housing live outside #work), not the index.
-    ===================================================== */
-
-    if(viewName === "index"){
-
-        deactivateScrollLock();
-        document.body.classList.remove("academic-locked");
-
-    }else{
-
-        const lockId =
-            target.id ||
-            "work";
-
-        activateScrollLock(lockId);
-        document.body.classList.add("academic-locked");
-
-    }
-
-
-/* =====================================================
-   SCROLL TO CURRENT ACADEMICAL VIEW
-===================================================== */
-
-requestAnimationFrame(() => {
-
-    target.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-    });
-
-});
-   
-/* =====================================================
-   FLOATING BACK BUTTON — CLICK
-===================================================== */
-
-const academicBackFloating =
-    document.getElementById(
-        "academicBackFloating"
-    );
-
-
-if(academicBackFloating){
-
-    academicBackFloating.addEventListener(
-        "click",
-        ()=>{
-
-            showAcademicView("index");
-
-        }
-    );
-
-}
-
-    /* =====================================================
-       OPEN ACADEMICAL PROJECT
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            "[data-academic-project-open]"
-        )
-        .forEach(button=>{
-
-            button.addEventListener(
-                "click",
-                ()=>{
-
-                    const target =
-                        button.dataset
-                            .academicProjectOpen;
-
-
-                    showAcademicView(target);
-
-                }
+        const academicIndex =
+            document.getElementById(
+                "academic-index-view"
             );
 
-        });
 
-/* =====================================================
-   CONTINUE TO SITE — RESEARCH
-===================================================== */
+        const ecoProject =
+            document.getElementById(
+                "eco-project"
+            );
 
-document
-    .querySelectorAll("[data-academic-continue]")
-    .forEach(button => {
 
-        button.addEventListener("click", () => {
+        const urbanProject =
+            document.getElementById(
+                "urban-project"
+            );
+
+
+        const housingProject =
+            document.getElementById(
+                "housing-project"
+            );
+
+
+        const academicBackFloating =
+            document.getElementById(
+                "academicBackFloating"
+            );
+
+
+        const research =
+            document.getElementById(
+                "research"
+            );
+
+
+        const academicViews = {
+
+            index:
+                academicIndex,
+
+            eco:
+                ecoProject,
+
+            urban:
+                urbanProject,
+
+            housing:
+                housingProject
+
+        };
+
+
+        /* =====================================================
+           SHOW ACADEMICAL VIEW
+        ===================================================== */
+
+        function showAcademicView(
+            viewName
+        ){
+
+            const target =
+                academicViews[viewName];
+
+
+            if(!target)
+                return;
+
 
             /* ---------------------------------------------
-               CLOSE ALL ACADEMIC PROJECT VIEWS
+               HIDE ALL ACADEMIC VIEWS
             --------------------------------------------- */
 
             Object.values(academicViews)
-                .forEach(view => {
+                .forEach(view=>{
 
                     if(!view)
                         return;
@@ -438,102 +439,234 @@ document
 
 
             /* ---------------------------------------------
-               RESTORE ACADEMIC INDEX
+               SHOW TARGET
             --------------------------------------------- */
 
-            if(academicViews.index){
-
-                academicViews.index.hidden = false;
-
-            }
+            target.hidden = false;
 
 
             /* ---------------------------------------------
-               HIDE FLOATING BACK BUTTON
+               FLOATING BACK BUTTON
             --------------------------------------------- */
-
-            const academicBackFloating =
-                document.getElementById(
-                    "academicBackFloating"
-                );
 
             if(academicBackFloating){
 
-                academicBackFloating
-                    .classList
-                    .remove("visible");
+                academicBackFloating.classList.toggle(
+                    "visible",
+                    viewName !== "index"
+                );
 
             }
 
 
             /* ---------------------------------------------
-               SCROLL LOCK — RELEASE
+               SCROLL LOCK
             --------------------------------------------- */
 
-            deactivateScrollLock();
-           document.body.classList.remove("academic-locked"); // AJOUT : Réaffiche la section Research
+            if(viewName === "index"){
+
+                deactivateScrollLock();
+
+                document.body.classList.remove(
+                    "academic-locked"
+                );
+
+            }else{
+
+                activateScrollLock(
+                    target.id || "work"
+                );
+
+                document.body.classList.add(
+                    "academic-locked"
+                );
+
+            }
 
 
             /* ---------------------------------------------
-               CONTINUE TO RESEARCH
+               SCROLL TO TARGET
             --------------------------------------------- */
 
-            const research =
-                document.getElementById("research");
+            requestAnimationFrame(()=>{
 
-            if(research){
+                target.scrollIntoView({
+                    behavior:"smooth",
+                    block:"start"
+                });
 
-                setTimeout(() => {
-
-                    research.scrollIntoView({
-                        behavior:"smooth",
-                        block:"start"
-                    });
-
-                },50);
-
-            }
-
-        });
-
-    });
-    /* =====================================================
-       ESCAPE — BACK TO ACADEMICAL WORKS
-    ===================================================== */
-
-    document.addEventListener("keydown", event => {
-
-        if(event.key === "Escape"){
-
-            const anyOpen =
-                Object.entries(academicViews)
-                    .some(([name, view]) =>
-                        view &&
-                        name !== "index" &&
-                        !view.hidden
-                    );
-
-            if(anyOpen){
-                showAcademicView("index");
-            }
+            });
 
         }
 
-    });
 
-});
+        /* =====================================================
+           FLOATING BACK BUTTON
+           SINGLE EVENT LISTENER ONLY
+        ===================================================== */
+
+        if(academicBackFloating){
+
+            academicBackFloating.addEventListener(
+                "click",
+                ()=>{
+
+                    showAcademicView(
+                        "index"
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           OPEN ACADEMICAL PROJECT
+        ===================================================== */
+
+        document
+            .querySelectorAll(
+                "[data-academic-project-open]"
+            )
+            .forEach(button=>{
+
+                button.addEventListener(
+                    "click",
+                    ()=>{
+
+                        const target =
+                            button.dataset
+                                .academicProjectOpen;
+
+
+                        showAcademicView(
+                            target
+                        );
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           CONTINUE TO RESEARCH
+        ===================================================== */
+
+        document
+            .querySelectorAll(
+                "[data-academic-continue]"
+            )
+            .forEach(button=>{
+
+                button.addEventListener(
+                    "click",
+                    ()=>{
+
+                        /* -------------------------------------
+                           RESTORE ACADEMIC INDEX
+                        ------------------------------------- */
+
+                        Object.values(academicViews)
+                            .forEach(view=>{
+
+                                if(!view)
+                                    return;
+
+                                view.hidden = true;
+
+                            });
+
+
+                        if(academicViews.index){
+
+                            academicViews.index.hidden =
+                                false;
+
+                        }
+
+
+                        /* -------------------------------------
+                           HIDE BACK BUTTON
+                        ------------------------------------- */
+
+                        if(academicBackFloating){
+
+                            academicBackFloating
+                                .classList
+                                .remove("visible");
+
+                        }
+
+
+                        /* -------------------------------------
+                           RELEASE LOCK
+                        ------------------------------------- */
+
+                        deactivateScrollLock();
+
+                        document.body.classList.remove(
+                            "academic-locked"
+                        );
+
+
+                        /* -------------------------------------
+                           GO TO RESEARCH
+                        ------------------------------------- */
+
+                        if(research){
+
+                            research.scrollIntoView({
+                                behavior:"smooth",
+                                block:"start"
+                            });
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           INITIAL ACADEMIC STATE
+        ===================================================== */
+
+        Object.entries(academicViews)
+            .forEach(([name,view])=>{
+
+                if(!view)
+                    return;
+
+                view.hidden =
+                    name !== "index";
+
+            });
+
+
+        if(academicBackFloating){
+
+            academicBackFloating
+                .classList
+                .remove("visible");
+
+        }
+
+    }
+);
 
 
 /* =========================================================
-   PROJECT NAVIGATION (generic — works for all projects)
+   PROJECT NAVIGATION — GENERIC
 ========================================================= */
 
 /*
-   IMPORTANT:
-   Academic Works now uses the dedicated navigation above.
+   Academic Works uses its dedicated navigation above.
 
-   This generic navigation is kept for any other existing
-   project cards that still use data-target.
+   This generic navigation remains available for existing
+   project cards that use data-target.
 */
 
 document
@@ -545,41 +678,42 @@ document
         const targetId =
             card.dataset.target;
 
+
         if(!targetId)
             return;
 
-        /*
-           Do not interfere with the new Academic Works
-           navigation.
-        */
 
         if(
             card.hasAttribute(
                 "data-academic-project-open"
             )
         ){
+
             return;
+
         }
 
 
-        card.addEventListener("click",()=>{
+        card.addEventListener(
+            "click",
+            ()=>{
 
-            const target =
-                document.getElementById(
-                    targetId
-                );
+                const target =
+                    document.getElementById(
+                        targetId
+                    );
 
-            if(target){
 
-                target.scrollIntoView({
+                if(target){
 
-                    behavior:"smooth"
+                    target.scrollIntoView({
+                        behavior:"smooth"
+                    });
 
-                });
+                }
 
             }
-
-        });
+        );
 
     });
 
@@ -625,36 +759,126 @@ document
 const lightbox =
     document.getElementById("lightbox");
 
+
 const lightboxImage =
-    document.getElementById("lightboxImage");
+    document.getElementById(
+        "lightboxImage"
+    );
+
 
 const lightboxCaption =
-    document.getElementById("lightboxCaption");
+    document.getElementById(
+        "lightboxCaption"
+    );
+
 
 const lightboxClose =
-    document.getElementById("lightboxClose");
+    document.getElementById(
+        "lightboxClose"
+    );
 
 
 function openLightbox(image){
 
+    if(
+        !lightbox ||
+        !lightboxImage
+    ){
+
+        return;
+
+    }
+
+
+    /* ---------------------------------------------
+       Reset previous rotation first
+    --------------------------------------------- */
+
+    lightboxImage.classList.remove(
+        "lightbox-image-rotated"
+    );
+
+
+    /* ---------------------------------------------
+       Use currentSrc when available
+    --------------------------------------------- */
+
     lightboxImage.src =
+        image.currentSrc ||
         image.src;
 
+
     lightboxImage.alt =
-        image.alt;
+        image.alt || "";
 
 
-    lightboxCaption.textContent =
-        image.alt;
+    if(lightboxCaption){
+
+        lightboxCaption.textContent =
+            image.alt || "";
+
+    }
 
 
-    if(image.dataset.rotated === "true"){
+    /* ---------------------------------------------
+       Preserve existing rotated image behavior
+    --------------------------------------------- */
+
+    if(
+        image.dataset.rotated === "true"
+    ){
 
         lightboxImage.classList.add(
             "lightbox-image-rotated"
         );
 
-    }else{
+    }
+
+
+    /* ---------------------------------------------
+       OPEN
+    --------------------------------------------- */
+
+    lightbox.classList.add(
+        "open"
+    );
+
+
+    lightbox.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.classList.add(
+        "lightbox-open"
+    );
+
+}
+
+
+function closeLightbox(){
+
+    if(!lightbox)
+        return;
+
+
+    lightbox.classList.remove(
+        "open"
+    );
+
+
+    lightbox.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    if(lightboxImage){
+
+        lightboxImage.src = "";
+
+        lightboxImage.alt = "";
 
         lightboxImage.classList.remove(
             "lightbox-image-rotated"
@@ -663,29 +887,15 @@ function openLightbox(image){
     }
 
 
-    lightbox.classList.add("open");
+    if(lightboxCaption){
 
-    lightbox.setAttribute(
-        "aria-hidden",
-        "false"
-    );
+        lightboxCaption.textContent = "";
 
-}
+    }
 
 
-function closeLightbox(){
-
-    lightbox.classList.remove("open");
-
-    lightbox.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    lightboxImage.src="";
-
-    lightboxImage.classList.remove(
-        "lightbox-image-rotated"
+    document.body.classList.remove(
+        "lightbox-open"
     );
 
 }
@@ -697,807 +907,75 @@ function closeLightbox(){
 
 document.addEventListener(
     "click",
-    event => {
+    event=>{
 
         const image =
             event.target.closest(
                 "[data-lightbox]"
             );
 
+
         if(!image)
             return;
 
-        /* Ignore the global lightbox image itself */
-        if(image === lightboxImage)
+
+        /* Ignore the image already inside the lightbox */
+
+        if(
+            image === lightboxImage
+        ){
+
             return;
 
+        }
+
+
         event.stopPropagation();
+
 
         openLightbox(image);
 
     }
 );
 
-lightboxClose.addEventListener(
-    "click",
-    closeLightbox
-);
-
-
-lightbox.addEventListener(
-    "click",
-    event=>{
-
-        if(event.target === lightbox){
-
-            closeLightbox();
-
-        }
-
-    }
-);
-
-
-document.addEventListener(
-    "keydown",
-    event=>{
-
-        if(event.key === "Escape"){
-
-            closeLightbox();
-
-        }
-
-    }
-);
-
 
 /* =========================================================
-   CUSTOM CURSOR
+   LIGHTBOX CLOSE BUTTON
 ========================================================= */
 
-const cursor =
-    document.getElementById("cursor");
+if(lightboxClose){
 
-const cursorRing =
-    document.getElementById("cursorRing");
-
-
-if(
-    window.matchMedia(
-        "(pointer:fine)"
-    ).matches
-){
-
-    document.body
-        .classList
-        .add("has-cursor");
-
-
-    let mouseX=0;
-    let mouseY=0;
-
-    let ringX=0;
-    let ringY=0;
-
-
-    window.addEventListener(
-        "mousemove",
-        event=>{
-
-            mouseX=event.clientX;
-            mouseY=event.clientY;
-
-            cursor.style.left =
-                `${mouseX}px`;
-
-            cursor.style.top =
-                `${mouseY}px`;
-
-        }
+    lightboxClose.addEventListener(
+        "click",
+        closeLightbox
     );
-
-
-    function animateCursor(){
-
-        ringX +=
-            (mouseX-ringX)*.15;
-
-        ringY +=
-            (mouseY-ringY)*.15;
-
-
-        cursorRing.style.left =
-            `${ringX}px`;
-
-        cursorRing.style.top =
-            `${ringY}px`;
-
-
-        requestAnimationFrame(
-            animateCursor
-        );
-
-    }
-
-
-    animateCursor();
-
-
-    document
-        .querySelectorAll(
-            "a,button,.featured-project,.project-card,[data-lightbox]"
-        )
-        .forEach(element=>{
-
-            element.addEventListener(
-                "mouseenter",
-                ()=>{
-
-                    cursorRing.style.width="48px";
-
-                    cursorRing.style.height="48px";
-
-                }
-            );
-
-
-            element.addEventListener(
-                "mouseleave",
-                ()=>{
-
-                    cursorRing.style.width="30px";
-
-                    cursorRing.style.height="30px";
-
-                }
-            );
-
-        });
 
 }
 
 
 /* =========================================================
-   PORTFOLIO DIAPHRAGM BLADES
+   LIGHTBOX BACKGROUND CLICK
 ========================================================= */
 
-(function(){
+if(lightbox){
 
-    const group =
-        document.getElementById(
-            'portfolioDiaphragmBlades'
-        );
+    lightbox.addEventListener(
+        "click",
+        event=>{
 
-    if(!group) return;
+            if(
+                event.target ===
+                lightbox
+            ){
 
-    const ns =
-        'http://www.w3.org/2000/svg';
+                closeLightbox();
 
-    const cx=200,
-          cy=200;
-
-    const n=9;
-
-    const pivotR=68;
-
-    const len=96;
-
-    const halfW=18;
-
-    const tipHalfW=6;
-
-
-    for(let i=0;i<n;i++){
-
-        const angle =
-            (360/n)*i;
-
-        const rad =
-            angle*Math.PI/180;
-
-        const px =
-            cx+pivotR*Math.cos(rad);
-
-        const py =
-            cy+pivotR*Math.sin(rad);
-
-
-        const outer =
-            document.createElementNS(
-                ns,
-                'g'
-            );
-
-        outer.setAttribute(
-            'transform',
-            `translate(${px} ${py}) rotate(${angle})`
-        );
-
-
-        const blade =
-            document.createElementNS(
-                ns,
-                'g'
-            );
-
-        blade.setAttribute(
-            'class',
-            'pd-blade'
-        );
-
-
-        const path =
-            document.createElementNS(
-                ns,
-                'path'
-            );
-
-        path.setAttribute(
-            'd',
-            `M 0 ${-halfW} L ${-len} ${-tipHalfW} L ${-len} ${tipHalfW} L 0 ${halfW} Z`
-        );
-
-
-        const pivot =
-            document.createElementNS(
-                ns,
-                'circle'
-            );
-
-        pivot.setAttribute(
-            'class',
-            'pd-pivot'
-        );
-
-        pivot.setAttribute(
-            'r',
-            '2.5'
-        );
-
-
-        blade.appendChild(path);
-
-        outer.appendChild(blade);
-
-        outer.appendChild(pivot);
-
-        group.appendChild(outer);
-
-    }
-
-})();
-
-
-/* =========================================================
-   PARAMETRIC BRISE-SOLEIL DOME
-========================================================= */
-
-(function(){
-
-    const svg =
-        document.getElementById(
-            'pbs-dome-svg'
-        );
-
-    if(!svg) return;
-
-
-    const ns =
-        "http://www.w3.org/2000/svg";
-
-
-    const slider =
-        document.getElementById(
-            "pbs-sun-slider"
-        );
-
-    const sunPositionText =
-        document.getElementById(
-            "pbs-sun-position-text"
-        );
-
-    const sunAngleText =
-        document.getElementById(
-            "pbs-sun-angle-text"
-        );
-
-    const bladesStatusText =
-        document.getElementById(
-            "pbs-blades-status-text"
-        );
-
-    const sunIcon =
-        document.getElementById(
-            "pbs-sun-icon"
-        );
-
-    const sunGlow =
-        document.getElementById(
-            "pbs-sun-glow"
-        );
-
-    const glassGrid =
-        document.getElementById(
-            "pbs-glass-grid"
-        );
-
-    const domeGrid =
-        document.getElementById(
-            "pbs-dome-grid"
-        );
-
-    const briseSoleilGroup =
-        document.getElementById(
-            "pbs-brise-soleil-group"
-        );
-
-
-    const arcCx = 500,
-          arcCy = 470,
-          arcRx = 410,
-          arcRy = 360;
-
-    const glassX = 270,
-          glassY = 150,
-          glassW = 460,
-          glassH = 320;
-
-
-    for(
-        let gx = glassX+40;
-        gx < glassX+glassW;
-        gx += 46
-    ){
-
-        const line =
-            document.createElementNS(
-                ns,
-                "line"
-            );
-
-        line.setAttribute(
-            "x1",
-            gx
-        );
-
-        line.setAttribute(
-            "y1",
-            glassY
-        );
-
-        line.setAttribute(
-            "x2",
-            gx
-        );
-
-        line.setAttribute(
-            "y2",
-            glassY+glassH
-        );
-
-        glassGrid.appendChild(line);
-
-    }
-
-
-    for(
-        let gy = glassY+40;
-        gy < glassY+glassH;
-        gy += 42
-    ){
-
-        const line =
-            document.createElementNS(
-                ns,
-                "line"
-            );
-
-        line.setAttribute(
-            "x1",
-            glassX
-        );
-
-        line.setAttribute(
-            "y1",
-            gy
-        );
-
-        line.setAttribute(
-            "x2",
-            glassX+glassW
-        );
-
-        line.setAttribute(
-            "y2",
-            gy
-        );
-
-        glassGrid.appendChild(line);
-
-    }
-
-
-    const domeRibs = 17;
-
-
-    for(
-        let i=0;
-        i<=domeRibs;
-        i++
-    ){
-
-        const t =
-            i/domeRibs;
-
-        const theta =
-            Math.PI - t*Math.PI;
-
-        const baseX =
-            arcCx +
-            arcRx*Math.cos(theta);
-
-        const baseY =
-            arcCy -
-            arcRy*Math.sin(theta);
-
-        const topX =
-            arcCx +
-            (arcRx-15)*Math.cos(theta);
-
-        const topY =
-            arcCy -
-            (arcRy-15)*Math.sin(theta);
-
-
-        const path =
-            document.createElementNS(
-                ns,
-                "path"
-            );
-
-        path.setAttribute(
-            "d",
-            `M ${baseX} ${baseY} Q ${arcCx} ${arcCy-250} ${topX} ${topY}`
-        );
-
-        path.setAttribute(
-            "class",
-            "pbs-dome-grid-line"
-        );
-
-        domeGrid.appendChild(path);
-
-    }
-
-
-    const pivotPositions = [
-
-        {x:610,y:145},
-
-        {x:665,y:140},
-
-        {x:720,y:145}
-
-    ];
-
-
-    const shades = [];
-
-
-    pivotPositions.forEach(function(pivot){
-
-        const group =
-            document.createElementNS(
-                ns,
-                "g"
-            );
-
-        group.setAttribute(
-            "class",
-            "pbs-brise-soleil"
-        );
-
-
-        const curve =
-            "M 0 0 C 55 70, 75 180, 20 330";
-
-
-        const shadow =
-            document.createElementNS(
-                ns,
-                "path"
-            );
-
-        shadow.setAttribute(
-            "d",
-            curve
-        );
-
-        shadow.setAttribute(
-            "class",
-            "pbs-shadow"
-        );
-
-        group.appendChild(shadow);
-
-
-        const main =
-            document.createElementNS(
-                ns,
-                "path"
-            );
-
-        main.setAttribute(
-            "d",
-            curve
-        );
-
-        main.setAttribute(
-            "class",
-            "pbs-main"
-        );
-
-        group.appendChild(main);
-
-
-        const highlight =
-            document.createElementNS(
-                ns,
-                "path"
-            );
-
-        highlight.setAttribute(
-            "d",
-            curve
-        );
-
-        highlight.setAttribute(
-            "class",
-            "pbs-highlight"
-        );
-
-        group.appendChild(highlight);
-
-
-        const pivotOuter =
-            document.createElementNS(
-                ns,
-                "circle"
-            );
-
-        pivotOuter.setAttribute(
-            "cx",
-            0
-        );
-
-        pivotOuter.setAttribute(
-            "cy",
-            0
-        );
-
-        pivotOuter.setAttribute(
-            "r",
-            9
-        );
-
-        pivotOuter.setAttribute(
-            "class",
-            "pbs-pivot-outer"
-        );
-
-        group.appendChild(pivotOuter);
-
-
-        const pivotInner =
-            document.createElementNS(
-                ns,
-                "circle"
-            );
-
-        pivotInner.setAttribute(
-            "cx",
-            0
-        );
-
-        pivotInner.setAttribute(
-            "cy",
-            0
-        );
-
-        pivotInner.setAttribute(
-            "r",
-            4
-        );
-
-        pivotInner.setAttribute(
-            "class",
-            "pbs-pivot-inner"
-        );
-
-        group.appendChild(pivotInner);
-
-
-        group.setAttribute(
-            "transform",
-            `translate(${pivot.x} ${pivot.y})`
-        );
-
-        briseSoleilGroup.appendChild(group);
-
-
-        shades.push({
-            element:group,
-            x:pivot.x,
-            y:pivot.y
-        });
-
-    });
-
-
-    function update(){
-
-        const sliderValue =
-            parseInt(
-                slider.value,
-                10
-            );
-
-        const sunAngleDeg =
-            sliderValue *
-            (180/100);
-
-        const sunAngleRad =
-            sunAngleDeg *
-            Math.PI/180;
-
-
-        let deployment =
-            Math.sin(
-                sunAngleRad
-            );
-
-        deployment =
-            Math.max(
-                0,
-                Math.min(
-                    1,
-                    deployment
-                )
-            );
-
-
-        let timeOfDay =
-            "Morning";
-
-        if(sliderValue <= 2)
-            timeOfDay = "Dawn";
-
-        else if(sliderValue >= 98)
-            timeOfDay = "Dusk";
-
-        else if(
-            sliderValue > 40 &&
-            sliderValue < 60
-        )
-            timeOfDay = "Noon";
-
-        else if(sliderValue >= 60)
-            timeOfDay = "Afternoon";
-
-
-        sunPositionText.textContent =
-            timeOfDay;
-
-        sunAngleText.textContent =
-            "(" +
-            Math.round(
-                sunAngleDeg
-            ) +
-            "°)";
-
-
-        const protection =
-            Math.round(
-                deployment*100
-            );
-
-
-        if(deployment < .08){
-
-            bladesStatusText.textContent =
-                "Fully retracted — maximum opening";
+            }
 
         }
-
-        else if(deployment < .92){
-
-            bladesStatusText.textContent =
-                "Partially deployed — " +
-                protection +
-                "% shading";
-
-        }
-
-        else{
-
-            bladesStatusText.textContent =
-                "Fully deployed — maximum shading";
-
-        }
-
-
-        const sunX =
-            150 +
-            sliderValue*7;
-
-        const sunY =
-            470 -
-            Math.sin(
-                sunAngleRad
-            )*380 -
-            20;
-
-
-        sunIcon.setAttribute(
-            "cx",
-            sunX
-        );
-
-        sunIcon.setAttribute(
-            "cy",
-            sunY
-        );
-
-        sunGlow.setAttribute(
-            "cx",
-            sunX
-        );
-
-        sunGlow.setAttribute(
-            "cy",
-            sunY
-        );
-
-
-        shades.forEach(function(shade){
-
-            const retractedAngle =
-                25;
-
-            const deployedAngle =
-                -18;
-
-            const angle =
-                retractedAngle +
-                (
-                    deployedAngle -
-                    retractedAngle
-                ) *
-                deployment;
-
-
-            shade.element.setAttribute(
-
-                "transform",
-
-                `translate(${shade.x} ${shade.y}) rotate(${angle})`
-
-            );
-
-        });
-
-    }
-
-
-    slider.addEventListener(
-        "input",
-        update
     );
 
-    update();
-
-})();
+}
 
 
 /* =========================================================
@@ -1506,10 +984,10 @@ if(
 
 document.addEventListener(
     "DOMContentLoaded",
-    () => {
+    ()=>{
 
         /* =====================================================
-            VIEWS
+           VIEWS
         ===================================================== */
 
         const professionalIndex =
@@ -1517,40 +995,48 @@ document.addEventListener(
                 "professional-index-view"
             );
 
+
         const cnicView =
             document.getElementById(
                 "professional-cnic-view"
             );
+
 
         const militaryMessView =
             document.getElementById(
                 "professional-military-mess-view"
             );
 
+
         const cnicProject02View =
             document.getElementById(
                 "professional-cnic-project-02-view"
             );
+
 
         const rehabilitationView =
             document.getElementById(
                 "professional-rehabilitation-view"
             );
 
+
         const rehabStairsView =
             document.getElementById(
                 "professional-rehab-stairs-view"
             );
+
 
         const rehabMetalFloorView =
             document.getElementById(
                 "professional-rehab-metal-floor-view"
             );
 
+
         const rehabWoodFloorView =
             document.getElementById(
                 "professional-rehab-wood-floor-view"
             );
+
 
         const professionalBackFloating =
             document.getElementById(
@@ -1559,7 +1045,7 @@ document.addEventListener(
 
 
         /* =====================================================
-            VIEW MAP
+           VIEW MAP
         ===================================================== */
 
         const views = {
@@ -1592,34 +1078,89 @@ document.addEventListener(
 
 
         /* =====================================================
-            CURRENT VIEW
+           CURRENT VIEW
         ===================================================== */
 
-        let currentView = "index";
+        let currentView =
+            "index";
 
 
         /* =====================================================
-            SHOW PROFESSIONAL VIEW
+           PROFESSIONAL BACK HIERARCHY
+        ===================================================== */
+
+        function getProfessionalBackTarget(){
+
+            switch(currentView){
+
+                /* -----------------------------------------
+                   CNIC PROJECTS → CNIC
+                ----------------------------------------- */
+
+                case "military":
+                case "cnic-project-02":
+
+                    return "cnic";
+
+
+                /* -----------------------------------------
+                   CNIC / REHABILITATION → INDEX
+                ----------------------------------------- */
+
+                case "cnic":
+                case "rehabilitation":
+
+                    return "index";
+
+
+                /* -----------------------------------------
+                   REHABILITATION PROJECTS → REHABILITATION
+                ----------------------------------------- */
+
+                case "rehab-stairs":
+                case "rehab-metal-floor":
+                case "rehab-wood-floor":
+
+                    return "rehabilitation";
+
+
+                default:
+
+                    return null;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           PROFESSIONAL BACK
+        ===================================================== */
+
+        function goProfessionalBack(){
+
+            const target =
+                getProfessionalBackTarget();
+
+
+            if(target){
+
+                showProfessionalView(
+                    target
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SHOW PROFESSIONAL VIEW
         ===================================================== */
 
         function showProfessionalView(
             viewName
         ){
-
-            /* Hide every Professional Work view */
-
-            Object.values(views)
-                .forEach(view => {
-
-                    if(!view)
-                        return;
-
-                    view.hidden = true;
-
-                });
-
-
-            /* Find requested view */
 
             const target =
                 views[viewName];
@@ -1629,88 +1170,87 @@ document.addEventListener(
                 return;
 
 
-            /* Show requested view */
+            /* ---------------------------------------------
+               HIDE ALL PROFESSIONAL VIEWS
+            --------------------------------------------- */
+
+            Object.values(views)
+                .forEach(view=>{
+
+                    if(!view)
+                        return;
+
+                    view.hidden = true;
+
+                });
+
+
+            /* ---------------------------------------------
+               SHOW TARGET
+            --------------------------------------------- */
 
             target.hidden = false;
 
 
-            /* Store current view */
+            /* ---------------------------------------------
+               STORE CURRENT VIEW
+            --------------------------------------------- */
 
-            currentView = viewName;
-
-/* =================================================
-   RESET PROJECT SCROLL POSITION
-================================================= */
-
-requestAnimationFrame(() => {
-
-    const professionalSection =
-        document.getElementById(
-            "professional-work"
-        );
-
-    if(professionalSection){
-
-        professionalSection.scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-        });
-
-    }
-
-});           
+            currentView =
+                viewName;
 
 
-            /* =================================================
-                SCROLL LOCK & IMMERSIVE STATE
-            ================================================= */
+            /* ---------------------------------------------
+               SCROLL LOCK
+            --------------------------------------------- */
 
-           if (viewName === "index") {
-    deactivateScrollLock();
+            if(viewName === "index"){
 
-    document.body.classList.remove(
-        "professional-locked",
-        "professional-subspace"
-    );
-} else {
-    activateScrollLock("professional-work");
+                deactivateScrollLock();
 
-    document.body.classList.add(
-        "professional-locked",
-        "professional-subspace"
-    );
-}
+                document.body.classList.remove(
+                    "professional-locked",
+                    "professional-subspace"
+                );
 
-            /* =================================================
-                FLOATING BACK BUTTON
-            ================================================= */
+            }else{
 
-            if(
-                professionalBackFloating
-            ){
+                activateScrollLock(
+                    target.id ||
+                    "professional-work"
+                );
 
-                if(
-                    viewName === "index"
-                ){
-
-                    professionalBackFloating.classList.remove(
-                        "visible"
-                    );
-
-                }else{
-
-                    professionalBackFloating.classList.add(
-                        "visible"
-                    );
-
-                }
+                document.body.classList.add(
+                    "professional-locked",
+                    "professional-subspace"
+                );
 
             }
 
 
-            /* =================================================
-                SCROLL TO PROFESSIONAL WORK
-            ================================================= */
+            /* ---------------------------------------------
+               FLOATING BACK BUTTON
+            --------------------------------------------- */
+
+            if(professionalBackFloating){
+
+                professionalBackFloating
+                    .classList
+                    .toggle(
+                        "visible",
+                        viewName !== "index"
+                    );
+
+            }
+
+
+            /* ---------------------------------------------
+               SINGLE SCROLL
+               
+               IMPORTANT:
+               The old code had TWO scrollIntoView()
+               calls here. There is now only ONE.
+            --------------------------------------------- */
 
             const section =
                 document.getElementById(
@@ -1720,11 +1260,12 @@ requestAnimationFrame(() => {
 
             if(section){
 
-                section.scrollIntoView({
+                requestAnimationFrame(()=>{
 
-                    behavior:"smooth",
-
-                    block:"start"
+                    section.scrollIntoView({
+                        behavior:"smooth",
+                        block:"start"
+                    });
 
                 });
 
@@ -1734,136 +1275,113 @@ requestAnimationFrame(() => {
 
 
         /* =====================================================
-            OPEN PROFESSIONAL EXPERIENCE
+           OPEN PROFESSIONAL EXPERIENCE
         ===================================================== */
 
-        document.querySelectorAll(
-            "[data-professional-open]"
-        ).forEach(button => {
+        document
+            .querySelectorAll(
+                "[data-professional-open]"
+            )
+            .forEach(button=>{
 
-            button.addEventListener(
-                "click",
-                () => {
+                button.addEventListener(
+                    "click",
+                    ()=>{
 
-                    const target =
-                        button.dataset
-                            .professionalOpen;
+                        const target =
+                            button.dataset
+                                .professionalOpen;
 
-
-                    showProfessionalView(
-                        target
-                    );
-
-                }
-            );
-
-        });
-
-
-        /* =====================================================
-            OPEN PROFESSIONAL PROJECT
-
-            Generic lookup against the "views" map.
-            Handles Military Mess, CNIC Project 02, and all
-            Rehabilitation project views without hardcoding
-            each one individually.
-
-            "military-mess" is mapped to the "military" key
-            to stay compatible with the existing HTML attribute
-            (data-professional-project-open="military-mess").
-        ===================================================== */
-
-        document.querySelectorAll(
-            "[data-professional-project-open]"
-        ).forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    const target =
-                        button.dataset
-                            .professionalProjectOpen;
-
-                    const key =
-                        target === "military-mess"
-                            ? "military"
-                            : target;
-
-                    if(
-                        views[key]
-                    ){
-
-                        showProfessionalView(
-                            key
-                        );
-
-                    }
-
-                }
-            );
-
-        });
-
-
-        /* =====================================================
-            PROFESSIONAL BACK BUTTONS
-            
-            Kept for compatibility with existing HTML.
-            The floating button is now the main navigation.
-        ===================================================== */
-
-        document.querySelectorAll(
-            "[data-professional-back]"
-        ).forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    const target =
-                        button.dataset
-                            .professionalBack;
-
-
-                    if(target){
 
                         showProfessionalView(
                             target
                         );
 
                     }
+                );
 
-                }
-            );
-
-        });
+            });
 
 
         /* =====================================================
-            FLOATING BACK BUTTON
-            
-            Hierarchy:
-            
-            Military Mess
-                ↓
-              CNIC
-            
-            CNIC Project 02
-                ↓
-              CNIC
-            
-            CNIC
-                ↓
-        Professional Work
-            
-            Rehabilitation
-                ↓
-        Professional Work
+           OPEN PROFESSIONAL PROJECT
+        ===================================================== */
 
-            Rehab Stairs / Metal Floor / Wood Floor
-                ↓
-            Rehabilitation
+        document
+            .querySelectorAll(
+                "[data-professional-project-open]"
+            )
+            .forEach(button=>{
+
+                button.addEventListener(
+                    "click",
+                    ()=>{
+
+                        const target =
+                            button.dataset
+                                .professionalProjectOpen;
+
+
+                        /*
+                           Existing HTML uses:
+                           military-mess
+
+                           Existing view map uses:
+                           military
+                        */
+
+                        const key =
+                            target === "military-mess"
+                                ? "military"
+                                : target;
+
+
+                        if(views[key]){
+
+                            showProfessionalView(
+                                key
+                            );
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           PROFESSIONAL BACK BUTTONS
+           
+           Existing HTML remains compatible.
+
+           The navigation is now centralized through
+           goProfessionalBack().
+        ===================================================== */
+
+        document
+            .querySelectorAll(
+                "[data-professional-back]"
+            )
+            .forEach(button=>{
+
+                button.addEventListener(
+                    "click",
+                    ()=>{
+
+                        goProfessionalBack();
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           FLOATING PROFESSIONAL BACK BUTTON
+           
+           Now respects the hierarchy instead of always
+           returning directly to Professional Work.
         ===================================================== */
 
         if(
@@ -1872,16 +1390,9 @@ requestAnimationFrame(() => {
 
             professionalBackFloating.addEventListener(
                 "click",
-                () => {
+                ()=>{
 
-                    /* Always exit straight to the
-                       Professional Work homepage,
-                       no matter which sub-level
-                       is currently open. */
-
-                    showProfessionalView(
-                        "index"
-                    );
+                    goProfessionalBack();
 
                 }
             );
@@ -1890,311 +1401,1272 @@ requestAnimationFrame(() => {
 
 
         /* =====================================================
-            CONTINUE EXPLORING
+           CONTINUE EXPLORING
         ===================================================== */
 
-        document.querySelectorAll(
-            "[data-professional-continue]"
-        ).forEach(button => {
+        document
+            .querySelectorAll(
+                "[data-professional-continue]"
+            )
+            .forEach(button=>{
 
-            button.addEventListener(
-                "click",
-                () => {
+                button.addEventListener(
+                    "click",
+                    ()=>{
 
-                    const target =
-                        button.dataset
-                            .professionalContinue;
+                        const target =
+                            button.dataset
+                                .professionalContinue;
 
 
-                    if(
-                        target &&
-                        views[target]
-                    ){
+                        if(
+                            target &&
+                            views[target]
+                        ){
+
+                            showProfessionalView(
+                                target
+                            );
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           EXIT PROFESSIONAL WORK
+        ===================================================== */
+
+        document
+            .querySelectorAll(
+                "[data-professional-exit]"
+            )
+            .forEach(button=>{
+
+                button.addEventListener(
+                    "click",
+                    ()=>{
 
                         showProfessionalView(
-                            target
+                            "index"
                         );
 
                     }
+                );
 
-                }
-            );
-
-        });
+            });
 
 
         /* =====================================================
-            EXIT PROFESSIONAL WORK
-        ===================================================== */
-
-        document.querySelectorAll(
-            "[data-professional-exit]"
-        ).forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    showProfessionalView("index");
-
-                }
-            );
-
-        });
-
-
-        /* =====================================================
-            ESCAPE KEY NAVIGATION
-            
-            Hierarchy:
-            
-            Military Mess
-                ESC
-                 ↓
-                CNIC
-            
-            Project 02
-                ESC
-                 ↓
-                CNIC
-            
-            CNIC
-                ESC
-                 ↓
-          Professional Work
-            
-            Rehabilitation
-                ESC
-                 ↓
-          Professional Work
-
-            Rehab Stairs / Metal Floor / Wood Floor
-                ESC
-                 ↓
-            Rehabilitation
-            
-            Professional Work
-                ESC
-                 ↓
-              EXIT
-        ===================================================== */
-
-        document.addEventListener(
-            "keydown",
-            event => {
-
-                if(
-                    event.key !== "Escape"
-                )
-                    return;
-
-
-                switch(
-                    currentView
-                ){
-
-                    /* -----------------------------------------
-                        MILITARY MESS → CNIC
-                    ----------------------------------------- */
-
-                    case "military":
-
-                        showProfessionalView(
-                            "cnic"
-                        );
-
-                        break;
-
-
-                    /* -----------------------------------------
-                        PROJECT 02 → CNIC
-                    ----------------------------------------- */
-
-                    case "cnic-project-02":
-
-                        showProfessionalView(
-                            "cnic"
-                        );
-
-                        break;
-
-
-                    /* -----------------------------------------
-                        CNIC → PROFESSIONAL WORK
-                    ----------------------------------------- */
-
-                    case "cnic":
-
-                        showProfessionalView(
-                            "index"
-                        );
-
-                        break;
-
-
-                    /* -----------------------------------------
-                        REHABILITATION → PROFESSIONAL WORK
-                    ----------------------------------------- */
-
-                    case "rehabilitation":
-
-                        showProfessionalView(
-                            "index"
-                        );
-
-                        break;
-
-
-                    /* -----------------------------------------
-                        REHAB PROJECTS → REHABILITATION
-                    ----------------------------------------- */
-
-                    case "rehab-stairs":
-                    case "rehab-metal-floor":
-                    case "rehab-wood-floor":
-
-                        showProfessionalView(
-                            "rehabilitation"
-                        );
-
-                        break;
-
-
-                    /* -----------------------------------------
-                        PROFESSIONAL WORK → EXIT
-                    ----------------------------------------- */
-
-                    case "index":
-
-                        /*
-
-                            IMPORTANT:
-                            Do NOT hide the entire
-                            Professional Work section here.
-
-                            The existing page structure remains
-                            untouched.
-
-                            Instead, return to the normal page
-                            position before Professional Work.
-
-                        */
-
-                        if(
-                            professionalIndex
-                        ){
-
-                            professionalIndex.hidden =
-                                false;
-
-                        }
-
-
-                        currentView = "index";
-
-                        deactivateScrollLock();
-
-                        document.body.classList.remove(
-                            "professional-locked",
-                            "professional-subspace"
-                        );
-
-
-                        if(
-                            professionalBackFloating
-                        ){
-
-                            professionalBackFloating.classList.remove(
-                                "visible"
-                            );
-
-                        }
-
-
-                        /*
-                            If Professional Work is inside
-                            the normal page flow, move to the
-                            section before it.
-                        */
-
-                        const section =
-                            document.getElementById(
-                                "professional-work"
-                            );
-
-
-                        if(section){
-
-                            const previousSection =
-                                section.previousElementSibling;
-
-
-                            if(
-                                previousSection
-                            ){
-
-                                previousSection.scrollIntoView({
-
-                                    behavior:"smooth",
-
-                                    block:"start"
-
-                                });
-
-                            }
-
-                        }
-
-                        break;
-
-                }
-
-            }
-
-        );
-
-
-        /* =====================================================
-            INITIAL STATE
+           INITIAL PROFESSIONAL STATE
         ===================================================== */
 
         Object.entries(views)
             .forEach(
-                ([name, view]) => {
+                ([name,view])=>{
 
                     if(!view)
                         return;
 
 
-                    if(
-                        name === "index"
-                    ){
-
-                        view.hidden = false;
-
-                    }else{
-
-                        view.hidden = true;
-
-                    }
+                    view.hidden =
+                        name !== "index";
 
                 }
             );
 
 
-        currentView = "index";
-        document.body.classList.remove("professional-locked");
+        currentView =
+            "index";
+
+
+        document.body.classList.remove(
+            "professional-locked",
+            "professional-subspace"
+        );
 
 
         if(
             professionalBackFloating
         ){
 
-            professionalBackFloating.classList.remove(
-                "visible"
+            professionalBackFloating
+                .classList
+                .remove("visible");
+
+        }
+
+
+        /* =====================================================
+           STORE PROFESSIONAL STATE FOR GLOBAL ESC
+        ===================================================== */
+
+        window.__professionalNavigation = {
+
+            getCurrentView:
+                ()=>currentView,
+
+            goBack:
+                goProfessionalBack,
+
+            exit:
+                ()=>showProfessionalView("index")
+
+        };
+
+    }
+);
+
+
+/* =========================================================
+   GLOBAL ESCAPE KEY
+   ONE SINGLE ESC HANDLER
+
+   Priority:
+   1. Lightbox → close it
+   2. Academic project → Academic index
+   3. Professional sub-project → previous hierarchy level
+   4. Professional index → exit Professional Work
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event=>{
+
+        if(
+            event.key !== "Escape"
+        ){
+
+            return;
+
+        }
+
+
+        /* =====================================================
+           1. LIGHTBOX HAS ABSOLUTE PRIORITY
+        ===================================================== */
+
+        if(
+            lightbox &&
+            lightbox.classList.contains("open")
+        ){
+
+            closeLightbox();
+
+            return;
+
+        }
+
+
+        /* =====================================================
+           2. ACADEMICAL WORKS
+        ===================================================== */
+
+        const academicProjectIds = [
+
+            "eco-project",
+
+            "urban-project",
+
+            "housing-project"
+
+        ];
+
+
+        const academicProjectOpen =
+            academicProjectIds.some(id=>{
+
+                const view =
+                    document.getElementById(id);
+
+                return (
+                    view &&
+                    !view.hidden
+                );
+
+            });
+
+
+        if(academicProjectOpen){
+
+            const academicIndex =
+                document.getElementById(
+                    "academic-index-view"
+                );
+
+
+            const academicBackFloating =
+                document.getElementById(
+                    "academicBackFloating"
+                );
+
+
+            academicProjectIds
+                .forEach(id=>{
+
+                    const view =
+                        document.getElementById(id);
+
+                    if(view){
+
+                        view.hidden = true;
+
+                    }
+
+                });
+
+
+            if(academicIndex){
+
+                academicIndex.hidden =
+                    false;
+
+            }
+
+
+            if(academicBackFloating){
+
+                academicBackFloating
+                    .classList
+                    .remove("visible");
+
+            }
+
+
+            deactivateScrollLock();
+
+            document.body.classList.remove(
+                "academic-locked"
             );
+
+
+            if(academicIndex){
+
+                requestAnimationFrame(()=>{
+
+                    academicIndex.scrollIntoView({
+                        behavior:"smooth",
+                        block:"start"
+                    });
+
+                });
+
+            }
+
+
+            return;
+
+        }
+
+
+        /* =====================================================
+           3. PROFESSIONAL WORK
+        ===================================================== */
+
+        if(
+            window.__professionalNavigation
+        ){
+
+            const current =
+                window.__professionalNavigation
+                    .getCurrentView();
+
+
+            /* ---------------------------------------------
+               Professional sub-view → previous level
+            --------------------------------------------- */
+
+            if(current !== "index"){
+
+                window.__professionalNavigation
+                    .goBack();
+
+                return;
+
+            }
+
+
+            /* ---------------------------------------------
+               Professional index → EXIT
+            --------------------------------------------- */
+
+            window.__professionalNavigation
+                .exit();
+
+
+            const professionalSection =
+                document.getElementById(
+                    "professional-work"
+                );
+
+
+            if(professionalSection){
+
+                const previousSection =
+                    professionalSection
+                        .previousElementSibling;
+
+
+                if(previousSection){
+
+                    requestAnimationFrame(()=>{
+
+                        previousSection.scrollIntoView({
+                            behavior:"smooth",
+                            block:"start"
+                        });
+
+                    });
+
+                }
+
+            }
 
         }
 
     }
 );
+
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+
+const cursor =
+    document.getElementById(
+        "cursor"
+    );
+
+
+const cursorRing =
+    document.getElementById(
+        "cursorRing"
+    );
+
+
+if(
+    cursor &&
+    cursorRing &&
+    window.matchMedia(
+        "(pointer:fine)"
+    ).matches
+){
+
+    document.body
+        .classList
+        .add("has-cursor");
+
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    let ringX = 0;
+    let ringY = 0;
+
+
+    window.addEventListener(
+        "mousemove",
+        event=>{
+
+            mouseX =
+                event.clientX;
+
+            mouseY =
+                event.clientY;
+
+
+            cursor.style.left =
+                `${mouseX}px`;
+
+
+            cursor.style.top =
+                `${mouseY}px`;
+
+        }
+    );
+
+
+    function animateCursor(){
+
+        ringX +=
+            (
+                mouseX -
+                ringX
+            ) * .15;
+
+
+        ringY +=
+            (
+                mouseY -
+                ringY
+            ) * .15;
+
+
+        cursorRing.style.left =
+            `${ringX}px`;
+
+
+        cursorRing.style.top =
+            `${ringY}px`;
+
+
+        requestAnimationFrame(
+            animateCursor
+        );
+
+    }
+
+
+    animateCursor();
+
+
+    document
+        .querySelectorAll(
+            "a,button,.featured-project,.project-card,[data-lightbox]"
+        )
+        .forEach(element=>{
+
+            element.addEventListener(
+                "mouseenter",
+                ()=>{
+
+                    cursorRing.style.width =
+                        "48px";
+
+                    cursorRing.style.height =
+                        "48px";
+
+                }
+            );
+
+
+            element.addEventListener(
+                "mouseleave",
+                ()=>{
+
+                    cursorRing.style.width =
+                        "30px";
+
+                    cursorRing.style.height =
+                        "30px";
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   PORTFOLIO DIAPHRAGM BLADES
+========================================================= */
+
+(function(){
+
+    const group =
+        document.getElementById(
+            "portfolioDiaphragmBlades"
+        );
+
+
+    if(!group)
+        return;
+
+
+    const ns =
+        "http://www.w3.org/2000/svg";
+
+
+    const cx = 200,
+          cy = 200;
+
+
+    const n = 9;
+
+
+    const pivotR = 68;
+
+
+    const len = 96;
+
+
+    const halfW = 18;
+
+
+    const tipHalfW = 6;
+
+
+    for(
+        let i = 0;
+        i < n;
+        i++
+    ){
+
+        const angle =
+            (360 / n) * i;
+
+
+        const rad =
+            angle *
+            Math.PI /
+            180;
+
+
+        const px =
+            cx +
+            pivotR *
+            Math.cos(rad);
+
+
+        const py =
+            cy +
+            pivotR *
+            Math.sin(rad);
+
+
+        const outer =
+            document.createElementNS(
+                ns,
+                "g"
+            );
+
+
+        outer.setAttribute(
+            "transform",
+            `translate(${px} ${py}) rotate(${angle})`
+        );
+
+
+        const blade =
+            document.createElementNS(
+                ns,
+                "g"
+            );
+
+
+        blade.setAttribute(
+            "class",
+            "pd-blade"
+        );
+
+
+        const path =
+            document.createElementNS(
+                ns,
+                "path"
+            );
+
+
+        path.setAttribute(
+            "d",
+            `M 0 ${-halfW} L ${-len} ${-tipHalfW} L ${-len} ${tipHalfW} L 0 ${halfW} Z`
+        );
+
+
+        const pivot =
+            document.createElementNS(
+                ns,
+                "circle"
+            );
+
+
+        pivot.setAttribute(
+            "class",
+            "pd-pivot"
+        );
+
+
+        pivot.setAttribute(
+            "r",
+            "2.5"
+        );
+
+
+        blade.appendChild(path);
+
+        outer.appendChild(blade);
+
+        outer.appendChild(pivot);
+
+        group.appendChild(outer);
+
+    }
+
+})();
+
+
+/* =========================================================
+   PARAMETRIC BRISE-SOLEIL DOME
+========================================================= */
+
+(function(){
+
+    const svg =
+        document.getElementById(
+            "pbs-dome-svg"
+        );
+
+
+    if(!svg)
+        return;
+
+
+    const ns =
+        "http://www.w3.org/2000/svg";
+
+
+    const slider =
+        document.getElementById(
+            "pbs-sun-slider"
+        );
+
+
+    const sunPositionText =
+        document.getElementById(
+            "pbs-sun-position-text"
+        );
+
+
+    const sunAngleText =
+        document.getElementById(
+            "pbs-sun-angle-text"
+        );
+
+
+    const bladesStatusText =
+        document.getElementById(
+            "pbs-blades-status-text"
+        );
+
+
+    const sunIcon =
+        document.getElementById(
+            "pbs-sun-icon"
+        );
+
+
+    const sunGlow =
+        document.getElementById(
+            "pbs-sun-glow"
+        );
+
+
+    const glassGrid =
+        document.getElementById(
+            "pbs-glass-grid"
+        );
+
+
+    const domeGrid =
+        document.getElementById(
+            "pbs-dome-grid"
+        );
+
+
+    const briseSoleilGroup =
+        document.getElementById(
+            "pbs-brise-soleil-group"
+        );
+
+
+    if(
+        !slider ||
+        !sunPositionText ||
+        !sunAngleText ||
+        !bladesStatusText ||
+        !sunIcon ||
+        !sunGlow ||
+        !glassGrid ||
+        !domeGrid ||
+        !briseSoleilGroup
+    ){
+
+        return;
+
+    }
+
+
+    const arcCx = 500,
+          arcCy = 470,
+          arcRx = 410,
+          arcRy = 360;
+
+
+    const glassX = 270,
+          glassY = 150,
+          glassW = 460,
+          glassH = 320;
+
+
+    /* =====================================================
+       GLASS GRID
+    ===================================================== */
+
+    for(
+        let gx = glassX + 40;
+        gx < glassX + glassW;
+        gx += 46
+    ){
+
+        const line =
+            document.createElementNS(
+                ns,
+                "line"
+            );
+
+
+        line.setAttribute(
+            "x1",
+            gx
+        );
+
+
+        line.setAttribute(
+            "y1",
+            glassY
+        );
+
+
+        line.setAttribute(
+            "x2",
+            gx
+        );
+
+
+        line.setAttribute(
+            "y2",
+            glassY + glassH
+        );
+
+
+        glassGrid.appendChild(
+            line
+        );
+
+    }
+
+
+    for(
+        let gy = glassY + 40;
+        gy < glassY + glassH;
+        gy += 42
+    ){
+
+        const line =
+            document.createElementNS(
+                ns,
+                "line"
+            );
+
+
+        line.setAttribute(
+            "x1",
+            glassX
+        );
+
+
+        line.setAttribute(
+            "y1",
+            gy
+        );
+
+
+        line.setAttribute(
+            "x2",
+            glassX + glassW
+        );
+
+
+        line.setAttribute(
+            "y2",
+            gy
+        );
+
+
+        glassGrid.appendChild(
+            line
+        );
+
+    }
+
+
+    /* =====================================================
+       DOME RIBS
+    ===================================================== */
+
+    const domeRibs = 17;
+
+
+    for(
+        let i = 0;
+        i <= domeRibs;
+        i++
+    ){
+
+        const t =
+            i / domeRibs;
+
+
+        const theta =
+            Math.PI -
+            t * Math.PI;
+
+
+        const baseX =
+            arcCx +
+            arcRx *
+            Math.cos(theta);
+
+
+        const baseY =
+            arcCy -
+            arcRy *
+            Math.sin(theta);
+
+
+        const topX =
+            arcCx +
+            (arcRx - 15) *
+            Math.cos(theta);
+
+
+        const topY =
+            arcCy -
+            (arcRy - 15) *
+            Math.sin(theta);
+
+
+        const path =
+            document.createElementNS(
+                ns,
+                "path"
+            );
+
+
+        path.setAttribute(
+            "d",
+            `M ${baseX} ${baseY} Q ${arcCx} ${arcCy-250} ${topX} ${topY}`
+        );
+
+
+        path.setAttribute(
+            "class",
+            "pbs-dome-grid-line"
+        );
+
+
+        domeGrid.appendChild(
+            path
+        );
+
+    }
+
+
+    /* =====================================================
+       BRISE-SOLEIL
+    ===================================================== */
+
+    const pivotPositions = [
+
+        {x:610,y:145},
+
+        {x:665,y:140},
+
+        {x:720,y:145}
+
+    ];
+
+
+    const shades = [];
+
+
+    pivotPositions.forEach(
+        function(pivot){
+
+            const group =
+                document.createElementNS(
+                    ns,
+                    "g"
+                );
+
+
+            group.setAttribute(
+                "class",
+                "pbs-brise-soleil"
+            );
+
+
+            const curve =
+                "M 0 0 C 55 70, 75 180, 20 330";
+
+
+            const shadow =
+                document.createElementNS(
+                    ns,
+                    "path"
+                );
+
+
+            shadow.setAttribute(
+                "d",
+                curve
+            );
+
+
+            shadow.setAttribute(
+                "class",
+                "pbs-shadow"
+            );
+
+
+            group.appendChild(
+                shadow
+            );
+
+
+            const main =
+                document.createElementNS(
+                    ns,
+                    "path"
+                );
+
+
+            main.setAttribute(
+                "d",
+                curve
+            );
+
+
+            main.setAttribute(
+                "class",
+                "pbs-main"
+            );
+
+
+            group.appendChild(
+                main
+            );
+
+
+            const highlight =
+                document.createElementNS(
+                    ns,
+                    "path"
+                );
+
+
+            highlight.setAttribute(
+                "d",
+                curve
+            );
+
+
+            highlight.setAttribute(
+                "class",
+                "pbs-highlight"
+            );
+
+
+            group.appendChild(
+                highlight
+            );
+
+
+            const pivotOuter =
+                document.createElementNS(
+                    ns,
+                    "circle"
+                );
+
+
+            pivotOuter.setAttribute(
+                "cx",
+                0
+            );
+
+
+            pivotOuter.setAttribute(
+                "cy",
+                0
+            );
+
+
+            pivotOuter.setAttribute(
+                "r",
+                9
+            );
+
+
+            pivotOuter.setAttribute(
+                "class",
+                "pbs-pivot-outer"
+            );
+
+
+            group.appendChild(
+                pivotOuter
+            );
+
+
+            const pivotInner =
+                document.createElementNS(
+                    ns,
+                    "circle"
+                );
+
+
+            pivotInner.setAttribute(
+                "cx",
+                0
+            );
+
+
+            pivotInner.setAttribute(
+                "cy",
+                0
+            );
+
+
+            pivotInner.setAttribute(
+                "r",
+                4
+            );
+
+
+            pivotInner.setAttribute(
+                "class",
+                "pbs-pivot-inner"
+            );
+
+
+            group.appendChild(
+                pivotInner
+            );
+
+
+            group.setAttribute(
+                "transform",
+                `translate(${pivot.x} ${pivot.y})`
+            );
+
+
+            briseSoleilGroup.appendChild(
+                group
+            );
+
+
+            shades.push({
+
+                element:group,
+
+                x:pivot.x,
+
+                y:pivot.y
+
+            });
+
+        }
+    );
+
+
+    /* =====================================================
+       BRISE-SOLEIL UPDATE
+    ===================================================== */
+
+    function update(){
+
+        const sliderValue =
+            parseInt(
+                slider.value,
+                10
+            );
+
+
+        const sunAngleDeg =
+            sliderValue *
+            (180 / 100);
+
+
+        const sunAngleRad =
+            sunAngleDeg *
+            Math.PI /
+            180;
+
+
+        let deployment =
+            Math.sin(
+                sunAngleRad
+            );
+
+
+        deployment =
+            Math.max(
+                0,
+                Math.min(
+                    1,
+                    deployment
+                )
+            );
+
+
+        let timeOfDay =
+            "Morning";
+
+
+        if(sliderValue <= 2){
+
+            timeOfDay =
+                "Dawn";
+
+        }
+
+        else if(sliderValue >= 98){
+
+            timeOfDay =
+                "Dusk";
+
+        }
+
+        else if(
+            sliderValue > 40 &&
+            sliderValue < 60
+        ){
+
+            timeOfDay =
+                "Noon";
+
+        }
+
+        else if(
+            sliderValue >= 60
+        ){
+
+            timeOfDay =
+                "Afternoon";
+
+        }
+
+
+        sunPositionText.textContent =
+            timeOfDay;
+
+
+        sunAngleText.textContent =
+            "(" +
+            Math.round(
+                sunAngleDeg
+            ) +
+            "°)";
+
+
+        const protection =
+            Math.round(
+                deployment * 100
+            );
+
+
+        if(deployment < .08){
+
+            bladesStatusText.textContent =
+                "Fully retracted — maximum opening";
+
+        }
+
+        else if(deployment < .92){
+
+            bladesStatusText.textContent =
+                "Partially deployed — " +
+                protection +
+                "% shading";
+
+        }
+
+        else{
+
+            bladesStatusText.textContent =
+                "Fully deployed — maximum shading";
+
+        }
+
+
+        const sunX =
+            150 +
+            sliderValue * 7;
+
+
+        const sunY =
+            470 -
+            Math.sin(
+                sunAngleRad
+            ) * 380 -
+            20;
+
+
+        sunIcon.setAttribute(
+            "cx",
+            sunX
+        );
+
+
+        sunIcon.setAttribute(
+            "cy",
+            sunY
+        );
+
+
+        sunGlow.setAttribute(
+            "cx",
+            sunX
+        );
+
+
+        sunGlow.setAttribute(
+            "cy",
+            sunY
+        );
+
+
+        shades.forEach(
+            function(shade){
+
+                const retractedAngle =
+                    25;
+
+
+                const deployedAngle =
+                    -18;
+
+
+                const angle =
+                    retractedAngle +
+                    (
+                        deployedAngle -
+                        retractedAngle
+                    ) *
+                    deployment;
+
+
+                shade.element.setAttribute(
+                    "transform",
+                    `translate(${shade.x} ${shade.y}) rotate(${angle})`
+                );
+
+            }
+        );
+
+    }
+
+
+    slider.addEventListener(
+        "input",
+        update
+    );
+
+
+    update();
+
+})();
