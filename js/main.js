@@ -113,15 +113,15 @@ pageSections.forEach(
     section =>
         sectionObserver.observe(section)
 );
+
+
 /* =========================================================
    SCROLL LOCK
-   (shared between Professional Work and Academical Works)
+   Shared between Professional Work and Academical Works
 
-   While inside either section — any view other than its own
-   selection / index screen — scrolling is capped at the
-   bottom of that section. The page cannot continue into
-   whatever comes after it (Research, Let's Build...) until
-   the section's Exit / Continue action is used.
+   The lock prevents the user from continuing into the
+   next website section, while still allowing normal
+   scrolling through the COMPLETE currently visible view.
 ========================================================= */
 
 let scrollLockActive = false;
@@ -129,45 +129,45 @@ let scrollLockSectionId = null;
 
 
 function activateScrollLock(sectionId){
-
     scrollLockActive = true;
     scrollLockSectionId = sectionId;
-
 }
 
 
 function deactivateScrollLock(){
-
     scrollLockActive = false;
     scrollLockSectionId = null;
-
 }
 
+
+/* =========================================================
+   GET MAXIMUM SCROLL POSITION
+   Use the actual document height.
+
+   This is important because academic project views such as
+   #eco-project / #urban-project / #housing-project are
+   outside #work, while Professional project views are
+   dynamically revealed inside #professional-work.
+========================================================= */
 
 function getMaxLockedScroll(){
 
-    if(!scrollLockSectionId)
+    if(!scrollLockActive)
         return Infinity;
 
-    const section =
-        document.getElementById(
-            scrollLockSectionId
-        );
+    const documentHeight =
+        document.documentElement.scrollHeight;
 
-    if(!section)
-        return Infinity;
-
-    const rect =
-        section.getBoundingClientRect();
-
-   return (
-      window.scrollY +
-      rect.bottom -
-      window.innerHeight -
-      40   // marge visuelle avant la section suivante
-      );
+    return Math.max(
+        0,
+        documentHeight - window.innerHeight
+    );
 }
 
+
+/* =========================================================
+   CLAMP SCROLL
+========================================================= */
 
 function clampLockedScroll(){
 
@@ -177,13 +177,11 @@ function clampLockedScroll(){
     const maxScroll =
         getMaxLockedScroll();
 
-    if(
-        window.scrollY > maxScroll
-    ){
+    if(window.scrollY > maxScroll){
 
         window.scrollTo(
             0,
-            Math.max(maxScroll, 0)
+            maxScroll
         );
 
     }
@@ -191,9 +189,16 @@ function clampLockedScroll(){
 }
 
 
+/* =========================================================
+   SINGLE GLOBAL SCROLL LISTENER
+========================================================= */
+
 window.addEventListener(
     "scroll",
     () => {
+
+        if(!scrollLockActive)
+            return;
 
         window.requestAnimationFrame(
             clampLockedScroll
@@ -202,8 +207,6 @@ window.addEventListener(
     },
     { passive:true }
 );
-
-
 /* =========================================================
    ACADEMICAL WORKS — INTERNAL NAVIGATION
 ========================================================= */
@@ -333,28 +336,18 @@ document.addEventListener("DOMContentLoaded",()=>{
     }
 
 
-    /* =====================================================
-       SCROLL TO ACADEMICAL WORKS
-    ===================================================== */
+/* =====================================================
+   SCROLL TO CURRENT ACADEMICAL VIEW
+===================================================== */
 
-    const section =
-        target.closest("section") ||
-        academicIndex.closest("section");
+requestAnimationFrame(() => {
 
+    target.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
 
-    if(section){
-
-        section.scrollIntoView({
-
-            behavior:"smooth",
-
-            block:"start"
-
-        });
-
-    }
-
-}
+});
    
 /* =====================================================
    FLOATING BACK BUTTON — CLICK
@@ -684,23 +677,32 @@ function closeLightbox(){
 }
 
 
-document
-    .querySelectorAll("[data-lightbox]")
-    .forEach(image=>{
+/* =========================================================
+   GLOBAL LIGHTBOX — EVENT DELEGATION
+========================================================= */
 
-        image.addEventListener(
-            "click",
-            event=>{
+document.addEventListener(
+    "click",
+    event => {
 
-                event.stopPropagation();
+        const image =
+            event.target.closest(
+                "[data-lightbox]"
+            );
 
-                openLightbox(image);
+        if(!image)
+            return;
 
-            }
-        );
+        /* Ignore the global lightbox image itself */
+        if(image === lightboxImage)
+            return;
 
-    });
+        event.stopPropagation();
 
+        openLightbox(image);
+
+    }
+);
 
 lightboxClose.addEventListener(
     "click",
@@ -1621,6 +1623,28 @@ document.addEventListener(
             /* Store current view */
 
             currentView = viewName;
+
+/* =================================================
+   RESET PROJECT SCROLL POSITION
+================================================= */
+
+requestAnimationFrame(() => {
+
+    const professionalSection =
+        document.getElementById(
+            "professional-work"
+        );
+
+    if(professionalSection){
+
+        professionalSection.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    }
+
+});           
 
 
             /* =================================================
