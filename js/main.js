@@ -155,12 +155,26 @@ function getMaxLockedScroll(){
     if(!scrollLockActive)
         return Infinity;
 
-    const documentHeight =
-        document.documentElement.scrollHeight;
+    const lockedSection =
+        document.getElementById(
+            scrollLockSectionId
+        );
+
+    if(!lockedSection || lockedSection.hidden)
+        return Infinity;
+
+    const rect =
+        lockedSection.getBoundingClientRect();
+
+    const sectionTop =
+        rect.top + window.scrollY;
+
+    const sectionBottom =
+        rect.bottom + window.scrollY;
 
     return Math.max(
-        0,
-        documentHeight - window.innerHeight
+        sectionTop,
+        sectionBottom - window.innerHeight
     );
 }
 
