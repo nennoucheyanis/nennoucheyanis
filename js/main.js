@@ -289,10 +289,12 @@ document.addEventListener("DOMContentLoaded",()=>{
     if(viewName === "index"){
 
         deactivateScrollLock();
+       document.body.classList.remove("academic-locked"); // AJOUT : Rétablit le reste du site
 
     }else{
 
         activateScrollLock("work");
+       document.body.classList.add("academic-locked"); // AJOUT : Cache les sections suivantes
 
     }
 
@@ -457,6 +459,7 @@ document
             --------------------------------------------- */
 
             deactivateScrollLock();
+           document.body.classList.remove("academic-locked"); // AJOUT : Réaffiche la section Research
 
 
             /* ---------------------------------------------
@@ -1485,7 +1488,7 @@ document.addEventListener(
     () => {
 
         /* =====================================================
-           VIEWS
+            VIEWS
         ===================================================== */
 
         const professionalIndex =
@@ -1535,7 +1538,7 @@ document.addEventListener(
 
 
         /* =====================================================
-           VIEW MAP
+            VIEW MAP
         ===================================================== */
 
         const views = {
@@ -1568,14 +1571,14 @@ document.addEventListener(
 
 
         /* =====================================================
-           CURRENT VIEW
+            CURRENT VIEW
         ===================================================== */
 
         let currentView = "index";
 
 
         /* =====================================================
-           SHOW PROFESSIONAL VIEW
+            SHOW PROFESSIONAL VIEW
         ===================================================== */
 
         function showProfessionalView(
@@ -1616,24 +1619,26 @@ document.addEventListener(
 
 
             /* =================================================
-               SCROLL LOCK
+                SCROLL LOCK & IMMERSIVE STATE
             ================================================= */
 
             if(viewName === "index"){
 
                 deactivateScrollLock();
+                document.body.classList.remove("professional-locked");
 
             }else{
 
                 activateScrollLock(
                     "professional-work"
                 );
+                document.body.classList.add("professional-locked");
 
             }
 
 
             /* =================================================
-               FLOATING BACK BUTTON
+                FLOATING BACK BUTTON
             ================================================= */
 
             if(
@@ -1660,7 +1665,7 @@ document.addEventListener(
 
 
             /* =================================================
-               SCROLL TO PROFESSIONAL WORK
+                SCROLL TO PROFESSIONAL WORK
             ================================================= */
 
             const section =
@@ -1685,7 +1690,7 @@ document.addEventListener(
 
 
         /* =====================================================
-           OPEN PROFESSIONAL EXPERIENCE
+            OPEN PROFESSIONAL EXPERIENCE
         ===================================================== */
 
         document.querySelectorAll(
@@ -1712,16 +1717,16 @@ document.addEventListener(
 
 
         /* =====================================================
-           OPEN PROFESSIONAL PROJECT
+            OPEN PROFESSIONAL PROJECT
 
-           Generic lookup against the "views" map.
-           Handles Military Mess, CNIC Project 02, and all
-           Rehabilitation project views without hardcoding
-           each one individually.
+            Generic lookup against the "views" map.
+            Handles Military Mess, CNIC Project 02, and all
+            Rehabilitation project views without hardcoding
+            each one individually.
 
-           "military-mess" is mapped to the "military" key
-           to stay compatible with the existing HTML attribute
-           (data-professional-project-open="military-mess").
+            "military-mess" is mapped to the "military" key
+            to stay compatible with the existing HTML attribute
+            (data-professional-project-open="military-mess").
         ===================================================== */
 
         document.querySelectorAll(
@@ -1758,10 +1763,10 @@ document.addEventListener(
 
 
         /* =====================================================
-           PROFESSIONAL BACK BUTTONS
-           
-           Kept for compatibility with existing HTML.
-           The floating button is now the main navigation.
+            PROFESSIONAL BACK BUTTONS
+            
+            Kept for compatibility with existing HTML.
+            The floating button is now the main navigation.
         ===================================================== */
 
         document.querySelectorAll(
@@ -1792,29 +1797,29 @@ document.addEventListener(
 
 
         /* =====================================================
-           FLOATING BACK BUTTON
-           
-           Hierarchy:
-           
-           Military Mess
+            FLOATING BACK BUTTON
+            
+            Hierarchy:
+            
+            Military Mess
                 ↓
-             CNIC
-           
-           CNIC Project 02
+              CNIC
+            
+            CNIC Project 02
                 ↓
-             CNIC
-           
-           CNIC
+              CNIC
+            
+            CNIC
                 ↓
         Professional Work
-           
-           Rehabilitation
+            
+            Rehabilitation
                 ↓
         Professional Work
 
-           Rehab Stairs / Metal Floor / Wood Floor
+            Rehab Stairs / Metal Floor / Wood Floor
                 ↓
-           Rehabilitation
+            Rehabilitation
         ===================================================== */
 
         if(
@@ -1841,7 +1846,7 @@ document.addEventListener(
 
 
         /* =====================================================
-           CONTINUE EXPLORING
+            CONTINUE EXPLORING
         ===================================================== */
 
         document.querySelectorAll(
@@ -1875,7 +1880,7 @@ document.addEventListener(
 
 
         /* =====================================================
-           EXIT PROFESSIONAL WORK
+            EXIT PROFESSIONAL WORK
         ===================================================== */
 
         document.querySelectorAll(
@@ -1920,6 +1925,7 @@ document.addEventListener(
                     /* Scroll lock — release */
 
                     deactivateScrollLock();
+                    document.body.classList.remove("professional-locked");
 
 
                     /* Scroll back to the Professional
@@ -1950,39 +1956,39 @@ document.addEventListener(
 
 
         /* =====================================================
-           ESCAPE KEY NAVIGATION
-           
-           Hierarchy:
-           
-           Military Mess
+            ESCAPE KEY NAVIGATION
+            
+            Hierarchy:
+            
+            Military Mess
                 ESC
                  ↓
-               CNIC
-           
-           Project 02
+                CNIC
+            
+            Project 02
                 ESC
                  ↓
-               CNIC
-           
-           CNIC
+                CNIC
+            
+            CNIC
                 ESC
                  ↓
-         Professional Work
-           
-           Rehabilitation
+          Professional Work
+            
+            Rehabilitation
                 ESC
                  ↓
-         Professional Work
+          Professional Work
 
-           Rehab Stairs / Metal Floor / Wood Floor
+            Rehab Stairs / Metal Floor / Wood Floor
                 ESC
                  ↓
-           Rehabilitation
-           
-           Professional Work
+            Rehabilitation
+            
+            Professional Work
                 ESC
                  ↓
-             EXIT
+              EXIT
         ===================================================== */
 
         document.addEventListener(
@@ -2000,7 +2006,7 @@ document.addEventListener(
                 ){
 
                     /* -----------------------------------------
-                       MILITARY MESS → CNIC
+                        MILITARY MESS → CNIC
                     ----------------------------------------- */
 
                     case "military":
@@ -2013,7 +2019,7 @@ document.addEventListener(
 
 
                     /* -----------------------------------------
-                       PROJECT 02 → CNIC
+                        PROJECT 02 → CNIC
                     ----------------------------------------- */
 
                     case "cnic-project-02":
@@ -2026,7 +2032,7 @@ document.addEventListener(
 
 
                     /* -----------------------------------------
-                       CNIC → PROFESSIONAL WORK
+                        CNIC → PROFESSIONAL WORK
                     ----------------------------------------- */
 
                     case "cnic":
@@ -2039,7 +2045,7 @@ document.addEventListener(
 
 
                     /* -----------------------------------------
-                       REHABILITATION → PROFESSIONAL WORK
+                        REHABILITATION → PROFESSIONAL WORK
                     ----------------------------------------- */
 
                     case "rehabilitation":
@@ -2052,7 +2058,7 @@ document.addEventListener(
 
 
                     /* -----------------------------------------
-                       REHAB PROJECTS → REHABILITATION
+                        REHAB PROJECTS → REHABILITATION
                     ----------------------------------------- */
 
                     case "rehab-stairs":
@@ -2067,22 +2073,22 @@ document.addEventListener(
 
 
                     /* -----------------------------------------
-                       PROFESSIONAL WORK → EXIT
+                        PROFESSIONAL WORK → EXIT
                     ----------------------------------------- */
 
                     case "index":
 
                         /*
 
-                           IMPORTANT:
-                           Do NOT hide the entire
-                           Professional Work section here.
+                            IMPORTANT:
+                            Do NOT hide the entire
+                            Professional Work section here.
 
-                           The existing page structure remains
-                           untouched.
+                            The existing page structure remains
+                            untouched.
 
-                           Instead, return to the normal page
-                           position before Professional Work.
+                            Instead, return to the normal page
+                            position before Professional Work.
 
                         */
 
@@ -2108,9 +2114,9 @@ document.addEventListener(
 
 
                         /*
-                           If Professional Work is inside
-                           the normal page flow, move to the
-                           section before it.
+                            If Professional Work is inside
+                            the normal page flow, move to the
+                            section before it.
                         */
 
                         const section =
@@ -2151,7 +2157,7 @@ document.addEventListener(
 
 
         /* =====================================================
-           INITIAL STATE
+            INITIAL STATE
         ===================================================== */
 
         Object.entries(views)
@@ -2179,6 +2185,7 @@ document.addEventListener(
 
 
         currentView = "index";
+        document.body.classList.remove("professional-locked");
 
 
         if(
