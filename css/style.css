@@ -8181,15 +8181,3 @@ body.professional-locked .professional-exit {
     overflow: visible;
 }
 
-body.academic-locked #work,
-body.academic-locked #research,
-body.academic-locked #professional-work,
-body.academic-locked #contact,
-body.academic-locked footer {
-    display: none;
-}
-
-body.professional-locked #contact,
-body.professional-locked footer {
-    display: none;
-}
