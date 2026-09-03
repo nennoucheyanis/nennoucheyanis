@@ -8173,11 +8173,11 @@ body.professional-locked #contact {
 
 /* 4. Visibilité conditionnelle du bouton EXIT PROFESSIONAL WORK */
 /* (Remplace #btn-exit-pw par l'ID ou la classe exacte de ton bouton de sortie) */
-#btn-exit-pw {
+.professional-exit {
     display: none !important; /* Invisible sur l'écran principal de PW */
 }
 
-body.professional-locked #btn-exit-pw {
+body.professional-locked .professional-exit {
     display: inline-flex !important; /* Visible uniquement dans les niveaux internes */
 }
 
