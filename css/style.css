@@ -1,32 +1,6 @@
 /* =========================================================
-   DESIGN SYSTEM
+   01 — RESET / BASE
 ========================================================= */
-
-:root{
-
-    --bg:#F3F2EE;
-    --bg-soft:#E8E7E2;
-
-    --dark:#10100F;
-    --dark-soft:#181816;
-
-    --text:#111111;
-    --muted:#74746E;
-
-    --line:rgba(17,17,17,.14);
-    --line-dark:rgba(255,255,255,.14);
-
-    --red:#C92828;
-    --red-dark:#961E1E;
-
-    --white:#F8F7F3;
-
-    --sans:"Inter",sans-serif;
-    --display:"Space Grotesk",sans-serif;
-    --mono:"DM Mono",monospace;
-
-    --max-width:1500px;
-}
 
 /* =========================================================
    RESET
@@ -63,6 +37,44 @@ a{
 button{
     font-family:inherit;
 }
+
+/* =========================================================
+   02 — VARIABLES / ROOT
+========================================================= */
+
+/* =========================================================
+   DESIGN SYSTEM
+========================================================= */
+
+:root{
+
+    --bg:#F3F2EE;
+    --bg-soft:#E8E7E2;
+
+    --dark:#10100F;
+    --dark-soft:#181816;
+
+    --text:#111111;
+    --muted:#74746E;
+
+    --line:rgba(17,17,17,.14);
+    --line-dark:rgba(255,255,255,.14);
+
+    --red:#C92828;
+    --red-dark:#961E1E;
+
+    --white:#F8F7F3;
+
+    --sans:"Inter",sans-serif;
+    --display:"Space Grotesk",sans-serif;
+    --mono:"DM Mono",monospace;
+
+    --max-width:1500px;
+}
+
+/* =========================================================
+   03 — BODY / GLOBAL
+========================================================= */
 
 /* =========================================================
    GRAIN
@@ -108,6 +120,105 @@ body::before{
 }
 
 /* =========================================================
+   GLOBAL
+========================================================= */
+
+section{
+
+    position:relative;
+
+    width:100%;
+
+    padding:
+        150px
+        clamp(22px,7vw,110px);
+}
+
+.container{
+
+    width:100%;
+
+    max-width:var(--max-width);
+
+    margin:auto;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+.eyebrow{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-family:var(--mono);
+
+    font-size:.62rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:.13em;
+
+    color:var(--muted);
+}
+
+.eyebrow::before{
+
+    content:"";
+
+    width:25px;
+    height:1px;
+
+    background:var(--red);
+}
+
+.section-title{
+
+    margin-top:20px;
+
+    font-family:var(--display);
+
+    font-weight:500;
+
+    font-size:clamp(3.2rem,7vw,7rem);
+
+    letter-spacing:-.075em;
+
+    line-height:.88;
+}
+
+.red{
+    color:var(--red);
+}
+
+.outline{
+
+    color:transparent;
+
+    -webkit-text-stroke:
+        1px rgba(17,17,17,.45);
+}
+
+/* Any element toggled via the JS `hidden` property must
+   truly disappear, everywhere on the site (Academic and
+   Professional views alike). This guarantees [hidden]
+   always wins regardless of other selector specificity. */
+
+[hidden]{
+
+    display:none !important;
+
+}
+
+/* =========================================================
+   04 — CUSTOM CURSOR
+========================================================= */
+
+/* =========================================================
    CURSOR
 ========================================================= */
 
@@ -149,6 +260,10 @@ body::before{
         height .25s ease,
         background .25s ease;
 }
+
+/* =========================================================
+   05 — NAVBAR / NAVIGATION
+========================================================= */
 
 /* =========================================================
    NAVIGATION
@@ -193,7 +308,6 @@ nav.scrolled{
     border-color:var(--line);
 }
 
-
 .logo{
 
     font-family:var(--display);
@@ -214,7 +328,6 @@ nav.scrolled{
     font-weight:500;
 }
 
-
 .nav-right{
 
     display:flex;
@@ -223,7 +336,6 @@ nav.scrolled{
 
     gap:35px;
 }
-
 
 .nav-links{
 
@@ -346,89 +458,8 @@ nav.scrolled{
 }
 
 /* =========================================================
-   GLOBAL
+   06 — HERO
 ========================================================= */
-
-section{
-
-    position:relative;
-
-    width:100%;
-
-    padding:
-        150px
-        clamp(22px,7vw,110px);
-}
-
-.container{
-
-    width:100%;
-
-    max-width:var(--max-width);
-
-    margin:auto;
-}
-
-/* =========================================================
-   TYPOGRAPHY
-========================================================= */
-
-.eyebrow{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    font-family:var(--mono);
-
-    font-size:.62rem;
-
-    text-transform:uppercase;
-
-    letter-spacing:.13em;
-
-    color:var(--muted);
-}
-
-.eyebrow::before{
-
-    content:"";
-
-    width:25px;
-    height:1px;
-
-    background:var(--red);
-}
-
-
-.section-title{
-
-    margin-top:20px;
-
-    font-family:var(--display);
-
-    font-weight:500;
-
-    font-size:clamp(3.2rem,7vw,7rem);
-
-    letter-spacing:-.075em;
-
-    line-height:.88;
-}
-
-.red{
-    color:var(--red);
-}
-
-.outline{
-
-    color:transparent;
-
-    -webkit-text-stroke:
-        1px rgba(17,17,17,.45);
-}
 
 /* =========================================================
    HERO
@@ -481,7 +512,6 @@ section{
     text-align:right;
 }
 
-
 .hero-title{
 
     font-family:var(--display);
@@ -508,7 +538,6 @@ section{
 
     -webkit-text-stroke:1px var(--text);
 }
-
 
 .hero-subtitle{
 
@@ -640,6 +669,10 @@ section{
 
     background:var(--red);
 }
+
+/* =========================================================
+   07 — ABOUT
+========================================================= */
 
 /* =========================================================
    ABOUT
@@ -1052,6 +1085,10 @@ section{
 }
 
 /* =========================================================
+   08 — ACADEMICAL WORKS
+========================================================= */
+
+/* =========================================================
    ACADEMICAL WORKS
 ========================================================= */
 
@@ -1369,6 +1406,19 @@ section{
     text-align:right;
 }
 
+#work,
+#work .project-detail,
+#work .academic-project-detail {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+}
+
+/* =========================================================
+   09 — ACADEMICAL PROJECT VIEWS
+========================================================= */
+
 /* =========================================================
    PROJECT DETAIL
 ========================================================= */
@@ -1629,35 +1679,6 @@ ul.story-text li::before{
 }
 
 /* =========================================================
-   MEDIA
-========================================================= */
-
-.project01-section .media{
-
-    width:100%;
-
-    overflow:hidden;
-
-}
-
-
-.project01-section .media img{
-
-    display:block;
-
-    width:100%;
-
-    height:auto;
-
-    max-width:100%;
-
-    object-fit:contain;
-
-    cursor:zoom-in;
-
-}
-
-/* =========================================================
    PROJECT SECTION LABEL
 ========================================================= */
 
@@ -1712,7 +1733,6 @@ ul.story-text li::before{
     justify-content:center;
 }
 
-
 .site-plan-rotation{
 
     position:relative;
@@ -1734,7 +1754,6 @@ ul.story-text li::before{
     transform-origin:center center;
 }
 
-
 /* PLAN IMAGE */
 
 .site-plan-rotation img{
@@ -1749,7 +1768,6 @@ ul.story-text li::before{
 
     transform:none;
 }
-
 
 /* Hover */
 
@@ -1900,7 +1918,6 @@ ul.story-text li::before{
     justify-content:center;
 }
 
-
 .perspective-image img{
 
     display:block;
@@ -1923,7 +1940,6 @@ ul.story-text li::before{
 
     transition:transform .5s ease;
 }
-
 
 .perspective-image:hover img{
 
@@ -2692,7 +2708,6 @@ ul.story-text li::before{
 /* =========================================================
    FULL-ENVELOPE IMAGES — 50 / 50
 ========================================================= */
-
 /*
    Ce conteneur doit entourer les deux graphiques :
    Temperature + Relative Humidity.
@@ -2719,7 +2734,6 @@ ul.story-text li::before{
     margin-bottom:130px;
 }
 
-
 /* Chaque graphique prend toute la largeur
    de sa moitié */
 
@@ -2731,7 +2745,6 @@ ul.story-text li::before{
 
     margin-bottom:0;
 }
-
 
 /* Image de chaque graphique */
 
@@ -2758,7 +2771,6 @@ ul.story-text li::before{
     transition:
         transform .7s ease;
 }
-
 
 /* Hover */
 
@@ -2916,7 +2928,6 @@ ul.story-text li::before{
 
 }
 
-
 .project01-section .media img{
 
     display:block;
@@ -2950,7 +2961,6 @@ ul.story-text li::before{
 
 }
 
-
 /* On garde le style du titre 05,
    mais sans prendre toute la largeur */
 
@@ -2959,7 +2969,6 @@ ul.story-text li::before{
     margin:0;
 
 }
-
 
 .project01-facade-heading .story-title{
 
@@ -2994,7 +3003,6 @@ ul.story-text li::before{
 
 }
 
-
 .urban-objective{
 
     padding:35px;
@@ -3004,7 +3012,6 @@ ul.story-text li::before{
     border-bottom:1px solid var(--line);
 
 }
-
 
 .urban-objective-number{
 
@@ -3017,7 +3024,6 @@ ul.story-text li::before{
     margin-bottom:35px;
 
 }
-
 
 .urban-objective h4{
 
@@ -3033,7 +3039,6 @@ ul.story-text li::before{
     margin-bottom:15px;
 
 }
-
 
 .urban-objective p{
 
@@ -3057,7 +3062,6 @@ ul.story-text li::before{
 
 }
 
-
 .urban-action{
 
     display:grid;
@@ -3075,7 +3079,6 @@ ul.story-text li::before{
 
 }
 
-
 .urban-action span{
 
     font-family:var(--mono);
@@ -3085,7 +3088,6 @@ ul.story-text li::before{
     color:var(--red);
 
 }
-
 
 .urban-action p{
 
@@ -3125,7 +3127,6 @@ ul.story-text li::before{
 
 }
 
-
 .urban-programming-item{
 
     display:grid;
@@ -3143,7 +3144,6 @@ ul.story-text li::before{
 
 }
 
-
 .urban-code{
 
     font-family:var(--mono);
@@ -3153,7 +3153,6 @@ ul.story-text li::before{
     color:var(--red);
 
 }
-
 
 .urban-programme{
 
@@ -3172,7 +3171,6 @@ ul.story-text li::before{
     margin-top:45px;
 
 }
-
 
 .urban-renders .split-media{
 
@@ -3312,7 +3310,6 @@ PROJECT 03 — SITE
     margin-top:80px;
 }
 
-
 /* =========================================================
    PROJECT 03 — GRID
 ========================================================= */
@@ -3328,7 +3325,6 @@ PROJECT 03 — SITE
     border-left:1px solid var(--line);
 }
 
-
 /* =========================================================
    PLAN 01 — FULL WIDTH
 ========================================================= */
@@ -3336,7 +3332,6 @@ PROJECT 03 — SITE
 .project03-plan-01{
     grid-column:1 / -1;
 }
-
 
 /* =========================================================
    PLAN 02 + PLAN 03 — HALF WIDTH
@@ -3349,7 +3344,6 @@ PROJECT 03 — SITE
 .project03-plan-03{
     grid-column:2;
 }
-
 
 /* =========================================================
    PLAN ITEMS
@@ -3366,7 +3360,6 @@ PROJECT 03 — SITE
 
     box-sizing:border-box;
 }
-
 
 /* =========================================================
    MEDIA
@@ -3390,7 +3383,6 @@ PROJECT 03 — SITE
     box-sizing:border-box;
 }
 
-
 /* =========================================================
    PLAN 01 — FULL WIDTH
 ========================================================= */
@@ -3402,7 +3394,6 @@ PROJECT 03 — SITE
 .project03-plan-01 .media img{
     transform:rotate(-90deg) scale(1.20);
 }
-
 
 /* =========================================================
    PLAN 02 — LEFT / HALF WIDTH
@@ -3416,7 +3407,6 @@ PROJECT 03 — SITE
     transform:rotate(-90deg) scale(1.20);
 }
 
-
 /* =========================================================
    PLAN 03 — RIGHT / HALF WIDTH
 ========================================================= */
@@ -3428,62 +3418,13 @@ PROJECT 03 — SITE
 .project03-plan-03 .media img{
     transform:rotate(-90deg) scale(1.25);
 }
+
 /* =========================================================
    CAPTION
 ========================================================= */
 
 .project03-plan .caption{
     margin-top:15px;
-}
-
-
-/* =========================================================
-   DESKTOP — FORCE CORRECT LAYOUT
-========================================================= */
-
-@media(min-width:769px){
-
-    .project03-plans{
-        grid-template-columns:50% 50%;
-    }
-
-    .project03-plan-01{
-        grid-column:1 / 3;
-    }
-
-    .project03-plan-02{
-        grid-column:1 / 2;
-    }
-
-    .project03-plan-03{
-        grid-column:2 / 3;
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:768px){
-
-    .project03-plans{
-        grid-template-columns:1fr;
-    }
-
-    .project03-plan-01,
-    .project03-plan-02,
-    .project03-plan-03{
-        grid-column:1;
-    }
-
-    .project03-plan-01 .media,
-    .project03-plan-02 .media,
-    .project03-plan-03 .media{
-        aspect-ratio:4 / 3;
-    }
-
 }
 
 /* =========================================================
@@ -3559,1857 +3500,6 @@ PROJECT 03 — RENDER LABEL
 
 .project03-render .project-section-label{
     margin-bottom:0;
-}
-
-/* =========================================================
-PROJECT 03 — TABLET
-========================================================= */
-
-@media(max-width:900px){
-
-    /* HEADER */
-
-    .project03-header{
-        grid-template-columns:80px 1fr;
-        gap:25px;
-    }
-
-    /* SITE */
-
-    .project03-site{
-        padding-top:55px;
-    }
-
-    /* PLANS */
-
-    .project03-plans-block{
-        margin-top:60px;
-    }
-
-    .project03-plan,
-    .project03-plan-third{
-        padding:20px;
-    }
-
-    /* SECTIONS */
-
-    .project03-sections-block{
-        margin-top:60px;
-    }
-
-    .project03-section{
-        padding:20px;
-    }
-
-    /* RENDERS */
-
-    .project03-renders-block{
-        margin-top:60px;
-    }
-
-    .project03-renders{
-        gap:20px;
-    }
-
-    .project03-plans,
-    .project03-renders{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-/* =========================================================
-PROJECT 03 — MOBILE
-========================================================= */
-
-@media(max-width:600px){
-
-    /* HEADER */
-
-    .project03-header{
-        display:block;
-        padding:25px 0 35px;
-    }
-
-    .project03-index{
-        margin-bottom:20px;
-    }
-
-    .project03-title{
-        font-size:clamp(2.5rem,12vw,4rem);
-    }
-
-    .project03-meta{
-        grid-column:auto;
-        margin-top:20px;
-    }
-
-    /* SITE */
-
-    .project03-site{
-        padding-top:45px;
-    }
-
-    /* PLANS */
-
-    .project03-plans-block{
-        margin-top:50px;
-    }
-
-    .project03-plans{
-        grid-template-columns:1fr;
-    }
-
-    .project03-plan,
-    .project03-plan-third{
-        padding:20px;
-    }
-
-    .project03-plan-third{
-        grid-column:auto;
-    }
-
-    /* SECTIONS */
-
-    .project03-sections-block{
-        margin-top:50px;
-    }
-
-    .project03-sections{
-        grid-template-columns:1fr;
-    }
-
-    .project03-section{
-        padding:20px;
-        margin-top:60px;
-    }
-
-    /* RENDERS */
-
-    .project03-renders-block{
-        margin-top:50px;
-    }
-
-    .project03-renders{
-        grid-template-columns:1fr;
-        gap:45px;
-    }
-}
-/* =========================================================
-PROJECT 03 — RENDER LABEL
-========================================================= */
-
-.project03-render .project-section-label{
-    margin-bottom:0;
-}
-
-/* =========================================================
-PROJECT 03 — TABLET
-========================================================= */
-
-@media(max-width:900px){
-
-    /* HEADER */
-
-    .project03-header{
-        grid-template-columns:80px 1fr;
-        gap:25px;
-    }
-
-    /* BLOCK HEADING */
-
-    .project03-block-heading{
-        grid-template-columns:80px 1fr;
-        gap:25px;
-    }
-
-    /* SITE */
-
-    .project03-site{
-        padding-top:55px;
-    }
-
-    /* PLANS */
-
-    .project03-plans-block{
-        margin-top:60px;
-    }
-
-    .project03-plan,
-    .project03-plan-third{
-        padding:20px;
-    }
-
-    /* SECTIONS */
-
-    .project03-sections-block{
-        margin-top:60px;
-    }
-
-    .project03-section{
-        padding:20px;
-    }
-
-    /* RENDERS */
-
-    .project03-renders-block{
-        margin-top:60px;
-    }
-
-    .project03-renders{
-        gap:20px;
-    }
-
-    .project03-plans,
-    .project03-renders{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-/* =========================================================
-PROJECT 03 — MOBILE
-========================================================= */
-
-@media(max-width:600px){
-
-    /* HEADER */
-
-    .project03-header{
-        display:block;
-        padding:25px 0 35px;
-    }
-
-    .project03-index{
-        margin-bottom:20px;
-    }
-
-    .project03-title{
-        font-size:clamp(2.5rem,12vw,4rem);
-    }
-
-    .project03-meta{
-        grid-column:auto;
-        margin-top:20px;
-    }
-
-    /* BLOCK HEADING */
-
-    .project03-block-heading{
-        grid-template-columns:60px 1fr;
-        gap:15px;
-    }
-
-    /* SITE */
-
-    .project03-site{
-        padding-top:45px;
-    }
-
-    /* PLANS */
-
-    .project03-plans-block{
-        margin-top:50px;
-    }
-
-    .project03-plans{
-        grid-template-columns:1fr;
-    }
-
-    .project03-plan,
-    .project03-plan-third{
-        padding:20px;
-    }
-
-    .project03-plan-third{
-        grid-column:auto;
-    }
-
-    /* SECTIONS */
-
-    .project03-sections-block{
-        margin-top:50px;
-    }
-
-    .project03-sections{
-        grid-template-columns:1fr;
-    }
-
-    .project03-section{
-        padding:20px;
-        margin-top:60px;
-    }
-
-    /* RENDERS */
-
-    .project03-renders-block{
-        margin-top:50px;
-    }
-
-    .project03-renders{
-        grid-template-columns:1fr;
-        gap:45px;
-    }
-}
-
-
-/* =========================================================
-   RESEARCH
-========================================================= */
-
-#research{
-
-    background:var(--bg-soft);
-
-    min-height:75vh;
-
-    display:flex;
-
-    align-items:center;
-}
-
-.research-container{
-
-    width:100%;
-
-    max-width:var(--max-width);
-
-    margin:auto;
-}
-
-.research-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        .8fr 1.2fr;
-
-    gap:100px;
-
-    align-items:end;
-}
-
-.research-intro{
-
-    max-width:650px;
-}
-
-.research-title{
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(3.5rem,8vw,9rem);
-
-    line-height:.82;
-
-    letter-spacing:-.085em;
-
-    margin-top:25px;
-}
-
-.research-title span{
-
-    color:var(--red);
-}
-
-.research-copy{
-
-    max-width:560px;
-
-    font-size:.95rem;
-
-    line-height:1.9;
-
-    color:var(--muted);
-}
-
-.research-status{
-
-    margin-top:55px;
-
-    padding-top:20px;
-
-    border-top:1px solid var(--line);
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    font-family:var(--mono);
-
-    font-size:.6rem;
-
-    text-transform:uppercase;
-
-    letter-spacing:.1em;
-}
-
-.research-status span:last-child{
-
-    color:var(--red);
-}
-
-.research-note{
-
-    border-left:1px solid var(--red);
-
-    padding-left:35px;
-}
-
-.research-note-number{
-
-    font-family:var(--mono);
-
-    font-size:.6rem;
-
-    color:var(--red);
-
-    margin-bottom:30px;
-}
-
-.research-note h3{
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(2rem,4vw,4.5rem);
-
-    line-height:.9;
-
-    letter-spacing:-.06em;
-
-    margin-bottom:30px;
-}
-
-.research-note p{
-
-    max-width:520px;
-
-    font-size:.85rem;
-
-    line-height:1.85;
-
-    color:var(--muted);
-}
-
-/* =========================================================
-   PROFESSIONAL WORK
-========================================================= */
-
-#professional-work{
-    background:var(--bg);
-    color:var(--text);
-}
-
-
-/* =========================================================
-   PROFESSIONAL — INTRODUCTION
-========================================================= */
-
-.professional-heading{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:80px;
-    align-items:end;
-    margin-bottom:110px;
-}
-
-.professional-intro{
-    max-width:560px;
-    color:var(--muted);
-    font-size:.88rem;
-    line-height:1.85;
-}
-
-.professional-tagline{
-    margin-top:35px;
-    font-family:var(--display);
-    font-size:clamp(1.8rem,3.5vw,3.5rem);
-    line-height:.95;
-    letter-spacing:-.055em;
-}
-
-.professional-tagline span{
-    color:var(--red);
-}
-
-
-/* =========================================================
-   PROFESSIONAL — EXPERIENCE INDEX
-========================================================= */
-
-.professional-index{
-    border-top:1px solid var(--line);
-}
-
-
-/* =========================================================
-   EXPERIENCE ENTRY
-========================================================= */
-
-.professional-entry{
-
-    position:relative;
-
-    width:100%;
-
-    display:grid;
-    grid-template-columns:90px 1fr 60px;
-    gap:30px;
-    align-items:start;
-
-    padding:45px 0;
-
-    border:0;
-    border-bottom:1px solid var(--line);
-
-    background:transparent;
-
-    color:var(--text);
-    text-align:left;
-    font:inherit;
-
-    cursor:pointer;
-
-    transition:
-        padding-left .4s ease,
-        background .4s ease;
-}
-
-
-/* Remove browser button styles */
-
-.professional-entry:focus{
-    outline:none;
-}
-
-.professional-entry:focus-visible{
-    outline:1px solid var(--red);
-    outline-offset:4px;
-}
-
-
-/* =========================================================
-   EXPERIENCE NUMBER
-========================================================= */
-
-.professional-entry-number{
-
-    font-family:var(--mono);
-    font-size:.62rem;
-
-    color:var(--red);
-
-    padding-top:7px;
-
-}
-
-
-/* =========================================================
-   EXPERIENCE CONTENT
-========================================================= */
-
-.professional-entry-main{
-    max-width:720px;
-}
-
-
-.professional-entry-label{
-
-    margin-bottom:14px;
-
-    font-family:var(--mono);
-    font-size:.58rem;
-
-    text-transform:uppercase;
-    letter-spacing:.1em;
-
-    color:var(--muted);
-
-}
-
-
-.professional-entry-name{
-
-    margin:0;
-
-    font-family:var(--display);
-    font-size:clamp(2rem,4vw,4rem);
-
-    line-height:.95;
-    letter-spacing:-.055em;
-
-    font-weight:500;
-
-    color:var(--text);
-
-    transition:color .3s ease;
-
-}
-
-
-.professional-entry-description{
-
-    max-width:600px;
-
-    margin:22px 0 0;
-
-    font-size:.78rem;
-    line-height:1.8;
-
-    color:var(--muted);
-
-}
-
-
-/* =========================================================
-   EXPERIENCE ARROW
-========================================================= */
-
-.professional-entry-arrow{
-
-    justify-self:end;
-
-    font-family:var(--mono);
-    font-size:1.1rem;
-
-    color:var(--text);
-
-    transition:
-        transform .4s ease,
-        color .3s ease;
-
-}
-
-
-/* =========================================================
-   EXPERIENCE HOVER
-========================================================= */
-
-.professional-entry:hover{
-
-    padding-left:20px;
-
-}
-
-
-.professional-entry:hover
-.professional-entry-name{
-
-    color:var(--red);
-
-}
-
-
-.professional-entry:hover
-.professional-entry-arrow{
-
-    transform:translate(5px,-5px);
-
-    color:var(--red);
-
-}
-
-
-/* =========================================================
-   PROFESSIONAL — CLOSING STATEMENT
-========================================================= */
-
-.professional-experience{
-
-    margin-top:110px;
-
-    padding-top:30px;
-
-    border-top:1px solid var(--line);
-
-    display:grid;
-    grid-template-columns:160px 1fr;
-    gap:40px;
-
-}
-
-
-.professional-experience-label{
-
-    font-family:var(--mono);
-    font-size:.58rem;
-
-    text-transform:uppercase;
-    letter-spacing:.1em;
-
-    color:var(--red);
-
-}
-
-
-.professional-experience-text{
-
-    max-width:700px;
-
-    font-family:var(--display);
-
-    font-size:clamp(1.5rem,3vw,3rem);
-
-    line-height:.98;
-    letter-spacing:-.04em;
-
-}
-
-
-/* =========================================================
-   PROFESSIONAL — DETAIL VIEW
-========================================================= */
-
-.professional-detail{
-
-    background:var(--bg);
-    color:var(--text);
-
-}
-
-
-.professional-detail-header{
-
-    padding-bottom:100px;
-
-}
-
-
-/* =========================================================
-   BACK LINK
-========================================================= */
-
-.back-link{
-
-    display:inline-block;
-
-    margin-bottom:70px;
-
-    padding:0;
-
-    border:0;
-
-    background:transparent;
-
-    font-family:var(--mono);
-    font-size:.58rem;
-
-    text-transform:uppercase;
-    letter-spacing:.1em;
-
-    color:var(--muted);
-
-    text-decoration:none;
-
-    cursor:pointer;
-
-    transition:color .3s ease;
-
-}
-
-
-.back-link:hover{
-
-    color:var(--red);
-
-}
-
-
-.back-link:focus{
-
-    outline:none;
-
-}
-
-
-.back-link:focus-visible{
-
-    outline:1px solid var(--red);
-    outline-offset:5px;
-
-}
-
-
-/* =========================================================
-   DETAIL META
-========================================================= */
-
-.professional-detail-meta{
-
-    display:flex;
-    flex-wrap:wrap;
-
-    gap:12px 35px;
-
-    margin-top:30px;
-
-    font-family:var(--mono);
-    font-size:.58rem;
-
-    text-transform:uppercase;
-    letter-spacing:.08em;
-
-    color:var(--muted);
-
-}
-
-
-.professional-detail-intro{
-
-    max-width:700px;
-
-    margin-top:55px;
-
-    font-size:.85rem;
-    line-height:1.9;
-
-    color:var(--muted);
-
-}
-
-
-/* =========================================================
-   PROFESSIONAL — PROJECT INDEX
-========================================================= */
-
-.professional-project-index{
-
-    border-top:1px solid var(--line);
-
-}
-
-
-/* =========================================================
-   PROJECT ENTRY
-========================================================= */
-
-.professional-project-entry{
-
-    width:100%;
-
-    display:grid;
-    grid-template-columns:90px 1fr 60px;
-
-    gap:30px;
-
-    align-items:start;
-
-    padding:50px 0;
-
-    border:0;
-    border-bottom:1px solid var(--line);
-
-    background:transparent;
-
-    color:var(--text);
-
-    text-align:left;
-    font:inherit;
-
-    cursor:pointer;
-
-    transition:
-        padding-left .4s ease,
-        background .4s ease;
-
-}
-
-
-.professional-project-entry:focus{
-
-    outline:none;
-
-}
-
-
-.professional-project-entry:focus-visible{
-
-    outline:1px solid var(--red);
-    outline-offset:4px;
-
-}
-
-
-/* Disabled projects */
-
-.professional-project-entry:disabled{
-
-    cursor:default;
-    opacity:.55;
-
-}
-
-
-.professional-project-entry:disabled:hover{
-
-    padding-left:0;
-
-}
-
-
-.professional-project-entry:disabled
-.professional-project-arrow{
-
-    color:var(--muted);
-
-}
-
-
-/* =========================================================
-   PROJECT NUMBER
-========================================================= */
-
-.professional-project-number{
-
-    font-family:var(--mono);
-    font-size:.62rem;
-
-    color:var(--red);
-
-    padding-top:8px;
-
-}
-
-
-/* =========================================================
-   PROJECT CONTENT
-========================================================= */
-
-.professional-project-content{
-
-    max-width:720px;
-
-}
-
-
-.professional-project-label{
-
-    margin-bottom:15px;
-
-    font-family:var(--mono);
-    font-size:.58rem;
-
-    text-transform:uppercase;
-    letter-spacing:.1em;
-
-    color:var(--muted);
-
-}
-
-
-.professional-project-content h2{
-
-    margin:0;
-
-    font-family:var(--display);
-
-    font-size:clamp(1.8rem,3.5vw,3.5rem);
-
-    line-height:.95;
-    letter-spacing:-.05em;
-
-    font-weight:500;
-
-    color:var(--text);
-
-    transition:color .3s ease;
-
-}
-
-
-.professional-project-content p{
-
-    max-width:600px;
-
-    margin:20px 0 0;
-
-    font-size:.76rem;
-    line-height:1.8;
-
-    color:var(--muted);
-
-}
-
-
-/* =========================================================
-   PROJECT ARROW
-========================================================= */
-
-.professional-project-arrow{
-
-    justify-self:end;
-
-    font-family:var(--mono);
-    font-size:1rem;
-
-    color:var(--text);
-
-    transition:
-        transform .4s ease,
-        color .3s ease;
-
-}
-
-
-/* =========================================================
-   PROJECT HOVER
-========================================================= */
-
-.professional-project-entry:not(:disabled):hover{
-
-    padding-left:20px;
-
-}
-
-
-.professional-project-entry:not(:disabled):hover
-.professional-project-content h2{
-
-    color:var(--red);
-
-}
-
-
-.professional-project-entry:not(:disabled):hover
-.professional-project-arrow{
-
-    transform:translate(5px,-5px);
-
-    color:var(--red);
-
-}
-
-
-/* =========================================================
-   PROFESSIONAL PROJECT DETAIL
-========================================================= */
-
-.professional-project-detail{
-
-    background:var(--bg);
-    color:var(--text);
-
-}
-
-
-.project-detail-header{
-
-    padding-bottom:100px;
-
-}
-
-
-.project-detail-meta{
-
-    display:flex;
-    flex-wrap:wrap;
-
-    gap:12px 35px;
-
-    margin-top:30px;
-
-    font-family:var(--mono);
-    font-size:.58rem;
-
-    text-transform:uppercase;
-    letter-spacing:.08em;
-
-    color:var(--muted);
-
-}
-
-
-/* =========================================================
-   PROJECT INTRODUCTION
-========================================================= */
-
-.professional-project-introduction{
-
-    display:grid;
-
-    grid-template-columns:160px 1fr;
-
-    gap:40px;
-
-    padding:35px 0 100px;
-
-    border-top:1px solid var(--line);
-
-}
-
-
-.professional-project-introduction .eyebrow{
-
-    color:var(--red);
-
-}
-
-
-.professional-project-introduction p{
-
-    max-width:700px;
-
-    margin:0 0 25px;
-
-    font-size:.85rem;
-    line-height:1.9;
-
-    color:var(--muted);
-
-}
-
-
-/* =========================================================
-   PROJECT MEDIA
-========================================================= */
-
-.professional-project-media{
-
-    margin-bottom:100px;
-
-}
-
-
-.professional-media-label{
-
-    margin-bottom:15px;
-
-    font-family:var(--mono);
-    font-size:.58rem;
-
-    text-transform:uppercase;
-    letter-spacing:.1em;
-
-    color:var(--red);
-
-}
-
-
-.professional-media{
-
-    width:100%;
-
-    background:var(--bg-soft);
-
-    border:1px solid var(--line);
-
-    overflow:hidden;
-
-}
-
-
-.professional-media-split{
-
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:25px;
-
-}
-
-
-.professional-media img{
-
-    display:block;
-
-    width:100%;
-    height:auto;
-
-    object-fit:contain;
-
-    transition:transform .8s ease;
-
-}
-
-
-.professional-media:hover img{
-
-    transform:scale(1.01);
-
-}
-
-
-/* =========================================================
-   PROJECT NAVIGATION
-========================================================= */
-
-.professional-project-navigation{
-
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-
-    gap:30px;
-
-    padding:30px 0 80px;
-
-    border-top:1px solid var(--line);
-
-}
-
-
-.professional-project-navigation button{
-
-    padding:0;
-
-    border:0;
-
-    background:transparent;
-
-    font-family:var(--mono);
-    font-size:.58rem;
-
-    text-transform:uppercase;
-    letter-spacing:.1em;
-
-    color:var(--text);
-
-    cursor:pointer;
-
-    transition:color .3s ease;
-
-}
-
-
-.professional-project-navigation button:hover{
-
-    color:var(--red);
-
-}
-
-
-.professional-project-navigation button:focus{
-
-    outline:none;
-
-}
-
-
-.professional-project-navigation button:focus-visible{
-
-    outline:1px solid var(--red);
-    outline-offset:5px;
-
-}
-
-/* =========================================================
-   PROFESSIONAL WORK — INTERNAL STORY HEADINGS
-   Same visual language as ACADEMICAL WORKS
-========================================================= */
-
-.professional-section-heading{
-
-    display:grid;
-
-    grid-template-columns:
-        120px 1fr;
-
-    gap:40px;
-
-    margin-bottom:45px;
-}
-
-.professional-section-index{
-
-    font-family:var(--mono);
-
-    font-size:.63rem;
-
-    color:var(--red);
-}
-
-.professional-section-title{
-
-    margin:0;
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(2.3rem,4.5vw,5rem);
-
-    line-height:.9;
-
-    letter-spacing:-.06em;
-}
-
-
-/* =========================================================
-   HIDDEN VIEWS
-========================================================= */
-
-#professional-work [hidden]{
-
-    display:none !important;
-
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media(max-width:900px){
-
-    .professional-heading{
-
-        grid-template-columns:1fr;
-
-        gap:45px;
-
-        margin-bottom:80px;
-
-    }
-
-
-    .professional-entry{
-
-        grid-template-columns:60px 1fr 40px;
-
-        gap:20px;
-
-        padding:35px 0;
-
-    }
-
-
-    .professional-project-entry{
-
-        grid-template-columns:60px 1fr 40px;
-
-        gap:20px;
-
-    }
-
-
-    .professional-experience{
-
-        grid-template-columns:120px 1fr;
-
-        gap:25px;
-
-    }
-
-
-    .professional-project-introduction{
-
-        grid-template-columns:120px 1fr;
-
-        gap:25px;
-
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:600px){
-
-    .professional-heading{
-
-        gap:35px;
-
-        margin-bottom:65px;
-
-    }
-
-
-    .professional-intro{
-
-        font-size:.78rem;
-
-        line-height:1.8;
-
-    }
-
-
-    .professional-tagline{
-
-        margin-top:25px;
-
-        font-size:clamp(1.8rem,9vw,2.8rem);
-
-    }
-
-
-    .professional-entry{
-
-        grid-template-columns:35px 1fr 25px;
-
-        gap:15px;
-
-        padding:30px 0;
-
-    }
-
-
-    .professional-entry:hover{
-
-        padding-left:8px;
-
-    }
-
-
-    .professional-entry-name{
-
-        font-size:clamp(1.7rem,8vw,2.5rem);
-
-    }
-
-
-    .professional-entry-description{
-
-        margin-top:16px;
-
-        font-size:.7rem;
-
-        line-height:1.75;
-
-    }
-
-
-    .professional-entry-arrow{
-
-        font-size:.9rem;
-
-    }
-
-
-    .professional-experience{
-
-        grid-template-columns:1fr;
-
-        gap:25px;
-
-        margin-top:75px;
-
-    }
-
-
-    .professional-experience-text{
-
-        font-size:clamp(1.5rem,7vw,2.3rem);
-
-    }
-
-
-    /* =============================================
-       DETAIL
-    ============================================== */
-
-    .professional-detail-header,
-    .project-detail-header{
-
-        padding-bottom:70px;
-
-    }
-
-
-    .back-link{
-
-        margin-bottom:50px;
-
-    }
-
-
-    .professional-detail-meta,
-    .project-detail-meta{
-
-        flex-direction:column;
-
-        gap:10px;
-
-    }
-
-
-    .professional-detail-intro{
-
-        margin-top:40px;
-
-        font-size:.78rem;
-
-    }
-
-
-    .professional-project-entry{
-
-        grid-template-columns:35px 1fr 25px;
-
-        gap:15px;
-
-        padding:35px 0;
-
-    }
-
-
-    .professional-project-entry:not(:disabled):hover{
-
-        padding-left:8px;
-
-    }
-
-
-    .professional-project-content h2{
-
-        font-size:clamp(1.7rem,8vw,2.5rem);
-
-    }
-
-
-    .professional-project-content p{
-
-        font-size:.7rem;
-
-        line-height:1.75;
-
-    }
-
-
-    /* =============================================
-       PROJECT INTRO
-    ============================================== */
-
-    .professional-project-introduction{
-
-        grid-template-columns:1fr;
-
-        gap:25px;
-
-        padding-bottom:70px;
-
-    }
-
-
-    .professional-project-introduction p{
-
-        font-size:.78rem;
-
-        line-height:1.8;
-
-    }
-
-
-    /* =============================================
-       MEDIA
-    ============================================== */
-
-    .professional-project-media{
-
-        margin-bottom:65px;
-
-    }
-
-
-    .professional-media-label{
-
-        font-size:.55rem;
-
-    }
-
-
-    /* =============================================
-       NAVIGATION
-    ============================================== */
-
-    .professional-project-navigation{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:20px;
-
-        padding-bottom:60px;
-
-    }
-
-}
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
-#contact{
-
-    background:var(--dark);
-
-    color:var(--white);
-
-    min-height:85vh;
-
-    display:flex;
-
-    align-items:center;
-}
-
-.contact-container{
-
-    width:100%;
-
-    max-width:var(--max-width);
-
-    margin:auto;
-}
-
-.contact-title{
-
-    margin-top:30px;
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(4rem,12vw,12rem);
-
-    line-height:.78;
-
-    letter-spacing:-.09em;
-}
-
-.contact-title .outline{
-
-    -webkit-text-stroke:
-        1px rgba(255,255,255,.45);
-}
-
-.contact-copy{
-
-    max-width:500px;
-
-    margin-top:45px;
-
-    color:#8D8D88;
-
-    font-size:.9rem;
-
-    line-height:1.8;
-}
-
-.contact-actions{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
-    margin-top:40px;
-}
-
-#contact .button{
-
-    border-color:rgba(255,255,255,.2);
-
-    color:white;
-}
-
-#contact .button:hover{
-
-    border-color:var(--red);
-
-    color:var(--red);
-}
-
-#contact .button.red{
-
-    background:var(--red);
-
-    border-color:var(--red);
-
-    color:white;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer{
-
-    background:var(--dark);
-
-    color:#777772;
-
-    padding:
-        25px
-        clamp(22px,7vw,110px);
-
-    border-top:1px solid rgba(255,255,255,.1);
-}
-
-.footer-inner{
-
-    max-width:var(--max-width);
-
-    margin:auto;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:30px;
-}
-
-.footer-left{
-
-    font-family:var(--mono);
-
-    font-size:.57rem;
-
-    text-transform:uppercase;
-
-    letter-spacing:.08em;
-}
-
-.footer-right{
-
-    display:flex;
-
-    gap:20px;
-
-    font-size:.6rem;
-}
-
-.footer-right a:hover{
-
-    color:var(--red);
-}
-
-/* =========================================================
-   LIGHTBOX
-========================================================= */
-
-.lightbox{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:3000;
-
-    background:rgba(8,8,8,.97);
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:30px;
-
-    opacity:0;
-
-    visibility:hidden;
-
-    transition:
-        opacity .3s ease,
-        visibility .3s ease;
-}
-
-.lightbox.open{
-
-    opacity:1;
-
-    visibility:visible;
-}
-
-.lightbox img{
-
-    max-width:94vw;
-
-    max-height:88vh;
-
-    object-fit:contain;
-
-    border:1px solid rgba(255,255,255,.15);
-}
-
-.lightbox-close{
-
-    position:fixed;
-
-    top:25px;
-    right:25px;
-
-    width:42px;
-    height:42px;
-
-    background:transparent;
-
-    border:1px solid rgba(255,255,255,.2);
-
-    color:white;
-
-    font-size:1.3rem;
-
-    cursor:pointer;
-}
-
-.lightbox-close:hover{
-
-    border-color:var(--red);
-
-    color:var(--red);
-}
-
-.lightbox-caption{
-
-    position:fixed;
-
-    bottom:25px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    font-family:var(--mono);
-
-    font-size:.6rem;
-
-    letter-spacing:.1em;
-
-    text-transform:uppercase;
-
-    color:#999;
-}
-
-/* =========================================================
-   LIGHTBOX ROTATION
-========================================================= */
-
-.lightbox-image-rotated{
-
-    transform:rotate(-90deg);
-
-    max-width:88vh!important;
-
-    max-height:94vw!important;
-}
-
-/* =========================================================
-   REVEAL
-========================================================= */
-
-.reveal{
-
-    opacity:0;
-
-    transform:translateY(25px);
-
-    transition:
-        opacity .8s ease,
-        transform .8s cubic-bezier(.2,.7,.2,1);
-}
-
-.reveal.visible{
-
-    opacity:1;
-
-    transform:translateY(0);
 }
 
 /* =========================================================
@@ -5756,6 +3846,2848 @@ footer{
     stroke-width:2;
 
     opacity:.55;
+}
+
+/* =========================================================
+   ACADEMICAL WORKS — FLOATING BACK BUTTON
+========================================================= */
+
+.academic-back-floating{
+
+    position:fixed;
+
+    top:90px;
+    left:24px;
+
+    z-index:9999;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:11px 16px;
+
+    background:var(--red);
+    color:#fff;
+
+    border:1px solid var(--red);
+
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    box-shadow:0 4px 20px rgba(0,0,0,.06);
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(-8px);
+
+    transition:
+        opacity:.25s ease,
+        visibility:.25s ease,
+        transform:.25s ease,
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease;
+
+}
+
+/* =========================================================
+   ACTIVE STATE
+========================================================= */
+
+.academic-back-floating.visible{
+
+    opacity:1;
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.academic-back-floating:hover{
+
+    background:var(--dark);
+    color:#fff;
+
+    border-color:var(--dark);
+
+}
+
+/* =========================================================
+   ACADEMICAL WORKS — EDITORIAL PROJECT TRANSITION
+========================================================= */
+
+.academic-project-transition{
+
+    position:relative;
+
+    width:100%;
+
+    margin-top:clamp(100px,14vw,220px);
+    padding:clamp(55px,8vw,110px) 0;
+
+    border:0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+
+    background:transparent;
+
+    color:var(--text);
+
+    text-align:left;
+
+    cursor:pointer;
+
+    font:inherit;
+
+    display:block;
+
+    transition:
+        padding .45s ease,
+        border-color .35s ease;
+
+}
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.academic-transition-label{
+
+    display:block;
+
+    margin-bottom:35px;
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    line-height:1;
+
+    text-transform:uppercase;
+
+    letter-spacing:.12em;
+
+    color:var(--red);
+
+}
+
+/* =========================================================
+   MAIN ROW
+========================================================= */
+
+.academic-transition-main{
+
+    display:grid;
+
+    grid-template-columns:
+        100px
+        1fr
+        80px;
+
+    align-items:end;
+
+    gap:30px;
+
+}
+
+/* =========================================================
+   PROJECT NUMBER
+========================================================= */
+
+.academic-transition-number{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(3rem,7vw,7rem);
+
+    line-height:.8;
+
+    letter-spacing:-.07em;
+
+    color:var(--text);
+
+    transition:
+        color .35s ease,
+        transform .45s ease;
+
+}
+
+/* =========================================================
+   PROJECT NAME
+========================================================= */
+
+.academic-transition-name{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(2.5rem,6vw,6rem);
+
+    line-height:.85;
+
+    letter-spacing:-.07em;
+
+    transition:
+        color .35s ease,
+        transform .45s ease;
+
+}
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.academic-transition-arrow{
+
+    justify-self:end;
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(2rem,4vw,4rem);
+
+    line-height:1;
+
+    color:var(--text);
+
+    transition:
+        color .35s ease,
+        transform .45s cubic-bezier(.2,.8,.2,1);
+
+}
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.academic-project-transition:hover{
+
+    padding-left:18px;
+    padding-right:18px;
+
+    border-color:var(--red);
+
+}
+
+.academic-project-transition:hover
+.academic-transition-number{
+
+    color:var(--red);
+
+    transform:translateX(4px);
+
+}
+
+.academic-project-transition:hover
+.academic-transition-name{
+
+    color:var(--red);
+
+    transform:translateX(4px);
+
+}
+
+.academic-project-transition:hover
+.academic-transition-arrow{
+
+    color:var(--red);
+
+    transform:translateX(12px);
+
+}
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.academic-project-transition:focus{
+
+    outline:none;
+
+}
+
+.academic-project-transition:focus-visible{
+
+    outline:1px solid var(--red);
+
+    outline-offset:6px;
+
+}
+
+/* =========================================================
+   END OF ACADEMIC WORKS
+========================================================= */
+
+.academic-project-end{
+
+    margin-top:clamp(100px,14vw,220px);
+
+    padding:
+        clamp(55px,8vw,110px)
+        0
+        clamp(70px,10vw,130px);
+
+    border-top:1px solid var(--line);
+
+    border-bottom:1px solid var(--line);
+
+}
+
+/* =========================================================
+   END LABEL
+========================================================= */
+
+.academic-project-end
+.academic-transition-label{
+
+    margin-bottom:45px;
+
+    color:var(--muted);
+
+}
+
+/* =========================================================
+   BACK LINK
+========================================================= */
+
+.academic-end-back{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:0;
+
+    border:0;
+
+    background:transparent;
+
+    color:var(--text);
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(2rem,4vw,4rem);
+
+    line-height:.9;
+
+    letter-spacing:-.06em;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    transition:
+        color .35s ease,
+        transform .4s ease;
+
+}
+
+.academic-end-arrow{
+
+    color:var(--red);
+
+    transition:
+        transform .4s cubic-bezier(.2,.8,.2,1);
+
+}
+
+.academic-end-back:hover{
+
+    color:var(--red);
+
+    transform:translateX(8px);
+
+}
+
+.academic-end-back:hover
+.academic-end-arrow{
+
+    transform:translateX(-6px);
+
+}
+
+.academic-end-back:focus{
+
+    outline:none;
+
+}
+
+.academic-end-back:focus-visible{
+
+    outline:1px solid var(--red);
+
+    outline-offset:6px;
+
+}
+
+/* =========================================================
+   PROJECT 03 → PROJECT 01 LOOP
+========================================================= */
+
+.academic-project-transition-loop{
+
+    margin-top:
+        clamp(110px,14vw,220px);
+
+}
+
+/* Petite différence éditoriale :
+   le retour vers Project 01 est présenté
+   comme une boucle du portfolio. */
+
+.academic-project-transition-loop
+.academic-transition-label{
+
+    color:var(--red);
+
+}
+
+/* Survol */
+
+.academic-project-transition-loop:hover
+.academic-transition-label{
+
+    transform:translateX(6px);
+
+}
+
+/* =========================================================
+   ACADEMIC WORKS — TWO PROJECT NAVIGATION
+   ========================================================= */
+
+.academic-project-navigation{
+    width:100%;
+    margin-top:clamp(100px,14vw,220px);
+    padding-bottom:clamp(70px,10vw,130px);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.academic-project-navigation-header{
+    padding:
+        0
+        0
+        clamp(35px,5vw,65px);
+
+    border-top:1px solid var(--line);
+    padding-top:clamp(45px,6vw,80px);
+}
+
+.academic-navigation-eyebrow{
+    display:block;
+
+    margin-bottom:18px;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+    line-height:1;
+
+    letter-spacing:.12em;
+    text-transform:uppercase;
+
+    color:var(--red);
+}
+
+.academic-navigation-title{
+    margin:0;
+
+    font-family:var(--display);
+    font-size:
+        clamp(2rem,4vw,4.5rem);
+
+    line-height:.9;
+    letter-spacing:-.06em;
+
+    color:var(--text);
+}
+
+/* =========================================================
+   TWO PROJECT GRID
+   ========================================================= */
+
+.academic-project-navigation-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    width:100%;
+
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
+
+/* =========================================================
+   PROJECT CARD
+   ========================================================= */
+
+.academic-project-card{
+    position:relative;
+
+    width:100%;
+    min-width:0;
+
+    padding:0;
+
+    border:0;
+    border-right:1px solid var(--line);
+
+    background:transparent;
+
+    color:var(--text);
+
+    text-align:left;
+
+    cursor:pointer;
+
+    font:inherit;
+
+    overflow:hidden;
+
+    transition:
+        background .35s ease;
+}
+
+/* Remove border from second card */
+
+.academic-project-card:last-child{
+    border-right:0;
+}
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
+.academic-project-card-image{
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:16 / 10;
+
+    overflow:hidden;
+
+    background:var(--bg-soft);
+}
+
+.academic-project-card-image img{
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    transition:
+        transform .7s cubic-bezier(.2,.8,.2,1);
+}
+
+/* =========================================================
+   IMAGE OVERLAY
+   ========================================================= */
+
+.academic-project-card-overlay{
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.45),
+            rgba(0,0,0,0) 55%
+        );
+
+    opacity:.55;
+
+    transition:
+        opacity .4s ease;
+}
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.academic-project-card-arrow{
+    position:absolute;
+
+    top:24px;
+    right:24px;
+
+    width:46px;
+    height:46px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.65);
+
+    background:rgba(0,0,0,.18);
+
+    color:#fff;
+
+    font-family:var(--display);
+
+    font-size:1.5rem;
+
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+
+    transition:
+        background .35s ease,
+        border-color .35s ease,
+        transform .45s cubic-bezier(.2,.8,.2,1);
+}
+
+/* =========================================================
+   CARD INFO
+   ========================================================= */
+
+.academic-project-card-info{
+    display:grid;
+
+    grid-template-columns:
+        70px
+        1fr;
+
+    gap:25px;
+
+    padding:
+        28px
+        30px
+        32px;
+}
+
+.academic-project-card-number{
+    font-family:var(--mono);
+
+    font-size:.65rem;
+
+    letter-spacing:.1em;
+
+    color:var(--muted);
+}
+
+.academic-project-card-content{
+    min-width:0;
+}
+
+.academic-project-card-name{
+    font-family:var(--display);
+
+    font-size:
+        clamp(1.8rem,3.2vw,3.8rem);
+
+    line-height:.9;
+
+    letter-spacing:-.06em;
+
+    color:var(--text);
+
+    transition:
+        color .35s ease;
+}
+
+.academic-project-card-type{
+    margin-top:14px;
+
+    font-family:var(--mono);
+
+    font-size:.58rem;
+
+    line-height:1.4;
+
+    letter-spacing:.08em;
+
+    text-transform:uppercase;
+
+    color:var(--muted);
+}
+
+/* =========================================================
+   PROJECT CARD HOVER
+   ========================================================= */
+
+.academic-project-card:hover
+.academic-project-card-image img{
+
+    transform:scale(1.045);
+}
+
+.academic-project-card:hover
+.academic-project-card-overlay{
+
+    opacity:.8;
+}
+
+.academic-project-card:hover
+.academic-project-card-arrow{
+
+    background:var(--red);
+
+    border-color:var(--red);
+
+    transform:translate(4px,-4px);
+}
+
+.academic-project-card:hover
+.academic-project-card-name{
+
+    color:var(--red);
+}
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.academic-project-card:focus{
+    outline:none;
+}
+
+.academic-project-card:focus-visible{
+    outline:1px solid var(--red);
+    outline-offset:-1px;
+}
+
+/* =========================================================
+   CONTINUE TO SITE
+   ========================================================= */
+
+.academic-continue-site{
+
+    position:relative;
+
+    width:100%;
+
+    margin-top:clamp(45px,6vw,80px);
+
+    padding:
+        clamp(28px,4vw,45px)
+        0;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        auto
+        auto;
+
+    align-items:center;
+
+    column-gap:30px;
+
+    border:0;
+
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+
+    background:transparent;
+
+    color:var(--text);
+
+    text-align:left;
+
+    cursor:pointer;
+
+    font:inherit;
+
+    transition:
+        color .35s ease,
+        padding .4s ease,
+        border-color .35s ease;
+}
+
+/* =========================================================
+   CONTINUE LABEL
+   ========================================================= */
+
+.academic-continue-label{
+
+    font-family:var(--mono);
+
+    font-size:.65rem;
+
+    line-height:1;
+
+    letter-spacing:.12em;
+
+    text-transform:uppercase;
+
+    color:var(--muted);
+
+    transition:
+        color .35s ease;
+}
+
+.academic-continue-destination{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(1.5rem,3vw,3rem);
+
+    line-height:.9;
+
+    letter-spacing:-.05em;
+
+    color:var(--text);
+
+    transition:
+        color .35s ease,
+        transform .4s ease;
+}
+
+.academic-continue-arrow{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(1.8rem,3vw,3rem);
+
+    line-height:1;
+
+    color:var(--red);
+
+    transition:
+        transform .45s cubic-bezier(.2,.8,.2,1);
+}
+
+/* =========================================================
+   CONTINUE HOVER
+   ========================================================= */
+
+.academic-continue-site:hover{
+
+    padding-left:12px;
+    padding-right:12px;
+
+    border-color:var(--red);
+}
+
+.academic-continue-site:hover
+.academic-continue-label{
+
+    color:var(--red);
+}
+
+.academic-continue-site:hover
+.academic-continue-destination{
+
+    color:var(--red);
+
+    transform:translateX(5px);
+}
+
+.academic-continue-site:hover
+.academic-continue-arrow{
+
+    transform:translateX(10px);
+}
+
+/* =========================================================
+   10 — RESEARCH
+========================================================= */
+
+/* =========================================================
+   RESEARCH
+========================================================= */
+
+#research{
+
+    background:var(--bg-soft);
+
+    min-height:75vh;
+
+    display:flex;
+
+    align-items:center;
+}
+
+.research-container{
+
+    width:100%;
+
+    max-width:var(--max-width);
+
+    margin:auto;
+}
+
+.research-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        .8fr 1.2fr;
+
+    gap:100px;
+
+    align-items:end;
+}
+
+.research-intro{
+
+    max-width:650px;
+}
+
+.research-title{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(3.5rem,8vw,9rem);
+
+    line-height:.82;
+
+    letter-spacing:-.085em;
+
+    margin-top:25px;
+}
+
+.research-title span{
+
+    color:var(--red);
+}
+
+.research-copy{
+
+    max-width:560px;
+
+    font-size:.95rem;
+
+    line-height:1.9;
+
+    color:var(--muted);
+}
+
+.research-status{
+
+    margin-top:55px;
+
+    padding-top:20px;
+
+    border-top:1px solid var(--line);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-family:var(--mono);
+
+    font-size:.6rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:.1em;
+}
+
+.research-status span:last-child{
+
+    color:var(--red);
+}
+
+.research-note{
+
+    border-left:1px solid var(--red);
+
+    padding-left:35px;
+}
+
+.research-note-number{
+
+    font-family:var(--mono);
+
+    font-size:.6rem;
+
+    color:var(--red);
+
+    margin-bottom:30px;
+}
+
+.research-note h3{
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(2rem,4vw,4.5rem);
+
+    line-height:.9;
+
+    letter-spacing:-.06em;
+
+    margin-bottom:30px;
+}
+
+.research-note p{
+
+    max-width:520px;
+
+    font-size:.85rem;
+
+    line-height:1.85;
+
+    color:var(--muted);
+}
+
+/* =========================================================
+   11 — PROFESSIONAL WORK
+========================================================= */
+
+/* =========================================================
+   PROFESSIONAL WORK
+========================================================= */
+
+#professional-work{
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* =========================================================
+   PROFESSIONAL — INTRODUCTION
+========================================================= */
+
+.professional-heading{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:end;
+    margin-bottom:110px;
+}
+
+.professional-intro{
+    max-width:560px;
+    color:var(--muted);
+    font-size:.88rem;
+    line-height:1.85;
+}
+
+.professional-tagline{
+    margin-top:35px;
+    font-family:var(--display);
+    font-size:clamp(1.8rem,3.5vw,3.5rem);
+    line-height:.95;
+    letter-spacing:-.055em;
+}
+
+.professional-tagline span{
+    color:var(--red);
+}
+
+/* =========================================================
+   PROFESSIONAL — EXPERIENCE INDEX
+========================================================= */
+
+.professional-index{
+    border-top:1px solid var(--line);
+}
+
+/* =========================================================
+   EXPERIENCE ENTRY
+========================================================= */
+
+.professional-entry{
+
+    position:relative;
+
+    width:100%;
+
+    display:grid;
+    grid-template-columns:90px 1fr 60px;
+    gap:30px;
+    align-items:start;
+
+    padding:45px 0;
+
+    border:0;
+    border-bottom:1px solid var(--line);
+
+    background:transparent;
+
+    color:var(--text);
+    text-align:left;
+    font:inherit;
+
+    cursor:pointer;
+
+    transition:
+        padding-left .4s ease,
+        background .4s ease;
+}
+
+/* Remove browser button styles */
+
+.professional-entry:focus{
+    outline:none;
+}
+
+.professional-entry:focus-visible{
+    outline:1px solid var(--red);
+    outline-offset:4px;
+}
+
+/* =========================================================
+   EXPERIENCE NUMBER
+========================================================= */
+
+.professional-entry-number{
+
+    font-family:var(--mono);
+    font-size:.62rem;
+
+    color:var(--red);
+
+    padding-top:7px;
+
+}
+
+/* =========================================================
+   EXPERIENCE CONTENT
+========================================================= */
+
+.professional-entry-main{
+    max-width:720px;
+}
+
+.professional-entry-label{
+
+    margin-bottom:14px;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+
+    text-transform:uppercase;
+    letter-spacing:.1em;
+
+    color:var(--muted);
+
+}
+
+.professional-entry-name{
+
+    margin:0;
+
+    font-family:var(--display);
+    font-size:clamp(2rem,4vw,4rem);
+
+    line-height:.95;
+    letter-spacing:-.055em;
+
+    font-weight:500;
+
+    color:var(--text);
+
+    transition:color .3s ease;
+
+}
+
+.professional-entry-description{
+
+    max-width:600px;
+
+    margin:22px 0 0;
+
+    font-size:.78rem;
+    line-height:1.8;
+
+    color:var(--muted);
+
+}
+
+/* =========================================================
+   EXPERIENCE ARROW
+========================================================= */
+
+.professional-entry-arrow{
+
+    justify-self:end;
+
+    font-family:var(--mono);
+    font-size:1.1rem;
+
+    color:var(--text);
+
+    transition:
+        transform .4s ease,
+        color .3s ease;
+
+}
+
+/* =========================================================
+   EXPERIENCE HOVER
+========================================================= */
+
+.professional-entry:hover{
+
+    padding-left:20px;
+
+}
+
+.professional-entry:hover
+.professional-entry-name{
+
+    color:var(--red);
+
+}
+
+.professional-entry:hover
+.professional-entry-arrow{
+
+    transform:translate(5px,-5px);
+
+    color:var(--red);
+
+}
+
+/* =========================================================
+   PROFESSIONAL — CLOSING STATEMENT
+========================================================= */
+
+.professional-experience{
+
+    margin-top:110px;
+
+    padding-top:30px;
+
+    border-top:1px solid var(--line);
+
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:40px;
+
+}
+
+.professional-experience-label{
+
+    font-family:var(--mono);
+    font-size:.58rem;
+
+    text-transform:uppercase;
+    letter-spacing:.1em;
+
+    color:var(--red);
+
+}
+
+.professional-experience-text{
+
+    max-width:700px;
+
+    font-family:var(--display);
+
+    font-size:clamp(1.5rem,3vw,3rem);
+
+    line-height:.98;
+    letter-spacing:-.04em;
+
+}
+
+#professional-work .scroll-indicator,
+#professional-work .arrow-down {
+    display: none !important; 
+}
+
+/* =========================================================
+   12 — CNIC
+========================================================= */
+
+/* CNIC has no dedicated rules of its own: it reuses the shared
+   Professional Work / Professional Project Views components
+   below (.professional-detail, .professional-project-grid,
+   .professional-project-card, etc). This is intentional and
+   keeps CNIC and Rehabilitation visually consistent. */
+
+/* =========================================================
+   13 — REHABILITATION ALGER CENTRE
+========================================================= */
+
+/* Same principle as CNIC above: Rehabilitation Alger Centre and
+   its sub-projects (Escaliers, Plancher Métallique, Plancher Bois)
+   use the shared Professional Project Views components in
+   section 14. No CSS rule in this file singles out or hides
+   #professional-rehabilitation-view: it is styled exactly like
+   every other Professional detail view. */
+
+/* =========================================================
+   14 — PROFESSIONAL PROJECT VIEWS
+========================================================= */
+
+/* =========================================================
+   PROFESSIONAL — DETAIL VIEW
+========================================================= */
+
+.professional-detail{
+
+    background:var(--bg);
+    color:var(--text);
+
+}
+
+.professional-detail-header{
+
+    padding-bottom:100px;
+
+}
+
+/* =========================================================
+   BACK LINK
+========================================================= */
+
+.back-link{
+
+    display:inline-block;
+
+    margin-bottom:70px;
+
+    padding:0;
+
+    border:0;
+
+    background:transparent;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+
+    text-transform:uppercase;
+    letter-spacing:.1em;
+
+    color:var(--muted);
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    transition:color .3s ease;
+
+}
+
+.back-link:hover{
+
+    color:var(--red);
+
+}
+
+.back-link:focus{
+
+    outline:none;
+
+}
+
+.back-link:focus-visible{
+
+    outline:1px solid var(--red);
+    outline-offset:5px;
+
+}
+
+/* =========================================================
+   DETAIL META
+========================================================= */
+
+.professional-detail-meta{
+
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:12px 35px;
+
+    margin-top:30px;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+
+    text-transform:uppercase;
+    letter-spacing:.08em;
+
+    color:var(--muted);
+
+}
+
+.professional-detail-intro{
+
+    max-width:700px;
+
+    margin-top:55px;
+
+    font-size:.85rem;
+    line-height:1.9;
+
+    color:var(--muted);
+
+}
+
+/* =========================================================
+   PROFESSIONAL — PROJECT INDEX
+========================================================= */
+
+.professional-project-index{
+
+    border-top:1px solid var(--line);
+
+}
+
+/* =========================================================
+   PROJECT ENTRY
+========================================================= */
+
+.professional-project-entry{
+
+    width:100%;
+
+    display:grid;
+    grid-template-columns:90px 1fr 60px;
+
+    gap:30px;
+
+    align-items:start;
+
+    padding:50px 0;
+
+    border:0;
+    border-bottom:1px solid var(--line);
+
+    background:transparent;
+
+    color:var(--text);
+
+    text-align:left;
+    font:inherit;
+
+    cursor:pointer;
+
+    transition:
+        padding-left .4s ease,
+        background .4s ease;
+
+}
+
+.professional-project-entry:focus{
+
+    outline:none;
+
+}
+
+.professional-project-entry:focus-visible{
+
+    outline:1px solid var(--red);
+    outline-offset:4px;
+
+}
+
+/* Disabled projects */
+
+.professional-project-entry:disabled{
+
+    cursor:default;
+    opacity:.55;
+
+}
+
+.professional-project-entry:disabled:hover{
+
+    padding-left:0;
+
+}
+
+.professional-project-entry:disabled
+.professional-project-arrow{
+
+    color:var(--muted);
+
+}
+
+/* =========================================================
+   PROJECT NUMBER
+========================================================= */
+
+.professional-project-number{
+
+    font-family:var(--mono);
+    font-size:.62rem;
+
+    color:var(--red);
+
+    padding-top:8px;
+
+}
+
+/* =========================================================
+   PROJECT CONTENT
+========================================================= */
+
+.professional-project-content{
+
+    max-width:720px;
+
+}
+
+.professional-project-label{
+
+    margin-bottom:15px;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+
+    text-transform:uppercase;
+    letter-spacing:.1em;
+
+    color:var(--muted);
+
+}
+
+.professional-project-content h2{
+
+    margin:0;
+
+    font-family:var(--display);
+
+    font-size:clamp(1.8rem,3.5vw,3.5rem);
+
+    line-height:.95;
+    letter-spacing:-.05em;
+
+    font-weight:500;
+
+    color:var(--text);
+
+    transition:color .3s ease;
+
+}
+
+.professional-project-content p{
+
+    max-width:600px;
+
+    margin:20px 0 0;
+
+    font-size:.76rem;
+    line-height:1.8;
+
+    color:var(--muted);
+
+}
+
+/* =========================================================
+   PROJECT ARROW
+========================================================= */
+
+.professional-project-arrow{
+
+    justify-self:end;
+
+    font-family:var(--mono);
+    font-size:1rem;
+
+    color:var(--text);
+
+    transition:
+        transform .4s ease,
+        color .3s ease;
+
+}
+
+/* =========================================================
+   PROJECT HOVER
+========================================================= */
+
+.professional-project-entry:not(:disabled):hover{
+
+    padding-left:20px;
+
+}
+
+.professional-project-entry:not(:disabled):hover
+.professional-project-content h2{
+
+    color:var(--red);
+
+}
+
+.professional-project-entry:not(:disabled):hover
+.professional-project-arrow{
+
+    transform:translate(5px,-5px);
+
+    color:var(--red);
+
+}
+
+/* =========================================================
+   PROFESSIONAL PROJECT DETAIL
+========================================================= */
+
+.professional-project-detail{
+
+    background:var(--bg);
+    color:var(--text);
+
+}
+
+.project-detail-header{
+
+    padding-bottom:100px;
+
+}
+
+.project-detail-meta{
+
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:12px 35px;
+
+    margin-top:30px;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+
+    text-transform:uppercase;
+    letter-spacing:.08em;
+
+    color:var(--muted);
+
+}
+
+/* =========================================================
+   PROJECT INTRODUCTION
+========================================================= */
+
+.professional-project-introduction{
+
+    display:grid;
+
+    grid-template-columns:160px 1fr;
+
+    gap:40px;
+
+    padding:35px 0 100px;
+
+    border-top:1px solid var(--line);
+
+}
+
+.professional-project-introduction .eyebrow{
+
+    color:var(--red);
+
+}
+
+.professional-project-introduction p{
+
+    max-width:700px;
+
+    margin:0 0 25px;
+
+    font-size:.85rem;
+    line-height:1.9;
+
+    color:var(--muted);
+
+}
+
+/* =========================================================
+   PROJECT MEDIA
+========================================================= */
+
+.professional-project-media{
+
+    margin-bottom:100px;
+
+}
+
+.professional-media-label{
+
+    margin-bottom:15px;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+
+    text-transform:uppercase;
+    letter-spacing:.1em;
+
+    color:var(--red);
+
+}
+
+.professional-media{
+
+    width:100%;
+
+    background:var(--bg-soft);
+
+    border:1px solid var(--line);
+
+    overflow:hidden;
+
+}
+
+.professional-media-split{
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+
+}
+
+.professional-media img{
+
+    display:block;
+
+    width:100%;
+    height:auto;
+
+    object-fit:contain;
+
+    transition:transform .8s ease;
+
+}
+
+.professional-media:hover img{
+
+    transform:scale(1.01);
+
+}
+
+/* =========================================================
+   PROJECT NAVIGATION
+========================================================= */
+
+.professional-project-navigation{
+
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    gap:30px;
+
+    padding:30px 0 80px;
+
+    border-top:1px solid var(--line);
+
+}
+
+.professional-project-navigation button{
+
+    padding:0;
+
+    border:0;
+
+    background:transparent;
+
+    font-family:var(--mono);
+    font-size:.58rem;
+
+    text-transform:uppercase;
+    letter-spacing:.1em;
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:color .3s ease;
+
+}
+
+.professional-project-navigation button:hover{
+
+    color:var(--red);
+
+}
+
+.professional-project-navigation button:focus{
+
+    outline:none;
+
+}
+
+.professional-project-navigation button:focus-visible{
+
+    outline:1px solid var(--red);
+    outline-offset:5px;
+
+}
+
+/* =========================================================
+   PROFESSIONAL WORK — INTERNAL STORY HEADINGS
+   Same visual language as ACADEMICAL WORKS
+========================================================= */
+
+.professional-section-heading{
+
+    display:grid;
+
+    grid-template-columns:
+        120px 1fr;
+
+    gap:40px;
+
+    margin-bottom:45px;
+}
+
+.professional-section-index{
+
+    font-family:var(--mono);
+
+    font-size:.63rem;
+
+    color:var(--red);
+}
+
+.professional-section-title{
+
+    margin:0;
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(2.3rem,4.5vw,5rem);
+
+    line-height:.9;
+
+    letter-spacing:-.06em;
+}
+
+/* =========================================================
+   PROFESSIONAL WORK — FLOATING BACK BUTTON
+========================================================= */
+
+.professional-back-floating{
+
+    position:fixed;
+
+    top:90px;
+    left:24px;
+
+    z-index:9999;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:11px 16px;
+
+    background:var(--red);
+    color:#fff;
+
+    border:1px solid var(--red);
+
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    box-shadow:0 4px 20px rgba(0,0,0,.06);
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(-8px);
+
+    transition:
+        opacity:.25s ease,
+        visibility:.25s ease,
+        transform:.25s ease,
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease;
+
+}
+
+.professional-back-floating.visible{
+
+    opacity:1;
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+.professional-back-floating:hover{
+
+    background:var(--dark);
+    color:#fff;
+
+    border-color:var(--dark);
+
+}
+
+/* =========================================================
+   PROFESSIONAL WORK — NAVIGATION
+========================================================= */
+
+.professional-cnic-projects {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    width: 100%;
+}
+
+.professional-project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.professional-project-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--dark);
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.professional-project-card-media {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.professional-project-card-media img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.professional-project-card:hover img {
+    transform: scale(1.03);
+}
+
+.professional-project-card-info {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 20px;
+    border-top: 1px solid var(--dark);
+}
+
+.professional-project-card-info h3 {
+    margin: 0;
+}
+
+.professional-project-card-number,
+.professional-project-card-arrow {
+    font-family: var(--mono);
+}
+
+/* =========================================================
+   CONTINUE EXPLORING
+========================================================= */
+
+.professional-continue {
+    margin-top: 40px;
+   margin-bottom: 40px;
+}
+
+.professional-continue-heading {
+    margin-bottom: 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+}
+
+.professional-continue-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+}
+
+.professional-continue-card {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--dark);
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.professional-continue-media {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.professional-continue-media img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.professional-continue-card:hover img {
+    transform: scale(1.03);
+}
+
+.professional-continue-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 18px;
+    border-top: 1px solid var(--dark);
+}
+
+/* =========================================================
+   EXIT
+========================================================= */
+
+.professional-exit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 40px;
+    padding: 18px 20px;
+    border: 1px solid var(--dark);
+    background: transparent;
+    color: var(--dark);
+    cursor: pointer;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.professional-exit:hover {
+    background: var(--dark);
+    color: var(--bg);
+}
+
+/* ========================================================= 
+   PATCH : ACADEMICAL & PROFESSIONAL WORKS ISOLATION 
+========================================================= */
+
+.professional-exit {
+    display: none !important;
+}
+
+body.professional-locked .professional-exit {
+    display: inline-flex !important;
+}
+
+/* =========================================================
+   15 — LIGHTBOX
+========================================================= */
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:3000;
+
+    background:rgba(8,8,8,.97);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:30px;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+}
+
+.lightbox.open{
+
+    opacity:1;
+
+    visibility:visible;
+}
+
+.lightbox img{
+
+    max-width:94vw;
+
+    max-height:88vh;
+
+    object-fit:contain;
+
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.lightbox-close{
+
+    position:fixed;
+
+    top:25px;
+    right:25px;
+
+    width:42px;
+    height:42px;
+
+    background:transparent;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    color:white;
+
+    font-size:1.3rem;
+
+    cursor:pointer;
+}
+
+.lightbox-close:hover{
+
+    border-color:var(--red);
+
+    color:var(--red);
+}
+
+.lightbox-caption{
+
+    position:fixed;
+
+    bottom:25px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-family:var(--mono);
+
+    font-size:.6rem;
+
+    letter-spacing:.1em;
+
+    text-transform:uppercase;
+
+    color:#999;
+}
+
+/* =========================================================
+   LIGHTBOX ROTATION
+========================================================= */
+
+.lightbox-image-rotated{
+
+    transform:rotate(-90deg);
+
+    max-width:88vh!important;
+
+    max-height:94vw!important;
+}
+
+/* =========================================================
+   16 — CONTACT
+========================================================= */
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+#contact{
+
+    background:var(--dark);
+
+    color:var(--white);
+
+    min-height:85vh;
+
+    display:flex;
+
+    align-items:center;
+}
+
+.contact-container{
+
+    width:100%;
+
+    max-width:var(--max-width);
+
+    margin:auto;
+}
+
+.contact-title{
+
+    margin-top:30px;
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(4rem,12vw,12rem);
+
+    line-height:.78;
+
+    letter-spacing:-.09em;
+}
+
+.contact-title .outline{
+
+    -webkit-text-stroke:
+        1px rgba(255,255,255,.45);
+}
+
+.contact-copy{
+
+    max-width:500px;
+
+    margin-top:45px;
+
+    color:#8D8D88;
+
+    font-size:.9rem;
+
+    line-height:1.8;
+}
+
+.contact-actions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:40px;
+}
+
+#contact .button{
+
+    border-color:rgba(255,255,255,.2);
+
+    color:white;
+}
+
+#contact .button:hover{
+
+    border-color:var(--red);
+
+    color:var(--red);
+}
+
+#contact .button.red{
+
+    background:var(--red);
+
+    border-color:var(--red);
+
+    color:white;
+}
+
+/* =========================================================
+   17 — FOOTER
+========================================================= */
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    background:var(--dark);
+
+    color:#777772;
+
+    padding:
+        25px
+        clamp(22px,7vw,110px);
+
+    border-top:1px solid rgba(255,255,255,.1);
+}
+
+.footer-inner{
+
+    max-width:var(--max-width);
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:30px;
+}
+
+.footer-left{
+
+    font-family:var(--mono);
+
+    font-size:.57rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+}
+
+.footer-right{
+
+    display:flex;
+
+    gap:20px;
+
+    font-size:.6rem;
+}
+
+.footer-right a:hover{
+
+    color:var(--red);
+}
+
+/* =========================================================
+   18 — REVEAL / ANIMATIONS
+========================================================= */
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(25px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.visible{
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+/* =========================================================
+   19 — RESPONSIVE
+========================================================= */
+
+/* All media queries are centralised here, in the same relative
+   order as before. Nothing inside them was changed. */
+
+/* =========================================================
+   DESKTOP — FORCE CORRECT LAYOUT
+========================================================= */
+
+@media(min-width:769px){
+
+    .project03-plans{
+        grid-template-columns:50% 50%;
+    }
+
+    .project03-plan-01{
+        grid-column:1 / 3;
+    }
+
+    .project03-plan-02{
+        grid-column:1 / 2;
+    }
+
+    .project03-plan-03{
+        grid-column:2 / 3;
+    }
+
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+    .project03-plans{
+        grid-template-columns:1fr;
+    }
+
+    .project03-plan-01,
+    .project03-plan-02,
+    .project03-plan-03{
+        grid-column:1;
+    }
+
+    .project03-plan-01 .media,
+    .project03-plan-02 .media,
+    .project03-plan-03 .media{
+        aspect-ratio:4 / 3;
+    }
+
+}
+
+/* =========================================================
+PROJECT 03 — TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+    /* HEADER */
+
+    .project03-header{
+        grid-template-columns:80px 1fr;
+        gap:25px;
+    }
+
+    /* BLOCK HEADING */
+
+    .project03-block-heading{
+        grid-template-columns:80px 1fr;
+        gap:25px;
+    }
+
+    /* SITE */
+
+    .project03-site{
+        padding-top:55px;
+    }
+
+    /* PLANS */
+
+    .project03-plans-block{
+        margin-top:60px;
+    }
+
+    .project03-plan,
+    .project03-plan-third{
+        padding:20px;
+    }
+
+    /* SECTIONS */
+
+    .project03-sections-block{
+        margin-top:60px;
+    }
+
+    .project03-section{
+        padding:20px;
+    }
+
+    /* RENDERS */
+
+    .project03-renders-block{
+        margin-top:60px;
+    }
+
+    .project03-renders{
+        gap:20px;
+    }
+
+    .project03-plans,
+    .project03-renders{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+/* =========================================================
+PROJECT 03 — MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    /* HEADER */
+
+    .project03-header{
+        display:block;
+        padding:25px 0 35px;
+    }
+
+    .project03-index{
+        margin-bottom:20px;
+    }
+
+    .project03-title{
+        font-size:clamp(2.5rem,12vw,4rem);
+    }
+
+    .project03-meta{
+        grid-column:auto;
+        margin-top:20px;
+    }
+
+    /* BLOCK HEADING */
+
+    .project03-block-heading{
+        grid-template-columns:60px 1fr;
+        gap:15px;
+    }
+
+    /* SITE */
+
+    .project03-site{
+        padding-top:45px;
+    }
+
+    /* PLANS */
+
+    .project03-plans-block{
+        margin-top:50px;
+    }
+
+    .project03-plans{
+        grid-template-columns:1fr;
+    }
+
+    .project03-plan,
+    .project03-plan-third{
+        padding:20px;
+    }
+
+    .project03-plan-third{
+        grid-column:auto;
+    }
+
+    /* SECTIONS */
+
+    .project03-sections-block{
+        margin-top:50px;
+    }
+
+    .project03-sections{
+        grid-template-columns:1fr;
+    }
+
+    .project03-section{
+        padding:20px;
+        margin-top:60px;
+    }
+
+    /* RENDERS */
+
+    .project03-renders-block{
+        margin-top:50px;
+    }
+
+    .project03-renders{
+        grid-template-columns:1fr;
+        gap:45px;
+    }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+    .professional-heading{
+
+        grid-template-columns:1fr;
+
+        gap:45px;
+
+        margin-bottom:80px;
+
+    }
+
+
+    .professional-entry{
+
+        grid-template-columns:60px 1fr 40px;
+
+        gap:20px;
+
+        padding:35px 0;
+
+    }
+
+
+    .professional-project-entry{
+
+        grid-template-columns:60px 1fr 40px;
+
+        gap:20px;
+
+    }
+
+
+    .professional-experience{
+
+        grid-template-columns:120px 1fr;
+
+        gap:25px;
+
+    }
+
+
+    .professional-project-introduction{
+
+        grid-template-columns:120px 1fr;
+
+        gap:25px;
+
+    }
+
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .professional-heading{
+
+        gap:35px;
+
+        margin-bottom:65px;
+
+    }
+
+
+    .professional-intro{
+
+        font-size:.78rem;
+
+        line-height:1.8;
+
+    }
+
+
+    .professional-tagline{
+
+        margin-top:25px;
+
+        font-size:clamp(1.8rem,9vw,2.8rem);
+
+    }
+
+
+    .professional-entry{
+
+        grid-template-columns:35px 1fr 25px;
+
+        gap:15px;
+
+        padding:30px 0;
+
+    }
+
+
+    .professional-entry:hover{
+
+        padding-left:8px;
+
+    }
+
+
+    .professional-entry-name{
+
+        font-size:clamp(1.7rem,8vw,2.5rem);
+
+    }
+
+
+    .professional-entry-description{
+
+        margin-top:16px;
+
+        font-size:.7rem;
+
+        line-height:1.75;
+
+    }
+
+
+    .professional-entry-arrow{
+
+        font-size:.9rem;
+
+    }
+
+
+    .professional-experience{
+
+        grid-template-columns:1fr;
+
+        gap:25px;
+
+        margin-top:75px;
+
+    }
+
+
+    .professional-experience-text{
+
+        font-size:clamp(1.5rem,7vw,2.3rem);
+
+    }
+
+
+    /* =============================================
+       DETAIL
+    ============================================== */
+
+    .professional-detail-header,
+    .project-detail-header{
+
+        padding-bottom:70px;
+
+    }
+
+
+    .back-link{
+
+        margin-bottom:50px;
+
+    }
+
+
+    .professional-detail-meta,
+    .project-detail-meta{
+
+        flex-direction:column;
+
+        gap:10px;
+
+    }
+
+
+    .professional-detail-intro{
+
+        margin-top:40px;
+
+        font-size:.78rem;
+
+    }
+
+
+    .professional-project-entry{
+
+        grid-template-columns:35px 1fr 25px;
+
+        gap:15px;
+
+        padding:35px 0;
+
+    }
+
+
+    .professional-project-entry:not(:disabled):hover{
+
+        padding-left:8px;
+
+    }
+
+
+    .professional-project-content h2{
+
+        font-size:clamp(1.7rem,8vw,2.5rem);
+
+    }
+
+
+    .professional-project-content p{
+
+        font-size:.7rem;
+
+        line-height:1.75;
+
+    }
+
+
+    /* =============================================
+       PROJECT INTRO
+    ============================================== */
+
+    .professional-project-introduction{
+
+        grid-template-columns:1fr;
+
+        gap:25px;
+
+        padding-bottom:70px;
+
+    }
+
+
+    .professional-project-introduction p{
+
+        font-size:.78rem;
+
+        line-height:1.8;
+
+    }
+
+
+    /* =============================================
+       MEDIA
+    ============================================== */
+
+    .professional-project-media{
+
+        margin-bottom:65px;
+
+    }
+
+
+    .professional-media-label{
+
+        font-size:.55rem;
+
+    }
+
+
+    /* =============================================
+       NAVIGATION
+    ============================================== */
+
+    .professional-project-navigation{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
+
+        padding-bottom:60px;
+
+    }
+
 }
 
 /* =========================================================
@@ -6680,158 +7612,6 @@ footer{
 
 }
 
-/* =========================================================
-   ACADEMICAL WORKS — FLOATING BACK BUTTON
-========================================================= */
-
-.academic-back-floating{
-
-    position:fixed;
-
-    top:90px;
-    left:24px;
-
-    z-index:9999;
-
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:11px 16px;
-
-    background:var(--red);
-    color:#fff;
-
-    border:1px solid var(--red);
-
-    font-family:var(--mono);
-    font-size:11px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-
-    cursor:pointer;
-
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-
-    box-shadow:0 4px 20px rgba(0,0,0,.06);
-
-    opacity:0;
-    visibility:hidden;
-
-    transform:translateY(-8px);
-
-    transition:
-        opacity:.25s ease,
-        visibility:.25s ease,
-        transform:.25s ease,
-        background .25s ease,
-        color .25s ease,
-        border-color .25s ease;
-
-}
-
-
-/* =========================================================
-   ACTIVE STATE
-========================================================= */
-
-.academic-back-floating.visible{
-
-    opacity:1;
-    visibility:visible;
-
-    transform:translateY(0);
-
-}
-
-
-/* =========================================================
-   HOVER
-========================================================= */
-
-.academic-back-floating:hover{
-
-    background:var(--dark);
-    color:#fff;
-
-    border-color:var(--dark);
-
-}
-
-
-/* =========================================================
-   PROFESSIONAL WORK — FLOATING BACK BUTTON
-========================================================= */
-
-.professional-back-floating{
-
-    position:fixed;
-
-    top:90px;
-    left:24px;
-
-    z-index:9999;
-
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:11px 16px;
-
-    background:var(--red);
-    color:#fff;
-
-    border:1px solid var(--red);
-
-    font-family:var(--mono);
-    font-size:11px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-
-    cursor:pointer;
-
-    backdrop-filter:blur(12px);
-    -webkit-backdrop-filter:blur(12px);
-
-    box-shadow:0 4px 20px rgba(0,0,0,.06);
-
-    opacity:0;
-    visibility:hidden;
-
-    transform:translateY(-8px);
-
-    transition:
-        opacity:.25s ease,
-        visibility:.25s ease,
-        transform:.25s ease,
-        background .25s ease,
-        color .25s ease,
-        border-color .25s ease;
-
-}
-
-
-.professional-back-floating.visible{
-
-    opacity:1;
-    visibility:visible;
-
-    transform:translateY(0);
-
-}
-
-
-.professional-back-floating:hover{
-
-    background:var(--dark);
-    color:#fff;
-
-    border-color:var(--dark);
-
-}
-
-
 @media(max-width:700px){
 
     .professional-back-floating{
@@ -6846,7 +7626,6 @@ footer{
     }
 
 }
-
 
 /* =========================================================
    MOBILE
@@ -6866,338 +7645,6 @@ footer{
     }
 
 }
-
-/* =========================================================
-   ACADEMICAL WORKS — EDITORIAL PROJECT TRANSITION
-========================================================= */
-
-.academic-project-transition{
-
-    position:relative;
-
-    width:100%;
-
-    margin-top:clamp(100px,14vw,220px);
-    padding:clamp(55px,8vw,110px) 0;
-
-    border:0;
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-
-    background:transparent;
-
-    color:var(--text);
-
-    text-align:left;
-
-    cursor:pointer;
-
-    font:inherit;
-
-    display:block;
-
-    transition:
-        padding .45s ease,
-        border-color .35s ease;
-
-}
-
-
-/* =========================================================
-   LABEL
-========================================================= */
-
-.academic-transition-label{
-
-    display:block;
-
-    margin-bottom:35px;
-
-    font-family:var(--mono);
-
-    font-size:.58rem;
-
-    line-height:1;
-
-    text-transform:uppercase;
-
-    letter-spacing:.12em;
-
-    color:var(--red);
-
-}
-
-
-/* =========================================================
-   MAIN ROW
-========================================================= */
-
-.academic-transition-main{
-
-    display:grid;
-
-    grid-template-columns:
-        100px
-        1fr
-        80px;
-
-    align-items:end;
-
-    gap:30px;
-
-}
-
-
-/* =========================================================
-   PROJECT NUMBER
-========================================================= */
-
-.academic-transition-number{
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(3rem,7vw,7rem);
-
-    line-height:.8;
-
-    letter-spacing:-.07em;
-
-    color:var(--text);
-
-    transition:
-        color .35s ease,
-        transform .45s ease;
-
-}
-
-
-/* =========================================================
-   PROJECT NAME
-========================================================= */
-
-.academic-transition-name{
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(2.5rem,6vw,6rem);
-
-    line-height:.85;
-
-    letter-spacing:-.07em;
-
-    transition:
-        color .35s ease,
-        transform .45s ease;
-
-}
-
-
-/* =========================================================
-   ARROW
-========================================================= */
-
-.academic-transition-arrow{
-
-    justify-self:end;
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(2rem,4vw,4rem);
-
-    line-height:1;
-
-    color:var(--text);
-
-    transition:
-        color .35s ease,
-        transform .45s cubic-bezier(.2,.8,.2,1);
-
-}
-
-
-/* =========================================================
-   HOVER
-========================================================= */
-
-.academic-project-transition:hover{
-
-    padding-left:18px;
-    padding-right:18px;
-
-    border-color:var(--red);
-
-}
-
-
-.academic-project-transition:hover
-.academic-transition-number{
-
-    color:var(--red);
-
-    transform:translateX(4px);
-
-}
-
-
-.academic-project-transition:hover
-.academic-transition-name{
-
-    color:var(--red);
-
-    transform:translateX(4px);
-
-}
-
-
-.academic-project-transition:hover
-.academic-transition-arrow{
-
-    color:var(--red);
-
-    transform:translateX(12px);
-
-}
-
-
-/* =========================================================
-   FOCUS
-========================================================= */
-
-.academic-project-transition:focus{
-
-    outline:none;
-
-}
-
-
-.academic-project-transition:focus-visible{
-
-    outline:1px solid var(--red);
-
-    outline-offset:6px;
-
-}
-
-
-/* =========================================================
-   END OF ACADEMIC WORKS
-========================================================= */
-
-.academic-project-end{
-
-    margin-top:clamp(100px,14vw,220px);
-
-    padding:
-        clamp(55px,8vw,110px)
-        0
-        clamp(70px,10vw,130px);
-
-    border-top:1px solid var(--line);
-
-    border-bottom:1px solid var(--line);
-
-}
-
-
-/* =========================================================
-   END LABEL
-========================================================= */
-
-.academic-project-end
-.academic-transition-label{
-
-    margin-bottom:45px;
-
-    color:var(--muted);
-
-}
-
-
-/* =========================================================
-   BACK LINK
-========================================================= */
-
-.academic-end-back{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:18px;
-
-    padding:0;
-
-    border:0;
-
-    background:transparent;
-
-    color:var(--text);
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(2rem,4vw,4rem);
-
-    line-height:.9;
-
-    letter-spacing:-.06em;
-
-    text-align:left;
-
-    cursor:pointer;
-
-    transition:
-        color .35s ease,
-        transform .4s ease;
-
-}
-
-
-.academic-end-arrow{
-
-    color:var(--red);
-
-    transition:
-        transform .4s cubic-bezier(.2,.8,.2,1);
-
-}
-
-
-.academic-end-back:hover{
-
-    color:var(--red);
-
-    transform:translateX(8px);
-
-}
-
-
-.academic-end-back:hover
-.academic-end-arrow{
-
-    transform:translateX(-6px);
-
-}
-
-
-.academic-end-back:focus{
-
-    outline:none;
-
-}
-
-
-.academic-end-back:focus-visible{
-
-    outline:1px solid var(--red);
-
-    outline-offset:6px;
-
-}
-
 
 /* =========================================================
    MOBILE
@@ -7303,40 +7750,6 @@ footer{
 
 }
 
-/* =========================================================
-   PROJECT 03 → PROJECT 01 LOOP
-========================================================= */
-
-.academic-project-transition-loop{
-
-    margin-top:
-        clamp(110px,14vw,220px);
-
-}
-
-
-/* Petite différence éditoriale :
-   le retour vers Project 01 est présenté
-   comme une boucle du portfolio. */
-
-.academic-project-transition-loop
-.academic-transition-label{
-
-    color:var(--red);
-
-}
-
-
-/* Survol */
-
-.academic-project-transition-loop:hover
-.academic-transition-label{
-
-    transform:translateX(6px);
-
-}
-
-
 /* Mobile */
 
 @media(max-width:700px){
@@ -7348,473 +7761,6 @@ footer{
     }
 
 }
-
-/* =========================================================
-   ACADEMIC WORKS — TWO PROJECT NAVIGATION
-   ========================================================= */
-
-.academic-project-navigation{
-    width:100%;
-    margin-top:clamp(100px,14vw,220px);
-    padding-bottom:clamp(70px,10vw,130px);
-}
-
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
-.academic-project-navigation-header{
-    padding:
-        0
-        0
-        clamp(35px,5vw,65px);
-
-    border-top:1px solid var(--line);
-    padding-top:clamp(45px,6vw,80px);
-}
-
-
-.academic-navigation-eyebrow{
-    display:block;
-
-    margin-bottom:18px;
-
-    font-family:var(--mono);
-    font-size:.58rem;
-    line-height:1;
-
-    letter-spacing:.12em;
-    text-transform:uppercase;
-
-    color:var(--red);
-}
-
-
-.academic-navigation-title{
-    margin:0;
-
-    font-family:var(--display);
-    font-size:
-        clamp(2rem,4vw,4.5rem);
-
-    line-height:.9;
-    letter-spacing:-.06em;
-
-    color:var(--text);
-}
-
-
-/* =========================================================
-   TWO PROJECT GRID
-   ========================================================= */
-
-.academic-project-navigation-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,minmax(0,1fr));
-
-    width:100%;
-
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-}
-
-
-/* =========================================================
-   PROJECT CARD
-   ========================================================= */
-
-.academic-project-card{
-    position:relative;
-
-    width:100%;
-    min-width:0;
-
-    padding:0;
-
-    border:0;
-    border-right:1px solid var(--line);
-
-    background:transparent;
-
-    color:var(--text);
-
-    text-align:left;
-
-    cursor:pointer;
-
-    font:inherit;
-
-    overflow:hidden;
-
-    transition:
-        background .35s ease;
-}
-
-
-/* Remove border from second card */
-
-.academic-project-card:last-child{
-    border-right:0;
-}
-
-
-/* =========================================================
-   IMAGE
-   ========================================================= */
-
-.academic-project-card-image{
-    position:relative;
-
-    width:100%;
-
-    aspect-ratio:16 / 10;
-
-    overflow:hidden;
-
-    background:var(--bg-soft);
-}
-
-
-.academic-project-card-image img{
-    width:100%;
-    height:100%;
-
-    display:block;
-
-    object-fit:cover;
-
-    transition:
-        transform .7s cubic-bezier(.2,.8,.2,1);
-}
-
-
-/* =========================================================
-   IMAGE OVERLAY
-   ========================================================= */
-
-.academic-project-card-overlay{
-    position:absolute;
-
-    inset:0;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,.45),
-            rgba(0,0,0,0) 55%
-        );
-
-    opacity:.55;
-
-    transition:
-        opacity .4s ease;
-}
-
-
-/* =========================================================
-   ARROW
-   ========================================================= */
-
-.academic-project-card-arrow{
-    position:absolute;
-
-    top:24px;
-    right:24px;
-
-    width:46px;
-    height:46px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border:1px solid rgba(255,255,255,.65);
-
-    background:rgba(0,0,0,.18);
-
-    color:#fff;
-
-    font-family:var(--display);
-
-    font-size:1.5rem;
-
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
-
-    transition:
-        background .35s ease,
-        border-color .35s ease,
-        transform .45s cubic-bezier(.2,.8,.2,1);
-}
-
-
-/* =========================================================
-   CARD INFO
-   ========================================================= */
-
-.academic-project-card-info{
-    display:grid;
-
-    grid-template-columns:
-        70px
-        1fr;
-
-    gap:25px;
-
-    padding:
-        28px
-        30px
-        32px;
-}
-
-
-.academic-project-card-number{
-    font-family:var(--mono);
-
-    font-size:.65rem;
-
-    letter-spacing:.1em;
-
-    color:var(--muted);
-}
-
-
-.academic-project-card-content{
-    min-width:0;
-}
-
-
-.academic-project-card-name{
-    font-family:var(--display);
-
-    font-size:
-        clamp(1.8rem,3.2vw,3.8rem);
-
-    line-height:.9;
-
-    letter-spacing:-.06em;
-
-    color:var(--text);
-
-    transition:
-        color .35s ease;
-}
-
-
-.academic-project-card-type{
-    margin-top:14px;
-
-    font-family:var(--mono);
-
-    font-size:.58rem;
-
-    line-height:1.4;
-
-    letter-spacing:.08em;
-
-    text-transform:uppercase;
-
-    color:var(--muted);
-}
-
-
-/* =========================================================
-   PROJECT CARD HOVER
-   ========================================================= */
-
-.academic-project-card:hover
-.academic-project-card-image img{
-
-    transform:scale(1.045);
-}
-
-
-.academic-project-card:hover
-.academic-project-card-overlay{
-
-    opacity:.8;
-}
-
-
-.academic-project-card:hover
-.academic-project-card-arrow{
-
-    background:var(--red);
-
-    border-color:var(--red);
-
-    transform:translate(4px,-4px);
-}
-
-
-.academic-project-card:hover
-.academic-project-card-name{
-
-    color:var(--red);
-}
-
-
-/* =========================================================
-   FOCUS
-   ========================================================= */
-
-.academic-project-card:focus{
-    outline:none;
-}
-
-
-.academic-project-card:focus-visible{
-    outline:1px solid var(--red);
-    outline-offset:-1px;
-}
-
-
-/* =========================================================
-   CONTINUE TO SITE
-   ========================================================= */
-
-.academic-continue-site{
-
-    position:relative;
-
-    width:100%;
-
-    margin-top:clamp(45px,6vw,80px);
-
-    padding:
-        clamp(28px,4vw,45px)
-        0;
-
-    display:grid;
-
-    grid-template-columns:
-        1fr
-        auto
-        auto;
-
-    align-items:center;
-
-    column-gap:30px;
-
-    border:0;
-
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-
-    background:transparent;
-
-    color:var(--text);
-
-    text-align:left;
-
-    cursor:pointer;
-
-    font:inherit;
-
-    transition:
-        color .35s ease,
-        padding .4s ease,
-        border-color .35s ease;
-}
-
-
-/* =========================================================
-   CONTINUE LABEL
-   ========================================================= */
-
-.academic-continue-label{
-
-    font-family:var(--mono);
-
-    font-size:.65rem;
-
-    line-height:1;
-
-    letter-spacing:.12em;
-
-    text-transform:uppercase;
-
-    color:var(--muted);
-
-    transition:
-        color .35s ease;
-}
-
-
-.academic-continue-destination{
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(1.5rem,3vw,3rem);
-
-    line-height:.9;
-
-    letter-spacing:-.05em;
-
-    color:var(--text);
-
-    transition:
-        color .35s ease,
-        transform .4s ease;
-}
-
-
-.academic-continue-arrow{
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(1.8rem,3vw,3rem);
-
-    line-height:1;
-
-    color:var(--red);
-
-    transition:
-        transform .45s cubic-bezier(.2,.8,.2,1);
-}
-
-
-/* =========================================================
-   CONTINUE HOVER
-   ========================================================= */
-
-.academic-continue-site:hover{
-
-    padding-left:12px;
-    padding-right:12px;
-
-    border-color:var(--red);
-}
-
-
-.academic-continue-site:hover
-.academic-continue-label{
-
-    color:var(--red);
-}
-
-
-.academic-continue-site:hover
-.academic-continue-destination{
-
-    color:var(--red);
-
-    transform:translateX(5px);
-}
-
-
-.academic-continue-site:hover
-.academic-continue-arrow{
-
-    transform:translateX(10px);
-}
-
 
 /* =========================================================
    MOBILE
@@ -7940,7 +7886,6 @@ footer{
 
 }
 
-
 /* =========================================================
    SMALL MOBILE
    ========================================================= */
@@ -7969,76 +7914,6 @@ footer{
 }
 
 /* =========================================================
-   PROFESSIONAL WORK — NAVIGATION
-========================================================= */
-
-.professional-cnic-projects {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0;
-    width: 100%;
-}
-
-.professional-project-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-}
-
-.professional-project-card {
-    position: relative;
-    display: block;
-    width: 100%;
-    min-width: 0;
-    padding: 0;
-    margin: 0;
-    border: 1px solid var(--dark);
-    border-radius: 0;
-    background: transparent;
-    color: inherit;
-    text-align: left;
-    cursor: pointer;
-    overflow: hidden;
-}
-
-.professional-project-card-media {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-}
-
-.professional-project-card-media img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.professional-project-card:hover img {
-    transform: scale(1.03);
-}
-
-.professional-project-card-info {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 20px;
-    padding: 18px 20px;
-    border-top: 1px solid var(--dark);
-}
-
-.professional-project-card-info h3 {
-    margin: 0;
-}
-
-.professional-project-card-number,
-.professional-project-card-arrow {
-    font-family: var(--mono);
-}
-
-
-/* =========================================================
    PROFESSIONAL WORK — MOBILE
 ========================================================= */
 
@@ -8049,95 +7924,6 @@ footer{
     }
 
 }
-
-
-/* =========================================================
-   CONTINUE EXPLORING
-========================================================= */
-.professional-continue {
-    margin-top: 40px;
-   margin-bottom: 40px;
-}
-
-.professional-continue-heading {
-    margin-bottom: 20px;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-}
-
-.professional-continue-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0;
-}
-
-.professional-continue-card {
-    display: block;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    border: 1px solid var(--dark);
-    border-radius: 0;
-    background: transparent;
-    color: inherit;
-    text-align: left;
-    cursor: pointer;
-    overflow: hidden;
-}
-
-.professional-continue-media {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-}
-
-.professional-continue-media img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.professional-continue-card:hover img {
-    transform: scale(1.03);
-}
-
-.professional-continue-label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 18px;
-    border-top: 1px solid var(--dark);
-}
-
-
-/* =========================================================
-   EXIT
-========================================================= */
-
-.professional-exit {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 40px;
-    padding: 18px 20px;
-    border: 1px solid var(--dark);
-    background: transparent;
-    color: var(--dark);
-    cursor: pointer;
-    transition:
-        background-color 0.25s ease,
-        color 0.25s ease;
-}
-
-.professional-exit:hover {
-    background: var(--dark);
-    color: var(--bg);
-}
-
 
 /* =========================================================
    MOBILE
@@ -8154,30 +7940,3 @@ footer{
         margin-top: 70px;
     }
 }
-
-/* ========================================================= 
-   PATCH : ACADEMICAL & PROFESSIONAL WORKS ISOLATION 
-========================================================= */
-
-.professional-exit {
-    display: none !important;
-}
-
-body.professional-locked .professional-exit {
-    display: inline-flex !important;
-}
-
-#professional-work .scroll-indicator,
-#professional-work .arrow-down {
-    display: none !important; 
-}
-
-#work,
-#work .project-detail,
-#work .academic-project-detail {
-    height: auto;
-    min-height: 0;
-    max-height: none;
-    overflow: visible;
-}
-
