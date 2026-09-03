@@ -160,13 +160,12 @@ function getMaxLockedScroll(){
     const rect =
         section.getBoundingClientRect();
 
-    return (
-        window.scrollY +
-        rect.bottom -
-        window.innerHeight
-       40   // marge visuelle avant la section suivante
-    );
-
+   return (
+      window.scrollY +
+      rect.bottom -
+      window.innerHeight -
+      40   // marge visuelle avant la section suivante
+      );
 }
 
 
