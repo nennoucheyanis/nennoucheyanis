@@ -5791,7 +5791,6 @@ PROJECT 03 — RENDER LABEL
     flex:0 1 25%;
     max-width:calc(25% * var(--project-image-size));
     min-width:0;
-    aspect-ratio:4 / 3;
     margin:0 auto;
     overflow:hidden;
     background:var(--bg-soft);
@@ -5801,8 +5800,8 @@ PROJECT 03 — RENDER LABEL
 #professional-rehab-metal-floor-view .professional-project-image img{
     display:block;
     width:100%;
-    height:100%;
-    object-fit:cover;
+    height:auto;
+    object-fit:contain;
     transition:transform .8s ease;
 }
 
@@ -5824,21 +5823,19 @@ PROJECT 03 — RENDER LABEL
     margin:0 0 20px;
 }
 
-/* Sur mobile : tout repasse en 1 colonne (pleine largeur), empile
-   dans l'ordre du HTML : image(s) puis texte, ou texte puis image(s)
-   pour les lignes .reverse */
+/* Sur mobile : tout repasse en 1 colonne */
 @media (max-width:768px){
     #professional-rehab-metal-floor-view .professional-project-row{
         flex-direction:column;
         gap:25px;
     }
+
     #professional-rehab-metal-floor-view .professional-project-text,
     #professional-rehab-metal-floor-view .professional-project-image{
         flex:1 1 100%;
         max-width:100%;
     }
 }
-
 /* ---------------------------------------------------------
    WOOD FLOOR (Timber Beam Floor)
 --------------------------------------------------------- */
