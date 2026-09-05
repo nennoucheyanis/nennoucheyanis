@@ -3021,68 +3021,123 @@ ul.story-text li::before{
    OBJECTIVES
 ========================================================= */
 
+/* La grille 2x2 des objectifs. Plus de bordures individuelles :
+   on les remplace par un grand "+" (voir ::before/::after plus bas)
+   qui separe les 4 objectifs au centre de la grille. */
 .urban-objectives{
-
     display:grid;
-
-    grid-template-columns:
-        repeat(2,minmax(0,1fr));
-
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:0;
-
-    border-top:1px solid var(--line);
-
-    border-left:1px solid var(--line);
-
+    position:relative;
 }
 
+/* Le grand "+" : une ligne verticale et une ligne horizontale,
+   toutes les deux centrees sur la grille entiere, qui se croisent
+   au milieu -> ca separe visuellement les 4 objectifs sans les
+   entourer chacun d'un cadre individuel */
+.urban-objectives::before,
+.urban-objectives::after{
+    content:"";
+    position:absolute;
+    background:var(--line);
+    pointer-events:none;
+}
+
+/* barre verticale du "+" */
+.urban-objectives::before{
+    top:0;
+    bottom:0;
+    left:50%;
+    width:1px;
+    transform:translateX(-50%);
+}
+
+/* barre horizontale du "+" */
+.urban-objectives::after{
+    left:0;
+    right:0;
+    top:50%;
+    height:1px;
+    transform:translateY(-50%);
+}
+
+/* Chaque objectif = une mini-ligne texte + photo, cote a cote.
+   Chacun prend la moitie de la largeur totale (grid 2 colonnes),
+   et a l'interieur se divise en 50/50 -> texte 25% + photo 25%
+   de la largeur totale de la page. */
 .urban-objective{
+    display:flex;
+    align-items:center;
+    gap:35px;
+    padding:55px 40px;
+}
 
-    padding:35px;
+.urban-objective-text{
+    flex:1 1 50%;
+    min-width:0;
+}
 
-    border-right:1px solid var(--line);
+.urban-objective-media{
+    flex:1 1 50%;
+    min-width:0;
+    aspect-ratio:4 / 3;
+    overflow:hidden;
+    background:var(--bg-soft);
+}
 
-    border-bottom:1px solid var(--line);
+.urban-objective-media img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .6s ease;
+}
 
+.urban-objective:hover .urban-objective-media img{
+    transform:scale(1.03);
 }
 
 .urban-objective-number{
-
     font-family:var(--mono);
-
     font-size:.58rem;
-
     color:var(--red);
-
     margin-bottom:35px;
-
 }
 
 .urban-objective h4{
-
     font-family:var(--display);
-
-    font-size:
-        clamp(1.6rem,3vw,3rem);
-
+    font-size:clamp(1.4rem,2.4vw,2.2rem);
     font-weight:500;
-
     letter-spacing:-.045em;
-
     margin-bottom:15px;
-
 }
 
 .urban-objective p{
-
-    max-width:430px;
-
     font-size:.75rem;
-
     line-height:1.8;
-
     color:var(--muted);
+}
 
+/* Sur petit ecran : 1 seule colonne, texte au-dessus de la photo,
+   et le grand "+" devient une simple ligne horizontale entre
+   chaque objectif (plus de croix, pas assez de place) */
+@media (max-width:700px){
+    .urban-objectives{
+        grid-template-columns:1fr;
+    }
+    .urban-objectives::before,
+    .urban-objectives::after{
+        display:none;
+    }
+    .urban-objective{
+        flex-direction:column;
+        align-items:stretch;
+        padding:40px 0;
+        border-bottom:1px solid var(--line);
+    }
+    .urban-objective:last-child{
+        border-bottom:none;
+    }
 }
 
 /* =========================================================
