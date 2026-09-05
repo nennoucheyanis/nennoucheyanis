@@ -3251,11 +3251,13 @@ ul.story-text li::before{
     display:grid;
 
     grid-template-columns:
-        70px 1fr;
+        24px 1fr;
+
+    align-items:center;
 
     gap:20px;
 
-    padding:22px 20px;
+    padding:16px 20px;
 
     border-right:1px solid var(--line);
 
@@ -3263,13 +3265,16 @@ ul.story-text li::before{
 
 }
 
-.urban-code{
+/* Petit carre de couleur qui remplace l'ancien code texte (A01, A02...) */
+.urban-color-swatch{
 
-    font-family:var(--mono);
+    display:block;
 
-    font-size:.58rem;
+    width:18px;
 
-    color:var(--red);
+    height:18px;
+
+    border:1px solid rgba(0,0,0,.15);
 
 }
 
