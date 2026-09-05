@@ -5754,7 +5754,7 @@ PROJECT 03 — RENDER LABEL
     display:flex;
     flex-wrap:nowrap;
     gap:50px;
-    align-items:flex-start;
+    align-items:center;
 }
 
 /* Le texte : largeur fixe = 25% de la ligne, ne bouge jamais
@@ -5772,24 +5772,26 @@ PROJECT 03 — RENDER LABEL
      donc elles se contractent TOUTES ENSEMBLE a parts egales
      (flex-shrink:1 identique sur toutes) pour rentrer exactement
      dans l'espace restant (75%), sans jamais toucher au texte */
+/* Cadre de chaque image :
+   - flex:0 1 25% -> largeur (voir explication plus haut)
+   - --project-image-size -> reduit encore un peu la largeur a
+     l'interieur de son emplacement (baisse le % pour plus petit)
+   - aspect-ratio -> FIXE la hauteur par rapport a la largeur, quel
+     que soit le format d'origine de la photo (portrait ou paysage).
+     C'est ce qui evite qu'une photo "portrait" (haute et etroite)
+     n'etire toute la ligne en hauteur. Change la valeur (ex: 3/4
+     pour plus carre, 16/9 pour plus large/bas) selon le rendu voulu.
+     object-fit:cover (regle plus bas) recadre la photo pour remplir
+     ce ratio sans la deformer. */
+#professional-rehab-metal-floor-view{
+    --project-image-size:.7; /* 1 = pleine largeur (25%), .7 = 70% de cette largeur, etc. */
+}
+
 #professional-rehab-metal-floor-view .professional-project-image{
     flex:0 1 25%;
-    max-width:25%;
+    max-width:calc(25% * var(--project-image-size));
     min-width:0;
-}
-
-/* Cadre de chaque image
-   --> --project-image-size controle la taille de TOUTES les images
-   a l'interieur de leur emplacement : baisse le pourcentage pour les
-   rendre plus petites, remonte-le (jusqu'a 100%) pour qu'elles
-   remplissent tout leur espace. */
-#professional-rehab-metal-floor-view{
-    --project-image-size:70%;
-}
-
-#professional-rehab-metal-floor-view .professional-project-image{
-    width:100%;
-    max-width:var(--project-image-size);
+    aspect-ratio:4 / 3;
     margin:0 auto;
     overflow:hidden;
     background:var(--bg-soft);
@@ -5799,7 +5801,7 @@ PROJECT 03 — RENDER LABEL
 #professional-rehab-metal-floor-view .professional-project-image img{
     display:block;
     width:100%;
-    height:auto;
+    height:100%;
     object-fit:cover;
     transition:transform .8s ease;
 }
