@@ -3290,6 +3290,54 @@ ul.story-text li::before{
    URBAN RENDERS
 ========================================================= */
 
+/* =========================================================
+   SPLIT MEDIA — 2 images cote a cote (50/50)
+   Regle de base manquante : .split-media n'avait aucune mise en
+   page definie, du coup les 2 images a l'interieur s'empilaient
+   au lieu de se partager la largeur. Utilisee par plusieurs
+   projets (ex: Urban Renders du projet 02, Renders du projet 03).
+========================================================= */
+
+.split-media{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:30px;
+
+}
+
+.split-media .media{
+
+    width:100%;
+
+    overflow:hidden;
+
+    cursor:zoom-in;
+
+}
+
+.split-media .media img{
+
+    display:block;
+
+    width:100%;
+
+    height:auto;
+
+    object-fit:cover;
+
+    transition:transform .6s ease;
+
+}
+
+.split-media .media:hover img{
+
+    transform:scale(1.03);
+
+}
+
 .urban-renders .large-media{
 
     margin-top:45px;
