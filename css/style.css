@@ -5742,41 +5742,55 @@ PROJECT 03 — RENDER LABEL
     padding-top:0;
 }
 
-/* La ligne : grille 2 colonnes egales -> 50% image(s) / 50% texte */
+/* La ligne : flexbox, une seule ligne (nowrap). Le texte garde
+   toujours 25% de largeur fixe ; chaque photo veut aussi faire 25%,
+   et elles ne se contractent (a parts egales) que si leur nombre
+   depasse ce que la largeur restante peut contenir a 25% chacune.
+   L'ordre gauche/droite suit simplement l'ordre du HTML : une ligne
+   normale commence par l'image (donc image a gauche, texte a droite),
+   une ligne .reverse commence par le texte (texte a gauche, image(s)
+   a droite) -- pas besoin de regle CSS separee pour .reverse. */
 #professional-rehab-metal-floor-view .professional-project-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
+    display:flex;
+    flex-wrap:nowrap;
     gap:50px;
-    align-items:start;
+    align-items:flex-start;
 }
 
-/* Ligne NORMALE (sans .reverse) : image(s) a GAUCHE, texte a DROITE */
-#professional-rehab-metal-floor-view .professional-project-row:not(.reverse) .professional-project-image{
-    grid-column:1;
+/* Le texte : largeur fixe = 25% de la ligne, ne bouge jamais
+   (ni grow ni shrink), quel que soit le nombre de photos en face */
+#professional-rehab-metal-floor-view .professional-project-text{
+    flex:0 0 25%;
+    max-width:25%;
 }
 
-#professional-rehab-metal-floor-view .professional-project-row:not(.reverse) .professional-project-text{
-    grid-column:2;
-    grid-row:1 / -1;
+/* Chaque photo "veut" faire 25% (comme le texte) :
+   - 1 ou 2 ou 3 photos -> chacune garde ses 25% naturels,
+     le reste de la largeur reste vide (flex-grow:0)
+   - a partir de 4 photos -> il n'y a plus la place pour que
+     chacune fasse 25% (ca depasserait les 100% avec le texte),
+     donc elles se contractent TOUTES ENSEMBLE a parts egales
+     (flex-shrink:1 identique sur toutes) pour rentrer exactement
+     dans l'espace restant (75%), sans jamais toucher au texte */
+#professional-rehab-metal-floor-view .professional-project-image{
+    flex:0 1 25%;
+    max-width:25%;
+    min-width:0;
 }
 
-/* Ligne .reverse : texte a GAUCHE, image(s) a DROITE */
-#professional-rehab-metal-floor-view .professional-project-row.reverse .professional-project-image{
-    grid-column:2;
+/* Cadre de chaque image
+   --> --project-image-size controle la taille de TOUTES les images
+   a l'interieur de leur emplacement : baisse le pourcentage pour les
+   rendre plus petites, remonte-le (jusqu'a 100%) pour qu'elles
+   remplissent tout leur espace. */
+#professional-rehab-metal-floor-view{
+    --project-image-size:70%;
 }
 
-#professional-rehab-metal-floor-view .professional-project-row.reverse .professional-project-text{
-    grid-column:1;
-    grid-row:1 / -1;
-}
-
-/* Si 2 images sont presentes dans la meme ligne (grid-column fixe
-   ci-dessus), elles s'empilent automatiquement l'une sous l'autre
-   dans leur moitie, avec le "gap" de la grille comme espacement */
-
-/* Cadre de chaque image */
 #professional-rehab-metal-floor-view .professional-project-image{
     width:100%;
+    max-width:var(--project-image-size);
+    margin:0 auto;
     overflow:hidden;
     background:var(--bg-soft);
     border:1px solid var(--line);
@@ -5808,16 +5822,18 @@ PROJECT 03 — RENDER LABEL
     margin:0 0 20px;
 }
 
-/* Sur mobile : tout repasse en 1 colonne, image(s) puis texte */
+/* Sur mobile : tout repasse en 1 colonne (pleine largeur), empile
+   dans l'ordre du HTML : image(s) puis texte, ou texte puis image(s)
+   pour les lignes .reverse */
 @media (max-width:768px){
     #professional-rehab-metal-floor-view .professional-project-row{
-        grid-template-columns:1fr;
+        flex-direction:column;
         gap:25px;
     }
-    #professional-rehab-metal-floor-view .professional-project-row .professional-project-image,
-    #professional-rehab-metal-floor-view .professional-project-row .professional-project-text{
-        grid-column:1;
-        grid-row:auto;
+    #professional-rehab-metal-floor-view .professional-project-text,
+    #professional-rehab-metal-floor-view .professional-project-image{
+        flex:1 1 100%;
+        max-width:100%;
     }
 }
 
