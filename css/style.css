@@ -5927,6 +5927,13 @@ PROJECT 03 — RENDER LABEL
     flex-wrap:nowrap;
     gap:50px;
     align-items:center;
+    margin-bottom:60px;
+}
+
+/* La derniere ligne d'une section n'a pas besoin d'espace en dessous,
+   le padding de la section s'en charge deja */
+#professional-rehab-metal-floor-view .professional-project-row:last-child{
+    margin-bottom:0;
 }
 
 /* Le texte : largeur fixe = 25% de la ligne, ne bouge jamais
