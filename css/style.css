@@ -5670,6 +5670,118 @@ PROJECT 03 — RENDER LABEL
 }
 
 /* =========================================================
+   15 — REHABILITATION SUB-PROJECTS (CONTROLE INDIVIDUEL)
+========================================================= */
+
+/* Ces 3 blocs ciblent chacun UNE SEULE page (grace a l'ID de la vue),
+   donc tu peux changer les valeurs dans l'un sans toucher aux 2 autres.
+   Au depart, les valeurs sont identiques a l'affichage actuel (partage) :
+   rien ne bouge tant que tu ne modifies pas les chiffres ci-dessous.
+
+   Pour chaque page tu peux régler :
+   - le TITRE (taille, alignement)
+   - la ligne META "Reconstruction / Architectural Practice / Algiers"
+     (alignement, espacement)
+   - le TEXTE de description (largeur, alignement)
+   - les IMAGES (largeur/hauteur, cadrage object-fit / object-position,
+     alignement dans la page)
+*/
+
+/* ---------------------------------------------------------
+   STAIRS
+--------------------------------------------------------- */
+
+#professional-rehab-stairs-view .project-detail-title{
+    /* Taille et alignement du titre "Stairs" */
+    text-align:left;
+}
+
+#professional-rehab-stairs-view .project-detail-meta{
+    /* Alignement de "Reconstruction / Architectural Practice / Algiers" */
+    justify-content:flex-start;
+    gap:12px 35px;
+}
+
+#professional-rehab-stairs-view .professional-project-introduction p{
+    /* Largeur et alignement du paragraphe de description */
+    max-width:700px;
+    text-align:left;
+}
+
+#professional-rehab-stairs-view .professional-media{
+    /* Cadre de l'image : change max-width pour la rendre plus petite/grande,
+       margin:0 auto pour la centrer */
+    max-width:100%;
+    margin:0;
+}
+
+#professional-rehab-stairs-view .professional-media img{
+    /* Cadrage de l'image : height fixe + object-fit + object-position
+       permettent de recadrer sans déformer */
+    height:auto;
+    object-fit:contain;
+    object-position:center center;
+}
+
+/* ---------------------------------------------------------
+   METAL BEAM & BRICK VAULT FLOOR
+--------------------------------------------------------- */
+
+#professional-rehab-metal-floor-view .project-detail-title{
+    text-align:left;
+}
+
+#professional-rehab-metal-floor-view .project-detail-meta{
+    justify-content:flex-start;
+    gap:12px 35px;
+}
+
+#professional-rehab-metal-floor-view .professional-project-introduction p{
+    max-width:700px;
+    text-align:left;
+}
+
+#professional-rehab-metal-floor-view .professional-media{
+    max-width:100%;
+    margin:0;
+}
+
+#professional-rehab-metal-floor-view .professional-media img{
+    height:auto;
+    object-fit:contain;
+    object-position:center center;
+}
+
+/* ---------------------------------------------------------
+   WOOD FLOOR (Timber Beam Floor)
+--------------------------------------------------------- */
+
+#professional-rehab-wood-floor-view .project-detail-title{
+    text-align:left;
+}
+
+#professional-rehab-wood-floor-view .project-detail-meta{
+    justify-content:flex-start;
+    gap:12px 35px;
+}
+
+#professional-rehab-wood-floor-view .professional-project-introduction p{
+    max-width:700px;
+    text-align:left;
+}
+
+#professional-rehab-wood-floor-view .professional-media{
+    max-width:100%;
+    margin:0;
+}
+
+#professional-rehab-wood-floor-view .professional-media img{
+    height:auto;
+    object-fit:contain;
+    object-position:center center;
+}
+
+/* =========================================================
    PROFESSIONAL WORK — FLOATING BACK BUTTON
 ========================================================= */
 
