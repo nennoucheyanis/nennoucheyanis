@@ -3189,8 +3189,31 @@ ul.story-text li::before{
 }
 
 /* =========================================================
-   MASTERPLAN
+   MASTERPLAN + PROGRAMMING — cote a cote
+   (la programmation devient une legende verticale a cote du plan)
 ========================================================= */
+
+.masterplan-pair{
+
+    display:flex;
+
+    gap:60px;
+
+    align-items:flex-start;
+
+    margin-bottom:150px;
+
+}
+
+.masterplan-pair .story-block{
+
+    flex:1 1 50%;
+
+    min-width:0;
+
+    margin-bottom:0;
+
+}
 
 .urban-masterplan .large-media{
 
@@ -3212,6 +3235,14 @@ ul.story-text li::before{
     border-top:1px solid var(--line);
 
     border-left:1px solid var(--line);
+
+}
+
+/* Quand elle est dans le duo avec le masterplan, la grille passe
+   en 1 seule colonne pour ressembler a une legende verticale */
+.masterplan-pair .urban-programming-grid{
+
+    grid-template-columns:1fr;
 
 }
 
@@ -7794,6 +7825,18 @@ PROJECT 03 — MOBILE
     .urban-programming-grid{
 
         grid-template-columns:1fr;
+
+    }
+
+    .masterplan-pair{
+
+        flex-direction:column;
+
+    }
+
+    .masterplan-pair .urban-programming-grid{
+
+        grid-template-columns:repeat(2,minmax(0,1fr));
 
     }
 
