@@ -1536,6 +1536,39 @@ nav.scrolled{
     margin-bottom:150px;
 }
 
+/* ---------------------------------------------------------
+   URBAN PROJECT (Between Sky and Sea) — CONCEPT & URBAN STRATEGY
+   cote a cote. Scope a .urban-project-detail pour ne pas toucher
+   aux autres projets qui utilisent aussi .story-block/.concept-content
+--------------------------------------------------------- */
+
+.urban-project-detail .story-pair{
+    display:flex;
+    gap:60px;
+    align-items:flex-start;
+    margin-bottom:150px;
+}
+
+.urban-project-detail .story-pair .story-block{
+    flex:1 1 0;
+    min-width:0;
+    margin-bottom:0;
+}
+
+/* Le bloc Concept a normalement son texte et son image cote a cote
+   (grid 2 colonnes) : une fois reduit a la moitie de la page, on
+   repasse en 1 seule colonne (image sous le texte) pour rester lisible */
+.urban-project-detail .story-pair .concept-content{
+    grid-template-columns:1fr;
+}
+
+/* Sur petit ecran : les deux blocs repassent l'un sous l'autre */
+@media (max-width:900px){
+    .urban-project-detail .story-pair{
+        flex-direction:column;
+    }
+}
+
 .story-heading{
 
     display:grid;
