@@ -3141,54 +3141,6 @@ ul.story-text li::before{
 }
 
 /* =========================================================
-   ACTIONS
-========================================================= */
-
-.urban-actions{
-
-    border-top:1px solid var(--line);
-
-}
-
-.urban-action{
-
-    display:grid;
-
-    grid-template-columns:
-        100px 1fr;
-
-    gap:40px;
-
-    align-items:center;
-
-    padding:25px 0;
-
-    border-bottom:1px solid var(--line);
-
-}
-
-.urban-action span{
-
-    font-family:var(--mono);
-
-    font-size:.58rem;
-
-    color:var(--red);
-
-}
-
-.urban-action p{
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(1.1rem,2vw,1.8rem);
-
-    letter-spacing:-.025em;
-
-}
-
-/* =========================================================
    MASTERPLAN + PROGRAMMING — cote a cote
    (la programmation devient une legende verticale a cote du plan)
 ========================================================= */
@@ -7076,274 +7028,231 @@ PROJECT 03 — MOBILE
 
 
     /* =============================================
-      ACTIONS
+      ACTIONS — Projet 02 / 05 (classes urban-action-*)
+      75% dessins / plans / coupes  |  25% genèse des actions
     ============================================== */
 
-.action-block{
-    margin-bottom:150px;
+.urban-actions-list{
+    display:flex;
+    flex-direction:column;
+    gap:110px;
+    margin-bottom:110px;
 }
 
-/* 05.01 / 05.02 / 05.03 — INTRODUCTION */
+.urban-action-block{
+    min-width:0;
+}
 
-.action-intro{
+.urban-action-block > .project-section-label{
+    margin-bottom:28px;
+}
+
+/* Grille 75% / 25% */
+.urban-action-grid{
     display:grid;
-    grid-template-columns:140px 1fr;
+    grid-template-columns:minmax(0,3fr) minmax(0,1fr);
     gap:40px;
     align-items:start;
-    margin-bottom:70px;
 }
 
-.action-symbol{
-    width:100%;
-}
-
-.action-symbol img{
-    width:100%;
-    height:auto;
-    object-fit:contain;
-    display:block;
-}
-
-.action-description{
-    max-width:650px;
-    font-size:.9rem;
-    line-height:1.9;
-    color:var(--muted);
-}
-
-/* CONTENT GRID — 25% GENESIS / 75% INTERVENTION */
-
-.action-content-grid{
-    display:grid;
-    grid-template-columns:25% 75%;
+.urban-action-main{
+    display:flex;
+    flex-direction:column;
     gap:50px;
-    align-items:start;
-}
-
-/* GENESIS OF THE ACTIONS */
-
-.action-genesis{
-    display:flex;
-    flex-direction:column;
-    gap:35px;
     min-width:0;
 }
 
-.action-genesis-item{
-    width:100%;
+/* 5.1 — 2 dessins côte à côte */
+.urban-action-drawings{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:22px;
 }
 
-.action-genesis-item img{
-    width:100%;
-    height:auto;
-    object-fit:contain;
-    display:block;
-    background:var(--bg-soft);
-    border:1px solid var(--line);
-    cursor:zoom-in;
-    transition:transform .5s ease;
-}
-
-.action-genesis-item:hover img{
-    transform:scale(1.015);
-}
-
-/* INTERVENTION */
-
-.action-intervention{
+/* 5.2 — Ali Rached / Victor Hugo */
+.urban-action-subgroup{
     display:flex;
     flex-direction:column;
-    gap:70px;
-    min-width:0;
-}
-
-/* SITE LOCATION */
-
-.action-location{
-    width:100%;
-}
-
-.action-location .project-section-label{
-    margin-bottom:18px;
-}
-
-.action-location img{
-    width:100%;
-    height:auto;
-    object-fit:contain;
-    display:block;
-    background:var(--bg-soft);
-    border:1px solid var(--line);
-    cursor:zoom-in;
-    transition:transform .5s ease;
-}
-
-.action-location img:hover{
-    transform:scale(1.012);
-}
-
-/* Légendes plus compactes quand .project-section-label
-   est réutilisé comme micro-caption (drawings, location, subsections) */
-
-.action-genesis .project-section-label,
-.action-intervention .project-section-label,
-.action-location .project-section-label,
-.action-drawing .project-section-label,
-.action-subsection .project-section-label{
-    margin-bottom:12px;
-}
-
-/* SUBSECTION */
-
-.action-subsection{
-    display:flex;
-    flex-direction:column;
-    gap:30px;
-    padding-top:45px;
+    gap:16px;
+    padding-top:40px;
     border-top:1px solid var(--line);
 }
 
-.action-subsection:first-child{
+.urban-action-subgroup:first-child{
     padding-top:0;
     border-top:0;
 }
 
-/* DRAWINGS */
-
-.action-drawings{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:25px;
+.urban-action-subgroup-title{
+    font-family:var(--mono);
+    font-size:.58rem;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--red);
 }
 
-.action-drawing{
-    width:100%;
+.urban-action-subgroup-items{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+}
+
+/* 5.3 — 2 coupes + 1 plan commun */
+.urban-action-triplet{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+}
+
+/* Colonne 25% — genèse (plans uniquement, nombre variable) */
+.urban-action-genesis{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
     min-width:0;
 }
 
-.action-drawing img{
+.urban-action-genesis-label{
+    font-family:var(--mono);
+    font-size:.58rem;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--red);
+}
+
+.urban-action-genesis-plans{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+/* Médias + légendes (scopés à cette section) */
+.urban-actions-list .urban-media-item{
+    margin:0;
+    min-width:0;
+}
+
+.urban-actions-list .urban-media{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    cursor:zoom-in;
+}
+
+.urban-actions-list .urban-media img{
     width:100%;
     height:auto;
     object-fit:contain;
     display:block;
-    background:var(--bg-soft);
-    border:1px solid var(--line);
-    cursor:zoom-in;
     transition:transform .5s ease;
 }
 
-.action-drawing:hover img{
+.urban-actions-list .urban-media-item:hover .urban-media img{
     transform:scale(1.012);
 }
 
-.action-drawing-full{
-    grid-column:1 / -1;
+.urban-actions-list figcaption{
+    margin-top:10px;
+    font-family:var(--mono);
+    font-size:.52rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
 }
 
-/* GLOBAL SECTION */
-
-.global-action-section{
-    margin-top:150px;
-    padding-top:60px;
+/* 05.4 — coupe globale */
+.urban-actions-closing{
+    margin-bottom:150px;
+    padding-top:50px;
     border-top:1px solid var(--line);
 }
 
-.action-global-section{
+.urban-actions-closing .large-media{
     width:100%;
+    overflow:hidden;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    cursor:zoom-in;
 }
 
-.action-global-section img{
+.urban-actions-closing .large-media img{
     width:100%;
     height:auto;
     object-fit:contain;
     display:block;
-    background:var(--bg-soft);
-    border:1px solid var(--line);
-    cursor:zoom-in;
     transition:transform .5s ease;
 }
 
-.action-global-section img:hover{
+.urban-actions-closing .large-media:hover img{
     transform:scale(1.01);
 }
 
-/* RESPONSIVE */
+.urban-actions-closing .caption{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    margin:15px 0 0;
+    font-family:var(--mono);
+    font-size:.55rem;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--muted);
+}
 
 @media(max-width:900px){
-
-    .action-intro{
-        grid-template-columns:70px 1fr;
-        gap:25px;
-        margin-bottom:55px;
+    .urban-actions-list{
+        gap:80px;
+        margin-bottom:80px;
     }
 
-    .action-content-grid{
-        gap:40px;
+    .urban-action-grid{
+        gap:28px;
     }
 
-    .action-intervention{
-        gap:55px;
+    .urban-action-drawings,
+    .urban-action-subgroup-items,
+    .urban-action-triplet{
+        gap:14px;
     }
 
-    .action-subsection{
-        gap:25px;
-    }
-
-    .action-drawings{
-        gap:18px;
-    }
-
-    .global-action-section{
-        margin-top:110px;
-        padding-top:45px;
+    .urban-actions-closing{
+        margin-bottom:110px;
+        padding-top:40px;
     }
 }
 
-@media(max-width:600px){
-
-    .action-block{
-        margin-bottom:100px;
+@media(max-width:700px){
+    .urban-actions-list{
+        gap:70px;
+        margin-bottom:70px;
     }
 
-    .action-intro{
-        display:block;
-    }
-
-    .action-symbol{
-        max-width:110px;
-        margin-bottom:20px;
-    }
-
-    .action-content-grid{
+    .urban-action-grid{
         grid-template-columns:1fr;
-        gap:50px;
+        gap:40px;
     }
 
-    .action-genesis{
-        gap:25px;
-    }
-
-    .action-intervention{
-        gap:50px;
-    }
-
-    .action-subsection{
+    .urban-action-drawings,
+    .urban-action-subgroup-items,
+    .urban-action-triplet{
+        grid-template-columns:1fr;
         gap:22px;
-        padding-top:35px;
     }
 
-    .action-drawings{
-        grid-template-columns:1fr;
-        gap:30px;
+    .urban-action-subgroup{
+        padding-top:32px;
     }
 
-    .action-drawing-full{
-        grid-column:auto;
+    .urban-actions-closing{
+        margin-bottom:90px;
+        padding-top:32px;
     }
 
-    .global-action-section{
-        margin-top:90px;
-        padding-top:35px;
+    .urban-actions-closing .caption{
+        flex-direction:column;
+        gap:6px;
     }
 }
 
@@ -8185,14 +8094,6 @@ PROJECT 03 — MOBILE
 }
 
 @media(max-width:650px){
-
-    .urban-action{
-
-        grid-template-columns:1fr;
-
-        gap:10px;
-
-    }
 
     .urban-objective{
 
