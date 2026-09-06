@@ -7074,6 +7074,317 @@ PROJECT 03 — MOBILE
 
 }
 
+
+    /* =============================================
+      ACTIONS
+    ============================================== */
+
+.action-block{
+    margin-bottom:150px;
+}
+
+/* 05.01 / 05.02 / 05.03 — INTRODUCTION */
+
+.action-intro{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:40px;
+    align-items:start;
+    margin-bottom:70px;
+}
+
+.action-symbol{
+    width:100%;
+}
+
+.action-symbol img{
+    width:100%;
+    height:auto;
+    object-fit:contain;
+    display:block;
+}
+
+.action-description{
+    max-width:650px;
+    font-size:.9rem;
+    line-height:1.9;
+    color:var(--muted);
+}
+
+/* CONTENT GRID — 25% GENESIS / 75% INTERVENTION */
+
+.action-content-grid{
+    display:grid;
+    grid-template-columns:25% 75%;
+    gap:50px;
+    align-items:start;
+}
+
+/* GENESIS OF THE ACTIONS */
+
+.action-genesis{
+    display:flex;
+    flex-direction:column;
+    gap:35px;
+    min-width:0;
+}
+
+.action-genesis-item{
+    width:100%;
+}
+
+.action-genesis-item img{
+    width:100%;
+    height:auto;
+    object-fit:contain;
+    display:block;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    cursor:zoom-in;
+    transition:transform .5s ease;
+}
+
+.action-genesis-item:hover img{
+    transform:scale(1.015);
+}
+
+.action-genesis-caption{
+    margin-top:10px;
+    font-family:var(--mono);
+    font-size:.55rem;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--muted);
+}
+
+/* INTERVENTION */
+
+.action-intervention{
+    display:flex;
+    flex-direction:column;
+    gap:70px;
+    min-width:0;
+}
+
+/* SITE LOCATION */
+
+.action-location{
+    width:100%;
+}
+
+.action-location .project-section-label{
+    margin-bottom:18px;
+}
+
+.action-location .media{
+    width:100%;
+    overflow:hidden;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+}
+
+.action-location .media img{
+    width:100%;
+    height:auto;
+    object-fit:contain;
+    display:block;
+    cursor:zoom-in;
+    transition:transform .5s ease;
+}
+
+.action-location .media:hover img{
+    transform:scale(1.012);
+}
+
+/* SUBSECTION */
+
+.action-subsection{
+    padding-top:45px;
+    border-top:1px solid var(--line);
+}
+
+.action-subsection:first-child{
+    padding-top:0;
+    border-top:0;
+}
+
+.action-subsection-label{
+    margin-bottom:20px;
+    font-family:var(--mono);
+    font-size:.58rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--red);
+}
+
+.action-subsection-title{
+    margin-bottom:25px;
+    font-family:var(--display);
+    font-size:clamp(1.5rem,3vw,2.5rem);
+    line-height:1;
+    letter-spacing:-.03em;
+}
+
+.action-subsection-text{
+    max-width:600px;
+    margin-bottom:30px;
+    font-size:.8rem;
+    line-height:1.85;
+    color:var(--muted);
+}
+
+/* DRAWINGS */
+
+.action-drawings{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:25px;
+}
+
+.action-drawing{
+    width:100%;
+    min-width:0;
+}
+
+.action-drawing img{
+    width:100%;
+    height:auto;
+    object-fit:contain;
+    display:block;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    cursor:zoom-in;
+    transition:transform .5s ease;
+}
+
+.action-drawing:hover img{
+    transform:scale(1.012);
+}
+
+.action-drawing-caption{
+    margin-top:10px;
+    font-family:var(--mono);
+    font-size:.55rem;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--muted);
+}
+
+.action-drawing-full{
+    grid-column:1 / -1;
+}
+
+/* GLOBAL SECTION */
+
+.global-action-section{
+    margin-top:150px;
+    padding-top:60px;
+    border-top:1px solid var(--line);
+}
+
+.action-global-section{
+    width:100%;
+}
+
+.action-global-section .media{
+    width:100%;
+    overflow:hidden;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+}
+
+.action-global-section .media img{
+    width:100%;
+    height:auto;
+    object-fit:contain;
+    display:block;
+    cursor:zoom-in;
+    transition:transform .5s ease;
+}
+
+.action-global-section .media:hover img{
+    transform:scale(1.01);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .action-intro{
+        grid-template-columns:70px 1fr;
+        gap:25px;
+        margin-bottom:55px;
+    }
+
+    .action-content-grid{
+        gap:40px;
+    }
+
+    .action-intervention{
+        gap:55px;
+    }
+
+    .action-drawings{
+        gap:18px;
+    }
+
+    .global-action-section{
+        margin-top:110px;
+        padding-top:45px;
+    }
+}
+
+@media(max-width:600px){
+
+    .action-block{
+        margin-bottom:100px;
+    }
+
+    .action-intro{
+        display:block;
+    }
+
+    .action-symbol{
+        max-width:110px;
+        margin-bottom:20px;
+    }
+
+    .action-content-grid{
+        grid-template-columns:1fr;
+        gap:50px;
+    }
+
+    .action-genesis{
+        gap:25px;
+    }
+
+    .action-intervention{
+        gap:50px;
+    }
+
+    .action-subsection{
+        padding-top:35px;
+    }
+
+    .action-subsection-title{
+        font-size:1.6rem;
+    }
+
+    .action-drawings{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .action-drawing-full{
+        grid-column:auto;
+    }
+
+    .global-action-section{
+        margin-top:90px;
+        padding-top:35px;
+    }
+}
+
 /* =========================================================
    RESPONSIVE / ADAPTIVE RULES
    Centralized at the end of the stylesheet
