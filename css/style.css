@@ -7149,6 +7149,18 @@ PROJECT 03 — MOBILE
     transition:transform .5s ease;
 }
 
+/* Colonne 75% : tous les cadres (dessin / plan / coupe) ont la même taille */
+.urban-action-main .urban-media{
+    aspect-ratio:4 / 3;
+}
+.urban-action-main .urban-media img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
 .urban-actions-list .urban-media-item:hover .urban-media img{
     transform:scale(1.012);
 }
