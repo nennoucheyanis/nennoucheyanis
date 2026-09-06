@@ -7148,15 +7148,6 @@ PROJECT 03 — MOBILE
     transform:scale(1.015);
 }
 
-.action-genesis-caption{
-    margin-top:10px;
-    font-family:var(--mono);
-    font-size:.55rem;
-    text-transform:uppercase;
-    letter-spacing:.06em;
-    color:var(--muted);
-}
-
 /* INTERVENTION */
 
 .action-intervention{
@@ -7176,29 +7167,38 @@ PROJECT 03 — MOBILE
     margin-bottom:18px;
 }
 
-.action-location .media{
-    width:100%;
-    overflow:hidden;
-    background:var(--bg-soft);
-    border:1px solid var(--line);
-}
-
-.action-location .media img{
+.action-location img{
     width:100%;
     height:auto;
     object-fit:contain;
     display:block;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
     cursor:zoom-in;
     transition:transform .5s ease;
 }
 
-.action-location .media:hover img{
+.action-location img:hover{
     transform:scale(1.012);
+}
+
+/* Légendes plus compactes quand .project-section-label
+   est réutilisé comme micro-caption (drawings, location, subsections) */
+
+.action-genesis .project-section-label,
+.action-intervention .project-section-label,
+.action-location .project-section-label,
+.action-drawing .project-section-label,
+.action-subsection .project-section-label{
+    margin-bottom:12px;
 }
 
 /* SUBSECTION */
 
 .action-subsection{
+    display:flex;
+    flex-direction:column;
+    gap:30px;
     padding-top:45px;
     border-top:1px solid var(--line);
 }
@@ -7206,31 +7206,6 @@ PROJECT 03 — MOBILE
 .action-subsection:first-child{
     padding-top:0;
     border-top:0;
-}
-
-.action-subsection-label{
-    margin-bottom:20px;
-    font-family:var(--mono);
-    font-size:.58rem;
-    text-transform:uppercase;
-    letter-spacing:.1em;
-    color:var(--red);
-}
-
-.action-subsection-title{
-    margin-bottom:25px;
-    font-family:var(--display);
-    font-size:clamp(1.5rem,3vw,2.5rem);
-    line-height:1;
-    letter-spacing:-.03em;
-}
-
-.action-subsection-text{
-    max-width:600px;
-    margin-bottom:30px;
-    font-size:.8rem;
-    line-height:1.85;
-    color:var(--muted);
 }
 
 /* DRAWINGS */
@@ -7261,15 +7236,6 @@ PROJECT 03 — MOBILE
     transform:scale(1.012);
 }
 
-.action-drawing-caption{
-    margin-top:10px;
-    font-family:var(--mono);
-    font-size:.55rem;
-    text-transform:uppercase;
-    letter-spacing:.06em;
-    color:var(--muted);
-}
-
 .action-drawing-full{
     grid-column:1 / -1;
 }
@@ -7286,23 +7252,18 @@ PROJECT 03 — MOBILE
     width:100%;
 }
 
-.action-global-section .media{
-    width:100%;
-    overflow:hidden;
-    background:var(--bg-soft);
-    border:1px solid var(--line);
-}
-
-.action-global-section .media img{
+.action-global-section img{
     width:100%;
     height:auto;
     object-fit:contain;
     display:block;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
     cursor:zoom-in;
     transition:transform .5s ease;
 }
 
-.action-global-section .media:hover img{
+.action-global-section img:hover{
     transform:scale(1.01);
 }
 
@@ -7322,6 +7283,10 @@ PROJECT 03 — MOBILE
 
     .action-intervention{
         gap:55px;
+    }
+
+    .action-subsection{
+        gap:25px;
     }
 
     .action-drawings{
@@ -7363,11 +7328,8 @@ PROJECT 03 — MOBILE
     }
 
     .action-subsection{
+        gap:22px;
         padding-top:35px;
-    }
-
-    .action-subsection-title{
-        font-size:1.6rem;
     }
 
     .action-drawings{
