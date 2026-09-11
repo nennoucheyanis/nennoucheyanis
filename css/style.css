@@ -4985,11 +4985,6 @@ PROJECT 03 — RENDER LABEL
     align-items:start;
 }
 
-.research-pdf-preview{
-
-    height:900px;
-}
-
 .research-abstract{
 
     align-self:stretch;
@@ -5009,6 +5004,106 @@ PROJECT 03 — RENDER LABEL
         gap:50px;
     }
 
+}
+
+
+/* RESEARCH — THESIS TITLE (BOLD, ABOVE META)*/
+
+.thesis-title{
+
+    font-family:var(--display);
+
+    font-size:clamp(1.4rem,2.5vw,2rem);
+
+    font-weight:600;
+
+    letter-spacing:-.02em;
+
+    color:var(--text);
+}
+
+.thesis-title span{
+
+    display:block;
+
+    margin-top:8px;
+
+    font-family:var(--mono);
+
+    font-size:.6rem;
+
+    font-weight:400;
+
+    letter-spacing:.1em;
+
+    text-transform:uppercase;
+
+    color:var(--red);
+}
+
+
+/* RESEARCH — THESIS META (INSTITUTION / SPECIALTY / ETC.) */
+
+.thesis-meta{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px 25px;
+
+    margin:25px 0 30px;
+
+    padding:20px 0;
+
+    border-top:1px solid var(--line);
+
+    border-bottom:1px solid var(--line);
+}
+
+.thesis-meta .meta-label{
+
+    font-family:var(--mono);
+
+    font-size:.55rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+
+    color:var(--red);
+
+    margin-bottom:6px;
+}
+
+.thesis-meta .meta-value{
+
+    font-size:.75rem;
+
+    line-height:1.5;
+
+    color:var(--text);
+}
+
+@media(max-width:500px){
+
+    .thesis-meta{
+
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+/*RESEARCH — PDF PREVIEW HEIGHT*/
+
+.research-pdf-preview{
+
+    height:900px;
+}
+
+@media(max-width:900px){
+
     .research-pdf-preview{
 
         height:650px;
@@ -5024,6 +5119,7 @@ PROJECT 03 — RENDER LABEL
     }
 
 }
+
 /* =========================================================
    11 — PROFESSIONAL WORK
 ========================================================= */
