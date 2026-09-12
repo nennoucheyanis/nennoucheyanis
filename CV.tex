@@ -1,19 +1,22 @@
-% Resume Template
-% Author : Nennouche Yanis Abdelmalik
-
+% Resume - Nennouche Yanis Abdelmalik
+% Single column, original content preserved, profile + education highlighted near the top
 \documentclass[a4paper,10pt]{article}
 
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
 \usepackage{titlesec}
 \usepackage[usenames,dvipsnames]{color}
+\usepackage{xcolor}
 \usepackage{verbatim}
 \usepackage{enumitem}
 \usepackage[pdftex]{hyperref}
 \usepackage{fancyhdr}
+\usepackage{tikz}
+
+\definecolor{bordeaux}{HTML}{7A1F2B}
 
 \pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
+\fancyhf{}
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
@@ -26,18 +29,17 @@
 \addtolength{\textheight}{1in}
 
 \urlstyle{rm}
-
 \raggedbottom
 \raggedright
 \setlength{\tabcolsep}{0in}
 
-% Sections formatting
+% Sections formatting (colored rule, bordeaux)
 \titleformat{\section}{
-  \vspace{-10pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
+  \vspace{-10pt}\scshape\raggedright\large\color{bordeaux}
+}{}{0em}{}[\color{bordeaux}\titlerule \vspace{-6pt}]
 
 %-------------------------
-% Custom commands
+% Custom commands (unchanged from original template)
 \newcommand{\resumeItem}[2]{
   \item\small{
     \textbf{#1}{: #2 \vspace{-2pt}}
@@ -67,6 +69,27 @@
 \newcommand{\resumeItemListStart}{\begin{itemize}}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
+% Language proficiency bar -- visual only, no numeric/CEFR label
+\newcommand{\langbar}[2]{%
+  \noindent\textbf{#1}\hfill\\[-3pt]
+  \begin{tikzpicture}[baseline]
+    \draw[fill=bordeaux!15,draw=none] (0,0) rectangle (4.2,0.13);
+    \draw[fill=bordeaux,draw=none] (0,0) rectangle (#2*4.2/6,0.13);
+  \end{tikzpicture}\\[3pt]
+}
+
+% Software / tool badge: round icon with abbreviation + caption underneath
+\newcommand{\toolicon}[2]{%
+  \begin{minipage}[t]{1.55cm}
+    \centering
+    \begin{tikzpicture}
+      \draw[bordeaux, thick, fill=bordeaux!8] (0,0) circle (0.36cm);
+      \node[bordeaux, font=\bfseries\scriptsize] at (0,0) {#1};
+    \end{tikzpicture}\\[2pt]
+    {\scriptsize #2}
+  \end{minipage}%
+}
+
 %-----------------------------
 %%%%%%  CV STARTS HERE  %%%%%%
 
@@ -75,23 +98,34 @@
 %----------HEADING-----------------
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
   \textbf{{\LARGE Nennouche Yanis Abdelmalik }} & Email: \href{mailto:nennoucheyaya@gmail.com}{nennoucheyaya@gmail.com}\\
-  \href{https://www.linkedin.com/in/yanis-nennouche-b27040334/}{Linkedin: Yanis Nennouche} & Mobile:~~~+213 556 40 48 74 \\
+  \href{https://www.linkedin.com/in/yanis-nennouche-b27040334/}{Linkedin: Yanis Nennouche} \textbar{} \href{https://nennoucheyanis.github.io/nennoucheyanis/#hero}{Portfolio} & Mobile:~~~+213 556 40 48 74 \\
   State Architect  & Algiers, Algeria \\
 \end{tabular*}
 
+%-----------PROFILE-----------------
+\vspace{-8pt}
+\section{Profile}
+\small
+Architecture graduate student (Master's, Environmental Architecture \& Technologies) ranked 8th out of 296 students (top 2.7\%), combining strong academic training in parametric design and building performance simulation with hands-on field experience in structural rehabilitation and construction site supervision across Algiers. Seeking to bring analytical, design, and on-site problem-solving skills to a new professional or research environment.
+
 %-----------EDUCATION-----------------
+\vspace{-5pt}
 \section{Education}
   \resumeSubHeadingListStart
     \resumeSubheading
     {University of Algiers 1 -- Department of Architecture}{Algiers, Algeria}
     {Bachelor's Degree (Licence) in Architecture}{September 2021 - July 2024}
-      {\scriptsize \footnotesize{\\\textbf{Academic Performance:} GPA 14/20 (Good Standing)}}
+      \vspace{2pt}
+
+      {\scriptsize \footnotesize{\textbf{Academic Performance:} GPA 14/20 (Good Standing)}}
       {\scriptsize \footnotesize{\newline{}\textbf{Core Curriculum:} Architectural design fundamentals, building technology, history of architecture, urban morphology, structural engineering, and computer-aided design (CAD).}}
       
  \resumeSubheading
       {University of Algiers 1 -- Department of Architecture}{Algiers, Algeria}
       {Master's Degree in Architecture -- Environmental Architecture \& Technologies}{September 2024 - July 2026}
-      {\scriptsize \textit{ \footnotesize{\newline{}\textbf{Main focuses:} Parametric architecture, biomimetic envelopes, building performance simulation, environmental optimization, algorithmic design}}}
+      \vspace{2pt}
+
+      {\scriptsize \textit{ \footnotesize{\textbf{Main focuses:} Parametric architecture, biomimetic envelopes, building performance simulation, environmental optimization, algorithmic design}}}
       {\scriptsize \footnotesize{\newline{}\textbf{Academic Performance:} GPA 17/20 (Graduated with Honors / Excellence) -- Ranked 8th out of 296 students top 2.7\%.}}
       {\scriptsize \footnotesize{\newline{}\textbf{Master's Thesis:} Performance-driven parametric envelopes inspired by biological spiral patterns, integrating microclimate and hygrothermal simulations using Grasshopper, Ladybug Tools, and WUFI.}}
 
@@ -100,9 +134,23 @@
 %-----------RESEARCH INTEREST-----------------
 \vspace{-5pt}
 \section{Research Interests}
-\begin{description}[font=$\bullet$]
-  \item Parametric \& Algorithmic Architecture / Machine Learning Workflows for Microclimate Control / Hygrothermal Optimization of Envelopes / Biophilic \& Biomimetic Design / Building Performance Simulation (BPS).
-\end{description}
+\small
+\begin{minipage}[t]{0.48\textwidth}
+\begin{itemize}[itemsep=0pt, topsep=2pt, leftmargin=*]
+  \item Computational Design and Generative Design
+  \item Environmental Performance of Buildings
+  \item Building Performance Simulation
+  \item Climate-Responsive Architecture
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{itemize}[itemsep=0pt, topsep=2pt, leftmargin=*]
+  \item Digital Design and BIM
+  \item Sustainable and Circular Building Design
+  \item Architectural Technology and Building Systems
+  \item Urban Environmental Design and Resilience
+\end{itemize}
+\end{minipage}
 
 %-----------SKILLS SUMMARY-----------------
 \vspace{-5pt}
@@ -112,9 +160,22 @@
     \resumeSubItem{Parametric \& Simulation}{Grasshopper (GH Python), Ladybug Tools, Honeybee, WUFI (Hygrothermal Analysis)}
     \resumeSubItem{Rendering \& Visualization}{D5 Render, Lumion, Photoshop, Illustrator, InDesign}
     \resumeSubItem{Programming \& Technical}{LaTeX, Scripting for Algorithmic Geometry}
-    \resumeSubItem{Languages}{French (Full Professional Fluency), English (Professional Working Proficiency), Arabic (Native)}
     \resumeSubItem{Soft Skills}{Leadership, Architectural Design, On-Site Construction Supervision, Interdisciplinary Collaboration, Public Speaking, Technical Writing, Time Management}
   \resumeSubHeadingListEnd
+
+%-----------LANGUAGES (visual bars only)-----------------
+\vspace{-5pt}
+\section{Languages}
+{\small\itshape Language proficiency}\\[3pt]
+\begin{minipage}{0.32\textwidth}
+\langbar{French}{5.5}
+\end{minipage}\hfill
+\begin{minipage}{0.32\textwidth}
+\langbar{English}{4}
+\end{minipage}\hfill
+\begin{minipage}{0.32\textwidth}
+\langbar{Arabic}{3}
+\end{minipage}
 
 \vspace{-5pt}
 
@@ -122,8 +183,17 @@
 \section{Experience}
   \resumeSubHeadingListStart
 
+    \resumeSubheading{SONATRACH}{Algiers, Algeria}
+      {Architectural Intern -- Site Supervision}{October 2025 -- January 2026}
+      \resumeItemListStart
+        \resumeItem{Role}
+          {Participated in on-site construction monitoring and architectural supervision for the construction of Sonatrach's new corporate headquarters.}
+        \resumeItem{Key Tasks}
+          {Monitored execution compliance, verified architectural detail implementation, and inspected large-scale structural and finishing works.}
+      \resumeItemListEnd
+
     \resumeSubheading{Private Architecture Consultancy / Régie Foncière}{Algiers, Algeria}
-      {Architectural Intern -- Site Supervision \& Rehabilitation}{1 Year}
+      {Architectural Intern -- Site Supervision \& Rehabilitation}{August 2024 -- September 2025}
       \resumeItemListStart
         \resumeItem{Role}
           {Assigned to direct site supervision and structural rehabilitation of historical buildings across downtown Algiers (Algiers Centre).}
@@ -134,7 +204,7 @@
       \resumeItemListEnd
 
     \resumeSubheading{CNIC (National Center of Engineering for Construction)}{Algiers, Algeria}
-      {Architectural Intern}{5 Months}
+      {Architectural Intern}{June 2022 -- October 2022}
       \resumeItemListStart
         \resumeItem{Role}
           {Developed conceptual designs and preliminary architectural proposals (esquisse) for public and institutional infrastructure projects.}
@@ -142,15 +212,6 @@
           {Designed an officers' and non-commissioned officers' mess/accommodation facility and a public library project. Designed schemes were formally selected and adopted for development.}
         \resumeItem{Tools}
           {AutoCAD, Rhinoceros 3D, 3D modeling, and architectural rendering.}
-      \resumeItemListEnd
-
-    \resumeSubheading{SONATRACH}{Algiers, Algeria}
-      {Architectural Intern -- Site Supervision}{5 Months}
-      \resumeItemListStart
-        \resumeItem{Role}
-          {Participated in on-site construction monitoring and architectural supervision for the construction of Sonatrach's new corporate headquarters.}
-        \resumeItem{Key Tasks}
-          {Monitored execution compliance, verified architectural detail implementation, and inspected large-scale structural and finishing works.}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
