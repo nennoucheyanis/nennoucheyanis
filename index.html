@@ -480,7 +480,7 @@ ACADEMICAL WORKS — FLOATING BACK BUTTON
 
 
 
-                <div class="cv-section reveal">
+              <div class="cv-section reveal">
 
                     <div class="cv-header">
 
@@ -494,7 +494,7 @@ ACADEMICAL WORKS — FLOATING BACK BUTTON
                     <div class="cv-preview">
 
                         <iframe
-                            src="CV.pdf#toolbar=0&navpanes=0&scrollbar=0"
+                            id="cv-iframe"
                             title="Yanis Nennouche CV"
                         ></iframe>
 
@@ -504,7 +504,8 @@ ACADEMICAL WORKS — FLOATING BACK BUTTON
                     <div class="cv-actions">
 
                         <a
-                            href="CV.pdf"
+                            id="cv-open-link"
+                            href="#"
                             target="_blank"
                             class="button red"
                         >
@@ -514,6 +515,24 @@ ACADEMICAL WORKS — FLOATING BACK BUTTON
                     </div>
 
                 </div>
+
+<script>
+    (function () {
+        // Cache-buster basé sur l'heure de chargement de la page :
+        // change à chaque visite, donc le navigateur ne peut jamais
+        // servir une version de CV.pdf mise en cache.
+        const cacheBuster = Date.now();
+        const iframe = document.getElementById('cv-iframe');
+        const openLink = document.getElementById('cv-open-link');
+
+        if (iframe) {
+            iframe.src = `CV.pdf?v=${cacheBuster}#toolbar=0&navpanes=0&scrollbar=0`;
+        }
+        if (openLink) {
+            openLink.href = `CV.pdf?v=${cacheBuster}`;
+        }
+    })();
+</script>
 
 
             </div>
